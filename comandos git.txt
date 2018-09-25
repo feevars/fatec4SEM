@@ -1,6 +1,6 @@
 git clone "linkdapasta" / pra criar uma pasta clone no seu pc
 cd nomedapasta / pra abrir alguma pasta no prompt
 git add --all / pra atualizar e sincronizar a pasta
-git commit -m "nomedaaltera��o" / pra fazer um comunicado de arquivo novo / upar
-git push
-git pull
+git commit -m "nomedaalteração" / pra fazer um comunicado de arquivo novo / upar
+git push / para subir os arquivos no repositório
+git pull / para baixar os arquivos do repositório
