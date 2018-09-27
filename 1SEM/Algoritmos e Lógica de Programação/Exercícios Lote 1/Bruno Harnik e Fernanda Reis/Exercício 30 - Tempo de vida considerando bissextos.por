@@ -1,7 +1,7 @@
 programa
 {
 	
-	inteiro ANOi, MESi, DIAi, ANOf, MESf, DIAf, total_dias, var_mes, var_ano, DIASMESi, novo_mes
+	inteiro ANOi, MESi, DIAi, ANOf, MESf, DIAf, total_dias, var_mes, var_ano, DIASMESi, novo_mes, total_mes, dias_resto, mes_intervalo, dias_intervalo
 	
 	funcao inicio(){
 		
@@ -30,7 +30,7 @@ programa
 
 	}
 
-	funcao validacoes(){
+	funcao validacoes(){ //Dispositivos para checar se o usuário não insere nenhuma data impossível.
 		
 		se(ANOf < ANOi){
 			escreva("O ano final não pode ser menor que o ano inicial. Refaça...\n")
@@ -64,35 +64,7 @@ programa
 		
 	}
 
-	funcao calculo(){
-		se ((ANOi == ANOf) e (MESi == MESf)){
-
-			total_dias = DIAf - DIAi
-			escreva("Tempo decorrido: ", total_dias, " dia(s).")
-			
-		}
-		senao{
-			se(ANOi == ANOf){
-
-				DIASMESi = DiasMes(MESi,ANOi) - DIAi
-				
-				se(MESf == MESi + 1){
-					total_dias = DIASMESi + DIAf
-					escreva("Tempo decorrido: ", total_dias, " dia(s).")
-				}
-				senao{
-
-					//estou aqui
-
-
-					
-				}
-				
-			}
-		}
-	}
-
-	funcao inteiro DiasMes(inteiro mes, inteiro ano){
+	funcao inteiro DiasMes(inteiro mes, inteiro ano){ //Função que calcula quantos dias tem no mês
 
 		inteiro dias_no_mes
 		
@@ -112,6 +84,61 @@ programa
 		retorne dias_no_mes
 
 	}
+	
+	funcao calculo(){
+		se ((ANOi == ANOf) e (MESi == MESf)){	// Anos iguais e meses iguais
+
+			total_dias = DIAf - DIAi
+			escreva("Tempo decorrido: ", total_dias, " dia(s).")
+			
+		}
+		senao{
+			se(ANOi == ANOf){ //Anos iguais
+
+				DIASMESi = DiasMes(MESi,ANOi) - DIAi
+				
+				se(MESf == MESi + 1){	//Mês final é o seguinte do mês inicial
+					total_dias = DIASMESi + DIAf
+					escreva("Tempo decorrido: ", total_dias, " dia(s).\n")
+
+					total_mes = total_dias / 30
+					dias_resto = total_dias % 30
+
+					escreva("Ou ", total_mes, " meses e ", dias_resto, " dias (considerando que um mês tem 30 dias).")
+					
+				}
+				senao{ //Mês final é pelo menos o segundo após o inicial
+
+					mes_intervalo = MESi + 1
+					
+					dias_intervalo = 0
+					
+					enquanto(mes_intervalo < MESf){			
+		
+						dias_intervalo = dias_intervalo + DiasMes(mes_intervalo,ANOi) //executa a função de cálculo de dias
+
+						mes_intervalo = mes_intervalo + 1
+						
+					}
+
+					total_dias = DIASMESi + dias_intervalo + DIAf
+
+					escreva("Tempo decorrido: ", total_dias, " dia(s).\n")
+
+					total_mes = total_dias / 30
+					dias_resto = total_dias % 30
+
+					escreva("Ou ", total_mes, " meses e ", dias_resto, " dias (considerando que um mês tem 30 dias).")
+				}
+				
+			}
+		}
+
+		
+		
+	}
+
+	
 
 }
 /* $$$ Portugol Studio $$$ 
@@ -119,7 +146,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2251; 
+ * @POSICAO-CURSOR = 3627; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
