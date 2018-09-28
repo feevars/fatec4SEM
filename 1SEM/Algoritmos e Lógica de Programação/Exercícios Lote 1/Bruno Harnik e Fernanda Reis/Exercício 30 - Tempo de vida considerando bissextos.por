@@ -165,14 +165,32 @@ programa
 			escreva("Ou ", total_ano, " ano(s), ", total_mes, " mes(es) e ", dias_resto, " dia(s)\n(considerando que cada ano tem 365 dias e cada mês tem 30 dias).\n")
 			
 		}
-		senao{ //Ano final é no mínimo 2 a mais que o inicial
+		se(ANOf >= ANOi + 2){ //Ano final é no mínimo 2 a mais que o inicial
 
 			ano_intervalo = ANOi + 1
 			
 			mes_intervalo = MESi + 1
-			
-			dias_intervalo = 1
-			
+
+			enquanto(ano_intervalo < ANOf){
+				se(ano_intervalo % 4 == 0){
+					
+					dias_intervalo = dias_intervalo + 366
+
+					ano_intervalo = ano_intervalo + 1
+					
+				}
+				senao{
+					
+					dias_intervalo = dias_intervalo + 365
+
+					ano_intervalo = ano_intervalo + 1
+					
+				}
+			}
+
+			ANOS_intervalo_dias = dias_intervalo
+			escreva(ANOS_intervalo_dias)
+
 			enquanto(mes_intervalo <= 12){			
 	
 				dias_intervalo = dias_intervalo + DiasMes(mes_intervalo,ANOi) //executa a função de cálculo de dias
@@ -183,20 +201,7 @@ programa
 			
 			ANOi_dias = DIASMESi + dias_intervalo
 
-			dias_intervalo = 0
-			
-			enquanto(ano_intervalo < ANOf){
-				se(ano_intervalo % 4 == 0){
-
-					dias_intervalo = dias_intervalo + 366
-					
-				}
-				senao{
-					
-					dias_intervalo = dias_intervalo + 365
-					
-				}
-			}
+			dias_intervalo = 1
 
 			ANOS_intervalo_dias = dias_intervalo
 
@@ -217,6 +222,21 @@ programa
 				ANOf_dias = DIAf + dias_intervalo
 				
 			}
+
+			total_dias = ANOi_dias + ANOS_intervalo_dias + ANOf_dias
+
+			escreva("\nTempo decorrido: ", total_dias, " dia(s).\n\n")
+
+			total_mes = total_dias / 30
+			dias_resto = total_dias % 30
+
+			escreva("Ou ", total_mes, " mes(es) e ", dias_resto, " dia(s)\n(considerando que cada mês tem 30 dias).\n\n")
+
+			total_ano = total_dias / 365
+			total_mes = total_dias % 365 / 30
+			dias_resto = total_dias % 365 % 30
+
+			escreva("Ou ", total_ano, " ano(s), ", total_mes, " mes(es) e ", dias_resto, " dia(s)\n(considerando que cada ano tem 365 dias e cada mês tem 30 dias).\n")
 			
 		}
 
@@ -249,7 +269,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 4024; 
+ * @POSICAO-CURSOR = 5326; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
