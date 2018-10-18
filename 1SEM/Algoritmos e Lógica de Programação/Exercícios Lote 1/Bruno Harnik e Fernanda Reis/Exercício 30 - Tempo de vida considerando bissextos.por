@@ -1,18 +1,18 @@
 programa
 {
 	
-	inteiro ANOi, MESi, DIAi, ANOf, MESf, DIAf, total_dias, var_mes, var_ano, DIASMESi, novo_mes, total_mes, dias_resto, mes_intervalo, dias_intervalo, ANOi_dias, ANOf_dias, total_ano, ano_intervalo, ANOS_intervalo_dias
+	inteiro ANOi, MESi, DIAi, ANOf, MESf, DIAf, total_dias, DIASMESi, total_mes, dias_resto, mes_intervalo, dias_intervalo, ANOi_dias, ANOf_dias, total_ano, ano_intervalo, ANOS_intervalo_dias
 	
 	funcao inicio(){
 		
 	escreva("<<<<< Data inicial >>>>>\n")
-	escreva("Dia incial:")
+	escreva("Dia inicial:")
 	leia(DIAi)
 
-	escreva("Mês incial:")
+	escreva("Mês inicial:")
 	leia(MESi)
 		
-	escreva("Ano incial:")
+	escreva("Ano inicial:")
 	leia(ANOi)
 	
 	escreva("\n<<<<< Data final >>>>>\n")
@@ -189,7 +189,6 @@ programa
 			}
 
 			ANOS_intervalo_dias = dias_intervalo
-			escreva(ANOS_intervalo_dias)
 
 			enquanto(mes_intervalo <= 12){			
 	
@@ -269,7 +268,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 5326; 
+ * @POSICAO-CURSOR = 79; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

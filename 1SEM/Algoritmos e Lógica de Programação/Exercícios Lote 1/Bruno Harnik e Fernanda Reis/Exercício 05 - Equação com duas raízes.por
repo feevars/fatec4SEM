@@ -4,12 +4,9 @@ programa
 
 	inclua biblioteca Matematica --> mat  // Inclui a biblioteca Matemática
 
-	
 	funcao inicio()
 	{
 		real A, B, C, X1, X2, raiz_quadrada, delta
-
-		
 
 		leia(A, B, C)
 
@@ -21,8 +18,6 @@ programa
 
 		X2 = (-B - (raiz_quadrada)) / 2 * A
 
-		escreva(delta)
-
 		escreva("X1 = ", X1, " e X2 = ", X2)
 	}
 }
@@ -33,7 +28,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 228; 
+ * @POSICAO-CURSOR = 0; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

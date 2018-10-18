@@ -2,7 +2,7 @@ programa
 {
 	funcao inicio()
 	{
-		real C,H, L, V
+		real C, L, H, V
 		escreva("Qual o comprimento?")
 		leia(C)
 		escreva("Qual a largura?")
@@ -21,7 +21,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 206; 
+ * @POSICAO-CURSOR = 48; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
