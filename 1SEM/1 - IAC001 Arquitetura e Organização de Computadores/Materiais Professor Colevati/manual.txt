@@ -1,0 +1,9 @@
+Instalar o PCSpim 9.1.4
+Se der erro no arquivo exceptions, ele abrirá a tela Settings
+Clicar em Browse
+Localizar o arquivo exceptions.s, que está em:C:\Program Files (x86)\PCSpim\exceptions.s
+Dar OK
+
+
+ATENÇÃO !!!
+Caso esse procedimento não seja feito, o PCSpim não encontrará o endereço inicial para o início da execução do código.
