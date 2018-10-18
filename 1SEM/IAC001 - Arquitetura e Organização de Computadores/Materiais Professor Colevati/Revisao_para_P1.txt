@@ -1,0 +1,24 @@
+01 - Explique, com suas palavras, Arquitetura de Computadores<br>
+02 - Explique, com suas palavras, Organização de Computadores<br>
+03 - Explique, com suas palavras, detalhadamente, o ENIAC<br>
+04 - Explique, com suas palavras, detalhadamente, o IAS<br>
+05 - Explique, com suas palavras, detalhadamente, os registradores do IAS<br>
+06 - Explique, com suas palavras, o impacto mercadológico da Lei de Moore<br>
+07 - Explique, com suas palavras, clock do sistema<br>
+08 - Explique, com suas palavras, o CPI<br>
+09 - Explique, com suas palavras, o Tempo de Processador<br>
+10 - Explique, com suas palavras, a Lei de Amdahl<br>
+11 - Explique, com suas palavras, o impacto do aumento do paralelismo e do aumento de processadores no desempenho<br>
+12 - Explique, com suas palavras, os principais componentes do computador<br>
+13 - Explique, com suas palavras, ciclo de instrução, ciclo de busca, ciclo de execução e ciclo de interrupção<br>
+14 - Explique, com suas palavras, interrupção, com suas ocorrências sequenciais e aninhadas.<br>
+15 - Explique, com suas palavras, Barramento e seus tipos, bem como arbitração e sincronismo<br>
+16 - Explique, com suas palavras, os 4 métodos de acesso a memória<br>
+17 - Explique, com suas palavras, a latência de memória<br>
+18 - Explique, com suas palavras, detalhadamente, a memória cache, seu funcionamento multilevel.<br>
+19 - Explique, com suas palavras, detalhadamente os tipos de mapeamento de cache<br>
+20 - Explique, com suas palavras, detalhadamente os algoritmos de substituição de dados na cache.<br>
+21 - Explique, com suas palavras, os tipos de memória ROM<br>
+22 - Explique, com suas palavras, SRAM e DRAM, por seu funcionamento, característica e construção.<br>
+23 - Explique, com suas palavras, SDRAM e RDRAM por seu funcionamento, com seus tipos.<br>
+
