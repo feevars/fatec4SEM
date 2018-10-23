@@ -1,6 +1,6 @@
 programa{
 
-	const inteiro semanas = 2, produtos = 2
+	const inteiro semanas = 4, produtos = 3
 
 	inteiro tabela[semanas][produtos], linha, coluna, total_vendas, p, s, nome
 	
@@ -101,7 +101,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 676; 
+ * @POSICAO-CURSOR = 51; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

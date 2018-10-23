@@ -1,6 +1,6 @@
 programa
 {
-	const inteiro qtd = 6
+	const inteiro qtd = 20
 
 	inteiro i, j, meio
 
@@ -84,7 +84,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 742; 
+ * @POSICAO-CURSOR = 34; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
