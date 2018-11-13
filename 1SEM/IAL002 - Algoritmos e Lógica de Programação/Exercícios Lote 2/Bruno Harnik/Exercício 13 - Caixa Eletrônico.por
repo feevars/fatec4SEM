@@ -233,13 +233,16 @@ programa{
 
 	funcao OpcaoSaque2(inteiro aux_valor_saque){
 
-		para(i = 5; i > 2; i--){
+		para(i = 5; i >= 0; i--){
 
-			se((notas[1][i - 1] * notas[0][i - 1]) - (saque_notas[0][i - 1] * notas[0][i - 1]) > (saque_notas[0][i] * notas[0][i])){
+			se(i > 1 e ((notas[1][i - 1] * notas[0][i - 1]) - (saque_notas[0][i - 1] * notas[0][i - 1]) > (saque_notas[0][i] * notas[0][i]))){
 	
-				saque_notas[1][i - 1] = (saque_notas[0][i] * notas[0][i]) / saque_notas[1][i - 1]
+				saque_notas[1][i - 1] = (saque_notas[0][i] * notas[0][i]) / notas[0][i - 1]
 				 
+			}senao{
+				saque_notas[1][i] = saque_notas[0][i]
 			}
+			
 
 		
 		}
@@ -264,8 +267,8 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 5156; 
- * @DOBRAMENTO-CODIGO = [8, 64, 78, 135];
+ * @POSICAO-CURSOR = 5657; 
+ * @DOBRAMENTO-CODIGO = [8, 64, 78, 106, 135, 175, 233];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
