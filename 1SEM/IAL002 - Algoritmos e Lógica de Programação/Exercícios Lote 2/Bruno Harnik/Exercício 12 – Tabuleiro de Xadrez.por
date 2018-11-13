@@ -2,9 +2,9 @@ programa{
 
 	const real peao = 1.0, torre = 6.4, cavalo = 2.4, bispo = 4.0, rainha = 10.4, rei = 3.0, casa_vazia = 0.0
 
-	real tabuleiro[8][8], soma, somas[2][7], pecas[7] = {peao, torre, cavalo, bispo, rainha, rei, casa_vazia}
+	real tabuleiro[8][8], somas[2][7], pecas[7] = {peao, torre, cavalo, bispo, rainha, rei, casa_vazia}
 
-	inteiro l, c, i
+	inteiro l, c, i, soma
 	
 	cadeia nomes[7] = {" Peões", " Torres", " Cavalos", " Bispos", " Rainhas", " Reis", " Casas vazias"}
 	
@@ -14,23 +14,6 @@ programa{
 		
 		DistribuirPecas()
 
-		soma = 0
-		
-		para(l = 0; l < 8; l++){
-
-			para(c = 0; c < 8; c++){
-
-				soma = soma + tabuleiro[l][c]
-				escreva("[ ", tabuleiro[l][c], " ]")
-				
-			}
-
-			escreva("\n")
-
-		}
-
-		escreva("\nA soma dos valores de todas as casas é: ", soma, "\n")
-
 		para(l = 0; l < 8; l++){
 			
 			para(c = 0; c < 8; c++){
@@ -39,8 +22,8 @@ programa{
 
 					se(pecas[i] == tabuleiro[l][c]){
 					
-					somas[0][i] = somas[0][i] + 1
-					somas[1][i] = somas[1][i] + tabuleiro[l][c]
+					somas[0][i] = somas[0][i] + 1 //Quantidade de peças
+					somas[1][i] = somas[1][i] + tabuleiro[l][c] //Soma dos valores atribuidos
 					}
 				}
 				
@@ -60,7 +43,7 @@ programa{
 
 	funcao DistribuirPecas(){
 
-		escreva("\nDistribuição do Tabuleiro: ")
+		escreva("\nDistribuição das peças no tabuleiro: \n")
 		
 		tabuleiro[0][0] = pecas[1]
 		tabuleiro[0][1] = pecas[2]
@@ -95,6 +78,23 @@ programa{
 			}
 			
 		}
+
+		soma = 0
+		
+		para(l = 0; l < 8; l++){
+
+			para(c = 0; c < 8; c++){
+
+				soma = soma + tabuleiro[l][c]
+				escreva("[ ", tabuleiro[l][c], " ]")
+				
+			}
+
+			escreva("\n")
+
+		}
+
+		escreva("\nA soma dos valores de todas as casas é: ", soma, "\n")
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -102,7 +102,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1303; 
+ * @POSICAO-CURSOR = 569; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
