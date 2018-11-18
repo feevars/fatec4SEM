@@ -1,5 +1,6 @@
 .data
-
+	
+	#Mensagens
 	msg_inicio: .asciiz"•••••••••••••••••••••••••••••••••••••\n•   VERIFICAÇÃO DE NÚMEROS PRIMOS   •\n•••••••••••••••••••••••••••••••••••••\nBruno Bega Harnik - 1º Sem FATEC 2019\n•••••Professor Colevati - IAC001•••••\n\nDigite um número natural maior que 0 e menor que 100000: "
 	msg_maior: .asciiz" é maior que 100000.\nDigite outro número: "
 	msg_menor: .asciiz" é menor que 1.\nDigite outro número: "
@@ -12,30 +13,27 @@
 
 .globl main
 
-main:
+	main:
 
 	#Mensagem incial
 	li $v0, 4
 	la $a0, msg_inicio
 	syscall
 
-
+	#Início do código – Coloquei o título acima para não repetir caso haja uma segunda consulta.
 	inicio:
 		
-		#t1 -> Armazena o número inicial e contador
+		#t1 -> Armazena o número inicial e contador: 1
 		li $t1, 1
-		#t2 -> Número máximo
+
+		#t2 -> Número máximo: 100000
 		li $t2, 100000
+
 		#t3 -> Quadrado do número em looping
 		li $t3, 0
-		#Armazena o resto da divisão do quadrado por números primos da primeira dezena
-		li $t4, 0
 
-		li $s1, 1
-		li $s2, 2
-		li $s3, 3
-		li $s5, 5
-		li $s7, 7
+		#t4 -> Armazena o resto da divisão do quadrado por números primos da primeira dezena
+		li $t4, 0
 
 		#t0 -> registra o número digitado pelo usuário
 		li $v0, 5
@@ -104,35 +102,35 @@ main:
 
 					enquanto:
 
-						ble $t1, $s7, primeira_dezena
+						ble $t1, 7, primeira_dezena
 
 						j mods
 
 						primeira_dezena:
 
 							#Primos da primeira dezena
-							beq $t1, $s1, primo
-							beq $t1, $s2, primo
-							beq $t1, $s3, primo
-							beq $t1, $s5, primo
-							beq $t1, $s7, primo
+							beq $t1, 1, primo
+							beq $t1, 2, primo
+							beq $t1, 3, primo
+							beq $t1, 5, primo
+							beq $t1, 7, primo
 
 						mods:
 
 							mul $t3, $t1, $t1
 
 							#Mod de t3 por t4 armazenado em t5
-							rem $t4, $t3, $s2
+							rem $t4, $t3, 2
 							#Se mod for 0 não é primo
 							beq $t4, 0, nao_primo
 
-							rem $t4, $t3, $s3
+							rem $t4, $t3, 3
 							beq $t4, 0, nao_primo
 
-							rem $t4, $t3, $s5
+							rem $t4, $t3, 5
 							beq $t4, 0, nao_primo
 
-							rem $t4, $t3, $s7
+							rem $t4, $t3, 7
 							beq $t4, 0, nao_primo
 			
 						primo:

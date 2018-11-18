@@ -18,39 +18,65 @@ programa{
 			limpa()
 
 			Primos(numero)
-		}limpa()
-
-		Primos(numero)
+		}
 	}
 	
 	funcao Primos(inteiro n){
 
-		inteiro i, p, quadrado, primos[]
+
+		inteiro i, p, quadrado, primos[n]
+
+		primos[0] = 1
+		primos[1] = 2
+		primos[2] = 3
+		primos[3] = 5
+		primos[4] = 7
 
 		escreva("Os números primos de 1 a ", n, " são:\n")
 
 		i = 1
+		
+		p = 0
+		
+		enquanto(i < n - 1 e i < 10){
+
+			se((i < 10) e (primos[p] == 1 ou primos[p] == 2 ou primos[p] == 3 ou primos[p] == 5 ou primos[p] == 7)){
+				escreva(primos[p], "\n")
+				p++
+			}
+
+			i++
+			
+		}
+
+		i = 10
 
 		enquanto(i <= n){
 
-			enquanto(p < n){
+			p = 1
 
-				quadrado = i * i
-			
-				se((i % 2 != 0 e i % 3 != 0 e i % 5 != 0 e i % 7 != 0) ou i == 1 ou i == 2 ou i == 3 ou i == 5 ou i == 7){
+			enquanto(p <= i){
 
-				
-				escreva(i, "\n")
+				se(primos[p] == 0){
 
-				p++
-				
+					
+					primos[p] = i
+					escreva(primos[p], "\n")
+					p = i + 1
+					
+				}
+				senao se(i % primos[p] == 0){
+					
+					p = i + 1
+					
+				}
+				senao se(i % primos[p] != 0){
+					
+					p++
 				
 				}
-
-			
-
+				
 			}
-
 			i++
 			
 		}			
@@ -61,7 +87,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 403; 
+ * @POSICAO-CURSOR = 329; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
