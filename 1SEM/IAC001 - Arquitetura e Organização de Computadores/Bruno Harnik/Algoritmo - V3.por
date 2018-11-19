@@ -40,21 +40,19 @@ programa{
 
 		enquanto(i <= n){
 
-			enquanto(i < 10){
+			enquanto(i < 8 e i <= n){
 
 				se(primos[p] == i){
-				escreva(primos[p], "\n")
-
-				p++
+					
+					escreva(primos[p], "\n")
+					p++
 				}
-
 				
 				i++
-
+				
 			}
 
 			p = 1
-
 
 			enquanto(p < i e i > 7){
 
@@ -88,7 +86,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 359; 
+ * @POSICAO-CURSOR = 669; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
