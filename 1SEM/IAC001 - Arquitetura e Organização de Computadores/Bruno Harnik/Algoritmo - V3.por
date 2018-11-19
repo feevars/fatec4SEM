@@ -27,11 +27,10 @@ programa{
 
 		inteiro i, p, primos[t]
 
-		primos[0] = 1
-		primos[1] = 2
-		primos[2] = 3
-		primos[3] = 5
-		primos[4] = 7
+		primos[0] = 2
+		primos[1] = 3
+		primos[2] = 5
+		primos[3] = 7
 
 		escreva("Os números primos de 1 a ", n, " são:\n")
 
@@ -86,7 +85,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 669; 
+ * @POSICAO-CURSOR = 470; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
