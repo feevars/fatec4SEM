@@ -5,8 +5,8 @@
 main:
 	#TABUADA
 	li $v0, 4		#$v0 <- 4 (Escrever car.)
-	la $a0, msg1	#(mostra)
-	syscall
+	la $a0, msg1		#(mostra)
+	syscall			#chamada de programa
 	
 	#Leia($t0)
 	li  $v0, 5		# 5 = leitura de inteiros
