@@ -25,7 +25,8 @@ programa{
 	
 	funcao Primos(inteiro n, inteiro t){
 
-		inteiro i, p, primos[t]
+		inteiro i, p, primos[t], qtd = 0
+
 
 		primos[0] = 2
 		primos[1] = 3
@@ -44,6 +45,7 @@ programa{
 				se(primos[p] == i){
 					
 					escreva(primos[p], "\n")
+					qtd = qtd + 1
 					p++
 				}
 				
@@ -53,12 +55,13 @@ programa{
 
 			p = 1
 
-			enquanto(p < i e i > 7){
+			enquanto(p < i e i > 10){
 
 				se(primos[p] == 0){
 
 					primos[p] = i
 					escreva(primos[p], "\n")
+					qtd = qtd + 1
 					p = i
 					//grava um novo primo no vetor ao encontrar 0 e iguala o p ao i para sair do looping
 				}
@@ -77,7 +80,9 @@ programa{
 			}
 			i++
 			
-		}			
+		}	
+
+				escreva("\n\nTotal de primos: ", qtd)
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -85,7 +90,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 470; 
+ * @POSICAO-CURSOR = 823; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
