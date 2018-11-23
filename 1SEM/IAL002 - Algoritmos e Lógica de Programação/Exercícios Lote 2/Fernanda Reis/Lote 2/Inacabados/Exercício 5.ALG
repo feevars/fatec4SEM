@@ -1,32 +1,26 @@
-Algoritmo "5.	Criar e coletar em um vetor [20] inteiro. Calcule e exiba, segundo:""
+Algoritmo "5.	Criar e coletar em um vetor [10] inteiro. Calcule e exiba, segundo:""
 
 Var
-i,k, sub, num : inteiro
-nums: vetor [1..6] de inteiro
+i, num, soma, total_soma : inteiro
+nota: vetor [1..10] de inteiro
 Inicio
-      i <- 1
-      sub <- 0
-      k <- 6
-      //entrada
-      escreval ("Digite 6 números:")
-      leia (num)
-           se (num < 1) entao
-              escreval ("Número inválido!")
-              <inicio>  //volta para o começo da funcao entrada
-           senao
-                // calculo em si
-                nums[i] <- num
-                i <- i+1
-                para k <- 1 ate 6 faca
-                     enquanto i < 5 faca
-                              enquanto k > i faca
-                                       sub <- nums[i] - nums[k]
-                                       k <- k - 1
-                                       i <- i + 1
-                                       escreval ("valor: ",sub)
-                              fimenquanto
-                     fimenquanto
-                fimpara
-           fimse
+
+i <- 1
+para i <- 1 ate 10 faca
+   escreval ("Digite o ",i,"º valor: ")
+   leia (num)
+   nota[i] <- num
+   i <- i + 1
+fimpara
+i <- 1
+soma <- 0
+total_soma <- 0
+   para i <- 1 ate 5 faca
+      soma <- soma + (nota[i] - nota[11-i])
+      escreval ("A operação (subtração) dos números na ", i, "ª e na ", 11-i, "ª posições é: ", soma)
+      i <- i+1
+      total_soma <- total_soma + soma
+   fimpara
+   escreval ("A somatória total dos valores contidos no vetor é: ", total_soma)
 
 Fimalgoritmo
