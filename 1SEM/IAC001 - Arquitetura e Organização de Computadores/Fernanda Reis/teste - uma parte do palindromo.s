@@ -1,7 +1,7 @@
 .data
 	
 	#mensagens
-	msg_inicio: .asciiz "Palindromo! \n"
+	msg_inicio: .asciiz "\n Palindromo! \n"
 	msg_digite: .asciiz "Digite um numero: "
 	msg_outof: .asciiz "O numero informado nao atende aos requisitos do programa."
 	msg_ok: .asciiz "O numero digitado e um palindromo!"
@@ -41,7 +41,7 @@
 	ble $t0, $s1, fora
 	bge $t0,$s2, fora  #"O número informado não atende aos requisitos do programa."
 	bge $t0,$s1, programa	
-    #se nao (se tiver dentro dos limites, vai para programa:)
+    #se nao (se tiver dentro dos limites, vai para programa)
     
 	
 	fora:
@@ -72,12 +72,15 @@
 
 		
 	enquanto_palindromo:
-	rem $t6, $t3, 10 		#t6 <- num % 10
-   	mul $t7, $t4, 10   		#$t7 <- (inv * 10)
-   	add $t4, $t7, $t4		#inv <- (inv *10) + dig (ou inv)
-   	div $t3, $t3, 10        #num <- int(num / 10) ou num <- div num/10
-   					 		  	
-    j prog 
+	rem $t6, $t3, 10 	#dig (t6) <- num % 10		
+  	mul $t4, $t4, 10   	#$t4 (inv) <- inv * 10
+   	add $t4, $t4, $t6	# inv <- (inv *10) + dig 
+   	div $t3, $t3, 10    #num <- int(num / 10) 
+   	
+   	bne $t3, 0, enquanto_palindromo
+   	beq $t3, 0, prog
+
+    
    	
   	fim1:
   	li $v0, 4			
