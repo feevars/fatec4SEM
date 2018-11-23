@@ -5,8 +5,8 @@
 	msg_digite: .asciiz "Digite um numero: "
 	msg_outof: .asciiz "O numero informado nao atende aos requisitos do programa."
 	msg_ok: .asciiz "O numero digitado e um palindromo!"
-	msg_nok: .asciiz "O numero informado nao e palindromo :( mas..."
-	msg_abaixo: .asciiz "O numero palindromo mais proximo abaixo e o: "
+	msg_nok: .asciiz "O numero informado nao e palindromo :("
+	
 
 
 .text
@@ -57,35 +57,12 @@
     li $s3, 1 #definir uma variável como 1
 	beq $s3, 1, ver_palindromo #ver_palindromo
 
-	prog1:
+	prog:
 	li $s3, 0
 	add $t4, $t4, 0
 	beq $t0, $t4, fim1 #se (informado = inv) entao
-	bne $t0, $t4, sediferente #se ninformado <> inv entao
-
+	j fim_nok #se ninformado <> inv entao
 	
-	sediferente:
-	li $v0, 4			
-	la $a0, msg_nok 	#"O número informado não é palíndromo :( mas..."
-	syscall	
-	j segunda_parte 
-
-	segunda_parte:
-	li $t8, 1							# p <- 1
-    li $s4, 2  #definir uma variavel como 2   
-    beq $t8, 1, ver_palindromo 			#enquanto p = 1 faca
-    
-    segp:
-    add $t4, $t4, 0     				#inv <- ver_palindromo
-    bne $t0, $t4, outrosediferente 		#se (informado <> inv) entao
-	sub $t8, $t8, 1						#t8 <- 0
-	j fim2
-    
-  
-	outrosediferente:
-	sub $t0, $t0, 1
-	j segunda_parte
-
 							
 	ver_palindromo: 
 
@@ -100,22 +77,19 @@
    	add $t4, $t7, $t4		#inv <- (inv *10) + dig (ou inv)
    	div $t3, $t3, 10        #num <- int(num / 10) ou num <- div num/10
    					 		  	
-    beq $s3, 1, prog1 
-    j segp
-
-
-
+    j prog 
+   	
   	fim1:
   	li $v0, 4			
 	la $a0, msg_ok 		#escreval("O número digitado é um palíndromo!")
 	syscall
   	j o_fim
 
-	fim2:
+	fim_nok:
 	li $t8, 0			 	#p <- 0
 	li $v0, 4			
-	la $a0, msg_abaixo 		#"O número palíndromo mais próximo abaixo é o: "
+	la $a0, msg_nok 	#"O número informado não é palíndromo :("
 	syscall	
- 	j o_fim
+ 	
 
  	o_fim:
