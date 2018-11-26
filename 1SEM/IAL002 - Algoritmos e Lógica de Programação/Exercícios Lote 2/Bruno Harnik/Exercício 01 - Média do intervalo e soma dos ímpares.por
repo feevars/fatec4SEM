@@ -1,7 +1,5 @@
 programa{
 	
-
-	
 	funcao inicio(){
 
 	const inteiro qtd = 3
@@ -47,7 +45,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 833; 
+ * @POSICAO-CURSOR = 439; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
