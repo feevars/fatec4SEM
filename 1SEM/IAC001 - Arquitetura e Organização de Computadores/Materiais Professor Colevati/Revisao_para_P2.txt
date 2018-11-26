@@ -1,4 +1,4 @@
-1 - Explique Set de Instruções, com seus elementos.</br>
+1 - Explique Set de Instru›es, com seus elementos.</br>
 2 – Explique a forma que uma instrução pode ser representada, de acordo com os tipos possíveis de processador.</br>
 3 – Explique tipo de dados e qual sua relevância.</br>
 4 – Explique os tipos de Operações possíveis em um computador.</br>

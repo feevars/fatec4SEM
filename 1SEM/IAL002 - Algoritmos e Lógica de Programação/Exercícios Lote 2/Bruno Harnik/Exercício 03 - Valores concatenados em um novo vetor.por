@@ -13,13 +13,12 @@ programa
 		OrganizaVT3()
 
 
-		escreva("\nVetor 3 resultante da concatenação dos vetores 1 e 2.\n")
+		escreva("\nVetor 3 resultante da concatenação dos vetores 1 e 2:\n")
 		para (i = 0; i < total; i++){
 
 			escreva(i + 1, "º valor: ", VT3[i], "\n")
-		}
-
 		
+		}
 		
 	}
 	
@@ -65,7 +64,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1127; 
+ * @POSICAO-CURSOR = 620; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
