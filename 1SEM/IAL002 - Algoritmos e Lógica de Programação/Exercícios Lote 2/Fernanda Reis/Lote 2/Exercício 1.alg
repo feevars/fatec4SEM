@@ -13,7 +13,7 @@ inicio
         para i <- 1 ate 3 faca
         Escreval ("Digite o ", i, "º valor: ")
         leia (val[i])
-             se (val[i] >= 10) e (val[i] <= 200)entao
+             se (val[i] > 10) e (val[i] < 200)entao
                 soma <- soma+val[i]
                      cont <- cont + 1
                 media <- soma/cont
