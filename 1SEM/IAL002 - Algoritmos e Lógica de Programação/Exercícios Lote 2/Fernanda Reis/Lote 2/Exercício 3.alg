@@ -2,18 +2,18 @@ algoritmo "Criar e coletar valores inteiros nos vetores VT1[3] e vt2[3]."
           "Concatenar esses valores em um 3º vetor VT[6] e mostrar seus dados."
 
 var
-   vt1: vetor [1..3] de inteiro
-   vt2: vetor [1..3] de inteiro
-   vt3: vetor [1..6] de inteiro
+   VT1: vetor [1..3] de inteiro
+   VT2: vetor [1..3] de inteiro
+   VT3: vetor [1..6] de inteiro
    i , j : inteiro
 inicio
       j <- 1
       para i <- 1 ate 3 faca
 
            escreval ("Digite o ",i,"º valor do primeiro vetor: ")
-           leia (vt1[i])
+           leia (VT1[i])
            se (j % 2 = 1) entao
-           vt3[j] <- vt1[i]
+           VT3[j] <- VT1[i]
            j <- j + 2
            senao
            fimse
@@ -21,9 +21,9 @@ inicio
       j <- 2
       para i <- 1 ate 3 faca
            escreval ("Digite o ",i,"º valor do segundo vetor: ")
-           leia (vt2[i])
+           leia (VT2[i])
            se (j % 2 = 0) entao
-           vt3[j] <- vt2[i]
+           VT3[j] <- VT2[i]
            j <- j + 2
            senao
            fimse
@@ -31,7 +31,7 @@ inicio
       j<-1
              escreval ("Números concatenados: ")
              enquanto (j<7) faca
-                  escreva (vt3[j])
+                  escreva (VT3[j])
                   j <- j+1
               fimenquanto
               
