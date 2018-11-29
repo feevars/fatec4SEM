@@ -1,0 +1,17 @@
+1 - Explique Set de Instru›es, com seus elementos.</br>
+2 – Explique a forma que uma instrução pode ser representada, de acordo com os tipos possíveis de processador.</br>
+3 – Explique tipo de dados e qual sua relevância.</br>
+4 – Explique os tipos de Operações possíveis em um computador.</br>
+5 – Explique as características dos processadores CISC.</br>
+6 – Explique as características dos processadores RISC.</br>
+7 - Explique as características dos processadores Híbridos CISC-RISC.</br>
+8 – Explique o banco de registradores dos processadores RISC e, o motivo de sua adoção.</br>
+9 – Explique Registradores de uso geral e de uso específico, dizendo, pro caso dos de uso específico, quais são e para que servem.</br>
+10 – Explique, utilizando as características do ciclo de execução de instrução, Pipeline.</br>
+11 – Explique os tipos de tratamento de saltos em Pipelines.</br>
+12 – Explique Superpipeline.</br>
+13 – Explique Superescalar.</br>
+14 – Explique as limitações de um sistema Superescalar.</br>
+15 – Explique as possibilidades para Multiprocessadores Simétricos.</br>
+16 – Explique a Lei de Pollack.</br>
+17 – Explique a organização Multicore para os Principais Processadores.</br>

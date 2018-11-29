@@ -1,0 +1,12 @@
+algoritmo "12.	Carregar códigos das peças em um tabuleiro de xadrez, onde:"
+"Calcular e mostrar a soma das peças do tabuleiro."
+"Não pode utilizar estrutura de decisão e Escolha Caso na contagem das peças"
+// Função :
+// Autor :
+// Data : 29/11/2018
+// Seção de Declarações 
+var
+
+inicio
+// Seção de Comandos 
+fimalgoritmo

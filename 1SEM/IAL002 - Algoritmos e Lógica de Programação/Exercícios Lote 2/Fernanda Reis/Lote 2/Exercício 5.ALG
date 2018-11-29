@@ -8,8 +8,8 @@ Inicio
 i <- 1
 para i <- 1 ate 10 faca
    escreval ("Digite o ",i,"º valor: ")
-   leia (num)
-   nota[i] <- num
+   leia (nota[i])
+
    i <- i + 1
 fimpara
 i <- 1

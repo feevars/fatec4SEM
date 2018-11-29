@@ -24,20 +24,25 @@ para i <- 1 ate 4 faca
       leia (matriz[i,j])
    fimpara
 fimpara
-   para i <- 1 ate 4 faca
-        para j <- 1 ate 4 faca
-        matriz[i,j] <- diagonal
-        diagonal <- diagonal * 4
-        fimpara
-   fimpara
-   
-   escreval("Os valores que você digitou, nas posições x = y, serão ignorados hehe")
-   escreval("mas aqui está a matriz gerada: ")
-   
- para i <- 1 ate 4 faca
+para i <- 1 ate 4 faca
    para j <- 1 ate 4 faca
-      escreval(matriz[i,j]:5)
+      se i=j entao
+         matriz[i,j] <- diagonal
+         diagonal <- diagonal * 4
+      senao
+      fimse
    fimpara
+fimpara
+
+escreval("Os valores que você digitou, nas posições x = y, serão ignorados hehe")
+escreval("mas aqui está a matriz gerada: ")
+
+
+para i <- 1 ate 4 faca
+   para j <- 1 ate 4 faca
+      escreva(" || ", matriz[i,j], " || ")
+   fimpara
+   escreval()
 fimpara
 
 
