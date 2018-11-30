@@ -75,7 +75,9 @@ senao
 
 
 //saque em si <<<<
-
+//tem q fazer pra calcular das notas maiores para as menores. tipo notas <- 6 ate 1
+//valor_saque div tipo[notas] --> guarda o inteiro
+//o resto vai para o proximo tipo de notas, mod da operação anterior por tipo[notas-1]
 //loop até que o resto das operações seja 0
 //se o resto final for impar e < 5 ou par e > 5, desfaz a ultima operação e utiliza notas de 2 para completar
 para notas <- 6 ate 1 faca
@@ -90,7 +92,6 @@ resto <- resto + tipo[nota]
 int <- resto div tipo[nota-1]
 senao
 fimse
-se (resto 
 
 
 
