@@ -27,11 +27,14 @@ para j <- 6 ate 1 faca
 
    se (resto < notas[1,j]) entao
    senao
-   aux <- resto div notas[1,j]
-   resto <- resto mod notas[1,j]
-   notas[2,j] <- aux //qtdd de cada nota q vai sair no saque
+      aux <- resto div notas[1,j]
+      se (aux = 0) entao
+      senao
+         resto <- resto mod notas[1,j]
+         notas[2,j] <- aux //qtdd de cada nota q vai sair no saque
+      fimse
    fimse
-j <- j-1
+   j <- j-1
 fimpara
 se (resto < 5) e (resto > 0) e (resto % 2 =1) entao
    resto <- resto + notas[1,j]
