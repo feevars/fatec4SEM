@@ -32,12 +32,12 @@ FIMESCOLHA
 funcao: carregar_notas
 var
 inicio
-// se notas <- 1, tipo[notas] <- 2
-// se notas <- 2, tipo[notas] <- 5
-// se notas <- 3, tipo[notas] <- 10
-// se notas <- 4, tipo[notas] <- 20
-// se notas <- 5, tipo[notas] <- 50
-// se notas <- 6, tipo[notas] <- 100
+// notas[i,1], <- 2
+// notas[i,2], <- 5
+// notas[i,3], <- 10
+// notas[i,4], <- 20
+// notas[i,5], <- 50
+// notas[i,6], <- 100
 
 limpa <<<<<
 

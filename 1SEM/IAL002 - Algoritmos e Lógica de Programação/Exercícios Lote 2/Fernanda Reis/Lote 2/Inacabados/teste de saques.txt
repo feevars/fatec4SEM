@@ -17,13 +17,21 @@ notas[1,5] <- 50
 notas[1,6] <- 100
 
 j <- 6
+resto <- 0
+aux <- 0
+
 escreval("digite o valor que deseja sacar: ")
 leia (valor)
+resto <- valor
 para j <- 6 ate 1 faca
-   resto <- valor
+
+   se (resto < notas[1,j]) entao
+   senao
    aux <- resto div notas[1,j]
    resto <- resto mod notas[1,j]
    notas[2,j] <- aux //qtdd de cada nota q vai sair no saque
+   fimse
+j <- j-1
 fimpara
 se (resto < 5) e (resto > 0) e (resto % 2 =1) entao
    resto <- resto + notas[1,j]
