@@ -2,11 +2,11 @@
 	
 	#mensagens
 	msg_aluno: .asciiz "Nome: Fernanda Pinheiro Reis   |   R.A: 1110481823022 \n \n"
-	msg_enunciado: .asciiz "13. Faca um algoritmo que leia um numero (1 < numero < 10000) e, caso\n ele nao seja um numero palindromo, apontar qual o numero \n palindromo mais proximo antes dele. \n \n "
-	msg_inicio: .asciiz "Palindromo! \n"
-	msg_digite: .asciiz "Digite um numero entre 1 e 10.000: "
-	msg_outof: .asciiz "O numero informado nao atende aos requisitos do programa. \n"
-	msg_ok: .asciiz "O numero digitado e um palindromo! \n \n"
+	msg_enunciado: .asciiz "13. Faca um algoritmo que leia um numero (1 < numero < 10000) e, \ncaso ele nao seja um numero palindromo, apontar qual o numero \n palindromo mais proximo antes dele. \n \n "
+	msg_inicio: .asciiz "Palindromo! \n\n Numeros palindromos sao aqueles que lidos da esquerda para a \ndireita ou da direita para a esquerda sao iguais.\nVamos verificar se um numero e palindromo.\n"
+	msg_digite: .asciiz "\nDigite um numero entre 1 e 10.000: "
+	msg_outof: .asciiz "\nO numero informado nao atende aos requisitos do programa. \n"
+	msg_ok: .asciiz "\nO numero digitado e um palindromo! \n \n"
 	msg_nok: .asciiz "\nO numero informado nao e palindromo :( mas... \n"
 	msg_abaixo: .asciiz "\nO numero palindromo mais proximo abaixo e o: "
 	msg_linha: .asciiz "\n \n"
@@ -56,7 +56,7 @@
 		#se valor < 1 ou > 10.000
 		ble $t0, $s1, fora
 		bge $t0,$s2, fora
-		#se tiver dentro dos limites, vai para programa)  
+		#se tiver dentro dos limites, vai para programa  
 		bge $t0,$s1, programa	
     	
     
@@ -65,7 +65,12 @@
 		#msg de "fora dos limites do programa"
 		li $v0, 4			
 		la $a0, msg_outof 	
-		syscall	 
+		syscall	
+
+		#quebra de msg_linha
+		li $v0, 4			
+		la $a0, msg_linha 		
+		syscall 
 	j inicio
 
 	

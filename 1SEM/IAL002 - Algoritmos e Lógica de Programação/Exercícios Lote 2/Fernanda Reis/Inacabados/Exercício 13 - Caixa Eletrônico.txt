@@ -1,0 +1,109 @@
+algoritmo "CAIXA ELETRÔNICO"
+// Função :
+// Autor :
+// Data : 29/11/2018
+// Seção de Declarações
+var
+opcao_inicial : caractere
+inicio
+// Seção de Comandos
+escreval ("||   ||   ||   ||   CAIXA ELETRÔNICO   ||   ||   ||   ||")
+escreval ()
+escreval ("Seja bem vindo a este terminal. O que deseja fazer?")
+escreval ("[1] CARREGAR NOTAS  ||  [2]SAQUE  ||  [3]ESTATÍSTICAS  ||  [9]ENCERRAR")
+escreval()
+leia(opcao_inicial)
+//escolha caso
+
+
+ESCOLHA opcao_inicial
+CASO "1"
+   //carr_notas <- funcao_carregar_notas
+CASO "2"
+   //retirar <- funcao_saque
+CASO "3"
+   //estatística <- funcao_estatistica
+CASO "9"
+   //finaliza o programa
+   //" agradecemos sua escolha pelo nosso serviço! Volte sempre!
+FIMESCOLHA
+
+//função carregar notas <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+funcao: carregar_notas
+var
+inicio
+// notas[i,1], <- 2
+// notas[i,2], <- 5
+// notas[i,3], <- 10
+// notas[i,4], <- 20
+// notas[i,5], <- 50
+// notas[i,6], <- 100
+
+limpa <<<<<
+
+// dois vetores: um para armazenar o valor das notas e um para armazenar a quantidade daquelas notas
+escreval("  ||  ||  CARREGAR NOTAS  ||  ||  ")
+para notas <- 1 ate 6 faca
+   escreval(" Digite o número de notas ", tipo[notas], ": ")
+   leia (qtdd[notas])
+fimpara
+// tipo[notas] e qtdd[notas] devem ser correspondentes, por exemplo, qtdd[1] = quantidade de notas 2
+
+fimfuncao
+
+
+//funcao saque <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+funcao: carregar_notas
+//limpa
+para notas <- 1 ate 6 faca
+   valor_notas <- qtdd[notas] * tipo[notas]
+   total_valor_notas <- total_valor_notas +  valor_notas
+fimpara
+escreval ("  ||  ||  ||  SAQUE  ||  ||  ||  ")
+//exibir o total de valor no caixa, ou seja, total_valor_notas
+escreval("O caixa possui R$ ", total_valor_notas, ",00 disponíveis para saque.")
+escreval("Digite o valor que deseja sacar: ")
+leia(valor_saque)
+//condicionais para saque dar certo
+se (valor_saque > total_valor_notas) ou (valor_saque<2) ou (valor_saque=3) entao
+   escreval("O valor digitado não está disponível para saque.")
+   //digite outro valor -- retorna a outra parte do código
+senao
+//se (valor_saque > numeros terminados em 5) e (valor_saque < numeros terminados em 0 com dezena 1 numero maior que a do anterior) entao
+//tira uma nota de 5 e completa com notas de 2
+// notas <- notas - 1 no tipo[notas] ex: ao invés de pegar nota de 5, pega notas de 2
+
+
+//saque em si <<<<
+
+//loop até que o resto das operações seja 0
+//se o resto final for impar e < 5 ou par e > 5, desfaz a ultima operação e utiliza notas de 2 para completar
+para notas <- 6 ate 1 faca
+resto <- valor
+int <- resto div tipo[notas]
+resto <- resto mod tipo[notas]
+num_notas_saque[notas] <- int //qtdd de cada nota q vai sair no saque
+fimpara
+se (resto <5) e (resto>0) e (resto%2=1) ou (resto>5) e (resto<10) e resto%2=0) entao
+desfaz a ultima operacao e faz com tipo[notas-1]
+resto <- resto + tipo[nota]
+int <- resto div tipo[nota-1]
+senao
+fimse
+se (resto 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fimalgoritmo
