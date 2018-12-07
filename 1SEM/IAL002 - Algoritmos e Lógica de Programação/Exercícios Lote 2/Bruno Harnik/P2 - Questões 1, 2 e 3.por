@@ -21,7 +21,21 @@ programa{
 					pare
 					
 			caso 2 :	OrdenaMat(MAT)
+
+					//Escrevo com a Matriz retornada
+					para(i = 0; i < qtd; i++){
+			
+						para(j = 0; j < qtd; j++){
+			
+							escreva(MAT[i][j], "	")
+			
+						}
+						escreva("\n")
+					}
+
 					inicio()
+
+					
 					pare
 
 			caso 9 : 	escreva("Fim")
@@ -118,14 +132,12 @@ programa{
 
 			para(j = 0; j < qtd; j++){
 
-				MAT[i][j] = ordenador[k]
+				ORD[i][j] = ordenador[k]
 				k++
-				escreva(MAT[i][j], "	")
 
 			}
-			escreva("\n")
 		}
-		
+
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -133,7 +145,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 434; 
+ * @POSICAO-CURSOR = 2028; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
