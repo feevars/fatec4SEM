@@ -1,0 +1,40 @@
+Aula 01
+
+Sistemas de Informação
+Prof. Paulo
+
+---------------------------------------------
+
+Apresentação do Plano de Ensino
+
+---------------------------------------------
+
+	- Objetos da Disciplina
+
+	- Ementa
+		
+		-------
+		TÓPICOS
+		-------
+
+		Módulo 1 - Conceitos Básicos:
+	
+			- TGS
+			- SI
+	 
+		Módulo 2 - Perspectiva de usuários:
+	
+			SAE	-|
+			----	 |
+			SAD	 | Wireframes
+			SIG	 |
+			------	 |
+			SPT	-|
+		
+		Módulo 3 - Perspectiva de processos:
+
+			- EPR, SCM, CRM
+
+	- Avaliação
+
+	- Bibliografia
