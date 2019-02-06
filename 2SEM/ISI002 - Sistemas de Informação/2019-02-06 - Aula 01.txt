@@ -3,11 +3,9 @@ Aula 01
 Sistemas de Informação
 Prof. Paulo
 
----------------------------------------------
-
+-------------------------------
 Apresentação do Plano de Ensino
-
----------------------------------------------
+-------------------------------
 
 	- Objetos da Disciplina
 
@@ -24,16 +22,18 @@ Apresentação do Plano de Ensino
 	 
 		Módulo 2 - Perspectiva de usuários:
 	
-			SAE	-|
-			----	 |
-			SAD	 | Wireframes
-			SIG	 |
-			------	 |
-			SPT	-|
+			     /	SAE  \		Sistema de apoio ao executivo		-|
+			    /	---   \							 |
+			   /	SAD    \	Sistema de apoio à decisão		 | Wireframes
+			  /	SIG     \	Sistema de informação gerencial		 |
+			 /	---      \	 					 |
+			/	SPT       \	Sistema de processamento de transições	-|
 		
 		Módulo 3 - Perspectiva de processos:
 
-			- EPR, SCM, CRM
+			- ERP: Enterprise Resource Planning
+			- SCM: Suply Chain Management
+			- CRM: Customer Relationship Managemente
 
 	- Avaliação
 
