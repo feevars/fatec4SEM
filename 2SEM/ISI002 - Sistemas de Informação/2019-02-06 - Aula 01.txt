@@ -1,40 +1,68 @@
-Aula 01
+ÔªøAula 01
 
-Sistemas de InformaÁ„o
+Sistemas de Informa√ß√£o
 Prof. Paulo
 
--------------------------------
-ApresentaÁ„o do Plano de Ensino
--------------------------------
+-------
+PARTE 1
+-------
+
+	-------------------------------
+	Apresenta√ß√£o do Plano de Ensino
+	-------------------------------
 
 	- Objetos da Disciplina
 
 	- Ementa
 		
 		-------
-		T”PICOS
+		T√ìPICOS
 		-------
 
-		MÛdulo 1 - Conceitos B·sicos:
+		M√≥dulo 1 - Conceitos B√°sicos:
 	
 			- TGS
 			- SI
 	 
-		MÛdulo 2 - Perspectiva de usu·rios:
-	
+		M√≥dulo 2 - Perspectiva de usu√°rios:
+
+			      /	    \
 			     /	SAE  \		Sistema de apoio ao executivo		-|
 			    /	---   \							 |
-			   /	SAD    \	Sistema de apoio ‡ decis„o		 | Wireframes
-			  /	SIG     \	Sistema de informaÁ„o gerencial		 |
+			   /	SAD    \	Sistema de apoio √† decis√£o		 | Wireframes
+			  /	SIG     \	Sistema de informa√ß√£o gerencial		 |
 			 /	---      \	 					 |
-			/	SPT       \	Sistema de processamento de transiÁıes	-|
-		
-		MÛdulo 3 - Perspectiva de processos:
+			/	SPT       \	Sistema de processamento de transi√ß√µes	-|
+		       /___________________\
+
+
+		M√≥dulo 3 - Perspectiva de processos:
 
 			- ERP: Enterprise Resource Planning
 			- SCM: Suply Chain Management
 			- CRM: Customer Relationship Managemente
 
-	- AvaliaÁ„o
+	- Avalia√ß√£o
 
 	- Bibliografia
+
+-------
+PARTE 2
+-------
+
+	Contextualiza√ß√£o:
+
+	- Sociedade Industrial X Sociedade do Conhecimento
+
+	- M√≠dias Sociais, Big Data, Block Chain, Internet das Coisas (IOT)...
+
+		‚Ü≥ Novos modelos e pr√°ticas de neg√≥cios
+
+			‚Ü≥ Necessidade de converg√™ncia de tecnologias
+
+				‚Ü≥ Compreens√£o do Impacto da Tecnologia de forma sist√™mica (Hol√≠stica)
+
+
+
+
+
