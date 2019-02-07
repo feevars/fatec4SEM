@@ -1,0 +1,18 @@
+Linguagem de Programação
+
+Professor Satoshi
+
+------
+Aula 1
+------
+
+Modelo procedural: Java
+
+	- Orientação a Objetos (MVC)
+
+Compilador Java: oracle.com + netbeans
+
+- Dicionário da Linguagem
+
+
+
