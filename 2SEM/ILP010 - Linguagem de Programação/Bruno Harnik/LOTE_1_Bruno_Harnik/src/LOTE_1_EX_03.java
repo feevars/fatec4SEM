@@ -1,6 +1,3 @@
-
-import javax.swing.JOptionPane;
-
 /*
  *************************
 Lote 01 - Exercício 03
@@ -11,6 +8,7 @@ Professor: Ricardo Satoshi
  *************************
  */ 
 
+import javax.swing.JOptionPane;
 
 public class LOTE_1_EX_03 {
     
@@ -24,7 +22,7 @@ public class LOTE_1_EX_03 {
         
         area = base * altura / 2;
         
-        JOptionPane.showMessageDialog(null,"A área do triângulo é de" +area +"m²");
+        JOptionPane.showMessageDialog(null,"A área do triângulo é de " +area +"m².");
         
     }
 }
