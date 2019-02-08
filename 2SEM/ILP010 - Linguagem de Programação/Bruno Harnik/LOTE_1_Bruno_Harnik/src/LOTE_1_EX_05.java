@@ -16,7 +16,7 @@ public class LOTE_1_EX_05 {
     
     public static void main (String args[]){
         
-        double A, B, C, Delta, raiz_1, raiz_2, X1, X2;
+        double A, B, C, Delta, X1, X2;
         
         A = Double.parseDouble(JOptionPane.showInputDialog("Equação de segundo grau: AX²+BX+C=0\n\n Digite o valor de A:"));
         

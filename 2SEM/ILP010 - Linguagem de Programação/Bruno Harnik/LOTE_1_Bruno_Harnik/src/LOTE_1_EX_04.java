@@ -20,7 +20,7 @@ public class LOTE_1_EX_04 {
         
         F = (9 * C + 160) / 5;
         
-        JOptionPane.showMessageDialog(null,"A temperatura em Fahrenheit é " +F +"ºF.");
+        JOptionPane.showMessageDialog(null,"A temperatura em Fahrenheit é " +F +"°F.");
         
     }
 }
