@@ -22,6 +22,8 @@ CONTEÚDO PROGRAMÁTICO
 - Equações Diferenciais
 - Introdução
 
+
+
 BIBLIOGRAFIA
 
 - Flenning e Gonçalves
@@ -37,3 +39,18 @@ BIBLIOGRAFIA
 
 - Sandra, Ana
 	Cálculo Diferencial e Integral curso rápido, Ed. agbook.com
+
+
+
+CRITÉRIOS DE AVALIAÇÃO
+
+- N1: (P1 + E1) / 2
+
+- N2: P2 (0 a 7) + E2 (0 a 3)
+
+- N3: P3
+
+
+
+
+
