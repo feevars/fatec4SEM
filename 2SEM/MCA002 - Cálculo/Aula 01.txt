@@ -1,0 +1,39 @@
+CONTEÚDO PROGRAMÁTICO
+
+- Limites
+- Revisão Função 1º Grau
+- Limites Finitos
+- Limites Infinitos
+- Propriedades
+- Limites
+- Taxa Média de Variação
+- Definição
+- Interpretação Geométrica
+- Derivadas
+- Definição Geométrica
+- Regras
+- Integrai
+- Indefinida
+- Métodos de Integração
+- Definidas
+- Cálculo de Áreas
+- Derivadas Parciais
+- Definição
+- Equações Diferenciais
+- Introdução
+
+BIBLIOGRAFIA
+
+- Flenning e Gonçalves
+	Cálculo A, Ed. Pearson
+- Hazzan e Maethir
+	Introdução ao Cálculo para ----- e Economoia, Ed. Saraiva
+
+- Medeiros
+	Pré Cálculo
+
+- Stewart
+	Cálculo, Vol. 1, Ed. Thompson
+
+- Sandra, Ana
+	Cálculo Diferencial e Integral curso rápido, Ed. agbook.com
