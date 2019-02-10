@@ -10,20 +10,19 @@ Professor: Ricardo Satoshi
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 public class LOTE01_EX_18 {
-     private static DecimalFormat casas2 = new DecimalFormat (".##");
+    
 public static void main (String args[]) 
     {
+    int valor1, valor2; 
     
-    double litros, tempo, velocidade, distancia; 
-    
-    tempo = (Double.parseDouble(JOptionPane.showInputDialog("Digite o tempo de percurso em minutos: "))/60);
-    velocidade = Double.parseDouble(JOptionPane.showInputDialog("Digite a velocidade média (km/h): "));
-    distancia = velocidade * tempo;
-    litros = distancia / 12;
-    
-    
-    
-    JOptionPane.showMessageDialog(null,"Foram gastos " +casas2.format(litros) +"litros na viagem.");
-    
+    valor1 = Integer.parseInt(JOptionPane.showInputDialog("Digite um valor inteiro: "));
+    valor2 = Integer.parseInt(JOptionPane.showInputDialog("Digite outro valor inteiro: "));
+    if (valor1 > valor2) {
+        valor1 = valor1 - valor2;
+    }
+    else {
+        valor1 = valor2 - valor1;    
+         }
+        JOptionPane.showMessageDialog(null,"O resultado da diferença do nº maior pelo nº menor é: " + valor1);
     }
 }
