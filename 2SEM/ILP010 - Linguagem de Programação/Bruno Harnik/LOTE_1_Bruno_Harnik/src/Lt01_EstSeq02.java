@@ -10,7 +10,7 @@ Professor: Ricardo Satoshi
 
 import javax.swing.JOptionPane;
 
-public class LOTE_1_EX_02 {
+public class Lt01_EstSeq02 {
     public static void main (String args[]) 
     {
     double salario, liquido;

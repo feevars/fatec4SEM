@@ -10,7 +10,7 @@ Professor: Ricardo Satoshi
 
 import javax.swing.JOptionPane;
 
-public class LOTE_1_EX_03 {
+public class Lt01_EstSeq03 {
     
     public static void main (String args[]){
         

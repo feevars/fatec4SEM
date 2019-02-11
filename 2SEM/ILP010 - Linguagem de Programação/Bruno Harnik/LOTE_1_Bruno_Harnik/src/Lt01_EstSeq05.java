@@ -1,8 +1,8 @@
 /*
  *************************
-Lote 01 - Exercício 20
-Receba 3 coeficientes A, B, e C de uma equação do 2º grau da fórmula AX²+BX+C=0.
-Verifique e mostre a existência de raízes reais e se caso exista, calcule e mostre.
+Lote 01 - Exercício 05
+Receba os coeficientes A, B e C de uma equação do 2º grau (AX²+BX+C=0).
+Calcule e mostre as raízes reais (considerar que a equação possue2 raízes).
 
 Programador: Bruno Bega Harnik
 Professor: Ricardo Satoshi
@@ -12,7 +12,7 @@ Professor: Ricardo Satoshi
 import javax.swing.JOptionPane;
 import java.lang.Math; 
 
-public class LOTE_1_EX_05 {
+public class Lt01_EstSeq05 {
     
     public static void main (String args[]){
         

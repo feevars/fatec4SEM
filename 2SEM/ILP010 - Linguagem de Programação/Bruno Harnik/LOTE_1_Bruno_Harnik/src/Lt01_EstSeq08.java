@@ -11,7 +11,7 @@ Professor: Ricardo Satoshi
 import javax.swing.JOptionPane;
 import java.text.DecimalFormat;
 
-public class LOTE_1_EX_08 {
+public class Lt01_EstSeq08 {
     
     private static DecimalFormat casas2 = new DecimalFormat(".##");
     

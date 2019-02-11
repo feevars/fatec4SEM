@@ -14,7 +14,7 @@ Professor: Ricardo Satoshi
 
 import javax.swing.JOptionPane;
 
-public class LOTE_1_EX_16 {
+public class Lt01_EstSeq16 {
     
     public static void main (String args[]){
         
