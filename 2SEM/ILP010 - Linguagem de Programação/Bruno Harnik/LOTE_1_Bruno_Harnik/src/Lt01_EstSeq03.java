@@ -16,9 +16,9 @@ public class Lt01_EstSeq03 {
         
         double base, altura, area;
         
-        base = Double.parseDouble(JOptionPane.showInputDialog("Digite o tamanho da base do triângulo: "));
+        base = Double.parseDouble(JOptionPane.showInputDialog("Digite o tamanho da base do triângulo em metros: "));
         
-        altura = Double.parseDouble(JOptionPane.showInputDialog("Digite a altura do triângulo: "));
+        altura = Double.parseDouble(JOptionPane.showInputDialog("Digite a altura do triângulo em metros: "));
         
         area = base * altura / 2;
         
