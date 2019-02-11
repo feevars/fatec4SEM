@@ -1,0 +1,58 @@
+-LinkedIn
+
+-GitHub
+
+-Cronograma
+
+-Critérios
+
+------------------------------
+
+CUSTOS DE SOFTWARE
+
+- Os custos de software dominam os custos de sistemas computacionais. Em um PC, os custos de software são frequentemente maiores que o custo do hardware.
+
+- Manter um software custa mais que desenvolvê-lo. Para sistemas com uma longa vida, os custos de manutenção podem ser muito maiores que os custos de desenvolvimento.
+
+- A engenharia de software dedica-se ao desenvolvimento de software.
+
+
+
+O QUE É SOFTWARE?
+
+- Programas de computador e documentação associada, tais como requisitos, modelos de projetos e manuais do usuário.
+
+- Produtos de software podem ser desenvolvido para um cliente particular ou para um mercado geral.
+
+- Produtos de software podem ser:
+
+	- Genéricos - desenvolvidos para serem vendidos para uma grande variedade de clientes, por exemplo, sistemas de software para PC, tais como Excel e Word.
+	- Personalizados - desenvolvidos para um único cliente de acordo com as suas especificações.
+
+- Um software novo pode ser criado através do desenvolvimento de novos programas, da configuração de sistemas de software genéricos ou da reutilização de um software existente.
+
+
+
+O QUE É ENGENHARIA DE SOFTWARE
+
+- Engenharia de Software é uma disciplina de engenharia relacionada com todos os aspectos da produção de software.
+
+- Engenheiros de software devem - dependendo do problema a ser resolvido, das restrições de desenvolvimento e dos recursos disponíveis - adotar uma abordagem sistemática e organizada para seu trabalho, além de usar ferramentas e técnicas apropriadas.
+
+
+
+O QUE É UM PROCESSO DE SOFTWARE
+
+- É um conjunto de atividades cuja meta é o desenvolvimento ou evolução de software.
+
+- As atividades genéricas em todos os processo de software são:
+	- Especialização - o que o sistema deve fazer e suas restrições de desenvolvimento.
+	- Desenvolvimento - Produção do sistema de software.
+	- Validação - verificação de que o software é o que o cliente deseja.
+	- Evolução - mudança do software em resposta às demandas de mudança.
+
+
+
+
+
+
