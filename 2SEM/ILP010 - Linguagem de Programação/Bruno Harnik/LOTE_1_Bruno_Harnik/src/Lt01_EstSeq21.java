@@ -4,9 +4,9 @@ Lote 01 - Exercício 21
 Receba 4 notas bimestrais de um aluno. Calcule e mostre a média aritmética.
 
 Mostre a mensagem de acordo com a média:
-a. Se a média for >= 6,0 exibir “APROVADO”;
-b. Se a média for >= 3,0 ou < 6,0 exibir “EXAME”;
-c. Se a média for < 3,0 exibir “RETIDO”.
+a. Se a média for >= 6,0 exibir "Aprovado";
+b. Se a média for >= 3,0 ou < 6,0 exibir "Exame";
+c. Se a média for < 3,0 exibir "Retido".
 
 Programador: Bruno Bega Harnik
 Professor: Ricardo Satoshi
