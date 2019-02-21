@@ -20,13 +20,13 @@ public class Lt01_EstSeq07
         String unidade;
         
         unidade = JOptionPane.showInputDialog("Digite o tipo de unidade de medida que deseja utilizar (cm, m, mm, etc)");
-        comprimento = Double.parseDouble (JOptionPane.showInputDialog("Volume de Paralelepípedo. \nDigite o comprimento "));
-        largura = Double.parseDouble(JOptionPane.showInputDialog("Digite o largura "));
+        comprimento = Double.parseDouble (JOptionPane.showInputDialog("Volume de Paralelepípedo. \nDigite o comprimento"));
+        largura = Double.parseDouble(JOptionPane.showInputDialog("Digite o largura"));
         altura = Double.parseDouble(JOptionPane.showInputDialog("Digite a altura"));
         
         volume = comprimento * largura * altura;
         
-        JOptionPane.showMessageDialog(null, "O volume do paralelepípedo é "+volume+unidade+".");
+        JOptionPane.showMessageDialog(null, "O volume do paralelepípedo é "+volume+" "+unidade+".");
     }
     
 }
