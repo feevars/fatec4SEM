@@ -10,9 +10,15 @@ Professor: Ricardo Satoshi
 
 import javax.swing.JOptionPane;
 
+import java.text.DecimalFormat;
+
 public class Lt01_EstSeq33 {
     
+    private static DecimalFormat casas4 = new DecimalFormat(".####");
+    
     public static void main(String args[]){
+        
+        String resultado = "Resultado: \n";
    
         double numero, dividido, i;
         
@@ -22,9 +28,11 @@ public class Lt01_EstSeq33 {
             
             dividido = numero / i;
             
-            JOptionPane.showMessageDialog(null, numero + " dividido por " + i + " é " + dividido );
+            resultado += numero + " ÷ " + i + " = " + casas4.format(dividido) + "\n";
             
         }
+        
+        JOptionPane.showMessageDialog(null, resultado );
         
     }
     
