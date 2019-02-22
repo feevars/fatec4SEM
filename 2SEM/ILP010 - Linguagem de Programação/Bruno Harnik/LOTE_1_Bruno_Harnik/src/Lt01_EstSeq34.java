@@ -8,13 +8,9 @@ Professor: Ricardo Satoshi
  *************************
  */
 
-
 import javax.swing.JOptionPane;
 
-
 public class Lt01_EstSeq34 {
-    
-    
     
     public static void main(String args[]){
 
