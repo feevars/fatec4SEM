@@ -7,6 +7,8 @@ Lote 01 - Exercício 29 -    Receba a data de nascimento e atual em ano, mês e
 Programador: Fernanda Pinheiro Reis
 Professor: Ricardo Satoshi
  *************************
+
+INCOMPLETO
  */
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
@@ -27,7 +29,7 @@ public class Lt01_EstSeq30 {
         
    
         
-        
+       while (a_nasc <= a_atual) 
         pegar os meses e o ano atuais e transformar em dias:
         if (m_atual == 1 || m_atual == 3 || m_atual == 5 || m_atual == 7 || m_atual == 8 || m_atual == 10 || m_atual == 12)
             dias[m_atual] = 31; 
@@ -45,7 +47,9 @@ public class Lt01_EstSeq30 {
             soma_meses = soma_meses + dias[m_atual];
             m_atual = m_atual - 1;
         fimenquanto
-                
+        
+        enquanto (a_nasc <= a_atual)
+        
         para (i == 1, i <= m_atual, i++)
         dif_ano = dias[i]a_atual - a_nasc;
         dias = dias
