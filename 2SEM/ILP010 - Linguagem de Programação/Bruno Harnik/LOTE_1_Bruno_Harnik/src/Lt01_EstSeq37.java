@@ -4,7 +4,7 @@ Lote 01 - Exercício 37
 Receba um número inteiro. Calcule e mostre a série de Fibonacci até o seu N'nésimo termo.
 
 Programador: Bruno Bega Harnik
-Professor: Ricardo Satoshi`
+Professor: Ricardo Satoshi
  *************************
  */
 

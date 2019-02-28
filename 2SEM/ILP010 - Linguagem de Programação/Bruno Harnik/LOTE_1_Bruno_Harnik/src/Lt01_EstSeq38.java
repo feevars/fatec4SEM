@@ -6,7 +6,7 @@ Verifique e mostre o maior e o menos valor.
 Obs.: somente valores positivos.
 
 Programador: Bruno Bega Harnik
-Professor: Ricardo Satoshi`
+Professor: Ricardo Satoshi
  *************************
  */
 

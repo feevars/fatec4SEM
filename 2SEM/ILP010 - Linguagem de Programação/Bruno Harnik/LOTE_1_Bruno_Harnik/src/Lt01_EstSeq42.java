@@ -3,7 +3,7 @@
 Lote 01 - Exercício 42
 Calcule e mostre a série 1 + 2/3 + 3/5 + ... + 50/99
 Programador: Bruno Bega Harnik
-Professor: Ricardo Satoshi`
+Professor: Ricardo Satoshi
  *************************
  */
 
@@ -17,7 +17,7 @@ public class Lt01_EstSeq42 {
     
     public static void main(String args[]){
         
-        String resultado = "";
+        String resultado = "Calcule e mostre a série 1 + 2/3 + 3/5 + ... + 50/99\n\n";
         
         double dividendo = 1, divisor = 1, total = 0;
         

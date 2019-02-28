@@ -3,7 +3,7 @@
 Lote 01 - Exercício 41
 Mostre todas as possibilidades de 2 dados de forma que a soma tenha como resultado 7.
 Programador: Bruno Bega Harnik
-Professor: Ricardo Satoshi`
+Professor: Ricardo Satoshi
  *************************
  */
 
