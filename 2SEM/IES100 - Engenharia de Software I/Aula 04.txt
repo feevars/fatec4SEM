@@ -1,0 +1,52 @@
+Aula 3 - Eng de Software I
+
+Problemas de análise de requisitos
+	- mudança de requisitos
+	- 
+
+Espiral de Requisitos: 
+
+Obtenção + 
+Classificação e Organização + 
+Priorização e Negociação (envolve o usuário) + 
+Documentação
+
+
+STAKEHOLDERS --> interessados (similar a usuário, mas traz algo mais informativo (?) 
+(como um contratante/funcionário de uma empresa)
+
+Como classificar e organizar requisitos? 
+Com ponto de vista! 
+Representa a lógica por trás da separação de requisitos.
+Ponto de vista de 	interação - pessoas ou sistemas que interagem com o sistema diretamente.
+ponto de vista 		indireto - influenciam requisitos, porém não interagem
+ponto de vista de 	domínio - restrições de determinadas requisições 
+
+Entrevista - formulação de questões para os stakeholders para que compreendam ao máximo o sistema a ser desenvolvido.
+		entrevista fechada - conjunto de questões predefinidas
+		entrevista aberta - não há roteiro / vários assuntos 
+
+PERGUNTA IMPORTANTE  - "Quais respostas o sistema deve dar?", "quais os problemas do processo e o que pode ser melhorado?"
+
+Entrada ---> |PROJETO| ---> Saída
+
+Etnografia - técnica de observação in loco(inserida no local - viver como o pessoal/sistema que realmente "vive" aquilo) 
+utilizada para compreender os requisitos sociais e organizacionais.
+
+Verificação de 	
+Validade - funções que melhor apoiam as necessidades do cliente
+
+		Completeza - funções requisitadas pelo cliente foram 100% atendidas?
+
+		Realismo - deve caber no orçamento e na tecnologia atual (pé no chão)
+
+		Facilidade - é possível realizar todas as verificações?
+
+
+Tecnicas de Validação
+
+	Revisão de requisitos - análise manual
+
+	Prototipagem - modelo executável
+
+	Casos de teste - teste para TODOS os requisitos (demora muito muito muito tempo)
