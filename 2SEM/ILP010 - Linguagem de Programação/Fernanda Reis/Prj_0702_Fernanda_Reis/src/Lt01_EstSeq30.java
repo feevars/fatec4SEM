@@ -26,55 +26,43 @@ public class Lt01_EstSeq30 {
         d_atual = Integer.parseInt(JOptionPane.showInputDialog("DATA DE HOJE \nDIA:"));
         m_atual = Integer.parseInt(JOptionPane.showInputDialog("MÊS ATUAL:"));
         a_atual = Integer.parseInt(JOptionPane.showInputDialog("ANO ATUAL:"));
-        
-   
-        
-       while (a_nasc <= a_atual) 
-        pegar os meses e o ano atuais e transformar em dias:
-        if (m_atual == 1 || m_atual == 3 || m_atual == 5 || m_atual == 7 || m_atual == 8 || m_atual == 10 || m_atual == 12)
-            dias[m_atual] = 31; 
-        else if (m_atual == 4 || m_atual == 6 || m_atual == 9 || m_atual == 11)
-            dias[m_atual] = 30;
-        else if (m_atual == 2)
-                if (a_atual = contadobissexto)
-                    dias[m_atual] = 29;
-                else
-                    dias[m_atual] = 28;
-        fimse
+ 
+        06/03/1987 - 01/03/2019
+                teste do bissexto -- ano % 4 == 0 && ano % 100 == 1 
+                se dia atual = 29 e mes atual = 2, ano = bissexto (nao precisa somar esse)
                 
-        para contabilizar os meses do ano atual:        
-        enquanto (m_atual >= 1)
-            soma_meses = soma_meses + dias[m_atual];
-            m_atual = m_atual - 1;
-        fimenquanto
-        
-        enquanto (a_nasc <= a_atual)
-        
-        para (i == 1, i <= m_atual, i++)
-        dif_ano = dias[i]a_atual - a_nasc;
-        dias = dias
-            dias[m_atual]
-            
-            dias < 32;
-        mês < 13;
-        dia == 28 || dia == 29 || dia == 30 || dia == 31;
-        
-        para (i = a_nasc, i <= a_atual, i++)
-                if (i = contadoanobissexto)
-                    if (m_atual == 2)
-                        dia[2] = 29;
-       
-        if (a_atual > a_nasc) {
-            
-             /*mesmo ano de nascimento e atual */
-             
-            if (a_atual == a_nasc){
-               anos = a_atual - a_nasc;
-               if (m_atual > m_nasc) {
-                   meses = m_atual - m_nasc;
-               }   
-            } 
-            else {
-                if (m_atual == m_nasc) {   
+                se (mes de nascimento > 2) nao precisa fazer o teste do bissexto nesse ano.
+                        if (m_nasc > 2) {
+                           não precisa fazer o bissexto no ano de nascimento
+                           ou seja, começa o loop com a_nasc+1
+                        } else if (m_nasc == 2) {
+                            começa o loop com a_nasc
+                            
+                            a_nasc % 4 == resto_quatro ;
+                            a_nasc % 100 == resto_cem;
+                            if (resto_quatro == 0 && resto_cem == 1) {
+                                o mês dois terá 29 dias para contabilizar
+                            }
+                        }
+                        faz um contador para i somar 1 até chegar no último dia do mês.
+                                transforma mes em dia até chegar em mês = 12 
+                faz o teste do bissexto com todos os anos até o ano atual SE o mes atual for > 2. se nao for, faz até (ano atual - 1)
+                
                     
-            
+                para exibição, contar o número de meses no ano atual e dia atual + i para calcular dias
+                        se dia atual + i for maior que o número de dias do mes atual + 1, soma 1 a mês e conta apenas os dias excedentes.
+                    ---- 
+        
+        
+       dia de nascimento --> soma dias até chegar ao proximo mês
+               se for mes de 31, soma i dias até chegar no dia 31.
+               se for mes de 30, soma i dias até chegar no dia 30.
+               se for mes de 29, soma i dias até chegar no dia 29.
+               se for mes de 28, soma i dias até chegar no dia 28.
+               
+       /*
+        Pegamos os meses e ano atuais e transformamos o tempo corrido em dias:
+       */ 
+       if (m_nasc == 1 || m_nasc == 3 || m_nasc == 5 || m_nasc == 7 || m_nasc == 8 || m_nasc == 10 || m_nasc == 12) {
+           
+       }

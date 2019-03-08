@@ -1,0 +1,78 @@
+1 - Explique Set de Instruções, com seus elementos.</br>
+2 – Explique a forma que uma instrução pode ser representada, de acordo com os tipos possíveis de processador.</br>
+3 – Explique tipo de dados e qual sua relevância.</br>
+4 – Explique os tipos de Operações possíveis em um computador.</br>
+5 – Explique as características dos processadores CISC.</br>
+6 – Explique as características dos processadores RISC.</br>
+7 - Explique as características dos processadores Híbridos CISC-RISC.</br>
+8 – Explique o banco de registradores dos processadores RISC e, o motivo de sua adoção.</br>
+9 – Explique Registradores de uso geral e de uso específico, dizendo, pro caso dos de uso específico, quais são e para que servem.</br>
+10 – Explique, utilizando as características do ciclo de execução de instrução, Pipeline.</br>
+11 – Explique os tipos de tratamento de saltos em Pipelines.</br>
+12 – Explique Superpipeline.</br>
+13 – Explique Superescalar.</br>
+14 – Explique as limitações de um sistema Superescalar.</br>
+15 – Explique as possibilidades para Multiprocessadores Simétricos.</br>
+16 – Explique a Lei de Pollack.</br>
+17 – Explique a organização Multicore para os Principais Processadores.</br>
+
+
+
+1. Explique Set de Instruções, com seus elementos.
+R: Set de Instruções é um conjunto de instruções.
+Operation code (Op code) -> indica ao processador o que fazer e como fazer(qual é a operação a ser executada), é o nome da instrução propriamente dito. Fazer isso
+Source Operand reference -> Para este
+Result Operand reference -> Resultado
+Next Instruction Reference -> próxima instrução aser executada após fazer o processo.
+
+2. Explique a forma que uma instrução pode ser representada, de acordo com os tipos possíveis de processador.
+R: Para a máquina a instrução tem um único "bit padrão original" e para humanos um meio simbolico é utilizado como ADD, SUB etc.
+
+2.5 Tipos de instrução:
+Data processing -> processar dado
+Data storage (main memory) -> guardar dado
+Data movement(I/O) -> movimentar dado
+Program flow control -> programa de controle de fluxo
+
+
+3. Explique tipo de dados e qual sua relevância.
+R: X86 tipos de dados:
+• 8 bit Byte
+• 16 bit word
+• 32 bit double word
+• 64 bit quad word
+• 128 bit double quadword
+• Addressing is by 8 bit unit
+
+A relevância é que tudo é dado então a informação em si é transferida, armazenada, processada, interpretada.basicamente tudo é dado e a relevância é extrema.
+
+
+4. Explique os tipos de Operações possíveis em um computador.
+• Data Transfer
+• Arithmetic
+• Logical
+• Conversion
+• I/O
+• System Control
+• Transfer of Control
+
+5. Explique as características dos processadores CISC.
+R: Computador com um Conjunto Complexo de Instruções"): é uma linha de arquitetura de processadores capaz de executarcentenas de instruções complexas diferentes sendo, assim, extremamente versátil. Os processadores baseados na computação de conjunto de instruções complexas contêm uma micro-programação, ou seja, um conjunto de códigos de instruções que são gravados no processador, permitindo-lhe receber as instruções dos programas e executá-las, utilizando as instruções contidas na sua micro-programação
+
+
+6.Explique as características dos processadores RISC.
+R: Computador com um Conjunto Reduzido de Instruções (RISC), é uma linha de arquitetura de processadores que favorece um conjunto simples e pequeno de instruções que levam aproximadamente a mesma quantidade de tempo para serem executadas. Os processadores baseados na computação de conjunto de instruções reduzidas não têm micro-programação, asinstruções são executadas diretamente pelo hardware.
+
+7. Explique as características dos processadores Híbridos CISC-RISC.
+R: Os computadores atuais mixam as duas arquiteturas, criando o conceito de arquitetura híbrida, incorporando os conceitos das duas arquiteturas e a inclusão de um núcleo RISC aos seus processadores
+
+
+8. Explique o banco de registradores dos processadores RISC e, o motivo de suaadoção.
+R: Diminuir o acesso a memória e aumentar a performance. Registradores de parâmetros, registradores locais, registradores temporários e são organizados em janelas.
+
+9. Explique Registradores de uso geral e de uso específico, dizendo, pro caso dos de uso específico, quais são e para que servem.
+R: Os registradores de uso geral são usados na arquitetura RISC e servem para evitar que osdados sejam guardados na memória e causem uma grande perda de tempo com a busca da instrução na memória. Os registradores de uso específico são divididos em dois, os “contadores de instrução” que mantém o processador informado da posição atual da instrução e o endereço da próxima instrução, e os “registradores de instrução” é usado para manter a instrução que está sendo executada.
+
+
+10.Explique, utilizando as características do ciclo de execução de instrução, Pipeline.
+R: A pipeline é uma forma de organizar o funcionamento da CPU criada com o intuito de melhorar o desempenho da mesma. Nela, ao invés de uma instrução esperar que a instrução anterior seja executada para que então ela seja executada, a instrução é dividida em estágios (busca de instrução, decodificação de instrução,...

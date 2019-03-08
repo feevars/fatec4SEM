@@ -1,0 +1,8 @@
+1-Essa matéria só vai cair na P2
+2-Ele vai passar um trabalho onde vai sortear um dos exercícios do satoshi pra cada aluno e o aluno entrega
+pra ele como trabalho (da umas 500 linhas de programa e.e)
+3-No site dele, na aba "vídeos" tem 3 vídeos tutorial sobre o assunto:
+	1)Programacao em Baixo Nivel com PCSPIM 
+	2)Programacao em Baixo Nivel com PCSPIM (Branches com Reais)
+	3)Programacao em Baixo Nivel com PCSPIM (Numeros Reais)
+

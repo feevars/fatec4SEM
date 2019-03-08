@@ -1,0 +1,18 @@
+Algoritmo "raizPell"
+Var
+   i,m,n:inteiro
+
+Inicio
+      escreval("Digite um numero inteiro")
+      leia(m)
+      n <- 0
+      i <- 1
+      enquanto m >= i faca
+               m <- m - i
+               i <- i + 2
+               n <- n + 1
+      fimenquanto
+      escreva("A raiz inteira é:")
+      escreva(n)
+
+Fimalgoritmo
