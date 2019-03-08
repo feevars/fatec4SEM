@@ -16,14 +16,16 @@ public class Lt01_EstSeq16 {
 public static void main (String args[]) 
     {
     
-    int horas_trab, descend;
-    double valor_hora, percent; 
+    int descend;
+    double valor_hora, percent, horas_trab; 
     
-    horas_trab = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de horas trabalhadas: "));
+    horas_trab = Double.parseDouble(JOptionPane.showInputDialog("Digite a quantidade de horas trabalhadas: "));
     valor_hora = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor por hora trabalhada: "));
     percent = (Double.parseDouble(JOptionPane.showInputDialog("Digite a porcentagem de desconto: % "))/100);
     descend = Integer.parseInt(JOptionPane.showInputDialog("Digite o número de descendentes: "));
-    horas_trab = (int) ((horas_trab * (double)valor_hora) * percent);
+    
+    horas_trab = (horas_trab * valor_hora);
+    horas_trab = horas_trab - ((double)percent * horas_trab);
     horas_trab = horas_trab + (descend * 100);
     
     JOptionPane.showMessageDialog(null,"O salário líquido será de R$ " +horas_trab +".");
