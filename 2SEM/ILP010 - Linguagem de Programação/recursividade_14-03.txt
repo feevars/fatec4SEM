@@ -1,0 +1,24 @@
+RECURSIVIDADE (Função Recursiva)
+--> É uma função que apresentará uma chamada repetidamente até que uma condição seja satisfeita.
+----> Cria um caminho (função) até um ponto. Este retorna pelo mesmo caminho. 
+
+Traçar o melhor caminho até um destino e o retorno é feito pelo mesmo caminho. 
+
+Para entender recursividade, é necessário entender função.!!
+
+
+
+EXEMPLO:
+Coletar um número positivo. Calcule e mostre seu fatorial a partir do modelo recursivo.
+
+Recursiv01 --> int NRO --> recebe NRO
+
+FFAT (NRO) : int
+FFAT recebe NRO
+
+trata CONTEÚDO DE MEMÓRIA
+
+	Exemplo: NRO = 4
+	FFAT(N:int): int
+	FAT:int
+	N == 1
