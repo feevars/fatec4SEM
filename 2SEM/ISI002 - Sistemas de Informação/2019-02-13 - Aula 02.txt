@@ -1,0 +1,35 @@
+Módulo 1
+
+-----------------------
+Conceitos Básicos em SI
+-----------------------
+
+Teoria Geral dos Sistemas (TGS)
+- Desenvolvida por Bertalanffy (1950) -> Design Thinking
+- Visão interdisciplinar
+- Visão da complexidade
+- Aplicação crescente
+
+Sugestão do Professor: Livro "Sapiens"
+
+
+"Tudo é sistema!
+	Tudo depende!"
+
+
+Características de sistemas:
+- Elementos
+- Relações entre elementos
+- Objetivo
+- Ambiente
+
+
+"Tudo é sistema."
+
+
+Exercícios
+
+Caracterize os seguintes sistemas:
+- Avião
+- Livro
+- Corpo Humano
