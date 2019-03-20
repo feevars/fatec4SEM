@@ -45,16 +45,8 @@ public class Lt01_ModSeq23 {
     
     public static boolean Maior(double a, double b){
         
-        if(b > a){
-            
-            return true;
-            
-        }else{
-            
-            return false;
-            
-        }
-
+        return b > a;
+        
     }
     
     public static void Resultado(double v1, double v2, double v3, double v4){
