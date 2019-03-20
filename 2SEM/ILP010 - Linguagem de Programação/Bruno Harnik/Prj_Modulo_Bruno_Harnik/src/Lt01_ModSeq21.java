@@ -1,5 +1,6 @@
 /*
  *************************
+ ******MODULARIZAÇÃO******
 Lote 01 - Exercício 21
 Receba 4 notas bimestrais de um aluno. Calcule e mostre a média aritmética.
 
@@ -19,14 +20,25 @@ public class Lt01_ModSeq21{
     
     public static void main(String args[]){
         
-        double nota1, nota2, nota3, nota4, media;
+        double nota1, nota2, nota3, nota4;
         
         nota1 = Double.parseDouble(JOptionPane.showInputDialog("Digite a primeira nota: "));
         nota2 = Double.parseDouble(JOptionPane.showInputDialog("Digite a segunda nota: "));
         nota3 = Double.parseDouble(JOptionPane.showInputDialog("Digite a terceira nota: "));
         nota4 = Double.parseDouble(JOptionPane.showInputDialog("Digite a quarta nota: "));
         
-        media = (nota1 + nota2 + nota3 + nota4) / 4;
+        Resultado(Media(nota1, nota2, nota3, nota4));
+    }
+    
+    public static double Media(double n1, double n2, double n3, double n4){
+        
+        double media = (n1 + n2 + n3 + n4) / 4;
+        
+        return media;
+        
+    }
+    
+    public static void Resultado(double media){
         
         if(media >= 6.0){
             
@@ -40,7 +52,7 @@ public class Lt01_ModSeq21{
             
             JOptionPane.showMessageDialog(null, "Media " + media + "\nRetido. ");
         }
-
+        
     }
     
 }
