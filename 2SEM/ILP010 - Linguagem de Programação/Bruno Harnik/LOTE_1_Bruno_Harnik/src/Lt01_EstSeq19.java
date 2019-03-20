@@ -14,11 +14,11 @@ public class Lt01_EstSeq19 {
     
     public static void main (String args[]){
         
-        int x, y;
+        double x, y;
         
-        x = Integer.parseInt(JOptionPane.showInputDialog("Digite um valor inteiro:"));
+        x = Double.parseDouble(JOptionPane.showInputDialog("Digite um valor inteiro:"));
         
-        y = Integer.parseInt(JOptionPane.showInputDialog("Digite outro valor inteiro: "));
+        y = Double.parseDouble(JOptionPane.showInputDialog("Digite outro valor inteiro: "));
         
         if(x >= y){
             

@@ -15,15 +15,15 @@ public class Lt01_EstSeq17 {
     
     public static void main (String args[]){
         
-        double tempo, vel_media, total, gasolina;
+        double tempo, vel_media, distancia, gasolina;
         
         tempo = Double.parseDouble(JOptionPane.showInputDialog("Digite o tempo gasto no percurso (em horas):"));
         
         vel_media = Double.parseDouble(JOptionPane.showInputDialog("Digite a velocidade média da viagem em km/h: "));
         
-        total = vel_media / tempo;
+        distancia = vel_media * tempo;
         
-        gasolina = total / 12;
+        gasolina = distancia / 12;
 
         JOptionPane.showMessageDialog(null, "São necessários " + gasolina + " litros de gasolina para esse rolê.");
     }
