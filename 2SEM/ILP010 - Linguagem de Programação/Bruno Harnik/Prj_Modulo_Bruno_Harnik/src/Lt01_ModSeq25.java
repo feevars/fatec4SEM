@@ -30,10 +30,10 @@ public class Lt01_ModSeq25 {
         
         Object[] dados_partida = {
             
-            "HH", HI,
-            "MM", MI,
-            "HH", HF,
-            "HH", MF
+            "Hora inicial", HI,
+            "Minuto inicial", MI,
+            "Hora final", HF,
+            "Minuto final", MF
         };
         
         JOptionPane.showConfirmDialog(null, dados_partida, "Duração da partida", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, icon);
