@@ -15,9 +15,9 @@ public class Lt01_ModSeq30 {
     public static void main(String args[]){
         
         //Variáveis para data Atual e data Final
-        int AN, MN = 0, DN = 0, AA = 0, MA = 0, DA = 0;
+        int AN, MN = 0, DN = 0, AA, MA = 0, DA = 0;
         
-        //Data nascimento
+        //Entrada de dados com validação
         //Ano Nascimento
         AN = Integer.parseInt(JOptionPane.showInputDialog("Ano de nascimento: "));
         
@@ -30,18 +30,30 @@ public class Lt01_ModSeq30 {
         while(DN < 1 || DN > DiasNoMes(MN,AN)){
             
             //Dia Nascimento
-            DN = Integer.parseInt(JOptionPane.showInputDialog("Dia de nascimento: "));
+            DN = Integer.parseInt(JOptionPane.showInputDialog(NomeMes(MN) + " de " + AN + " tem " + DiasNoMes(MN,AN) + " dias.\nDia de nascimento: "));
             
         }
         
+        //Atribuo um valor para que o Ano Atual sirva para a condição de validação
+        AA = AN - 1;
+        while(AA < AN){
+            
+            AA = Integer.parseInt(JOptionPane.showInputDialog("Ano atual: "));
+
+        }
+        while(MA < 1 || MA > 12){
+            
+            MA = Integer.parseInt(JOptionPane.showInputDialog("Mês atual: "));
+
+        }
+        while(DA < 1 || DA > DiasNoMes(MA,AA)){
+            
+            DA = Integer.parseInt(JOptionPane.showInputDialog(NomeMes(MA) + " de " + AA + " tem " + DiasNoMes(MA,AA) + " dias.\nDia atual: "));
+            
+        }
         
-        //Data atual
-        AA = Integer.parseInt(JOptionPane.showInputDialog("Ano atual: "));
-        MA = Integer.parseInt(JOptionPane.showInputDialog("Mês atual: "));
-        DA = Integer.parseInt(JOptionPane.showInputDialog("Dia atual: "));
+        JOptionPane.showMessageDialog(null, "Total de dias: " + TotalDias(AN,MN,DN,AA,MA,DA));
         
-        
-    
     }
     
     //Função que verifica se o ano é bissexto
@@ -52,6 +64,7 @@ public class Lt01_ModSeq30 {
         
     }
     
+    //Função que verifica quantos dias há no mês recebendo o ano e o mês como parâmetros
     public static int DiasNoMes(int mes, int ano){
         
         if(mes == 1 || mes ==  3 || mes ==  5 || mes ==  7 || mes ==  8 || mes ==  10 || mes ==  12){
@@ -73,5 +86,78 @@ public class Lt01_ModSeq30 {
         }
         
     }
-   
+    
+    //Funçãozinha para dar nome ao mês
+    public static String NomeMes(int mes){
+        
+        String mes_nome[] = {
+            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        };
+        
+        
+        return mes_nome[mes - 1];
+        
+    }
+    
+    //Função que calcula o total de dias no intervalo das informações inseridas  
+    public static int TotalDias(int AN, int MN, int DN, int AA, int MA, int DA){
+        
+        int total_dias;
+        
+        //Ano e mês de nascimento são iguais aos atuais - subtração dos dias
+        if(AN == AA && MN == MA){
+            
+            total_dias = DA - DN;
+                    
+        //Anos iguais, mês atual maior que mês de nascimento
+        }else if(AN == AA && MN < MA){           
+            
+            total_dias = DiasNoMes(MN,AN) - DN + DA;
+            
+            for(int i = MN + 1; i < MA; i++ ){
+                
+                total_dias = total_dias + DiasNoMes(i,AN);
+                
+            }            
+        }else {
+            
+            //Subtraio o total de dias no mês pelo dia de nascimento
+            //e somo os dias da data atual
+            total_dias = DiasNoMes(MN,AN) - DN + DA;
+
+            //Somo todos os dias que sobram no ano inicial
+            for(int i = MN + 1; i <= 12; i++ ){
+
+                total_dias = total_dias + DiasNoMes(i,AN);
+
+            }
+            
+            //Somo os dias dos anos que estão no intervalo
+            for (int i = AN + 1; i < AA; i++){
+
+                if(VerificaBissexto(i) == true){
+
+                    total_dias = total_dias + 366;
+
+                }else{
+
+                    total_dias = total_dias + 365;
+
+                }
+
+            }
+            
+            //Somo os dias dos meses do ano atual
+            for(int i = 1; i < MA; i++ ){
+
+                total_dias = total_dias + DiasNoMes(i,AA);
+
+            }
+                
+        }
+        
+        return total_dias;
+        
+    }
 }
