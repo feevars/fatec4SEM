@@ -52,9 +52,10 @@ public class Lt01_ModSeq30 {
             
         }
         
-        JOptionPane.showMessageDialog(null, "Total de dias: " + TotalDias(AN,MN,DN,AA,MA,DA));
+        JOptionPane.showMessageDialog(null, "Total de dias: " + TotalDias(AN,MN,DN,AA,MA,DA) + "\n" + TotalDataInfo(AN,MN,DN,AA,MA,DA));
         
     }
+    //FIM DO MAIN ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     
     //Função que verifica se o ano é bissexto
     public static boolean VerificaBissexto(int ano){
@@ -100,7 +101,10 @@ public class Lt01_ModSeq30 {
         
     }
     
-    //Função que calcula o total de dias no intervalo das informações inseridas  
+    //**************************************
+    //Função que calcula o total de dias
+    //no intervalo das informações inseridas  
+    //**************************************
     public static int TotalDias(int AN, int MN, int DN, int AA, int MA, int DA){
         
         int total_dias;
@@ -119,7 +123,8 @@ public class Lt01_ModSeq30 {
                 
                 total_dias = total_dias + DiasNoMes(i,AN);
                 
-            }            
+            }
+        //Anos diferentes
         }else {
             
             //Subtraio o total de dias no mês pelo dia de nascimento
@@ -160,4 +165,67 @@ public class Lt01_ModSeq30 {
         return total_dias;
         
     }
+    //**************************************
+    //Função que calcula o total do período contando cada mês e
+    //considerando 30 dias para adicionar 1 mês caso a soma dos
+    //dias restantes do mês de nascimento com os dias da data atual
+    //ultrapasse 30 dias.
+    //**************************************
+    public static String TotalDataInfo(int AN, int MN, int DN, int AA, int MA, int DA){
+        
+        
+        
+        
+        int total_dias, total_meses = 0, total_anos = 0;
+        
+        total_dias = DiasNoMes(MN,AN) - DN + DA;
+            
+        if(total_dias >= 30){
+
+            total_meses++;
+
+            total_dias -= 30;
+
+        }
+        if(AN == AA){
+            
+            for(int i = MN + 1; i < MA; i++){
+
+                total_meses++;
+
+            }
+        }else{
+            
+            for(int i = MN + 1; i <= 12; i++){
+
+                total_meses++;
+
+            }
+            for(int i = 1; i < MA; i++){
+
+                total_meses++;
+
+            }
+            if(total_meses >= 12){
+                
+                total_anos++;
+                
+                total_meses -= 12;
+                
+            }
+
+        }
+        
+        for(int i = AN + 1; i < AA; i++){
+            
+                total_anos++;
+                
+        }
+        
+        String resultado = total_anos + " anos, " + total_meses + " meses e " + total_dias + " dias.";
+        
+        return resultado;
+        
+    }
+            
 }
