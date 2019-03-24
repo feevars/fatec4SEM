@@ -1,33 +1,30 @@
 /*
  *************************
-Exemplo Recursivo - Coletar um número positivo. Calcule e mostre seu fatorial 
-a partir do modelo recursivo.
+Recursivo - 1)   Serie1 = (1+2+3+...+100).
 
 Programador: Fernanda Pinheiro Reis
 Professor: Ricardo Satoshi
  *************************
 */
-
 import javax.swing.JOptionPane;
 
-public class Recursiv01 {    
-public static void main (String args[]) {
-    int NRO;    
+public class Recursiv01 {  
+    static int Soma=0, i=1;
+    public static void main (String args[]) { 
+        String Serie = "Calcularemos a série Serie1 = (1+2+3+...+100).\n\n\n";
+        RecSOMA (i);
     
-    NRO = Integer.parseInt(JOptionPane.showInputDialog("Digite o valor inteiro positivo: "));
-    
-    
-    FFAT (NRO);
-    JOptionPane.showMessageDialog(null, "O fatorial do número digitado é: " +FFAT(NRO));
-}
+        JOptionPane.showMessageDialog(null, Serie +"Serie1 = : "  +Soma);
+    }
 
-static int FFAT(int N) { 
-    int FAT=0;
-    if (N == 1) {
-        return N;     
+static int RecSOMA(int i) { 
+    
+    if (i == 100) {
+        Soma += i;
+        return Soma;     
     } else {
-       FAT = N * FFAT(N-1);
-       return FAT; 
+       Soma += i;
+       return RecSOMA(i+1); 
     }
 }
 }

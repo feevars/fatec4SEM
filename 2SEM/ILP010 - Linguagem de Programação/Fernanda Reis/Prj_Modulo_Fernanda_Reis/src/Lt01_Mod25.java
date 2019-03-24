@@ -10,9 +10,9 @@ Professor: Ricardo Satoshi
  */
 
 import javax.swing.JOptionPane;
-public class Lt01_EstSeq25 {
+public class Lt01_Mod25 {
     public static void main (String args[]) {
-     
+   INCOMPLETO  
         int Hi, Hf, Mi, Mf; 
         
 

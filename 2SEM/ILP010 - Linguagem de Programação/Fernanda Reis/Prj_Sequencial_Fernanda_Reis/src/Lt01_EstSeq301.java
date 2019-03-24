@@ -12,7 +12,7 @@ INCOMPLETO
  */
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
-public class Lt01_EstSeq30 {
+public class Lt01_EstSeq301 {
     private static DecimalFormat casas2 = new DecimalFormat (".##");
     public static void main (String args[]) {
      

@@ -9,10 +9,10 @@ Professor: Ricardo Satoshi
  */
 
 import javax.swing.JOptionPane;
-public class Lt01_EstSeq23 {
+public class Lt01_Mod23 {
     public static void main (String args[]) 
     {
-     
+ INCOMPLETO    
     int VALOR1, VALOR2, VALOR3, VALOR4; 
     
     VALOR1 = Integer.parseInt(JOptionPane.showInputDialog("Digite um valor inteiro: "));
