@@ -15,18 +15,21 @@ Professor: Ricardo Satoshi
  */
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
-public class Lt01_EstSeq28 {
+public class Lt01_Mod28 {
     private static DecimalFormat casas2 = new DecimalFormat (".##");
     public static void main (String args[]) {
      
-        int qtdd;
-        double preco;
+        
+        double preco, qtdd, aux;
         
 
         preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o preço do produto em Reais (R$): "));
         qtdd = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de produtos vendidos no mês: "));
+        aux = preco;
         
-        if (qtdd < 500 && preco < 30){
+        VerProd(preco, qtdd);
+        
+        if (preco != aux) {
             preco = preco * 1.10;
             JOptionPane.showMessageDialog(null,"O valor do produto com reajuste é de R$ " +casas2.format(preco) +".");
         }   else 
@@ -42,4 +45,13 @@ public class Lt01_EstSeq28 {
                 JOptionPane.showMessageDialog(null,"Não houve ajuste no preço do produto.");
              }
     }       
+}
+
+static double VerProd(double p, q) {
+    if (qtdd < 500 && preco < 30) {
+        preco = preco * 1.10;
+    } else if (qtdd >= 1000 && preco >= 80) {
+        preco = preco * 1.05;
+    }
+    return preco;
 }
