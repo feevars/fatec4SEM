@@ -7,7 +7,7 @@ Programador: Fernanda Pinheiro Reis
 Professor: Ricardo Satoshi
  *************************
 */
-import java.text.DecimalFormat;
+
 import javax.swing.JOptionPane;
 public class Lt01_Mod18 {
     static int valor1, valor2;
