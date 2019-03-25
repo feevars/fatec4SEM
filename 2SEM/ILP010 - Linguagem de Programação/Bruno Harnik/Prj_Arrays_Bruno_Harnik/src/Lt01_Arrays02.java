@@ -1,7 +1,7 @@
 /*
- * 2. Criar e coletar um vetor [100] inteiro e exibir:
- *      a. O maior e o menor valor;
- *      b. A média dos valores.
+ * 2.   Criar e coletar um vetor [100] inteiro e exibir:
+ *          a. O maior e o menor valor;
+ *          b. A média dos valores.
  */
 
 /**
