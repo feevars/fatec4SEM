@@ -13,7 +13,7 @@ Professor: Ricardo Satoshi
 
 import javax.swing.JOptionPane;
 
-public class Lt01_EstSeq35 {
+public class Lt01_Mod35 {
     public static void main (String args []){
         String fatores = "";
         int menor, maior, i, aux, soma = 0;

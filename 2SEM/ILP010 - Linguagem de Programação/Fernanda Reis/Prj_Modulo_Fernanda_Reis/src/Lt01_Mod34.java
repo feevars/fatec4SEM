@@ -10,17 +10,21 @@ Professor: Ricardo Satoshi
 
 import javax.swing.JOptionPane;
 
-public class Lt01_EstSeq34 {
+public class Lt01_Mod34 {
     public static void main (String args[]) {
-        String tabuada = "";
         
-        int numero, i, resultado;
+        int numero;
         numero = Integer.parseInt(JOptionPane.showInputDialog("Vamos calcular a tabuada de um número! \nDigite um número inteiro: "));
-        
-        for (i = 1; i <= 10; i++) {
-        resultado = i * numero; 
-        tabuada += i +" x " +numero + " = " +resultado + "\n";
+  
+        JOptionPane.showMessageDialog(null, Tabuada(numero));
+    }
+    
+    static String Tabuada (int n){
+        String tabuada = "";
+        for (int i = 1; i <= 10; i++) {
+            int resultado = i * n; 
+            tabuada += i +" x " +n + " = " +resultado + "\n";
         }
-        JOptionPane.showMessageDialog(null, tabuada);
+        return tabuada;
     }
 }

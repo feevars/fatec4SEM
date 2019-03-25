@@ -26,7 +26,7 @@ public class Lt01_Mod22 {
     JOptionPane.showMessageDialog(null,"OS VALORES DIGITADOS, EM ORDEM CRESCENTE SÃO: " +VALOR2 +" < " +VALOR1);
     }
     
-    static string Maior (int v1, int v2) {
+    static String Maior (int v1, int v2) {
         int aux = 0;
         if (v1 > v2) {
           return 
