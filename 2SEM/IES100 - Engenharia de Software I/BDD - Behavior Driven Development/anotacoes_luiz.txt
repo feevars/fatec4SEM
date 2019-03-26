@@ -1,0 +1,19 @@
+TDD: Desenvolvimento orientado pelo teste
+
+BDD: Surgiu em 2003 por Dan North. 
+BDD é uma técnica de desenvolvimento ágil que visa integrar a regra de negócio com a linguagem de programação (por exemplo, ERPs, que possuem muito código e regras)
+
+Desenvolvimento orientado por comportamento (do sistema e suas estruturas).
+
+Técnicas do TDD existem por trás do BDD
+Frameworks Java para BDD Jbehave, EasyB , Spok e Junit.
+Teste devem conter uma fixture, exercise e Verify.
+
+Elementos de teste (Dado, quando, Então). EX; dado 1 um valor pro exemplo, quando for solicitado o metodo para calcular fatorial, então deve retornar somente o valor do fatorial do numero.
+Facilita a leitura da regra de negocio, sem muito foco na interpretação da linguagem
+Métodos escritos em forma de frase e comportamentos condizentes com o nome do método.
+Ex Metodo soma(), realiza apenas soma. 
+Não pode conter comportamento ilícito, (desenvolver funções diferentes com o que sua nomenclatura diz)
+
+Focar-se em apenas um comportamento por vez, evitar teste muito grandes; Caso seja necessária a criação de muitos testes para uma mesma classe, indica-se que é necessário quebrar a classe em classes diferentes se possível.
+Apesar de usar BDD deve-se seguir o fluxo do TDD, escrever os testes simples, refatorar, verificar saídas.

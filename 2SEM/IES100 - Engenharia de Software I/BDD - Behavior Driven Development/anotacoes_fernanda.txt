@@ -1,0 +1,9 @@
+Popular BDD Frameworks:
+
+Java?—?Cucumber, JBehave
+Ruby?—?Cucumber
+PHP?—?Behat
+JavaScript?—?cucumber.js, jasmine
+
+bibliografia :
+medium.com

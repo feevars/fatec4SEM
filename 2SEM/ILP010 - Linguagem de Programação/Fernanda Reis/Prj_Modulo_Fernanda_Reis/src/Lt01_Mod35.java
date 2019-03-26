@@ -16,28 +16,41 @@ import javax.swing.JOptionPane;
 public class Lt01_Mod35 {
     public static void main (String args []){
         String fatores = "";
-        int menor, maior, i, aux, soma = 0;
+        int menor, maior, i, soma = 0;
       
         menor = Integer.parseInt(JOptionPane.showInputDialog("Calcularemos a soma dos ímpares entre 2 valores. \nDigite o 1º valor: "));
         maior = Integer.parseInt(JOptionPane.showInputDialog("Digite o 2º valor: "));
       
-        
-        
-        if (maior < menor) {
-            aux = maior;
-            maior = menor;
-            menor = aux;
-        } 
-        
-        
-        for (i = menor+1; i < maior; i++) {
-            if (i % 2 == 0){
-                fatores += i +" = PAR \n";
-            } else {
-                fatores += i +" =-----ÍMPAR----- \n";
-                soma += + i;
-            }
-        }
-        JOptionPane.showMessageDialog(null, fatores +"\nA soma de números ímpares entre os fatores é " +soma +".");
+        if (Verifica(menor, maior) == false) {
+            Troca(menor, maior);
+        }   
+    
+        JOptionPane.showMessageDialog(null, Fatores(menor, maior) + "\n" +SomaImp());
     }
+    static void Troca (int menor,int maior) {
+        int aux = maior;
+        maior = menor;
+        menor = aux;
+    } 
+    static boolean Verifica(int n, int m) {
+        return (n < m);
+    }
+    
+    static int SomaImp (int i, int soma){
+        return soma+i;
+    }
+    
+    static String Fatores(int menor, int maior) {
+            int soma = 0;
+            String fatores = "";
+            for (int i = menor+1; i < maior; i++) {
+                if (i % 2 == 0){
+                    fatores += i +" = PAR \n";
+                } else {
+                    fatores += i +" =-----ÍMPAR----- || " +soma +" + " +i +" = " +(soma+i) +"\n";
+                    soma += i;
+                }
+            }
+        return fatores;
+        }
 }
