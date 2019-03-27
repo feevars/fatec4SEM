@@ -5,5 +5,24 @@ Ruby?—?Cucumber
 PHP?—?Behat
 JavaScript?—?cucumber.js, jasmine
 
+
+JUnit (TDD) era usado antes do JBehave (BDD) ser criado
+JBehave = JUnit + autoverificação de erro
+
+Cenário
+(DADO QUE - GIVEN) + E (condições)
+(QUANDO - WHEN) 
+(ENTÃO - THEN)
+
+Linguagem ubíqua (em comum)
+
+"Você escreve uma classe representando cada “given” e uma para o evento
+e assim por diante para os resultados. O JBehave, em seguida, conecta tudo isso e os executa. Ele cria um “mundo” (“world”, em inglês), que é apenas um lugar para armazenar seus objetos, e passa para cada um dos “givens”, para que eles possam preencher o “mundo” com o estado conhecido. O JBehave, então, diz que o evento ocorre no mundo (ou “occur in”, em inglês), onde de fato executa o comportamento real do cenário. Finalmente, ele passa o controle para quaisquer resultados que definimos para a história."
+
+
+----CITAÇÕES----
+Se pudéssemos desenvolver um vocabulário consistente para analistas, testadores, desenvolvedores e pessoas da área de negócios, então estaríamos a caminho de eliminar algumas das ambiguidades e falhas de comunicação que ocorrem quando pessoas da área de tecnologia falam com pessoas da área de negócios.
+
 bibliografia :
 medium.com
+http://broncodev.com/2016-10-11-introduzindo-o-bdd/
