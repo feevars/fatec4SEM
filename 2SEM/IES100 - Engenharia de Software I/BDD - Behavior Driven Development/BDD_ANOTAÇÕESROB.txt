@@ -1,0 +1,52 @@
+DAN NORTH
+
+metodologia de desenvolvimento de softwares.
+é um MODO DE PENSAR (não apenas uma ferramenta)
+
+- focado no stakeholder, de fora pra dentro
+
+- levanta apenas o suficiente, não mais nem menos. Foca no nível necessário de detalhes e em problemas prematuros existentes
+
+- entrega VALOR para o negócio. esse é o objetivo primordial. FOCO NO VALOR, NO USUÁRIO.
+- o que importa é o COMPORTAMENTO. Ficar se questionando a todo momento se o que estamos produzindo está no caminho certo para entregar valor para o negócio e stakeholder. 
+
+Historias entregues a cada integração para verificação se o que está sendo produzido está nas conrformidades do esperado. 
+O que são essas Histórias? Stories?
+historias são EXEMPLOS de funcionalidades do programa em desenvolvimento. São casos elaborados para mostrar como será o comportamento das pessoas e do programa desenvolvido naquela circunstância ou em parecidas. Cenários de uso. 
+
+Permite a comunicação comum entre as diversas pessoas envolvidas no projeto. Técnicos e não técnicos. ESSA É A GRANDE ENTREGA DO BDD. Usa linguagem ambíquota, natural. COMUNICAÇÃO EFETIVA.
+
+traduzir o negócio para o desenvolvimento e o desenvolvimento para o negócio.
+
+Utiliza linguagem Gherkin. Documenta (gera uma especificação) e automatiza os testes. Ajuda a manter a documentação viva, atualizada.
+
+BDD muda o foco de testes para COMPORTAMENTO. Usa linguagem Gherkin e foca no valor do negócio.
+
+outside-in (de fora pra dentro. visão, valor de negócio)
+pull-based (focado, suficiente) 
+multiple-stakeholder (centrado no usuário e todos que se importam. Foco na colaboração)
+multiple-scale (vários níveis, aplicação, código)
+high automation (automação, regressão, tdd gherkin)
+define e entende o comportamento
+agile methodology
+
+o uso da BDD depende do projeto. Como ele é focado no stakeholder e usuário, se não houver possibilidade de comunicação entre todos, talvez não seja tão útil usar o BDD.
+
+
+
+
+
+
+TDD: Desenvolvimento orientado pelo teste
+BDD: Surgiu em 2003 por Dan North
+BDD é uma técnica de desenvolvimento ágil que visa integrar a regra de negócio com a linguagem de programação (por exemplo, ERPs, que possuem muito código e regras)
+Desenvolvimento orientado por comportamento (do sistema e suas estruturas).
+Técnicas do TDD existem por trás do BDD
+Frameworks Java para BDD Jbehave, EasyB , Spok e Junit.
+Teste devem conter uma fixture, exercise e Verify.
+Elementos de teste (Dado, quando, Então). EX; dado 1 um valor pro exemplo, quando for solicitado o metodo para calcular fatorial, então deve retornar somente o valor do fatorial do numero.
+Facilita a leitura da regra de negocio, sem muito foco na interpretação da linguagem
+Métodos escritos em forma de frase e comportamentos condizentes com o nome do método.
+Ex Metodo soma(), realiza apenas soma. Não pode conter comportamento ilícito, (desenvolver funções diferentes com o que sua nomenclatura diz)
+Focar-se em apenas um comportamento por vez, evitar teste muito grandes; Caso seja necessária a criação de muitos testes para uma mesma classe, indica-se que é necessário quebrar a classe em classes diferentes se possível.
+Apesar de usar BDD deve-se seguir o fluxo do TDD, escrever os testes simples, refatorar, verificar saídas.
