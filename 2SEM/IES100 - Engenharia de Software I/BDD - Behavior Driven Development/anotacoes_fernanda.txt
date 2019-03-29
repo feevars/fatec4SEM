@@ -9,6 +9,8 @@ JavaScript?—?cucumber.js, jasmine
 JUnit (TDD) era usado antes do JBehave (BDD) ser criado
 JBehave = JUnit + autoverificação de erro
 
+pode modificar 
+
 Cenário
 (DADO QUE - GIVEN) + E (condições)
 (QUANDO - WHEN) 
@@ -23,6 +25,3 @@ e assim por diante para os resultados. O JBehave, em seguida, conecta tudo isso 
 ----CITAÇÕES----
 Se pudéssemos desenvolver um vocabulário consistente para analistas, testadores, desenvolvedores e pessoas da área de negócios, então estaríamos a caminho de eliminar algumas das ambiguidades e falhas de comunicação que ocorrem quando pessoas da área de tecnologia falam com pessoas da área de negócios.
 
-bibliografia :
-medium.com
-http://broncodev.com/2016-10-11-introduzindo-o-bdd/
