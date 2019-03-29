@@ -32,3 +32,17 @@ Atividade sobre SPI: Melhoria de Processos
 		2. Na execução;
 		3. No gerenciamento;
 	de processos e justificar cada escolha.
+
+
+Decisão semi estruturada:
+O problema pode acontecer várias vezes, mas a decisão pode ser diferente cada vez que o problema ocorre.
+
+
+Indicador
+Quantifica ou qualifica o desempenho de processos de negócio.
+
+
+
+
+Atividade
+Elabore um SIG com 4 indicadores (Marketing, finanças, operações, rh) no contexto de uma academia e apresente o Dashboard.
