@@ -10,7 +10,6 @@ Professor: Ricardo Satoshi
  */ 
 
 import javax.swing.JOptionPane;
-import java.lang.Math; 
 
 public class Lt01_EstSeq20 {
     
