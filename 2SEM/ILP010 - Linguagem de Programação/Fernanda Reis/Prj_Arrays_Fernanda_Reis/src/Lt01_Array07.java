@@ -15,9 +15,10 @@ import javax.swing.JOptionPane;
 
 public class Lt01_Array07 {
     private static DecimalFormat casas2 = new DecimalFormat ("#.##");
+    @SuppressWarnings("empty-statement")
     public static void main (String args []) {
         double vt[] = new double[20];
-        int i = 0, somatorio = 0;
+        int i = 0, mid = 0;
         double temp = 0.0;
         String vetor = "Números em ordem aleatória: \n";
         
@@ -27,8 +28,6 @@ public class Lt01_Array07 {
             vt[i] = (double) (0 + (Math.random() *100));
             vetor += casas2.format(vt[i]) + "   ";
         }
-        
-        double numero = Double.parseDouble(JOptionPane.showInputDialog(vetor +"\nDigite um valor para procura: "));
         
         //bubbleSort
         for (i = 0; i < 20; i++) {
@@ -40,35 +39,34 @@ public class Lt01_Array07 {
                 }
             }
         }
+        double numero = Double.parseDouble(JOptionPane.showInputDialog(vetor +"\nDigite um valor para procura: "));
         //pesquisaBinaria
-
-int inicial = 1, fim = 20;
-boolean x = false;
-
-   do {
-      mid =  (inicial + fim) div 2;
-      i = mid;
-      if (vt[j] == numero) {
-          x = true;
-      } else if (vt[j] > numero) {
-          fim = (mid - 1);
-      } else {
-          inicial = (mid + 1);
-      }
-      while (inicial <= fim && x == false);
-    }
-
-      //Exibir Resultados da busca
-      se x = 1 entao
-         escreva ("O número foi encontrado na posição ", meio, " do vetor.")
-      senao
-         escreva ("O número informado não foi encontrado no vetor.")
-      fimse
-              
-        //exibeCrescente 
-        for (i = 0; i < 20; i++) {
-            vetor += "\n" +(i+1) + "º : " + casas2.format(vt[i]);
+        int j = 0;
+        boolean x = false;
+        
+        for (i = 20; i > 0; i--) {
+            mid = i / 2;
+            j = mid-1;
+            if (vt[j] == numero) {
+                x = true;
+            } else if (vt[j] > numero) {
+                j -= 1;
+            } else {
+                j += 1;
+            }
+            if (x == true) {
+                i = 0;
+            }
         }
-        JOptionPane.showMessageDialog(null, vetor);
+        
+        
+        nao ta funcionando aidna
+                
+        
+        if (x == true) {
+           JOptionPane.showMessageDialog(null, "O número foi encontrado na posição " +j +" do vetor."); 
+        } else {
+           JOptionPane.showMessageDialog(null, "O número não foi encontrado no vetor."); 
+        }
     }
 }
