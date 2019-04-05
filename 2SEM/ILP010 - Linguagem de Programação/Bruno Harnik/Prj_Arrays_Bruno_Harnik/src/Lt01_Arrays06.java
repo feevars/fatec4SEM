@@ -66,7 +66,7 @@ public class Lt01_Arrays06 {
         
         for(int i = 0; i < qt; i++){
             
-            for(int j = 1; j < qt; j++){
+            for(int j = 1; j <= i; j++){
                 
                 if(Ordenado[j-1] > Ordenado[j]){
                     
