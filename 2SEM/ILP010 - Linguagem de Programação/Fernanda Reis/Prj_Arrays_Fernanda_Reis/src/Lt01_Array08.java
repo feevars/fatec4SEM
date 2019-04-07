@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
 public class Lt01_Array08 {
     private static DecimalFormat casas2 = new DecimalFormat ("#.##");
     public static void main (String args []) {
-        int produtos [][] = new int[4][3];
-        int semana[] = new int [4]; 
+        int produtos [][] = new int[3][4];
+        int semana[] = new int [5]; 
         int i = 0, j = 0;
         double temp = 0.0;
         String resposta = "";
