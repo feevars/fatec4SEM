@@ -38,14 +38,10 @@ public class Lt01_ModSeq25 {
         
         JOptionPane.showConfirmDialog(null, dados_partida, "Duração da partida", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, icon);
          
-        String hi = HI.getValue().toString();
-        int h_inicial = Integer.parseInt(hi);
-        String mi = MI.getValue().toString();
-        int m_inicial = Integer.parseInt(mi);
-        String hf = HF.getValue().toString();
-        int h_final = Integer.parseInt(hf);
-        String mf = MF.getValue().toString();
-        int m_final = Integer.parseInt(mf);
+        int h_inicial = Integer.parseInt(HI.getValue().toString());
+        int m_inicial = Integer.parseInt(MI.getValue().toString());
+        int h_final = Integer.parseInt(HF.getValue().toString());
+        int m_final = Integer.parseInt(MF.getValue().toString());
         
         JOptionPane.showMessageDialog(null, TempoDeJogo(h_inicial, m_inicial, h_final, m_final));
         
