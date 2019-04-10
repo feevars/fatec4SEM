@@ -62,6 +62,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import java.util.Arrays;
 
 public class Lt01_CaixaEletronico {
     
@@ -83,6 +84,10 @@ public class Lt01_CaixaEletronico {
     //Saldo em caixa
     static int saldo_caixa;
     
+    static int saques_registrados = 0;
+    
+    static int total_sacado = 0;
+    
     //Bancos
     //Nome dos Bancos
     static final String [] NOMES_BANCOS = {"Banco do Brasil", "Santander", "Itaú", "Caixa"};
@@ -95,6 +100,9 @@ public class Lt01_CaixaEletronico {
     
     //Quanto cada banco sacou
     static int [] saldo_saques = new int [4];
+    
+    //Quanto cada banco sacou de cada nota
+    static int [][] notas_saques = new int [4][6];
     
     //Ícone
     static final ImageIcon ICONE_BH = new ImageIcon("src/images/favicon.png");
@@ -262,7 +270,7 @@ public class Lt01_CaixaEletronico {
 
     }
         
-        /*  Procedimento: Saque */
+        /*  Procedimento: Saque */ //CONTINUA AQUI, NAS OPÇÕES DE SAQUE
         public static void Saque(int banco){
             
             /* 
@@ -273,7 +281,7 @@ public class Lt01_CaixaEletronico {
             vetor retornado da função OpcaoSaque"X".
             */
             
-            //Matriz que carregará o texto das duas opções de saque.
+            //Vetor que carregará o texto das opções de saque.
             String [] opcoes_saque_t = {"",""};
             
             //Modelo de números do Spinner
@@ -316,54 +324,112 @@ public class Lt01_CaixaEletronico {
             }else if((saque % 10 > saldo_notas[0] && saque % 2 == 0) || (saque % 5 > saldo_notas[0] && saque % 2 != 0)){
                 
                 Erro(4);
-            
+            }else if(saques_registrados >= 100){
+                
+                Erro(66);            
             //Se estivermos livres dos erros...
             }else{
-
-                //Componho os textos das opções de saque com somente as notas que compõem o saque.
-                for(int i = 0; i < 6; i++){
-
-                    if(OpcaoSaque1(saque)[i] != 0){
-
-                        opcoes_saque_t[0] += OpcaoSaque1(saque)[i] + "x R$" + VALOR_NOTAS[i] + "   ";
-
-                    }
-
-                    if(OpcaoSaque2(saque)[i] != 0){
-
-                        opcoes_saque_t[1] += OpcaoSaque2(saque)[i] + "x R$" + VALOR_NOTAS[i] + "   ";
-
-                    }
-
-                }
                 
-                //Exibição das opções para o usuário confirmar o saque
-                int opcao_saque = JOptionPane.showOptionDialog(null,
-                                                "Saque: \nR$" + saque + "\n\nSelecione como deseja receber as notas:",
-                                                NOMES_BANCOS[banco] + " - Saque",
-                                                JOptionPane.DEFAULT_OPTION,
-                                                JOptionPane.INFORMATION_MESSAGE,
-                                                ICONE_BH,
-                                                opcoes_saque_t,
-                                                null);
+                //Iniciei variáveis para receber as opções de saque
+                int [] opcao_saque1;
+                int [] opcao_saque2;
+                
+                
+                if((Arrays.equals(OpcaoSaque1(saque),null) && Arrays.equals(OpcaoSaque2(saque),null))){
+                    
+                    Erro(5);
+                    
+                //Apenas uma opção de saque: segunda opção nula, ou as duas opções são iguais
+                }else if((OpcaoSaque1(saque) != null && Arrays.equals(OpcaoSaque2(saque),null)) || Arrays.equals(OpcaoSaque1(saque),OpcaoSaque2(saque))){
+                    
+                    opcao_saque1 = OpcaoSaque1(saque);
+                    
+                    for(int i = 0; i < 6; i++){
 
-                switch(opcao_saque){
+                        if(opcao_saque1[i] != 0){
 
-                    case 0:     RegistraSaque(OpcaoSaque1(saque));
-                                qtd_saques[banco]++;
-                                saldo_saques[banco] += saque;
-                                MenuPrincipal();
-                                break;
+                            opcoes_saque_t[0] += opcao_saque1[i] + "x R$" + VALOR_NOTAS[i] + "   ";
 
-                    case 1:     RegistraSaque(OpcaoSaque2(saque));
-                                qtd_saques[banco]++;
-                                saldo_saques[banco] += saque;
-                                MenuPrincipal();
-                                break;
+                        }
 
-                    default:    Erro(97);
-                                break;
+                    }
+                    
+                    JOptionPane.showMessageDialog(null, "Saque: " + saque
+                                                      + "\nHá apenas uma opção de saque:\n"
+                                                      + opcoes_saque_t[0],
+                                                      NOMES_BANCOS[banco] + " - Saque", 0, ICONE_BH);
+                    
+                    RegistraSaque(opcao_saque1, banco, saque);
 
+                //Apenas uma opção de saque: primeira opção nula   
+                }else if((Arrays.equals(OpcaoSaque1(saque),null) && OpcaoSaque2(saque) != null)){
+                    
+                    opcao_saque1 = OpcaoSaque2(saque);
+                    
+                    for(int i = 0; i < 6; i++){
+
+                        if(opcao_saque1[i] != 0){
+
+                            opcoes_saque_t[0] += opcao_saque1[i] + "x R$" + VALOR_NOTAS[i] + "   ";
+
+                        }
+                        
+                        JOptionPane.showMessageDialog(null, "Saque: " + saque
+                                                      + "\nHá apenas uma opção de saque:\n"
+                                                      + opcoes_saque_t[0],
+                                                      NOMES_BANCOS[banco] + " - Saque", 0, ICONE_BH);
+
+                    }
+                    
+                    RegistraSaque(opcao_saque1, banco, saque);
+
+                
+                //Duas opções válidas e diferentes
+                }else{
+                    
+                    opcao_saque1 = OpcaoSaque1(saque);
+                    opcao_saque2 = OpcaoSaque2(saque);
+                    
+                    //Construo o texto dos botões
+                    for(int i = 0; i < 6; i++){
+
+                        if(opcao_saque1[i] != 0){
+
+                            opcoes_saque_t[0] += opcao_saque1[i] + "x R$" + VALOR_NOTAS[i] + "   ";
+
+                        }
+
+                        if(opcao_saque2[i] != 0){
+
+                            opcoes_saque_t[1] += opcao_saque2[i] + "x R$" + VALOR_NOTAS[i] + "   ";
+
+                        }
+
+                    }
+                    
+                    //Falo para o usuário escolher a opção
+                    //Exibição das opções para o usuário confirmar o saque
+                    int opcao_saque = JOptionPane.showOptionDialog(null,
+                                                    "Saque: \nR$" + saque + "\n\nSelecione como deseja receber as notas:",
+                                                    NOMES_BANCOS[banco] + " - Saque",
+                                                    JOptionPane.DEFAULT_OPTION,
+                                                    JOptionPane.INFORMATION_MESSAGE,
+                                                    ICONE_BH,
+                                                    opcoes_saque_t,
+                                                    null);
+
+                    switch(opcao_saque){
+
+                        case 0:     RegistraSaque(OpcaoSaque1(saque), banco, saque);
+                                    break;
+
+                        case 1:     RegistraSaque(OpcaoSaque2(saque), banco, saque);
+                                    break;
+
+                        default:    Erro(97);
+                                    break;
+
+                    }
                 }
                 
             }
@@ -431,7 +497,7 @@ public class Lt01_CaixaEletronico {
             for(int i = 5; i >= 2; i--){
                 
                 //Se tiver daquela nota no caixa
-                if(qtd_notas[i] > 0){
+                if(qtd_notas[i] > 0 && s > VALOR_NOTAS[i]){
                     
                     //Se o saldo em caixa da nota em caixa for menor que o valor do saque...
                     if(saldo_notas[i] < s){
@@ -523,11 +589,7 @@ public class Lt01_CaixaEletronico {
                         //Se não der certo, esta opção de saque retornará vazia
                         }else{
                             
-                            for(int i = 0; i < 6; i++){
-                                
-                                S[i] = 0;
-                                
-                            }
+                            S = null;
                             
                         }
                     
@@ -540,7 +602,7 @@ public class Lt01_CaixaEletronico {
             return S;
         }
 
-        /*  Função: Opção de Saque 2 */
+        /*  Função: Opção de Saque 2 */ //CÓPIA BARATA DA OPÇÃO 1
         public static int [] OpcaoSaque2(int s){
 
             int [] S = new int [6];
@@ -601,122 +663,75 @@ public class Lt01_CaixaEletronico {
                 Segundo passo
             
             */
-            for(int i = 2; i < 6; i++){
-                
-                //Se tiver daquela nota no caixa
-                if(qtd_notas[i] > 0){
-                    
-                    //Se o saldo em caixa da nota em caixa for menor que o valor do saque...
-                    if(saldo_notas[i] < s){
-                        
-                        //...adiciono as notas que estão em caixa.
-                        S[i] =+ qtd_notas[i];
-                    
-                    //Se for maior...
-                    }else{
-                        
-                        //...divido o saque pelo valor da nota e obtenho a quantidade.
-                        S[i] =+ s / VALOR_NOTAS[i];
-                        
-                    }
-                    
-                    //Subtraio o valor das notas incluidas no saque
-                    s -= S[i] * VALOR_NOTAS[i];
-                    
-                }
-
-            }
             
             
-            /*  
-                Terceiro passo: ainda pode haver resto no saque, aí existem algumas saídas...
-            */
             
-            //Se ainda houver valor no saque...
-            if(s != 0){
+            while(s > 0){
                 
-                //Verifico se as notas de 5 podem zerar o saque
-                if((qtd_notas[1] - S[1]) * VALOR_NOTAS[1] >= s){
-                    
-                    S[1] += s / VALOR_NOTAS[1];
-                    
-                //Se não, verifico se as notas de 2 podem zerar o saque   
-                }else if((qtd_notas[0] - S[0]) * VALOR_NOTAS[0] >= s){
-                    
-                    S[0] += s / VALOR_NOTAS[0];
+                int n = 0;
                 
-                //Se não, devolvo as notas de 10, 20, 50 e 100, zero os índices no vetor de saque e...
-                }else{
-                
-                    s += (S[2] * VALOR_NOTAS[2]) + (S[3] * VALOR_NOTAS[3]) + (S[4] * VALOR_NOTAS[4]) + (S[5] * VALOR_NOTAS[5]);
-                    S[2] = 0;
-                    S[3] = 0;
-                    S[4] = 0;
-                    S[5] = 0;
-
-                    //...refaço o looping começando pelas notas de 100 até as de 10.
-                    for(int i = 5; i >= 2; i--){
-
-                        //Se tiver daquela nota no caixa
-                        if(qtd_notas[i] > 0){
-
-                            //Se o saldo em caixa da nota em caixa for menor que o valor do saque...
-                            if(saldo_notas[i] < s){
-
-                                //...adiciono as notas que estão em caixa.
-                                S[i] =+ qtd_notas[i];
-
-                            //Se for maior...
-                            }else{
-
-                                //...divido o saque pelo valor da nota e obtenho a quantidade.
-                                S[i] =+ s / VALOR_NOTAS[i];
-
-                            }
-
-                            //Subtraio o valor das notas incluidas no saque
-                            s -= S[i] * VALOR_NOTAS[i];
-
-                        }
-
-                    }
+                for(int i = 5; i >= 0; i--){
                     
-                    //Se ainda assim sobrar resto, tento mais uma vez dividir por 2 e 5.
-                    if(s != 0){
-                
-                        //Verifico se as notas de 5 podem zerar o saque
-                        if((qtd_notas[1] - S[1]) * VALOR_NOTAS[1] >= s){
-
-                            S[1] += s / VALOR_NOTAS[1];
-
-                        //Se não, verifico se as notas de 2 podem zerar o saque   
-                        }else if((qtd_notas[0] - S[0]) * VALOR_NOTAS[0] >= s){
-
-                            S[0] += s / VALOR_NOTAS[0];
+                    //Precisa ter da nota e o saque deve ser maior que o valor da nota
+                    if(qtd_notas[i] > 0 && s > VALOR_NOTAS[i]){
+                        
+                        //se há mais nota no caixa do que o saque pede
+                        //vou utilizar n para não substituir as notas de 2 e 5 já colocadas
+                        if(qtd_notas[i] > S[i]){
                             
-                        //Se não der certo, esta opção de saque retornará vazia
+                            n += s / VALOR_NOTAS[i];
+                            
+                        //se há menos nota..    
                         }else{
                             
-                            for(int i = 0; i < 6; i++){
-                                
-                                S[i] = 0;
-                                
-                            }
+                            
+                            n += qtd_notas[i];
                             
                         }
-                    
+                        
+                        s -= n * VALOR_NOTAS[i];
+                        S[i] += n;
+                        
+                        n = 0;
                     }
+                    
+                    //se cairmos numa situação de que a nota do looping é maior que o saque
+                    if(s < VALOR_NOTAS[i] && i < 5 && S[i + 1] > 0 && s > 0){
+                        
+                        S[i + 1]--;
+                        s += VALOR_NOTAS[i + 1];
+                        
+                        i++;
+                        
+                    }
+                    
                     
                 }
                 
             }
+            
 
             return S;
         }
 
         /*  Procedimento: Registra o Saque */
-        public static void RegistraSaque(int saque[]){
-
+        public static void RegistraSaque(int saque[], int banco, int s){
+            
+            for(int i = 0; i < 5; i++){
+                
+                //tiro as notas do caixa
+                qtd_notas[i] -= saque[i];
+                //adiciono as notas à matriz de notas do banco
+                notas_saques[banco][i] += saque[i];
+                
+            }
+            
+            saldo_saques[banco] += s;
+            qtd_saques[banco]++;
+            total_sacado += s;
+            saques_registrados++;
+            
+            MenuPrincipal();
 
         }
     
@@ -728,6 +743,35 @@ public class Lt01_CaixaEletronico {
     /*******************************/
     public static void Estatistica(){
         
+        String stats = "Estatísticas do caixa eletrônico\n";
+        
+        
+        for(int i = 0; i < 4; i++){
+            
+            stats += NOMES_BANCOS[i]
+                    + "\nQuantidade de saques: " + qtd_saques[i]
+                    + "\nSacado neste banco: R$" + saldo_saques[i] + "\nQuantidade de cada nota sacada por este banco:\n";
+            
+                    for(int j = 0; j < 6; j++){
+                        
+                        stats += notas_saques[i][j] + "x " + NOMES_NOTAS[j] + "   ";
+                        
+                    }
+                    
+            stats += "\n\n";
+
+        }
+        
+        stats += "\n\n\nTotal sacado: R$" + total_sacado + "\nSaques registrados: " + saques_registrados + "\n\nO saldo do caixa é R$" + saldo_caixa + " com:\n";
+        
+        for(int i = 0; i < 6; i++){
+            
+            stats += qtd_notas[i] + " notas de " + NOMES_NOTAS[i] + "\n";
+            
+        }
+        
+        JOptionPane.showMessageDialog(null, stats, "Estatística", 0, ICONE_BH);
+                
         MenuPrincipal();
         
     }
@@ -780,6 +824,23 @@ public class Lt01_CaixaEletronico {
                                                       "Erro", 0, ICONE_BH);
                     Saque(banco);
                     break;
+                    
+            //Erro 5: Erro do "comi bola"
+            case 5: JOptionPane.showMessageDialog(null, "Vacilo do programador...\n"
+                                                      + "Se algo de errado ocorreu, foi porque as duas opções de saque retornaram nulas..."
+                                                      + "\nUm pouco improvável.. Voltando para o saque...",
+                                                      "Comi bola", 0, ICONE_BH);
+                    Saque(banco);
+                    break;
+                    
+                    
+            
+            //Erro 66: Chegou ao centézimo saque
+            case 66: JOptionPane.showMessageDialog(null, "Você chegou ao centézimo saque."
+                                                      + "Acabou... Encerre o programa se quiser sacar mais.",
+                                                      "Chega de saque!", 0, ICONE_BH);
+                    MenuPrincipal();
+                    break;
             
                     
             //Erros provocados pelo usuário
@@ -809,9 +870,16 @@ public class Lt01_CaixaEletronico {
     }
     
     
+    /***********************/
+    /*                     */
+    /*  Procedimento: Fim  */
+    /*                     */
+    /***********************/
     public static void Fim(){
         
-        
+        JOptionPane.showMessageDialog(null, "Obrigado por rodar este algoritmo...\n"
+                                                       + "Deu um trabalhão!\n",
+                                                       "Bruno Harnik", 0, ICONE_BH);
         
     }
     
