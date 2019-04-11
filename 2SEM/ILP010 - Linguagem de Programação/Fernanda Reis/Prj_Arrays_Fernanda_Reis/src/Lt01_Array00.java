@@ -7,7 +7,7 @@ Preenchendo matriz
 
 import javax.swing.JOptionPane;
 
-public class Lt01_Matriz00 {
+public class Lt01_Array00 {
     public static void main (String args[]) {
         int m2[][] = new int[3][2];
         int s = 0;
