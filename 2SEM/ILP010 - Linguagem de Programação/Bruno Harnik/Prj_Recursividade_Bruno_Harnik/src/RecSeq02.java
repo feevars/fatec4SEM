@@ -16,7 +16,8 @@ public class RecSeq02 {
         
         int N = Integer.parseInt(JOptionPane.showInputDialog("Serie2 = (N) + (N-1) + (N-2) + ... + (1)\nDigite um número inteiro positivo:"));
         
-        JOptionPane.showMessageDialog(null, Serie2(N));
+        JOptionPane.showMessageDialog(null, "Serie2 = (N) + (N-1) + (N-2) + ... + (1)\nN = " + N
+                                                                                    + "\n\nResultado:" + Serie2(N));
         
         
     }
@@ -29,8 +30,7 @@ public class RecSeq02 {
             
         }else{
             
-            int Soma = N + Serie2(N - 1);
-            return Soma;
+            return N + Serie2(N - 1);
         }
         
     }

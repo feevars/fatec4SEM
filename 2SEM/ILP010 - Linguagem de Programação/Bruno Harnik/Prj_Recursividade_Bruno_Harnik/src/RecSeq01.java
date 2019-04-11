@@ -15,21 +15,19 @@ public class RecSeq01 {
     
     public static void main(String[] args){
         
-        JOptionPane.showMessageDialog(null, Soma1(1,0));
+        JOptionPane.showMessageDialog(null, "1)   Serie1 = (1+2+3+...+100)\nResultado: " + Soma1(1));
         
     }
     
-    static int Soma1(int i, int Soma) { 
+    static int Soma1(int i) { 
         
         if (i == 100) {
             
-            Soma += i;
-            
-            return Soma;  
+            return i;  
             
         } else {
            
-           return Soma1(i + 1, Soma + i); 
+           return i + Soma1(i + 1); 
         }
     }
     

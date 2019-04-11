@@ -311,6 +311,11 @@ public class Lt01_CaixaEletronico {
                 Erro(1);
                 
             //Erro: saque = R$3
+            }else if(saque == 0){
+                
+                Erro(6);
+                
+            //Erro: saque = R$3
             }else if(saque == 3){
                 
                 Erro(2);
@@ -717,7 +722,7 @@ public class Lt01_CaixaEletronico {
         /*  Procedimento: Registra o Saque */
         public static void RegistraSaque(int saque[], int banco, int s){
             
-            for(int i = 0; i < 5; i++){
+            for(int i = 0; i < 6; i++){
                 
                 //tiro as notas do caixa
                 qtd_notas[i] -= saque[i];
@@ -830,6 +835,13 @@ public class Lt01_CaixaEletronico {
                                                       + "Se algo de errado ocorreu, foi porque as duas opções de saque retornaram nulas..."
                                                       + "\nUm pouco improvável.. Voltando para o saque...",
                                                       "Comi bola", 0, ICONE_BH);
+                    Saque(banco);
+                    break;
+                    
+            //Erro 6: Saque = 0
+            case 6: JOptionPane.showMessageDialog(null, "O saque não pode ser 0\n"
+                                                      + "\nPor favor refaça.",
+                                                      "Saque 0?", 0, ICONE_BH);
                     Saque(banco);
                     break;
                     
