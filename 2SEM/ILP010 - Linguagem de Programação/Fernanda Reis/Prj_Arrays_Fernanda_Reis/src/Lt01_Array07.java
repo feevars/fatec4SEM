@@ -10,6 +10,7 @@ Professor: Ricardo Satoshi
 
  */
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
@@ -40,33 +41,28 @@ public class Lt01_Array07 {
             }
         }
         double numero = Double.parseDouble(JOptionPane.showInputDialog(vetor +"\nDigite um valor para procura: "));
+        
         //pesquisaBinaria
-        int j = 0;
+        int inicio = 1, fim = Array.getLength(vt);
         boolean x = false;
-        
-        for (i = 20; i > 0; i--) {
-            mid = i / 2;
-            j = mid-1;
-            if (vt[j] == numero) {
+        int meio = 0;
+        do {
+            meio = (inicio + fim) / 2;
+            i = meio;
+            if (vt[i] == numero) {
                 x = true;
-            } else if (vt[j] > numero) {
-                j -= 1;
+            } else if (vt[i] > numero) {
+                fim = meio - 1;
             } else {
-                j += 1;
+                inicio = meio + 1;
             }
-            if (x == true) {
-                i = 0;
-            }
-        }
+        } while (inicio <= fim && x == false);
         
-        
-        nao ta funcionando aidna
-                
-        
+         //Exibir Resultados da busca
         if (x == true) {
-           JOptionPane.showMessageDialog(null, "O número foi encontrado na posição " +j +" do vetor."); 
+            JOptionPane.showMessageDialog(null, "O número foi encontrado na posição " +meio +" do vetor.");
         } else {
-           JOptionPane.showMessageDialog(null, "O número não foi encontrado no vetor."); 
-        }
+            JOptionPane.showMessageDialog(null, "Número não encontrado.");
+        }    
     }
 }

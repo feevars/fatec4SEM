@@ -22,11 +22,10 @@ public static void main (String args[]) {
 }
 
 static int FFAT(int N) { 
-    int FAT=0;
     if (N == 1) {
         return N;     
     } else {
-       FAT = N * FFAT(N-1);
+       int FAT = N * FFAT(N-1);
        return FAT; 
     }
 }

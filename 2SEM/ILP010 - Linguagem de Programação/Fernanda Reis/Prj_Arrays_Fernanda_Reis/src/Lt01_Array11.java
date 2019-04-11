@@ -4,7 +4,7 @@ matriz preencher lalala
 
 import javax.swing.JOptionPane;
 
-public class Lt01_Matriz11 {
+public class Lt01_Array11 {
     public static void main (String args[]) {
         int y = 0, x = 0;
         int matriz[][] = new int [8][8];
