@@ -9,6 +9,24 @@ Professor: Ricardo Satoshi
 
  +++++++++++++++++++++++++++++++++++++
  */
+import javax.swing.JOptionPane;
+
 public class Lt01_Func32 {
-    
+
+    public static void main(String Args[]) {
+        int numero;
+
+        numero = Integer.parseInt(JOptionPane.showInputDialog("insira um número"));
+        JOptionPane.showMessageDialog(null, FFat(numero));
+
+    }
+
+    static int FFat(int num) {
+            if (num == 1) {
+            return num;
+        } else {
+            return num * (FFat(num - 1));
+        }
+    }
+
 }

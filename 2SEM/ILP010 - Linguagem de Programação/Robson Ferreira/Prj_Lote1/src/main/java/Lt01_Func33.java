@@ -9,6 +9,22 @@ Professor: Ricardo Satoshi
 
  +++++++++++++++++++++++++++++++++++++
  */
+import javax.swing.JOptionPane;
+
 public class Lt01_Func33 {
-    
+
+    public static void main(String Args[]) {
+        double numero;
+        numero = Double.parseDouble(JOptionPane.showInputDialog("insira um numero"));
+        JOptionPane.showMessageDialog(null, "o resultado da série é: " + func(numero));
+    }
+    static double func(double num){
+        if (num == 1){
+            return num;
+        }
+        else{
+            return 1/num + func(num-1);
+        }
+    }
+
 }

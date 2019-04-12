@@ -10,6 +10,11 @@ Professor: Ricardo Satoshi
 
  +++++++++++++++++++++++++++++++++++++
  */
+import javax.swing.JOptionPane;
 public class Lt01_Func37 {
+    public static void main (String Args[]){
+        
+    }
+    
     
 }
