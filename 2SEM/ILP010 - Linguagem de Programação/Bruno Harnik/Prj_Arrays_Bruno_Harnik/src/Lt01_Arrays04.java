@@ -12,7 +12,6 @@
  * 
  */
 import javax.swing.JOptionPane;
-import java.text.DecimalFormat;
 
 public class Lt01_Arrays04 {
     
@@ -63,9 +62,11 @@ public class Lt01_Arrays04 {
         //Ao multiplicar por 100, não perdemos as duas casas decimais.
         media = media / qt * 100;
         
-        media = Math.ceil(media) / 100;
+        'media = Math.ceil(media) / 100;
         
         return media;
+        
+        JOptionPane.showMessageDialog(null, "As raízes são..." +String.format("%.2f", media));
     }
     
     public static int Acima(double vetor[], double media){

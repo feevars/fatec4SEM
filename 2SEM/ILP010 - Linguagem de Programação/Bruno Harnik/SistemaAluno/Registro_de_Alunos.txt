@@ -1,0 +1,21 @@
+Aluno(a): Amanda Piroca
+Pontos: 23.4
+-------------------------------
+Aluno(a): Juca Kitefure
+Pontos: 55.3
+-------------------------------
+Aluno(a): Malaquias Malaco
+Pontos: 66.6
+-------------------------------
+Aluno(a): Tomas Turbando
+Pontos: 22.34
+-------------------------------
+Aluno(a): Paula Tejante
+Pontos: 33.44
+-------------------------------
+Aluno(a): Bruno Benga
+Pontos: 69.5
+-------------------------------
+Aluno(a): Fernandinha Beiramar
+Pontos: 33.88
+-------------------------------
