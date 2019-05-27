@@ -26,7 +26,8 @@ class ManipulaDados {
         opcao = Integer.parseInt(JOptionPane.showInputDialog("1: Registrar aluno e pontos\n"
                                                            + "2: Verificar lista de alunos e pontos.\n\n"
                                                            + "9: Encerrar programa.\n\n"
-                                                           + "Digite a opção desejada:"));
+                                                           + "Digite a opção desejada:"));                                                           + "Digite a opção desejada:"));
+
         
             switch(opcao){
                 

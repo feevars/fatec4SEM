@@ -13,3 +13,9 @@ Pontos: 22.34
 Aluno(a): Paula Tejante
 Pontos: 33.44
 -------------------------------
+Aluno(a): Bruno Benga
+Pontos: 69.5
+-------------------------------
+Aluno(a): Fernandinha Beiramar
+Pontos: 33.88
+-------------------------------

@@ -28,9 +28,9 @@ public class Aluno {
         BufferedWriter writer = new BufferedWriter(new FileWriter( nome_do_arquivo, true ));
         
         //Inicio um objeto Aluno em cada posição de meu array aluno[]
-        for (i = 0 ; i < qtd ; i++)	
+        for (i = 0 ; i < qtd ; i++){
              aluno[i] = new Aluno();
-
+        }
         for (i = 0 ; i < qtd ; i++)  {	
 
             //Define NOME e escreve no TXT
@@ -55,8 +55,6 @@ public class Aluno {
     }
     
     public void lerAluno() throws IOException {
-        
-        int i;
         
         String nome_do_arquivo = "Registro_de_Alunos.txt";
         
