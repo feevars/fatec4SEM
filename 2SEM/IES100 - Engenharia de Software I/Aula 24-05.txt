@@ -1,0 +1,11 @@
+Ciclo de vida do Software
+Modelos de ciclo de vida
+
+
+
+Processos unificados --> UP, RUP, EUP
+
+Processos Ágeis --> eXtreme Programming, Scrum, Crystal
+
+"A arte de fazer o dobro na metade do tempo"
+

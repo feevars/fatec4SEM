@@ -1,0 +1,39 @@
+Linguagem de Programação - 23/05
+
+06/06 - P3/Vista P2
+13/06 - Vista P3
+27/06 - fechamento do semestre
+
+CONTEÚDO P2/P3 - Registro + arquivo + modularização
+
+__*Sistema de Contas Correntes*__
+contascorrentes --> codconta + nomecliente + saldo + limite + tipodeconta (de 1 a 4)
+
+movimentodaconta --> codconta + valordomovimento + tipomovimento + statusdaconta
+
+contasatualizadas --> codigodaconta + nomecliente + saldodaconta + limitedaconta + tipodaconta 
+
+-------------------------------------
+
+criar 2 classes abstratas (contascorrentes/contasatualizadas + movimentoconta)
+
+como cadastrar contas?
+
+não pode: ter 2 registros com o mesmo numero de conta
+
+para cada conta pode existir 1 ou + movimentos
+nao existe 1 movimento sem uma conta
+
+balance line
+
+contas --> ordem numérica
+
+movimento --> em ordem numérica
+
+atualizado --> tbm em ordem numérica
+----------------------------------
+
+fazer um merge sort para atualizar a conta --> se o número do movimentoconta for igual ao número do contascorrentes, verifica os proximos e faz o que tem q fazer
+
+
+
