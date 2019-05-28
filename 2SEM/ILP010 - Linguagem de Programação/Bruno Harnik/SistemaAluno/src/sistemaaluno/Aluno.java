@@ -19,6 +19,21 @@ public class Aluno {
     private String sobrenome;
     private float pontos;
     
+    
+
+    //Métodos construtores: 1º - Recebendo em array, 2º - Declaração de cada variável	 
+    Aluno() {
+        this("", "", 0);
+    }
+
+    Aluno(String nomealuno, String sobrenomealuno, float pontosaluno){
+          this.nome = nomealuno;
+          this.sobrenome = sobrenomealuno;
+          this.pontos = pontosaluno;
+    }
+    
+    
+    //Métodos especiais
     public Aluno[] gravarAluno(Aluno[] aluno, int qtd) throws IOException {
 
         int i;
@@ -31,7 +46,7 @@ public class Aluno {
         for (i = 0 ; i < qtd ; i++){
              aluno[i] = new Aluno();
         }
-        for (i = 0 ; i < qtd ; i++)  {	
+        for (i = 0 ; i < qtd ; i++){	
 
             //Define NOME e escreve no TXT
             aluno[i].setNome(JOptionPane.showInputDialog("Digite o primeiro nome do aluno:"));	
@@ -49,8 +64,8 @@ public class Aluno {
         }
 
         //Mensagem de sucesso e fechamento do BUFFERED WRITER
-        JOptionPane.showMessageDialog(null, "Registro realizado com sucesso!");
         writer.close();
+        JOptionPane.showMessageDialog(null, "Registro realizado com sucesso!");
         return aluno;
     }
     
@@ -67,20 +82,10 @@ public class Aluno {
                 texto += s + "\n";
             }
             
-        JOptionPane.showMessageDialog(null, "Registros gravados na lista de alunos:\n\n-------------------------------\n" + texto);
         br.close();
+        JOptionPane.showMessageDialog(null, "Registros gravados na lista de alunos:\n\n-------------------------------\n" + texto);
     }
-
-    // Métodos construtores: 1º - Recebendo em array, 2º - Declaração de cada variável	 
-    Aluno() {
-        this("", "", 0);
-    }
-
-    Aluno(String nomealuno, String sobrenomealuno, float pontosaluno){
-          this.nome = nomealuno;
-          this.sobrenome = sobrenomealuno;
-          this.pontos = pontosaluno;
-    }
+    
     
     //Métodos get & set de encapsulamento
     public String getNome() {
