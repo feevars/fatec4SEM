@@ -20,11 +20,11 @@ public class SistemaVotos {
         
         Voto[] voto = new Voto[qtd];
         
-        Voto r = new Voto();
+        Voto metodos = new Voto();
         
-        r.registrarVoto(voto, qtd);
-        r.classificaSecao(voto, 0, qtd - 1);
-        r.gravarVoto(voto, qtd);
+        metodos.registrarVoto(voto, qtd);
+        metodos.classificaSecao(voto, 0, qtd - 1);
+        metodos.gravarVoto(voto, qtd);
 
         
     }
