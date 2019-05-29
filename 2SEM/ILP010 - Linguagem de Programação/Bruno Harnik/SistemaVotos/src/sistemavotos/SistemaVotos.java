@@ -1,13 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Lote 2 - Análise e Desenvolvimento de Sistemas (noturno)
+ * Prof.º Ricardo Satoshi
+ * 
+ * c) Sistema: Eleicao - Programa Principal
  */
 package sistemavotos;
 
 /**
  *
- * @author bruno
+ * @author Bruno Bega Harnik
  */
 import javax.swing.*;
 import java.io.*;
@@ -18,13 +19,19 @@ public class SistemaVotos {
         
         int qtd = Integer.parseInt(JOptionPane.showInputDialog(null, "Bem vindo(a) ao sistema de votos.\nDigite a quantidade de votos que devem ser computados:"));
         
-        Voto[] voto = new Voto[qtd];
+        Eleicao[] voto = new Eleicao[qtd];
         
-        Voto metodos = new Voto();
+        Eleicao metodos = new Eleicao();
+        
+        Estatisticas stat = new Estatisticas();
         
         metodos.registrarVoto(voto, qtd);
         metodos.classificaSecao(voto, 0, qtd - 1);
         metodos.gravarVoto(voto, qtd);
+        
+        
+        stat.eleitoresSecao(voto, qtd);
+        stat.secaoMaiorMenor();
 
         
     }

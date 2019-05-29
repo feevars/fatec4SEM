@@ -1,3 +1,9 @@
+/*
+ * Lote 2 - Análise e Desenvolvimento de Sistemas (noturno)
+ * Prof.º Ricardo Satoshi
+ * 
+ * c) Sistema: Eleicao - Classe do Objeto Eleicao
+ */
 package sistemavotos;
 
 import java.io.*;
@@ -5,26 +11,28 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author bruno
+ * @author Bruno Bega Harnik
  */
-public class Voto {
+public class Eleicao {
     
     //Argumentos
     private int candidato, secao;
+    public int num_candidatos = 13;
+    public int num_secoes = 30;
     
     
     //Construtores
-    Voto(){
+    Eleicao(){
         this(0,0);
     }
-    Voto(int c, int s){   
+    Eleicao(int c, int s){   
         this.candidato = c;
         this.secao = s;
     }
     
     //Métodos Especiais
     //Registrar voto (Inicia objeto em cada posição do vetor e popula com random seus conteúdos
-    public Voto[] registrarVoto(Voto[] voto, int qtd) {
+    public Eleicao[] registrarVoto(Eleicao[] voto, int qtd) {
         
         System.out.println("Votação: \n");
         
@@ -32,12 +40,12 @@ public class Voto {
         
         //Este 'FOR' cria um objeto voto em cada posição do array de voto.
         for(i = 0; i < qtd; i++){
-            voto[i] = new Voto();
+            voto[i] = new Eleicao();
         }
         
         for(i = 0; i < qtd; i++){
-            voto[i].setCanditado((int) (Math.random() * 13) + 1);
-            voto[i].setSecao((int) (Math.random() * 50) + 1);
+            voto[i].setCanditado((int) (Math.random() * num_candidatos) + 1);
+            voto[i].setSecao((int) (Math.random() * num_secoes) + 1);
             System.out.println("Candidato: " + voto[i].getCandidato() + "\tSeção: " + voto[i].getSecao());
         }
         
@@ -45,7 +53,7 @@ public class Voto {
     }
     
     //classificaSecao (QuickSort)
-    public Voto[] classificaSecao(Voto[] voto, int esquerda, int direita){
+    public Eleicao[] classificaSecao(Eleicao[] voto, int esquerda, int direita){
     
         int esq = esquerda;
         int dir = direita;
@@ -79,7 +87,7 @@ public class Voto {
         return voto;
     }    
     
-    public Voto[] gravarVoto(Voto[] voto, int qtd) throws IOException {
+    public Eleicao[] gravarVoto(Eleicao[] voto, int qtd) throws IOException {
         
         String nome_do_arquivo = "Resultado_da_votacao.txt";
         
@@ -96,13 +104,15 @@ public class Voto {
                 bf.write("|\t" + voto[i].getCandidato() + "\t||\t" + voto[i].getSecao() + "\t|");
                 bf.newLine();
             }
-            bf.write("⌊_______________⌋⌊______________⌋");
+            bf.write("|_______________||______________|");
             
         }
         JOptionPane.showMessageDialog(null, "Arquivo de votação gerado.");
         
         return voto;
     }
+    
+    
     
     //Métodos GET & SET
     public int getCandidato(){

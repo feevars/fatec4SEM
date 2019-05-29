@@ -2,7 +2,7 @@
  * Lote 2 - Análise e Desenvolvimento de Sistemas (noturno)
  * Prof.º Ricardo Satoshi
  * 
- * a) Sistema: Aluno - Classe do Objeto
+ * a) Sistema: Aluno - Classe do Objeto Aluno
  */
 package sistemaaluno;
 
@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author bruno
+ * @author Bruno Bega Harnik
  */
 public class Aluno {
 

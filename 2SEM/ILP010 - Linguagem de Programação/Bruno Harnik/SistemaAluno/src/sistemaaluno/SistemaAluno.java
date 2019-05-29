@@ -8,7 +8,7 @@ package sistemaaluno;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Bega Harnik
  */
 import javax.swing.*;
 import java.io.*;
