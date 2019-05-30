@@ -5,6 +5,9 @@
  */
 package sistemabanco;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bruno
@@ -13,22 +16,65 @@ public class SistemaBanco {
 
     /**
      * @param args the command line arguments
+     * 
+     * @throws java.io.IOException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        ContaBanco c1 = new ContaBanco();
-        c1.setNumConta(1);
-        c1.setNomeCliente("Fernandinha");
-        c1.cadastroConta(3);
+        ContasCorrentes contas = new ContasCorrentes();
+        
+        int opc = 0;
+        
+        int opcc = 0;
+        
+        while(opc != 9){
+            
+            opc = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada:\n"
+                                                              + "1: Cadastrar conta corrente\n"
+                                                              + "2: Cadastrar movimento\n"
+                                                              + "3: Gerar contas atualizadas\n"
+                                                              + "4: Consultar cadastros\n\n"
+                                                              + "9: FIM"));
+            
+            switch(opc){
+                
+                case 1: contas.cadastrarConta(contas);
+                        break;
+                
+                case 4: while(opcc != 9){
+            
+                            opcc = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada:\n"
+                                                                            + "1: Contas Correntes\n"
+                                                                            + "2: Movimentos\n"
+                                                                            + "3: Atualizado\n"
+                                                                            + "9: Voltar"));
+                    
+                            switch(opcc){
+                                case 1: contas.consultarContas();
+                                        break;
+                                        
+                                case 9: break;
+
+                                default: JOptionPane.showMessageDialog(null, "Opção Inválida"); 
+                                         opc = 0;
+                                         break;
+                            }
+                        }
+                        break;
+                
+                case 9: JOptionPane.showMessageDialog(null, "Fim do programa.\nReinicie para continuar."); 
+                        break;
+                        
+                default: JOptionPane.showMessageDialog(null, "Opção Inválida"); 
+                         opc = 0;
+                         break;
+                
+            }
+            
+        }
         
         
-        ContaBanco c2 = new ContaBanco();
-        c2.setNumConta(2);
-        c2.setNomeCliente("Bruno");
-        c2.cadastroConta(2);
-        
-        c1.estadoConta();
-        c2.estadoConta();
+
     }
     
 }
