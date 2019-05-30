@@ -16,6 +16,7 @@ public class Estatisticas {
     
     Eleicao e = new Eleicao();
     int [] votos_secao = new int [e.num_secoes];
+    int [] votos_candidato = new int [e.num_candidatos];
     
     
     //4.1 Eleitores por seção
@@ -78,6 +79,32 @@ public class Estatisticas {
         
         JOptionPane.showMessageDialog(null, "Seções com maior número de votos (" + maior + " votos) : " + txt_maior
                                         + "\nSeções com menor número de votos (" + menor + " votos) : " + txt_menor);
+        
+    }
+    
+    public void votosCandidatos(Eleicao [] voto, int qtd){
+        
+        String result = "Votos por Candidato\n"
+                      + "---------------\n\n";
+        
+        for(int i = 1; i <= e.num_candidatos; i++){
+            
+            for(int j = 0; j < qtd; j++){
+                
+                if(i == voto[j].getSecao()){
+                    
+                    votos_candidato[i - 1]++;
+                    
+                }
+                
+            }
+            
+            result += "Candidato\t" + i + ":\t" + votos_candidato[i - 1] + "\tvotos\n";
+            
+        }
+        
+        JOptionPane.showMessageDialog(null, result);
+        
         
     }
     

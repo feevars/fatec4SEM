@@ -19,7 +19,7 @@ public class Eleicao {
     private int candidato, secao;
     public int num_candidatos = 13;
     public int num_secoes = 30;
-    
+    public int [] votos_candidatos = new int [num_candidatos];
     
     //Construtores
     Eleicao(){
@@ -44,7 +44,8 @@ public class Eleicao {
         }
         
         for(i = 0; i < qtd; i++){
-            voto[i].setCanditado((int) (Math.random() * num_candidatos) + 1);
+            voto[i].setCandidato((int) (Math.random() * num_candidatos) + 1);
+
             voto[i].setSecao((int) (Math.random() * num_secoes) + 1);
             System.out.println("Candidato: " + voto[i].getCandidato() + "\tSeção: " + voto[i].getSecao());
         }
@@ -71,9 +72,9 @@ public class Eleicao {
                 troca_s = voto[esq].getSecao();
                 troca_c = voto[esq].getCandidato();
                 voto[esq].setSecao(voto[dir].getSecao());
-                voto[esq].setCanditado(voto[dir].getCandidato());
+                voto[esq].setCandidato(voto[dir].getCandidato());
                 voto[dir].setSecao(troca_s);
-                voto[dir].setCanditado(troca_c);
+                voto[dir].setCandidato(troca_c);
                 esq++;
                 dir--;
             }
@@ -85,7 +86,41 @@ public class Eleicao {
             classificaSecao(voto, esq, direita);
         
         return voto;
-    }    
+    }
+    
+    public Eleicao[] classificaCandidato(Eleicao[] voto, int esquerda, int direita){
+    
+        int esq = esquerda;
+        int dir = direita;
+        int pivo = voto[(esq + dir) / 2].getCandidato();
+        int troca_c, troca_s;
+        
+        while(esq <= dir){
+            while(voto[esq].getCandidato() < pivo){
+                esq++;
+            }
+            while(voto[dir].getCandidato() > pivo){
+                dir--;
+            }
+            if(esq <= dir){
+                troca_c = voto[esq].getCandidato();
+                troca_s = voto[esq].getSecao();
+                voto[esq].setCandidato(voto[dir].getCandidato());
+                voto[esq].setSecao(voto[dir].getSecao());
+                voto[dir].setCandidato(troca_c);
+                voto[dir].setSecao(troca_s);
+                esq++;
+                dir--;
+            }
+        }
+        if(dir > esquerda)
+            classificaCandidato(voto, esquerda, dir);
+        
+        if(esq < direita)
+            classificaCandidato(voto, esq, direita);
+        
+        return voto;
+    }
     
     public Eleicao[] gravarVoto(Eleicao[] voto, int qtd) throws IOException {
         
@@ -118,7 +153,7 @@ public class Eleicao {
     public int getCandidato(){
         return candidato;
     }
-    public void setCanditado(int candidato){
+    public void setCandidato(int candidato){
         this.candidato = candidato;
     }
     public int getSecao(){

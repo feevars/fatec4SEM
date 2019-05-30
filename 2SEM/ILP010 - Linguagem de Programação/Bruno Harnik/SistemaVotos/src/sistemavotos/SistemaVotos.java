@@ -32,6 +32,8 @@ public class SistemaVotos {
         
         stat.eleitoresSecao(voto, qtd);
         stat.secaoMaiorMenor();
+        //metodos.classificaCandidato(voto, 0, qtd - 1);
+        //stat.votosCandidatos(voto, qtd);
 
         
     }
