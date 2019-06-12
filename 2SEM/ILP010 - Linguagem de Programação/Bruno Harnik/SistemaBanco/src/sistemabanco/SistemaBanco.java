@@ -22,6 +22,7 @@ public class SistemaBanco {
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
         ContasCorrentes contas = new ContasCorrentes();
+        MovimentoContas movimento = new MovimentoContas();
         
         int opc = 0;
         
@@ -36,10 +37,16 @@ public class SistemaBanco {
                                                               + "4: Consultar cadastros\n\n"
                                                               + "9: FIM"));
             
+            
+            
             switch(opc){
                 
                 case 1: contas.cadastrarConta(contas);
                         break;
+                        
+                case 2: movimento.cadastrarMovimento(movimento);
+                        break;
+                        
                 
                 case 4: while(opcc != 9){
             

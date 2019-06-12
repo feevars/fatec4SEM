@@ -205,6 +205,51 @@ public class ContasCorrentes {
 
     }
     
+    //Total de Contas - Método para contar o total de contas cadastradas
+    public int totalContas() throws IOException{
+        
+        BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+        
+        int total = 0;
+        while(reader.readLine() != null) total++;
+        
+        if(total > 0){
+            total = total / 5;
+        }
+        reader.close();
+        return total;
+    }
+    
+    
+    //Array Contas - Monta o que está no TXT em um array para facilitar a vida
+    public ContasCorrentes [] arrayContas() throws IOException{
+        
+        int qtd = totalContas();
+        int i;
+        
+        BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+        
+        ContasCorrentes[] conta = new ContasCorrentes[totalContas()];
+        
+        for(i = 0; i < qtd; i++){
+            conta[i] = new ContasCorrentes();
+        }
+        
+        for(i = 0; i < qtd; i++){
+            
+            conta[i].setCodConta(Integer.parseInt(reader.readLine()));
+            conta[i].setNomeCliente(reader.readLine());
+            conta[i].setSaldoConta(Double.parseDouble(reader.readLine()));
+            conta[i].setLimiteConta(Double.parseDouble(reader.readLine()));
+            conta[i].setTipoConta(Integer.parseInt(reader.readLine()));
+            
+        }
+        
+        reader.close();
+        return conta;
+        
+    }
+    
     
     
     
