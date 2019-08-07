@@ -2107,3 +2107,22 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.
 
 !ENTRY org.eclipse.jdt.core 2 0 2019-08-06 21:36:43.099
 !MESSAGE The Java indexing could not index C:/Program Files/Java/jre1.8.0_211/lib/ext/sunpkcs11.jar|sun/security/pkcs11/P11KeyAgreement$AllowKDF.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+!SESSION 2019-08-07 00:49:11.814 -----------------------------------------------
+eclipse.buildId=4.12.0.I20190605-1800
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.ui 1 1 2019-08-07 00:50:18.512
+!MESSAGE Workbench migration started
+
+!ENTRY org.eclipse.core.net 1 0 2019-08-07 00:50:18.956
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.egit.core 1 0 2019-08-07 00:50:18.995
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.ui 1 1 2019-08-07 00:50:19.465
+!MESSAGE Workbench migration finished
