@@ -1,0 +1,19 @@
+package controller;
+
+public class OperacoesController {
+	
+	public OperacoesController(){
+		super();
+	}
+	
+	public void concatenaString(){
+		String palavra = "";
+		
+		double tempoInicial = System.nanoTime();
+		for(int i = 0; i < 32768; i++){
+			palavra += "a";
+		}
+		
+		
+	}
+}

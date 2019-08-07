@@ -1,0 +1,14 @@
+package controller;
+
+public class OperacoesController {
+	
+	public OperacoesController(){
+		super();
+	}
+	
+	public void concatenaString(){
+		String palavra = "";
+		
+		
+	}
+}

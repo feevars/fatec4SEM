@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+C:\Users\Bruno\Desktop\fatec\3SEM\ISO100 - Sistemas Operacionais I\.metadata\.plugins\org.eclipse.jdt.core
+1616741671.index
