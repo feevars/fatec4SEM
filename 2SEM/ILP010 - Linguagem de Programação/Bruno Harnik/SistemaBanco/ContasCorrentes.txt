@@ -1,0 +1,35 @@
+0
+Alberto Roberto
+10.0
+200.0
+2
+1
+Pedro Bosta
+599.0
+199.0
+4
+2
+Juquinha
+444.0
+333.0
+2
+3
+Adalberto Pereira
+899.0
+400.0
+1
+4
+Alfredo Neves
+666.0
+100.0
+4
+5
+Fernanda Beira
+100000.0
+10.0
+4
+6
+Às de Paus
+9999.0
+22.0
+3
