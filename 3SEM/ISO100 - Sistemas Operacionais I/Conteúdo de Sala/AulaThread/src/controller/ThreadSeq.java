@@ -26,16 +26,20 @@ public class ThreadSeq extends Thread {
 			
 			if(aux == 0) {
 				res += (1/i);
-				seqtxt += "1/1";
+				seqtxt += "4 * (1/1";
 			}
 			else if(aux % 2 != 0) {
-				res += (1/i);
-				seqtxt += " + 1/" + i;
-			}else{
 				res -= (1/i);
 				seqtxt += " - 1/" + i;
+			}else{
+				res += (1/i);
+				seqtxt += " + 1/" + i;
 			}
 			
+			if(i == n) {
+				seqtxt += ")";
+				res *= 4;
+			}
 			aux++;
 				
 		}
