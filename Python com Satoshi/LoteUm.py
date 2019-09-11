@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+class __LoteUm:
+
+    def
+=======
 class LoteUm:
 
     def calc_area(self):
@@ -6,3 +11,4 @@ class LoteUm:
         print("A área do quadrado é: " (a * b))
 
 
+>>>>>>> ad323ff262a08950048b4428ec842e5dae2561a9
