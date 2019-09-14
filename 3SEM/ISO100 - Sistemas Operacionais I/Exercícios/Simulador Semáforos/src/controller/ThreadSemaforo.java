@@ -1,38 +1,38 @@
 package controller;
 
-import view.SemaforoDesenho;
+import javax.swing.JButton;
 
-public class ThreadSemaforo implements Runnable {
+public class ThreadSemaforo implements Runnable{
 
-	private SemaforoDesenho desenho;
+	private CorSemaforo cor;
 	private boolean parar;
 	private boolean corMudou;
-	private int x;
-	private int y;
-	private int on = 255;
-	private int off = 100;
+	private JButton btnIniciar;
+	
 
-	public ThreadSemaforo() {
-		this.desenho = new SemaforoDesenho(x, y, on, off, off);
+	public ThreadSemaforo(JButton btnIniciar) {
+		this.cor = CorSemaforo.VERMELHO;
+
+		this.parar = false;
+		this.corMudou = false;
+		this.btnIniciar = btnIniciar;
 		new Thread(this).start();
 	}
 
 	@Override
 	public void run() {
-
+		// TODO Auto-generated method stub
 		while(!parar) {
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(cor.getTempoEspera());
 				this.mudarCor();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		}
 
 	}
-	
+
 	private synchronized void mudarCor() {
 		switch (this.cor) {
 		case VERMELHO:
@@ -51,7 +51,7 @@ public class ThreadSemaforo implements Runnable {
 		notify();
 	}
 	
-	public synchronized void esperaCorMudar(){
+	public synchronized void esperaCorMudar() {
 		while(!this.corMudou) {
 			try {
 				wait();
@@ -65,9 +65,18 @@ public class ThreadSemaforo implements Runnable {
 	public synchronized void desligarSemaforo() {
 		this.parar = true;
 	}
+	
+	public synchronized void ligarSemaforo() {
+		this.parar = false;
+	}
+
+	public boolean isParar() {
+		return parar;
+	}
 
 	public CorSemaforo getCor() {
 		return cor;
 	}
-
+	
+	
 }
