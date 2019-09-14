@@ -1,39 +1,37 @@
 package view;
-import java.awt.EventQueue;
+
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
 
-public class Cruzamento extends JFrame {
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+import controller.SemaforoDesenho;
+
+public class Cruzamento{
+	
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		int on = 255;
+		int off = 200;
+		
+		SemaforoDesenho [] sd = new SemaforoDesenho[4];
+		sd[0] = new SemaforoDesenho(20, 20, on, off, off);
+		sd[1] = new SemaforoDesenho(100, 20, on, off, off);
+		sd[2] = new SemaforoDesenho(180, 20, on, off, off);
+		sd[3] = new SemaforoDesenho(260, 20, on, off, off);
+		
+		JFrame janela = new JFrame("Semáforo");
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		
+
+		janela.add(sd[2]);
+
+
+		janela.setSize(640,480);
+		janela.setVisible(true);
+		
+		
 	}
-	public Cruzamento() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		JLabel lblBolinha1 = new JLabel(".");
-		lblBolinha1.setFont(new Font("Tahoma", Font.BOLD, 70));
-		lblBolinha1.setBounds(58, 64, 68, 74);
-		contentPane.add(lblBolinha1);
-		JLabel lblBolinha2 = new JLabel(".");
-		lblBolinha2.setFont(new Font("Tahoma", Font.BOLD, 70));
-		lblBolinha2.setBounds(313, 64, 68, 74);
-		contentPane.add(lblBolinha2);
-		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.setBounds(0, 0, 89, 23);
-		contentPane.add(btnIniciar);
-		BolinhaController bolinhaController = new BolinhaController(lblBolinha1, lblBolinha2, btnIniciar);
-		btnIniciar.addActionListener(bolinhaController);
-	}
+
+
 
 }
