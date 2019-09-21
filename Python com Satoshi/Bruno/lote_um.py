@@ -31,6 +31,14 @@ def menu(op):
         ex15()
     elif op == 16:
         ex16()
+    elif op == 17:
+        ex17()
+    elif op == 18:
+        ex18()
+    elif op == 19:
+        ex19()
+    elif op == 20:
+        ex20()
     else:
         print("Opção inválida.")
 
@@ -176,7 +184,34 @@ def ex15():
 
 
 def ex16():
-    print("\nExercício 16:\nReceba a quantidade de horas trabalhadas, o valor por hora, o percentual de desconto e o "
-          "número de descendentes. Calcule o salário que serão as horas trabalhadas x o valor por hora. Calcule o "
-          "salário líquido (= Salário Bruto – desconto). A cada dependente será acrescido R$ 100 no Salário Líquido. "
+    print("\nExercício 16:\nReceba a quantidade de horas trabalhadas, o valor por hora, o percentual de desconto e o\n"
+          "número de descendentes. Calcule o salário que serão as horas trabalhadas x o valor por hora. Calcule o\n"
+          "salário líquido (= Salário Bruto – desconto). A cada dependente será acrescido R$ 100 no Salário Líquido.\n"
           "Exiba o salário a receber.")
+    horasTrabalhadas = float(input("\nDigite as horas trabalhadas: "))
+    valorHora = float(input("Digite o valor pago  hora: R$"))
+    percenttualDesconto = float(input("Digite o percentual de desconto: "))
+    numeroDescendentes = int(input("Digite o número de descendentes: "))
+    
+    salarioLiquido = float(horasTrabalhadas - (horasTrabalhadas * percenttualDesconto / 100))
+
+
+
+def ex17():
+    print("\nExercício 17:\nCalcule a quantidade de litros gastos em uma viagem, sabendo que o automóvel faz 12 km/l. "
+          "Receber o tempo de percurso e a velocidade média.")
+
+
+def ex18():
+    print("\nExercício 18\nReceba 2 valores inteiros. Calcule e mostre o resultado da diferença do maior pelo menos "
+          "valor.")
+
+
+def ex19():
+    print("\nExercício 19\nReceba 2 valores reais. Calcule e mostre o maior deles.")
+
+
+def ex20():
+    print("\nExercício 20\nReceba 3 coeficientes A, B, e C de uma equação do 2o grau da fórmula AX2+BX+C=0. Verifique "
+          "e mostre a existência de raízes reais e se caso exista, calcule e mostre.")
+
