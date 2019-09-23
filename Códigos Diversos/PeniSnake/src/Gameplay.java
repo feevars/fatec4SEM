@@ -239,7 +239,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 			comprimentoDoPau = 3;
 			repaint();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if(e.getKeyCode() == KeyEvent.VK_D) {
 			movimentos++;
 			direita = true;
 			if (!esquerda) {
@@ -252,7 +252,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 			cima = false;
 			baixo = false;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if(e.getKeyCode() == KeyEvent.VK_A) {
 			movimentos++;
 			esquerda = true;
 			if (!direita) {
@@ -265,7 +265,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 			cima = false;
 			baixo = false;
 		}		
-		if(e.getKeyCode() == KeyEvent.VK_UP) {
+		if(e.getKeyCode() == KeyEvent.VK_W) {
 			movimentos++;
 			cima = true;
 			if (!baixo) {
@@ -278,7 +278,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 			esquerda = false;
 			direita = false;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if(e.getKeyCode() == KeyEvent.VK_S) {
 			movimentos++;
 			baixo = true;
 			if (!cima) {
