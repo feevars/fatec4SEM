@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 
 import controller.ThreadProcesso;
 
-public class Main {
+public class Ex01 {
 
 	public static void main(String[] args) {
 
