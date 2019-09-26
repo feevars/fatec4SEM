@@ -2,27 +2,62 @@ package model;
 
 public class Livro {
 	
-	private int codigo;
-	private String nome;
+	private String isbn;
+	private String titulo;
+	private String autor;
+	private String editora;
+	private int anoLancamento;
+	private int edicao;
 	
-	public Livro (int codigo, String nome) {
-		this.setCodigo(codigo);
-		this.setNome(nome);
+	public Livro() {
+		super();
+	}
+	
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public String getAutor() {
+		return autor;
+	}
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+	public String getEditora() {
+		return editora;
+	}
+	public void setEditora(String editora) {
+		this.editora = editora;
+	}
+	public int getAnoLancamento() {
+		return anoLancamento;
+	}
+	public void setAnoLancamento(int anoLancamento) {
+		this.anoLancamento = anoLancamento;
+	}
+	public int getEdicao() {
+		return edicao;
+	}
+	public void setEdicao(int edicao) {
+		this.edicao = edicao;
 	}
 
-	public int getCodigo() {
-		return codigo;
+	@Override
+	public String toString() {
+		return "Livro: \"" + titulo + "\"\nISBN: " + isbn + "\nAutor(a): " + autor + "\nEditora: " + editora
+				+ "\nAno de lançamento: " + anoLancamento + "\nEdição: " + edicao;
 	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	
+	
+	
+	
+	
 }

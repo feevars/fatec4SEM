@@ -2,9 +2,11 @@ package controller;
 
 public class EstruturaEstatica<T> {
 	
+	
 	protected T[] elementos;
 	protected int tamanho;
 
+	
 	public EstruturaEstatica(int capacidade) {
 		this.elementos = (T[]) new Object[capacidade];
 		this.tamanho = 0;
@@ -14,10 +16,12 @@ public class EstruturaEstatica<T> {
 		this(10);
 	}
 	
+	
 	public boolean estaVazia() {
 		return this.tamanho == 0;
 	}
 
+	
 	protected boolean adiciona(T elemento){
 
 		this.aumentaCapacidade();
@@ -27,9 +31,10 @@ public class EstruturaEstatica<T> {
 			this.tamanho++;
 			return true;
 		}
+		System.out.println("Está cheio, não foi possível adicionar.");
 		return false;
-
 	}
+	
 	
 	protected boolean adiciona(int posicao, T elemento) {
 
