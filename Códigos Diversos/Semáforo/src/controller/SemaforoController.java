@@ -19,23 +19,19 @@ public class SemaforoController implements ActionListener  {
 	public void botaoOnOff() {
 		if(!this.estado) {
 			this.estado = true;
-			t[0] = new ThreadSemaforo(semaforo[0]);
-			t[0].start();
+			for (int i = 0; i < semaforo.length; i++) {
+				t[i] = new ThreadSemaforo(semaforo[i]);
+				t[i].start();
+			}
+			
 		}else {
 			this.estado = false;
-		}
-	}
-	
-	public void executaThreads() {
-		while(estado) {
-			System.out.println("A");
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		botaoOnOff();
-		executaThreads();
 	}
 
 }

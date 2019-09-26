@@ -23,7 +23,7 @@ public class ThreadSemaforo extends Thread {
 			this.s.Amarelo();
 			Thread.sleep(1000);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}finally {
 			System.out.println("Vermelho");
 			this.s.Vermelho();

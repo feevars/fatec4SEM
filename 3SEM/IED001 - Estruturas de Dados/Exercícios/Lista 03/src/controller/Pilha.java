@@ -1,52 +1,34 @@
 package controller;
 
-public class Pilha {
-	
-	private int [] elementos;
-	private int tamanho;
-	
+public class Pilha<T> extends EstruturaEstatica<T> {
+
+	public Pilha() {
+		super();
+	}
+
 	public Pilha(int capacidade) {
-		this.elementos = new int[capacidade];
-		this.tamanho = 0;
+		super(capacidade);
 	}
-	
-	public void adiciona(int elemento) {
-		if(tamanho < elementos.length) {
-			this.elementos[tamanho] = elemento;
-			this.tamanho++;
-		}else{
-			System.out.println("A pilha está cheia.");
-		}
+
+	public void push(T elemento) {
+		super.adiciona(elemento);
 	}
-	
-	public void pegaUltimo(Fila fila) {
-		if (this.tamanho > 0) {
-			fila.adiciona(this.elementos[tamanho - 1]);
-			tamanho--;
-		}else{
-			System.out.println("A pilha está vazia.");
+
+	public T topo() {
+		if (this.estaVazia()) {
+			return null;
 		}
+		return this.elementos[tamanho -1];
 	}
-	
-	@Override
-	public String toString() {
 
-		StringBuilder s = new StringBuilder();
-		s.append("[");
+	public T pop() {
 
-
-		for (int i = 0; i < this.tamanho-1; i++) {
-			s.append(this.elementos[i]);
-			s.append(", ");
+		if (this.estaVazia()) {
+			return null;
 		}
 
-		if (this.tamanho > 0) {
-			s.append(this.elementos[this.tamanho-1]);
-		}
-
-		s.append("]");
-
-		return s.toString();
+		return this.elementos[--tamanho];
 	}
 
 }
+

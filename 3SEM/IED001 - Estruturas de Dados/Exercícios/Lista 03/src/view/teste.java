@@ -12,42 +12,28 @@ public class teste {
 		Fila fila1 = new Fila(capacidade);
 		Pilha pilha1 = new Pilha(capacidade);
 
-		fila1.adiciona(20);
-		fila1.adiciona(30);
-		fila1.adiciona(40);
-		fila1.adiciona(50);
-		fila1.adiciona(60);
+		fila1.enqueue(20);
+		fila1.enqueue(10);
+		fila1.enqueue(75);
+		fila1.enqueue(130);
+		fila1.enqueue(32);
 
 		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		fila1.pegaPrimeiro(pilha1);
+		
+		pilha1.push(fila1.dequeue());
+		pilha1.push(fila1.dequeue());
+		pilha1.push(fila1.dequeue());
+		pilha1.push(fila1.dequeue());
+		pilha1.push(fila1.dequeue());
+		
 		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		fila1.pegaPrimeiro(pilha1);
-		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		fila1.pegaPrimeiro(pilha1);
-		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		fila1.pegaPrimeiro(pilha1);
-		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		fila1.pegaPrimeiro(pilha1);
-		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		pilha1.pegaUltimo(fila1);
-		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		pilha1.pegaUltimo(fila1);
-		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		pilha1.pegaUltimo(fila1);
-		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		pilha1.pegaUltimo(fila1);
-		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
-
-		pilha1.pegaUltimo(fila1);
+		
+		fila1.enqueue(pilha1.pop());
+		fila1.enqueue(pilha1.pop());
+		fila1.enqueue(pilha1.pop());
+		fila1.enqueue(pilha1.pop());
+		fila1.enqueue(pilha1.pop());
+		
 		System.out.println("\nFila:\n" + fila1 + "\nPilha:\n" + pilha1);
 	}
 
