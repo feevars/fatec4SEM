@@ -2,6 +2,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,6 +19,7 @@ public class PainelForm extends JPanel {
 	private JTextField campoNome;
 	private JTextField campoCargo;
 	private JButton btnOk;
+	private FormListener formListener;
 	
 	public PainelForm() {
 		Dimension dim = getPreferredSize();
@@ -30,6 +33,21 @@ public class PainelForm extends JPanel {
 		campoCargo = new JTextField(100);
 		
 		btnOk = new JButton("OK");
+		
+		btnOk.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nome = campoNome.getText();
+				String cargo = campoCargo.getText();
+				
+				FormEvent ev = new FormEvent(this, nome, cargo);
+				
+				if (formListener != null) {
+					formListener.formEventOcurred(ev);
+				}
+			}
+		});
 		
 		Border bordaInterna = BorderFactory.createTitledBorder("Adicionar pessoa.");
 		Border bordaExterna = BorderFactory.createEmptyBorder(5, 5, 5, 5);
@@ -88,5 +106,9 @@ public class PainelForm extends JPanel {
 		add(btnOk, gc);
 		
 
+	}
+	
+	public void setFormListener(FormListener listener) {
+		this.formListener = listener;
 	}
 }

@@ -27,6 +27,15 @@ public class QuadroPrincipal extends JFrame {
 			}
 		});
 		
+		painelForm.setFormListener(new FormListener() {
+			public void formEventOcurred(FormEvent e) {
+				String nome = e.getNome();
+				String cargo = e.getCargo();
+				
+				painelTexto.adicionaTexto(nome + ": " + cargo + "\n");
+;			}
+		});
+		
 		add(painelForm, BorderLayout.WEST);
 		add(barraDeFerramentas, BorderLayout.NORTH);
 		add(painelTexto, BorderLayout.CENTER);
