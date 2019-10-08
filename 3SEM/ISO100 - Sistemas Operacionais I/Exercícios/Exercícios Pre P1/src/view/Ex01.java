@@ -2,7 +2,7 @@ package view;
 
 import java.util.concurrent.Semaphore;
 
-import controller.ThreadProcesso;
+import controller.FCFS;
 
 public class Ex01 {
 
@@ -13,7 +13,7 @@ public class Ex01 {
 		Semaphore permissao = new Semaphore(qtdSimultanea);
 		
 		for (int idProcesso = 0; idProcesso < 20; idProcesso++) {
-			Thread processo = new ThreadProcesso(idProcesso, permissao);
+			Thread processo = new FCFS(idProcesso, permissao);
 			processo.start();
 		}
 		
