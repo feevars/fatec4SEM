@@ -14,22 +14,29 @@ public class Programa {
 		do {
 			n = Integer.parseInt(JOptionPane.showInputDialog("Digite o número que você deseja calcular o fatorial:"
 					+ "\n(inteiro entre 1 e 100000)"));
-		} while (n < 1);
+		} while (n < 1 && n > 100000);
 		
 		
-		FatorialRecursivo fr = new FatorialRecursivo(n);
 		FatorialLoop fl = new FatorialLoop(n);
 		
 		try {
-			fr.start();
-			fr.join();
 			fl.start();
 			fl.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		FatorialRecursivo fr = new FatorialRecursivo(n);
 
-		JOptionPane.showMessageDialog(null, fr.getResultado() + fl.getResultado(), "Fatoriais", 1);
+		try {
+			fr.start();
+			fr.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+
+		JOptionPane.showMessageDialog(null, fl.getResultado() + fr.getResultado(), "Fatoriais", 1);
 	}
 
 }

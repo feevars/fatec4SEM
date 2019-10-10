@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 
 public class Estacionamento {
     public static void main(String [] args) {
-        int permissao = 3;
+        int permissao = 5;
         
         Semaphore semaforo = new Semaphore(permissao);
          
