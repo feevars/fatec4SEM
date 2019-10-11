@@ -3,6 +3,7 @@ package view;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -12,8 +13,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -25,6 +29,13 @@ import javax.swing.border.TitledBorder;
 
 public class FormConvidado extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private static final Color CORFUNDO = new Color(255,180,0);
+	
 	private JLabel labelNome;
 	private JTextField campoNome;
 
@@ -50,11 +61,17 @@ public class FormConvidado extends JPanel {
 	private JLabel labelObservacoes;
 	private JTextArea areaObservacoes;
 
-	private JButton btnCancelar;
+	private JLabel labelLote;
+	private JComboBox<String> listaLote;
+
+	private JButton btnLimpar;
 	private JButton btnSalvar;
+		
+	private Icon checkNao = new ImageIcon("src/assets/checknao.png");
+	private Icon checkSim = new ImageIcon("src/assets/checksim.png");;
 
-	private Font fonte = new Font("Courier New", Font.BOLD, 14);
-
+	private Font fonte = new Font("Trebuchet MS", Font.BOLD, 18);
+	private Font fonteLabel = new Font("Trebuchet MS", Font.BOLD, 14);
 
 	private JTextField estiloCampo(JTextField campo) {
 		campo.setFont(fonte);
@@ -62,44 +79,106 @@ public class FormConvidado extends JPanel {
 		campo.setForeground(Color.DARK_GRAY.brighter());
 		campo.setBorder(BorderFactory.createCompoundBorder(
 				new CustomeBorder(), 
-				new EmptyBorder(new Insets(5, 10, 5, 10))));
+				new EmptyBorder(new Insets(12, 12, 12, 12))));
 		return campo;
+	}
+
+	private JTextArea estiloArea(JTextArea area) {
+		area.setFont(fonte);
+		area.setBackground(Color.white);
+		area.setForeground(Color.DARK_GRAY.brighter());
+		area.setBorder(BorderFactory.createCompoundBorder(
+				new CustomeBorder(), 
+				new EmptyBorder(new Insets(12, 12, 12, 12))));
+		return area;
+	}
+	
+	private JLabel estiloLabel(JLabel label) {
+		label.setFont(fonteLabel);
+		label.setForeground(new Color(90,90,90));
+		return label;
+	}
+	
+	private JCheckBox estiloCheckBox(JCheckBox check) {
+		
+		check.setFont(fonteLabel);
+		check.setForeground(new Color(90,90,90));
+		check.setIcon(checkNao);
+		check.setSelectedIcon(checkSim);
+		check.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		return check;
+	}
+	
+	private JButton estiloBotao(JButton botao) {
+		botao.setFont(fonteLabel);
+		botao.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		return botao;
 	}
 
 	public FormConvidado() {
 
-		labelNome = new JLabel("Nome: ");
+		labelNome = new JLabel("Nome:");
+		estiloLabel(labelNome);
 		campoNome = new JTextField(15);
 		estiloCampo(campoNome);
 
-		labelSobrenome = new JLabel("Sobrenome: ");
+		labelSobrenome = new JLabel("Sobrenome:");
+		estiloLabel(labelSobrenome);
 		campoSobrenome = new JTextField(45);
 		estiloCampo(campoSobrenome);
 
-		labelEmail = new JLabel("Email: ");
+		labelEmail = new JLabel("Email:");
+		estiloLabel(labelEmail);
 		campoEmail = new JTextField(45);
 		estiloCampo(campoEmail);
 
-		labelTelefone = new JLabel("Telefone: ");
+		labelTelefone = new JLabel("Telefone:");
+		estiloLabel(labelTelefone);
 		campoTelefone = new JTextField(35);
 		estiloCampo(campoTelefone);
 
-		labelNascimento = new JLabel("Data de Nascimento: ");
+		labelNascimento = new JLabel("Data de Nascimento:");
+		estiloLabel(labelNascimento);
 		campoNascimento = new JTextField(10);	
 		estiloCampo(campoNascimento);	
 
-		labelAlimentar = new JLabel("Modelo alimentar: ");
+		labelAlimentar = new JLabel("Modelo alimentar:");
+		estiloLabel(labelAlimentar);
 		checkVegano = new JCheckBox("Vegano");
+		estiloCheckBox(checkVegano);
 		checkVegetariano = new JCheckBox("Vegetariano");
+		estiloCheckBox(checkVegetariano);
 		checkOutros = new JCheckBox("Outro(s)");
+		estiloCheckBox(checkOutros);
 
 		checkAcessibilidade = new JCheckBox("Necessita de recursos de acessibilidade?");
-
-		labelObservacoes = new JLabel("Observações: ");
+		estiloCheckBox(checkAcessibilidade);
+		
+		labelObservacoes = new JLabel("Observações:");
+		estiloLabel(labelObservacoes);
 		areaObservacoes = new JTextArea();
+		estiloArea(areaObservacoes);
+		
+		labelLote = new JLabel("Lote:");
+		estiloLabel(labelLote);
+		listaLote = new JComboBox<String>();
+		listaLote.addItem("Não definido");
+		listaLote.addItem("Lote Promocional");
+		listaLote.addItem("1º Lote");
+		listaLote.addItem("2º Lote");
+		listaLote.addItem("3º Lote");
+		listaLote.addItem("Outro Lote");
+		listaLote.addItem("Portaria");
+		listaLote.addItem("VIP");
 
-		btnCancelar = new JButton("Cancelar");
+		btnLimpar = new JButton("Limpar Campos");
+		estiloBotao(btnLimpar);
+		btnLimpar.setForeground(Color.GRAY);
 		btnSalvar = new JButton("Salvar");
+		estiloBotao(btnSalvar);
+		btnSalvar.setForeground(Color.GREEN.darker());
 
 		Border margem = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 		TitledBorder bordaTitulo = BorderFactory.createTitledBorder("Adicionar Convidado");
@@ -107,7 +186,7 @@ public class FormConvidado extends JPanel {
 		bordaTitulo.setTitleFont(fonte);
 		setBorder(BorderFactory.createCompoundBorder(margem, bordaTitulo));
 
-		setBackground(new Color(255,180,0));
+		setBackground(CORFUNDO);
 		setLayout(new GridBagLayout());
 
 		GridBagConstraints gc = new GridBagConstraints();
@@ -116,44 +195,40 @@ public class FormConvidado extends JPanel {
 		gc.fill = GridBagConstraints.BOTH;
 		gc.anchor = GridBagConstraints.LINE_START;
 		
-		gc.gridwidth = 1;
+		gc.gridwidth = 2;
 		gc.gridx = 0;
 		gc.gridy = 0;
-		gc.weightx = 0.5;
-		gc.weighty = 0.05;
-		gc.insets = new Insets(0,6,0,0);
+		gc.weightx = 1;
+		gc.weighty = 0.01;
+		gc.insets = new Insets(12,6,0,0);
 		add(labelNome, gc);
 
 		gc.gridy = 1;
-		gc.weightx = 0.5;
 		gc.weighty = 0.075;
 		gc.insets = new Insets(0,0,0,0);
 		add(campoNome, gc);
 		
-
-		gc.gridx = 1;
+		gc.gridwidth = 1;
+		
+		gc.gridx = 2;
 		gc.gridy = 0;
-		gc.weightx = 0.5;
-		gc.weighty = 0.05;
-		gc.insets = new Insets(0,6,0,0);
+		gc.weighty = 0.01;
+		gc.insets = new Insets(12,6,0,0);
 		add(labelSobrenome, gc);
 		
-		gc.gridx = 1;
+		gc.gridx = 2;
 		gc.gridy = 1;
-		gc.weightx = 0.5;
 		gc.weighty = 0.075;
 		gc.insets = new Insets(0,0,0,0);
 		add(campoSobrenome, gc);
 
 		//Linha 2 e 3: email
-		
-		gc.weighty = 0.05;
-		
+		gc.weighty = 0.01;
 		gc.gridx = 0;
 		gc.gridy = 2;
 		gc.weightx = 1;
 		gc.gridwidth = 3;
-		gc.insets = new Insets(0,6,0,0);
+		gc.insets = new Insets(12,6,0,0);
 		add(labelEmail, gc);
 		
 		gc.weighty = 0.075;
@@ -162,14 +237,14 @@ public class FormConvidado extends JPanel {
 		gc.gridy = 3;
 		gc.insets = new Insets(0,0,0,0);
 		add(campoEmail, gc);
+		
+		//Linha 4 e 5: telefone e nascimento
+		gc.gridwidth = 2;
 
-		//Linha 4 e 5: telefone
-		
-		gc.weighty = 0.05;
-		
+		gc.weighty = 0.01;
 		gc.gridx = 0;
 		gc.gridy = 4;
-		gc.insets = new Insets(0,6,0,0);
+		gc.insets = new Insets(12,6,0,0);
 		add(labelTelefone, gc);
 		
 		gc.weighty = 0.075;
@@ -177,36 +252,31 @@ public class FormConvidado extends JPanel {
 		gc.gridy = 5;
 		gc.insets = new Insets(0,0,0,0);
 		add(campoTelefone, gc);
-
-		//Linha 6 e 7: nascimento
 		
-		gc.weighty = 0.05;
+		gc.weighty = 0.01;
 
-		gc.gridx = 0;
-		gc.gridy = 6;
-		gc.insets = new Insets(0,6,0,0);
+		gc.gridx = 2;
+		gc.gridy = 4;
+		gc.insets = new Insets(12,6,0,0);
 		add(labelNascimento, gc);
 		
 		gc.weighty = 0.075;
 		
-		gc.gridy = 7;
+		gc.gridy = 5;
 		gc.insets = new Insets(0,0,0,0);
 		add(campoNascimento, gc);
 
-		//Linha 8 e 9: modelo alimentar
-		
-		gc.weighty = 0.05;
-		
+		//Linha 6 e 7: modelo alimentar
+		gc.weighty = 0.01;		
 		gc.gridx = 0;
-		gc.gridy = 8;
-		gc.insets = new Insets(0,6,0,0);
+		gc.gridy = 6;
+		gc.insets = new Insets(12,6,0,0);
 		add(labelAlimentar, gc);
 		
-		gc.weighty = 0.075;
-		
-		gc.weightx = 0.33;
-		gc.gridy = 9;
+		gc.weighty = 0.075;		
+		gc.gridy = 7;
 		gc.gridwidth = 1;
+		gc.weightx = 0;		
 		gc.insets = new Insets(0,0,0,0);
 		add(checkVegano, gc);
 
@@ -216,39 +286,52 @@ public class FormConvidado extends JPanel {
 		gc.gridx = 2;
 		add(checkOutros, gc);
 
-		//Linha 10: acessibilidade
-		gc.weightx = 9;
+		//Linha 8: acessibilidade
+		gc.weighty = 0.1;
 		gc.gridx = 0;
-		gc.gridy = 10;
+		gc.gridy = 8;
 		gc.gridwidth = 3;
 		gc.insets = new Insets(0,0,0,0);
 		add(checkAcessibilidade, gc);
 
-		//Linha 11 e 12: observações
-
+		//Linha 9 e 10: observações
 		gc.gridx = 0;
-		gc.gridy = 11;
-		gc.insets = new Insets(0,6,0,0);
+		gc.gridy = 9;
+		gc.insets = new Insets(12,6,0,0);
 		add(labelObservacoes, gc);
 		
-		gc.gridy = 12;
-		gc.weighty = 0.3;
-		gc.insets = new Insets(0,6,0,6);
+		gc.gridy = 10;
+		gc.weighty = 0.4;
+		gc.insets = new Insets(0,0,0,0);
 		add(areaObservacoes, gc);
 		
-		//Linha 13: botões
+		//Linha 11: lote
 		gc.anchor = GridBagConstraints.LINE_END;
-		gc.gridy = 13;
-		
 		gc.gridwidth = 1;
 		gc.gridx = 1;
-		add(btnCancelar, gc);
+		gc.fill = GridBagConstraints.EAST;
+		
+		gc.weighty = 0.05;
+		gc.gridy = 11;
+		gc.insets = new Insets(0,0,0,6);
+		add(labelLote, gc);
+		gc.anchor = GridBagConstraints.LINE_START;
+		gc.gridx = 2;
+		gc.fill = GridBagConstraints.BOTH;
+		gc.insets = new Insets(0,0,0,6);
+		add(listaLote, gc);		
+		
+		//Linha 12: botões
+		gc.anchor = GridBagConstraints.LINE_END;
+		gc.gridy = 12;
+		gc.insets = new Insets(6,6,6,6);
+		gc.gridwidth = 1;
+		gc.gridx = 1;
+		add(btnLimpar, gc);
 		gc.gridx = 2;
 		add(btnSalvar, gc);		
 
 	}
-
-
 }
 
 @SuppressWarnings("serial")

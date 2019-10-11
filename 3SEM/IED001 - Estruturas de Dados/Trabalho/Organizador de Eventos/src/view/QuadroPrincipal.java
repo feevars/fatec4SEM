@@ -8,23 +8,27 @@ import javax.swing.JFrame;
 
 public class QuadroPrincipal extends JFrame {
 	
-	private ListaConvidados listaConvidados;
+	private BarraDeFerramentas barraDeFerramentas;
 	
 	private FormConvidado formConvidado;
+	
+	private TabelaConvidados tabelaConvidados;
 	
 	public QuadroPrincipal() {
 		
 		super("Organizador de Eventos");
 		
 		setLayout(new BorderLayout());
-
 		
-//		listaConvidados = new ListaConvidados();
-//		add(listaConvidados, BorderLayout.WEST);
+		barraDeFerramentas = new BarraDeFerramentas();
+		add(barraDeFerramentas, BorderLayout.NORTH);
 		
 		formConvidado = new FormConvidado();
-		formConvidado.setPreferredSize(new Dimension(420,199));
+		formConvidado.setPreferredSize(new Dimension(400,720));
 		add(formConvidado, BorderLayout.WEST);
+		
+		tabelaConvidados = new TabelaConvidados();
+		add(tabelaConvidados, BorderLayout.CENTER);
 		
 		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
