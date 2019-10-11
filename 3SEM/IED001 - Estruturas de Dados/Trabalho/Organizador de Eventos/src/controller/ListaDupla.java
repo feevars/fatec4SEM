@@ -26,8 +26,19 @@ public class ListaDupla<T> {
 			this.ultimo = novoNo;
 		}
 		novoNo.setProximo(this.primeiro);
-		novoNo.setAnterior(null);
 		this.primeiro = novoNo;
+		this.qtdNo++;
+	}
+	
+	public void inserirUltimo(T conteudo) {
+		No<T> novoNo = new No<T>(conteudo);
+		if (this.estaVazia()) {
+			this.primeiro = novoNo;
+		} else {
+			this.ultimo.setProximo(novoNo);
+			novoNo.setAnterior(ultimo);
+		}
+		this.ultimo = novoNo;
 		this.qtdNo++;
 	}
 

@@ -10,7 +10,10 @@ import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -29,7 +32,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
 
-public class FormConvidado extends JPanel {
+import controller.ListaDupla;
+import model.Convidado;
+
+public class FormConvidado<T> extends JPanel {
 
 	/**
 	 * 
@@ -119,7 +125,7 @@ public class FormConvidado extends JPanel {
 		return botao;
 	}
 
-	public FormConvidado() {
+	public FormConvidado(ListaDupla<T> listaConvidados) {
 
 		labelNome = new JLabel("Nome:");
 		estiloLabel(labelNome);
@@ -188,6 +194,15 @@ public class FormConvidado extends JPanel {
 		btnSalvar = new JButton("Salvar");
 		estiloBotao(btnSalvar);
 		btnSalvar.setForeground(Color.GREEN.darker());
+		btnSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaConvidados.inserirUltimo((T) new Convidado(0, campoNome.getText(), campoSobrenome.getText(), campoEmail.getText(), campoTelefone.getText(), new Date(0), checkVegano.isSelected(), checkVegetariano.isSelected(), checkOutros.isSelected(), checkAcessibilidade.isSelected(), areaObservacoes.getText(), (String) listaLote.getSelectedItem()));
+				System.out.println("Inserido um item, o segundo ainda não funciona:\n" + listaConvidados);
+				
+			}
+		});
 
 		Border margem = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 		TitledBorder bordaTitulo = BorderFactory.createTitledBorder("Adicionar Convidado");
