@@ -4,13 +4,13 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.text.ParseException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -26,6 +27,7 @@ import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
 public class FormConvidado extends JPanel {
 
@@ -49,7 +51,7 @@ public class FormConvidado extends JPanel {
 	private JTextField campoTelefone;
 
 	private JLabel labelNascimento;
-	private JTextField campoNascimento;
+	private JFormattedTextField campoNascimento;
 
 	private JLabel labelAlimentar;
 	private JCheckBox checkVegano;
@@ -141,8 +143,15 @@ public class FormConvidado extends JPanel {
 
 		labelNascimento = new JLabel("Data de Nascimento:");
 		estiloLabel(labelNascimento);
-		campoNascimento = new JTextField(10);	
+		campoNascimento = new JFormattedTextField();	
 		estiloCampo(campoNascimento);	
+		try {
+			MaskFormatter maskNascimento = new MaskFormatter("##/##/####");
+			maskNascimento.install(campoNascimento);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		labelAlimentar = new JLabel("Modelo alimentar:");
 		estiloLabel(labelAlimentar);

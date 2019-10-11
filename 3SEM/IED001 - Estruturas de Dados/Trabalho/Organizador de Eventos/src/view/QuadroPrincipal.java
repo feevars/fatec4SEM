@@ -1,13 +1,17 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
 public class QuadroPrincipal extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private BarraDeFerramentas barraDeFerramentas;
 	
 	private FormConvidado formConvidado;

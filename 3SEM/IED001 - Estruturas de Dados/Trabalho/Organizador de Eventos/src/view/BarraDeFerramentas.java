@@ -3,12 +3,17 @@ package view;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 
 public class BarraDeFerramentas extends JPanel {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private JButton btnNovo;
 	private JButton btnAbrir;
@@ -26,8 +31,12 @@ public class BarraDeFerramentas extends JPanel {
 
 		//Linha 0 e 1: nome e sobrenome
 		gc.fill = GridBagConstraints.BOTH;
-		gc.anchor = GridBagConstraints.LINE_START;
-		
+		gc.anchor = GridBagConstraints.WEST;
+		gc.ipady = 10;
+		gc.weightx = 1;
+		gc.weighty = 1;
+		gc.insets = new Insets(12,6,12,6);
+		gc.gridy = 0;
 		gc.gridx = 0;
 		add(btnNovo, gc);
 		gc.gridx = 1;

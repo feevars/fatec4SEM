@@ -113,5 +113,15 @@ public class Convidado {
 	public Timestamp getAdicao() {
 		return adicao;
 	}
+
+	@Override
+	public String toString() {
+		return "Convidado [id=" + id + ", nome=" + nome + ", sobreNome=" + sobreNome + ", email=" + email
+				+ ", telefone=" + telefone + ", nascimento=" + nascimento + ", vegano=" + vegano + ", vegetariano="
+				+ vegetariano + ", outros=" + outros + ", acessibilidade=" + acessibilidade + ", observacoes="
+				+ observacoes + ", lote=" + lote + ", adicao=" + adicao + "]\n";
+	}
+	
+	
 	
 }
