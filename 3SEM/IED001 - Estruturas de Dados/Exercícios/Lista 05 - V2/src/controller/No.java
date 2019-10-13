@@ -7,9 +7,10 @@ public class No<T> {
 	private No<T> proximo;
 	
 	public No(T conteudo) {
-		this.conteudo = conteudo;
+		
 		this.anterior = null;
 		this.proximo = null;
+		this.conteudo = conteudo;
 	}
 
 	public T getConteudo() {
@@ -34,6 +35,5 @@ public class No<T> {
 
 	public void setProximo(No<T> proximo) {
 		this.proximo = proximo;
-	}
-
+	};
 }
