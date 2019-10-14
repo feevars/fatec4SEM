@@ -3,10 +3,11 @@ package view;
 import javax.swing.JOptionPane;
 
 import controller.ListaDupla;
+import controller.No;
 
 public class AplicativoListas {
 
-	public static void main(String[] args) {
+	public static <T> void main(String[] args) {
 		
 		ListaDupla<Double> lista = new ListaDupla<Double>();
 		int opcaoMenu;
@@ -19,6 +20,7 @@ public class AplicativoListas {
 					+ "3 - Inserir em qualquer posição\n"
 					+ "4 - Imprimir lista\n"
 					+ "5 - Tamanho da lista\n"
+					+ "6 - Pesquisa String\n"
 					+ "0 - Sair\n"));
 			switch (opcaoMenu) {
 			case 1:
@@ -40,6 +42,10 @@ public class AplicativoListas {
 				break;
 			case 5:
 				JOptionPane.showMessageDialog(null, "Quantidade de itens na lista:\n" + lista.getQtdNo());
+				break;
+			case 6:
+				No<Double>[] vetorResultados = lista.pesquisaString(JOptionPane.showInputDialog("Digite a String que você deseja pesquisar."));
+				JOptionPane.showMessageDialog(null, vetorResultados.toString());
 				break;
 			case 0:
 				//FIM

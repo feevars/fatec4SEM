@@ -86,6 +86,26 @@ public class ListaDupla<T> {
 		}
 		this.qtdNo++;
 	}
+	
+	//Tudo errado isso aqui
+	public No<T>[] pesquisaString(String texto) {
+		
+		No<T> comeco = this.primeiro;
+		No<T> [] vetorResultados = null;
+		int indexVetor = -1;
+		
+		for (int i = 1; i < this.qtdNo; i++) {
+			
+			if (comeco.toString().contains(texto)) {
+				indexVetor++;
+				vetorResultados[indexVetor] = comeco;
+			}
+			comeco = comeco.getProximo();
+		}
+		JOptionPane.showMessageDialog(null, "Os caracteres inseridos foram encontrados em " + (indexVetor + 1) + " registro(s).");
+		return vetorResultados;
+		
+	}
 
 
 	public String imprimeLista() {
