@@ -1,5 +1,9 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class AppFuncionarios {
@@ -12,13 +16,20 @@ public class AppFuncionarios {
 		
 		do {
 			opcaoMenu = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada:\n"
-					+ "1: Adicionar na primeira posição"
-					+ "2: Adicionar na última posição"
-					+ "3: Adicionar em em uma posição escolhida"));
+					+ "1: Adicionar na primeira posição\n"
+					+ "2: Adicionar na última posição\n"
+					+ "3: Adicionar em em uma posição escolhida\n"));
 			
 			switch (opcaoMenu) {
 			case 1:
-				
+				JFrame janela = new JFrame();
+				FormFuncionario formFuncionario = new FormFuncionario();
+				janela.setLayout(new FlowLayout());
+				janela.setMinimumSize(new Dimension(300,300));
+				janela.add(formFuncionario);
+				janela.setLocationRelativeTo(null);
+				janela.pack();
+				janela.setVisible(true);
 				break;
 				
 			case 2:
