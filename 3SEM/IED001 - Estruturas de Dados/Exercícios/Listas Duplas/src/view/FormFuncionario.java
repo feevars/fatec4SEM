@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.JButton;
@@ -20,7 +23,7 @@ public class FormFuncionario extends JPanel {
 	private JTextField campoNome;
 	
 	private JLabel labelRg;
-	private JTextField campoTexto;
+	private JTextField campoRg;
 	
 	private JLabel labelCpf;
 	private JTextField campoCpf;
@@ -28,11 +31,47 @@ public class FormFuncionario extends JPanel {
 	private JLabel labelDepartamento;
 	private JTextField campoDepartamento;
 	
-	private JButton btnSalvar;
 	private JButton btnCancelar;
+	private JButton btnSalvar;
 	
 	
-	public FormFuncionario(Funcionario f) {
+	public FormFuncionario() {
+		
+		labelNome = new JLabel("Nome:");
+		campoNome = new JTextField();
+		
+		labelRg = new JLabel("RG:");
+		campoRg = new JTextField();
+		
+		labelCpf = new JLabel("CPF:");
+		campoCpf = new JTextField();
+		
+		labelDepartamento = new JLabel();
+		campoDepartamento = new JTextField();
+		
+		btnCancelar = new JButton("Cancelar");
+		btnSalvar = new JButton("Salvar");
+		
+		this.setLayout(new GridBagLayout());
+		
+		GridBagConstraints gc = new GridBagConstraints();
+		
+		gc.anchor = GridBagConstraints.FIRST_LINE_START;
+		gc.fill = GridBagConstraints.BOTH;
+		
+		gc.gridx = 0;
+		gc.gridy = 0;
+		add(labelNome, gc);
+		
+		gc.gridy = 1;
+		add(campoNome, gc);
+		
+		gc.gridy = 2;
+		add(labelRg, gc);
+		
+		gc.gridy = 3;
+		add(campoRg, gc);
+		
 		
 	}
 
