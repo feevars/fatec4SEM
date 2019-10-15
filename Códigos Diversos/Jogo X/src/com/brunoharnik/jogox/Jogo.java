@@ -3,6 +3,7 @@ package com.brunoharnik.jogox;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -10,7 +11,11 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import com.brunoharnik.jogox.entidades.mob.Jogador;
+import com.brunoharnik.jogox.entrada.Teclado;
 import com.brunoharnik.jogox.graficos.Tela;
+import com.brunoharnik.jogox.niveis.Nivel;
+import com.brunoharnik.jogox.niveis.NivelAleatorio;
 
 public class Jogo extends Canvas implements Runnable{
 	
@@ -22,10 +27,15 @@ public class Jogo extends Canvas implements Runnable{
 	
 	public static int largura = 320;
 	public static int altura = largura / 16 * 9;
-	public static int escala = 3;
+	public static int escala = 4;
+	
+	public static String titulo = "Jogo X";
 	
 	private Thread thread;
 	private JFrame janela;
+	private Teclado tecla;
+	private Nivel nivel;
+	private Jogador jogador;
 	private boolean rodando = false;
 	
 	private Tela tela;
@@ -39,8 +49,11 @@ public class Jogo extends Canvas implements Runnable{
 		setPreferredSize(tamanho);
 
 		tela = new Tela(largura, altura);
-		
 		janela = new JFrame();
+		tecla = new Teclado();
+		nivel = new NivelAleatorio(64, 64);
+		jogador = new Jogador(tecla);
+		addKeyListener(tecla);
 	}
 	
 	
@@ -63,15 +76,44 @@ public class Jogo extends Canvas implements Runnable{
 	
 	@Override
 	public void run() {
+		
+		long ultimoTempo = System.nanoTime();
+		long temporizador = System.currentTimeMillis();
+		
+		final double ns = 1000000000.0 / 60.0;
+		double delta = 0;
+		
+		int quadros = 0;
+		int atualizacoes = 0;
+			
+		requestFocus();
+		
 		while (rodando) {
-			tick();
+			
+			long agora = System.nanoTime();
+			delta += (agora-ultimoTempo) / ns;
+			ultimoTempo = agora;
+			while (delta >= 1) {
+				tick();
+				atualizacoes++;
+				delta--;
+			}
 			render();
+			quadros++;
+			
+			if (System.currentTimeMillis() - temporizador > 1000) {
+				temporizador += 1000;
+				System.out.println();
+				janela.setTitle(titulo + " — " + atualizacoes + " ups, " + quadros + " fps");
+				atualizacoes = 0;
+				quadros = 0;
+			}
 		}
 	}
-	
-	
-	public void tick() {
 		
+	public void tick() {
+		tecla.tick();
+		jogador.tick();
 	}
 	
 	
@@ -82,7 +124,10 @@ public class Jogo extends Canvas implements Runnable{
 			return;
 		}
 		tela.limpa();
-		tela.render();
+		int rolamentoX = jogador.x - tela.largura / 2;
+		int rolamentoY = jogador.y - tela.altura / 2;
+		nivel.render(rolamentoX, rolamentoY, tela);
+		jogador.render(tela);
 		
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = tela.pixels[i];
@@ -94,6 +139,10 @@ public class Jogo extends Canvas implements Runnable{
 		
 		g.drawImage(imagem, 0, 0, getWidth(), getHeight(), null);
 		
+		g.setColor(Color.RED);
+		g.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+		g.drawString("X: " + jogador.x + ", Y: " + jogador.y, 15, 30);
+		
 		g.dispose();
 		bs.show();
 	}
@@ -102,7 +151,7 @@ public class Jogo extends Canvas implements Runnable{
 	public static void main(String[] args) {
 		Jogo jogo = new Jogo();
 		jogo.janela.setResizable(false);
-		jogo.janela.setTitle("Jogo X");
+		jogo.janela.setTitle(Jogo.titulo);
 		jogo.janela.add(jogo);
 		jogo.janela.pack();
 		jogo.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
