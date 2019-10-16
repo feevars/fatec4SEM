@@ -53,17 +53,21 @@ public class Tela {
 		}
 	}
 	
-	public void renderJogador(int xp, int yp, Celula celula) {
+	public void renderJogador(int xp, int yp, Celula celula, int vira) {
 		xp -= deslocamentoX;
 		yp -= deslocamentoY;
 		
 		for (int y = 0; y < 32; y++) {
 			int ya = y + yp;
+			int yc = y;
+			if(vira == 2 || vira == 3) yc = 31 - y;
 			for (int x = 0; x < 32; x++) {
 				int xa = x + xp;
+				int xc = x;
+				if(vira == 1 || vira == 3) xc = 31 - x;
 				if (xa < -32 || xa >= largura || ya < 0 || ya >= altura) break;
 				if (xa < 0) xa = 0;
-				int cor = celula.pixels[x + y * 32];
+				int cor = celula.pixels[xc + yc * 32];
 				if (cor != 0xFFFF00FF) pixels[xa + ya * largura] = cor;
 				
 			}

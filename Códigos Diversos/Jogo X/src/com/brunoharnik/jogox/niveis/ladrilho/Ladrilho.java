@@ -9,6 +9,8 @@ public class Ladrilho {
 	public Celula celula;
 	
 	public static Ladrilho grama = new LadrilhoGrama(Celula.grama);
+	public static Ladrilho flor = new LadrilhoFlor(Celula.flor);
+	public static Ladrilho pedra = new LadrilhoPedra(Celula.pedra);
 	public static Ladrilho ladrilhoVazio = new LadrilhoVazio(Celula.celulaVazia);
 	
 	public Ladrilho(Celula celula) {

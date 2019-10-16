@@ -53,6 +53,8 @@ public class Nivel {
 	public Ladrilho getLadrilho(int x, int y) {
 		if (x < 0 || y < 0 || x >= largura || y >= altura) return Ladrilho.ladrilhoVazio;
 		if (ladrilhos[x + y * largura] == 0) return Ladrilho.grama;
+		if (ladrilhos[x + y * largura] == 1) return Ladrilho.flor;
+		if (ladrilhos[x + y * largura] == 2) return Ladrilho.pedra;
 		return Ladrilho.ladrilhoVazio;
 	}
 	
