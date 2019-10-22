@@ -14,7 +14,7 @@ public class NivelAleatorio extends Nivel{
 	protected void geraNivel() {
 		for (int y = 0; y < altura; y++) {
 			for (int x = 0; x < largura; x++) {
-				ladrilhos[x + y * largura] = aleatorio.nextInt(4);
+				ladrilhosInt[x + y * largura] = aleatorio.nextInt(4);
 			}
 		}
 	}

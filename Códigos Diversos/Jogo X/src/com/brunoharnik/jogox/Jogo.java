@@ -16,6 +16,7 @@ import com.brunoharnik.jogox.entrada.Teclado;
 import com.brunoharnik.jogox.graficos.Tela;
 import com.brunoharnik.jogox.niveis.Nivel;
 import com.brunoharnik.jogox.niveis.NivelAleatorio;
+import com.brunoharnik.jogox.niveis.NivelSpawn;
 
 public class Jogo extends Canvas implements Runnable{
 	
@@ -51,8 +52,8 @@ public class Jogo extends Canvas implements Runnable{
 		tela = new Tela(largura, altura);
 		janela = new JFrame();
 		tecla = new Teclado();
-		nivel = new NivelAleatorio(64, 64);
-		jogador = new Jogador(tecla);
+		nivel = new NivelSpawn("/texturas/nivel.png");
+		jogador = new Jogador(64, 64, tecla);
 		addKeyListener(tecla);
 	}
 	

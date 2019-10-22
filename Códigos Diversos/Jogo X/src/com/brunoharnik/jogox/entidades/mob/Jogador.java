@@ -14,7 +14,7 @@ public class Jogador extends Mob {
 	
 	public Jogador(Teclado entrada) {
 		this.entrada = entrada;
-		celula = celula.jogador_cima;
+		celula = Celula.jogador_cima;
 	}
 	
 	public Jogador(int x, int y, Teclado entrada) {
