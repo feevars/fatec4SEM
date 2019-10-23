@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Jogo X/src"/>
+	<classpathentry kind="src" path="JogoLadrilhos/src"/>
+	<classpathentry kind="src" path="PeniSnake/src"/>
+	<classpathentry kind="src" path="Semáforo Gráfico/src"/>
+	<classpathentry kind="src" path="Swing1/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
