@@ -34,7 +34,9 @@ public class FormFuncionario extends JPanel {
 	private JLabel labelDepartamento;
 	private JTextField campoDepartamento;
 
-	private JButton btnSalvar;
+	private JButton btnAdicionaPrimeiro;
+	private JButton btnAdicionaUltimo;
+	private JButton btnAdicionaPosicao;
 
 	public FormFuncionario() {
 
@@ -50,19 +52,40 @@ public class FormFuncionario extends JPanel {
 		labelDepartamento = new JLabel("Departamento:");
 		campoDepartamento = new JTextField(20);
 
-		btnSalvar = new JButton("Salvar");
-
-		btnSalvar.addActionListener(new ActionListener() {
+		btnAdicionaPrimeiro = new JButton("Adicionar na primeira posição da lista");
+		btnAdicionaPrimeiro.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Ação do botão...
+				// Ação do botão ADICIONAR PRIMEIRO...
 
 			}
 		});
 
+		btnAdicionaUltimo = new JButton("Adicionar na última posição");
+		btnAdicionaUltimo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// Ação do botão ADICIONAR ÚLTIMO...
+
+			}
+
+		});
+
+		btnAdicionaPosicao = new JButton("Adicionar em uma posição determinada");
+		btnAdicionaPosicao.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// Ação do botão de adicionar em QUALQUER POSIÇÃO...
+			}
+
+		});
+
 		Border bordaInterna = BorderFactory.createTitledBorder("Adicionar funcionário");
 		Border margem = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		setBorder(BorderFactory.createCompoundBorder(margem, bordaInterna));
 
 		setLayout(new GridBagLayout());
 
@@ -70,12 +93,12 @@ public class FormFuncionario extends JPanel {
 
 		// Linha 1, coluna 1
 		gc.weightx = 0.4;
-		gc.weighty = 0.2;
+		gc.weighty = 0.1;
 		gc.gridx = 0;
 		gc.gridy = 0;
 		gc.fill = GridBagConstraints.NONE;
 		gc.anchor = GridBagConstraints.LINE_END;
-		gc.insets = new Insets(0, 0, 0, 5);
+		gc.insets = new Insets(0, 5, 0, 5);
 		add(labelNome, gc);
 
 		// Linha 1, coluna 2
@@ -85,14 +108,14 @@ public class FormFuncionario extends JPanel {
 		gc.anchor = GridBagConstraints.LINE_START;
 		gc.insets = new Insets(0, 0, 0, 0);
 		add(campoNome, gc);
-		
-		//Linha 2, coluna 1
+
+		// Linha 2, coluna 1
 		gc.weightx = 0.4;
 		gc.gridx = 0;
 		gc.gridy = 1;
 		gc.fill = GridBagConstraints.NONE;
 		gc.anchor = GridBagConstraints.LINE_END;
-		gc.insets = new Insets(0, 0, 0, 5);
+		gc.insets = new Insets(0, 5, 0, 5);
 		add(labelRg, gc);
 
 		// Linha 2, coluna 2
@@ -102,5 +125,55 @@ public class FormFuncionario extends JPanel {
 		gc.anchor = GridBagConstraints.LINE_START;
 		gc.insets = new Insets(0, 0, 0, 0);
 		add(campoRg, gc);
+
+		// Linha 3, coluna 1
+		gc.weightx = 0.4;
+		gc.gridx = 0;
+		gc.gridy = 2;
+		gc.fill = GridBagConstraints.NONE;
+		gc.anchor = GridBagConstraints.LINE_END;
+		gc.insets = new Insets(0, 5, 0, 5);
+		add(labelCpf, gc);
+
+		// Linha 3, coluna 2
+		gc.weightx = 0.6;
+		gc.gridx = 1;
+		gc.fill = GridBagConstraints.BOTH;
+		gc.anchor = GridBagConstraints.LINE_START;
+		gc.insets = new Insets(0, 0, 0, 0);
+		add(campoCpf, gc);
+
+		// Linha 4, coluna 1
+		gc.weightx = 0.4;
+		gc.gridx = 0;
+		gc.gridy = 3;
+		gc.fill = GridBagConstraints.NONE;
+		gc.anchor = GridBagConstraints.LINE_END;
+		gc.insets = new Insets(0, 5, 0, 5);
+		add(labelDepartamento, gc);
+
+		// Linha 4, coluna 2
+		gc.weightx = 0.6;
+		gc.gridx = 1;
+		gc.fill = GridBagConstraints.BOTH;
+		gc.anchor = GridBagConstraints.LINE_START;
+		gc.insets = new Insets(0, 0, 0, 0);
+		add(campoDepartamento, gc);
+
+		// Linha 5, coluna 2
+		gc.weighty = 0.2;
+		gc.gridy = 4;
+		add(btnAdicionaPrimeiro, gc);
+
+		// Linha 5, coluna 2
+		gc.weighty = 0.2;
+		gc.gridy = 5;
+		add(btnAdicionaUltimo, gc);
+
+		// Linha 5, coluna 2
+		gc.weighty = 0.2;
+		gc.gridy = 6;
+		add(btnAdicionaPosicao, gc);
+
 	}
 }
