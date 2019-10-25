@@ -8,19 +8,29 @@ public class ListaDupla<T> {
 	private No<T> primeiro;
 	private No<T> ultimo;
 	private int qtdNo;
+	
+	private int contaId;
 
 
 	public ListaDupla() {
 		this.primeiro = null;
 		this.ultimo = null;
 		this.qtdNo = 0;
+		this.contaId = 1;
 	}
 
 
 	public int getQtdNo() {
 		return qtdNo;
 	}
-
+	
+	public int getContaId() {
+		return contaId;
+	}
+	
+	public void setContaId(int contaId) {
+		this.contaId = contaId;
+	}
 
 	public boolean estaVazia() {
 		return this.qtdNo == 0;
@@ -37,6 +47,7 @@ public class ListaDupla<T> {
 		novoNo.setProximo(this.primeiro);
 		this.primeiro = novoNo;
 		this.qtdNo++;
+		this.contaId++;
 	}
 
 
@@ -50,6 +61,7 @@ public class ListaDupla<T> {
 		novoNo.setAnterior(this.ultimo);
 		this.ultimo = novoNo;
 		this.qtdNo++;
+		this.contaId++;
 	}
 
 
@@ -85,6 +97,7 @@ public class ListaDupla<T> {
 			atual.setProximo(novoNo);
 		}
 		this.qtdNo++;
+		this.contaId++;
 	}
 	
 	public String imprimeLista() {

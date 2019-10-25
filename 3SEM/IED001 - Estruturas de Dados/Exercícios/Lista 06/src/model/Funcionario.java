@@ -56,4 +56,12 @@ public class Funcionario {
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
+
+	@Override
+	public String toString() {
+		return "Funcionario Id: " + id + "\nNome: " + nome + "\nRG: " + rg + "\nCPF: " + cpf + "\nDepartamento: "
+				+ departamento + "\n";
+	}
+	
+	
 }

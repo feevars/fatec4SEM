@@ -9,10 +9,12 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import controller.ListaDupla;
 import model.Funcionario;
 
 public class FormFuncionario extends JPanel {
@@ -38,7 +40,7 @@ public class FormFuncionario extends JPanel {
 	private JButton btnAdicionaUltimo;
 	private JButton btnAdicionaPosicao;
 
-	public FormFuncionario() {
+	public FormFuncionario(ListaDupla<Funcionario> lista) {
 
 		labelNome = new JLabel("Nome:");
 		campoNome = new JTextField(20);
@@ -58,6 +60,13 @@ public class FormFuncionario extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Ação do botão ADICIONAR PRIMEIRO...
+				Funcionario f = new Funcionario(lista.getContaId(),campoNome.getText(),campoRg.getText(),Integer.parseInt(campoCpf.getText()),campoDepartamento.getText());
+				lista.inserePrimeiro(f);
+				JOptionPane.showMessageDialog(null, "Inserido na primeira posição da lista.");
+				campoNome.setText("");
+				campoRg.setText("");
+				campoCpf.setText("");
+				campoDepartamento.setText("");
 
 			}
 		});
@@ -68,6 +77,13 @@ public class FormFuncionario extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// Ação do botão ADICIONAR ÚLTIMO...
+				Funcionario f = new Funcionario(lista.getContaId(),campoNome.getText(),campoRg.getText(),Integer.parseInt(campoCpf.getText()),campoDepartamento.getText());
+				lista.insereUltimo(f);
+				JOptionPane.showMessageDialog(null, "Inserido na última posição da lista.");
+				campoNome.setText("");
+				campoRg.setText("");
+				campoCpf.setText("");
+				campoDepartamento.setText("");
 
 			}
 
@@ -79,6 +95,14 @@ public class FormFuncionario extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// Ação do botão de adicionar em QUALQUER POSIÇÃO...
+				int posicao = Integer.parseInt(JOptionPane.showInputDialog("Digite a posição em que você deseja inserir o novo funcionário: "));
+				Funcionario f = new Funcionario(lista.getContaId(),campoNome.getText(),campoRg.getText(),Integer.parseInt(campoCpf.getText()),campoDepartamento.getText());
+				lista.inserePosicao(f, posicao);
+				JOptionPane.showMessageDialog(null, "Inserido na posição determinada.");
+				campoNome.setText("");
+				campoRg.setText("");
+				campoCpf.setText("");
+				campoDepartamento.setText("");
 			}
 
 		});
@@ -165,15 +189,14 @@ public class FormFuncionario extends JPanel {
 		gc.gridy = 4;
 		add(btnAdicionaPrimeiro, gc);
 
-		// Linha 5, coluna 2
+		// Linha 6, coluna 2
 		gc.weighty = 0.2;
 		gc.gridy = 5;
 		add(btnAdicionaUltimo, gc);
 
-		// Linha 5, coluna 2
+		// Linha 7, coluna 2
 		gc.weighty = 0.2;
 		gc.gridy = 6;
 		add(btnAdicionaPosicao, gc);
-
 	}
 }
