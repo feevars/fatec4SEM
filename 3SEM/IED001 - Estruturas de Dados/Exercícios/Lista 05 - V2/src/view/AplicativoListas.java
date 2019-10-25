@@ -44,8 +44,8 @@ public class AplicativoListas {
 				JOptionPane.showMessageDialog(null, "Quantidade de itens na lista:\n" + lista.getQtdNo());
 				break;
 			case 6:
-				No<Double>[] vetorResultados = lista.pesquisaString(JOptionPane.showInputDialog("Digite a String que você deseja pesquisar."));
-				JOptionPane.showMessageDialog(null, vetorResultados.toString());
+//				No<Double>[] vetorResultados = lista.pesquisaString(JOptionPane.showInputDialog("Digite a String que você deseja pesquisar."));
+//				JOptionPane.showMessageDialog(null, vetorResultados.toString());
 				break;
 			case 0:
 				//FIM

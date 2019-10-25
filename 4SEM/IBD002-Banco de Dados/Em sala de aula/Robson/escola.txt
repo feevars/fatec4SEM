@@ -383,3 +383,4 @@ MariaDB [escola]> desc tabalunos;
 +-----------+--------------+------+-----+---------+----------------+
 7 rows in set (0.028 sec)
 
+MariaDB [escola]> 
