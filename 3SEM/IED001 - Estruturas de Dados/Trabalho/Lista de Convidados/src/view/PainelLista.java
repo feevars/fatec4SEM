@@ -31,7 +31,7 @@ public class PainelLista extends JPanel{
 		painelRolagem = new JScrollPane(listaView);
 		
 		listaView.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
-		listaView.setBackground(Color.BLACK);
+		listaView.setBackground(new Color(46,41,79));
 		listaView.setForeground(Color.WHITE);
 		listaView.setEditable(false);
 		listaView.setEnabled(true);
@@ -42,7 +42,7 @@ public class PainelLista extends JPanel{
 		painelRolagem.setBackground(Color.BLACK);
 	
 		setLayout(new BorderLayout());
-		setBackground(Color.BLACK);
+		setBackground(new Color(46,41,79));
 		add(painelRolagem, BorderLayout.CENTER);
 		
 		setVisible(true);
