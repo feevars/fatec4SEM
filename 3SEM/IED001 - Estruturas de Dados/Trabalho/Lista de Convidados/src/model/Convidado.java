@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class Convidado {
-	
+
 	//Variáveis de um Convidado
 	private int id;
 	private String nome;
@@ -22,11 +22,23 @@ public class Convidado {
 	private String observacoes;
 	private String lote;
 	private Timestamp adicao;
-	
+
 	//Construtor do Convidado
-	public Convidado(int id, String nome, String sobreNome, String email, String telefone, String docTipo,
-			String docNum, Date nascimento, boolean vegano, boolean vegetariano, boolean onivoro, boolean outros,
-			boolean acessibilidade, String observacoes, String lote) {
+	public Convidado(int id,
+			String nome,
+			String sobreNome,
+			String email,
+			String telefone,
+			String docTipo,
+			String docNum,
+			Date nascimento,
+			boolean vegano,
+			boolean vegetariano,
+			boolean onivoro,
+			boolean outros,
+			boolean acessibilidade,
+			String observacoes,
+			String lote) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -43,16 +55,16 @@ public class Convidado {
 		this.acessibilidade = acessibilidade;
 		this.observacoes = observacoes;
 		this.lote = lote;
-		
+
 		//O momento de adição é automático
 		Date data= new Date();
 		long hora = data.getTime();
 		this.adicao = new Timestamp(hora);
 	}
-	
+
 	//GETTERS & SETTERS – Bastante, não?
 	//Só não tem método SET para ID e para data de Adição
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -172,4 +184,33 @@ public class Convidado {
 	public Timestamp getAdicao() {
 		return adicao;
 	}
+	
+	public String simNao(boolean alt) {
+		if(alt) return "S";
+		else return "N";
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + id +
+				"\nNome: " + nome +
+				"\nSobrenome: " + sobreNome +
+				"\nEmail: " + email +
+				"\nTelefone: " + telefone +
+				"\nTipo de documento: " + docTipo +
+				"\nNúmero do documento: " + docNum +
+				"\nData de nascimento: " + nascimento +
+				"\nModelo alimentar:" +
+				"\nVegano: " + simNao(vegano) +
+				"   Vegetariano: " + simNao(vegetariano) +
+				"   Onívoro: " + simNao(onivoro) +
+				"   Outros: " + simNao(outros) +
+				"\nObservacoes: " + observacoes +
+				"\nNecessita de recursos de acessibilidade: " + simNao(acessibilidade) +
+				"\nLote: " + lote +
+				"\nAdicionado em: " + adicao + "\n";
+	}
+	
+	
+	
 }

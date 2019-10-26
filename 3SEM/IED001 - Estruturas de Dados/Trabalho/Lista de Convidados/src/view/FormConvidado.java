@@ -13,8 +13,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.text.ParseException;
-import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -24,6 +24,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -45,6 +46,9 @@ public class FormConvidado extends JPanel {
 
 	// Variáveis do formulário de convidado
 	private static final Color CORFUNDO = new Color(221, 205, 255);
+	
+	private FormListener formListener;
+	private ListaDupla<Convidado> lista;
 
 	private JLabel labelNome;
 	private JTextField campoNome;
@@ -77,12 +81,12 @@ public class FormConvidado extends JPanel {
 	private JTextArea areaObservacoes;
 
 	private JLabel labelLote;
-	private JComboBox<String> listaLote;
+	private JComboBox<String> tipoLote;
 
 	private JButton btnInserePrimeiro;
 	private JButton btnInsereUltimo;
 	private JButton btnInserePosicao;
-	private JButton btnSalvar;
+	private JButton btnLimpaCampos;
 
 	private Icon checkNao = new ImageIcon("src/assets/checknao.png");
 	private Icon checkSim = new ImageIcon("src/assets/checksim.png");;
@@ -134,8 +138,10 @@ public class FormConvidado extends JPanel {
 	}
 
 	// Construtor do FormConvidado
-	public FormConvidado() {
-
+	public FormConvidado(ListaDupla<Convidado> lista, PainelLista painel) {
+		
+		this.lista = lista;
+		
 		labelNome = new JLabel("Nome:");
 		estiloLabel(labelNome);
 		campoNome = new JTextField(15);
@@ -201,19 +207,70 @@ public class FormConvidado extends JPanel {
 
 		labelLote = new JLabel("Lote:");
 		estiloLabel(labelLote);
-		listaLote = new JComboBox<String>();
-		listaLote.addItem("Não definido");
-		listaLote.addItem("Lote Promocional");
-		listaLote.addItem("1º Lote");
-		listaLote.addItem("2º Lote");
-		listaLote.addItem("3º Lote");
-		listaLote.addItem("Outro Lote");
-		listaLote.addItem("Portaria");
-		listaLote.addItem("VIP");
+		tipoLote = new JComboBox<String>();
+		tipoLote.addItem("Não definido");
+		tipoLote.addItem("Lote Promocional");
+		tipoLote.addItem("1º Lote");
+		tipoLote.addItem("2º Lote");
+		tipoLote.addItem("3º Lote");
+		tipoLote.addItem("Outro Lote");
+		tipoLote.addItem("Portaria");
+		tipoLote.addItem("VIP");
 
-		btnSalvar = new JButton("Salvar");
-		estiloBotao(btnSalvar);
-		btnSalvar.setForeground(Color.GREEN.darker());
+		btnInserePrimeiro = new JButton("Inserir no começo");
+		estiloBotao(btnInserePrimeiro);
+		btnInserePrimeiro.setForeground(Color.GREEN.darker());
+		btnInserePrimeiro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lista.inserePrimeiro(novoConvidado());
+				FormEvent ev = new FormEvent(this, lista.imprimeLista());
+				formListener.formEventOcurred(ev);
+				limpaCampos();
+			}
+		});
+
+		btnInsereUltimo = new JButton("Inserir no final");
+		estiloBotao(btnInsereUltimo);
+		btnInsereUltimo.setForeground(Color.GREEN.darker());
+		btnInsereUltimo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lista.insereUltimo(novoConvidado());
+				FormEvent ev = new FormEvent(this, lista.imprimeLista());
+				formListener.formEventOcurred(ev);
+				limpaCampos();
+			}
+		});
+
+		btnInserePosicao = new JButton("Inserir na posição");
+		estiloBotao(btnInserePosicao);
+		btnInserePosicao.setForeground(Color.GREEN.darker());
+		btnInserePosicao.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int posicao = Integer.parseInt(JOptionPane.showInputDialog("Digite a posição que você deseja inserir"));
+				lista.inserePosicao(novoConvidado(), posicao);
+				FormEvent ev = new FormEvent(this, lista.imprimeLista());
+				formListener.formEventOcurred(ev);
+				limpaCampos();
+			}
+			
+		});
+
+		btnLimpaCampos = new JButton("Limpar campos");
+		estiloBotao(btnLimpaCampos);
+		btnLimpaCampos.setForeground(Color.RED.darker());
+		btnLimpaCampos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				limpaCampos();
+			}
+		});
 
 		Border margem = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 		TitledBorder bordaTitulo = BorderFactory.createTitledBorder("Adicionar Convidado");
@@ -274,7 +331,6 @@ public class FormConvidado extends JPanel {
 		gc.gridy = 3;
 		add(campoEmail, gc);
 
-
 		gc.gridwidth = 1;
 		// Linha 4: label telefone e nascimento
 		gc.anchor = GridBagConstraints.LAST_LINE_START;
@@ -320,7 +376,6 @@ public class FormConvidado extends JPanel {
 		gc.gridx = 1;
 		add(campoDoc, gc);
 
-
 		// Linha 8: label modelo alimentar
 		gc.anchor = GridBagConstraints.LAST_LINE_START;
 		gc.insets = new Insets(6, 6, 0, 6);
@@ -342,7 +397,6 @@ public class FormConvidado extends JPanel {
 		gc.gridx = 1;
 		add(checkVegetariano, gc);
 
-
 		// Linha 10: mais checkboxes
 		gc.gridy = 10;
 		gc.gridx = 0;
@@ -360,7 +414,7 @@ public class FormConvidado extends JPanel {
 		gc.gridx = 0;
 		gc.gridy = 11;
 		add(labelObservacoes, gc);
-		
+
 		// Linha 12: textArea observações
 		gc.anchor = GridBagConstraints.FIRST_LINE_START;
 		gc.insets = new Insets(0, 0, 0, 0);
@@ -368,17 +422,90 @@ public class FormConvidado extends JPanel {
 		gc.weighty = 0.2;
 		gc.gridy = 12;
 		add(areaObservacoes, gc);
-		
+
 		// Linha 13: checkbox acessibilidade
 		gc.anchor = GridBagConstraints.LINE_START;
 		gc.fill = GridBagConstraints.HORIZONTAL;
 		gc.weighty = 0.1;
 		gc.gridy = 13;
 		add(checkAcessibilidade, gc);
-		
+
+		// Linha 14: tipo do lote e combobox
+		gc.gridwidth = 1;
+		gc.anchor = GridBagConstraints.LINE_END;
+		gc.fill = GridBagConstraints.NONE;
+		gc.insets = new Insets(6, 6, 6, 6);
+		gc.weighty = 0.1;
+
+		gc.gridx = 0;
+		gc.gridy = 14;
+		add(labelLote, gc);
+
+		gc.anchor = GridBagConstraints.LINE_START;
+		gc.fill = GridBagConstraints.HORIZONTAL;
+		gc.gridx = 1;
+		add(tipoLote, gc);
+
+		// Linha 15 - botoes
+		gc.insets = new Insets(0, 0, 0, 0);
+		gc.fill = GridBagConstraints.BOTH;
+		gc.gridy = 15;
+		gc.gridx = 0;
+		add(btnInserePrimeiro, gc);
+
+		gc.gridx = 1;
+		add(btnInsereUltimo, gc);
+
+		// Linha 16 - botoes
+		gc.gridy = 16;
+		gc.gridx = 0;
+		add(btnLimpaCampos, gc);
+
+		gc.gridx = 1;
+		add(btnInserePosicao, gc);
+
 		setPreferredSize(new Dimension(400, 720));
 
+	}
 
+	public void limpaCampos() {
+		campoNome.setText("");
+		campoSobrenome.setText("");
+		campoEmail.setText("");
+		campoTelefone.setText("");
+		campoNascimento.setText("");
+		tipoDoc.setSelectedIndex(0);
+		campoDoc.setText("");
+		checkVegano.setSelected(false);
+		checkVegetariano.setSelected(false);
+		checkOnivoro.setSelected(false);
+		checkOutros.setSelected(false);
+		areaObservacoes.setText("");
+		checkAcessibilidade.setSelected(false);
+		tipoLote.setSelectedIndex(0);
+	}
+	
+	public Convidado novoConvidado() {
+		Convidado c = new Convidado(lista.getContaId(),
+				campoNome.getText(),
+				campoSobrenome.getText(),
+				campoEmail.getText(),
+				campoTelefone.getText(),
+				tipoDoc.getSelectedItem().toString(),
+				campoDoc.getText(),
+				new Date(1),
+				checkVegano.isSelected(),
+				checkVegetariano.isSelected(),
+				checkOnivoro.isSelected(),
+				checkOutros.isSelected(),
+				checkAcessibilidade.isSelected(),
+				areaObservacoes.getText(),
+				tipoLote.getSelectedItem().toString());
+		return c;
+	}
+	
+	public void setFormListener(FormListener listener) {
+		this.formListener = listener;
 	}
 
 	@SuppressWarnings("serial")

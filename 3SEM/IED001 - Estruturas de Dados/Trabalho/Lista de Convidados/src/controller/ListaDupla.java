@@ -28,6 +28,11 @@ public class ListaDupla<T> {
 		return qtdNo;
 	}
 	
+	//GET do Conta ID
+	public int getContaId() {
+		return contaId;
+	}
+	
 	//Método para ver se está vazia
 	public boolean estaVazia() {
 		return this.qtdNo == 0;

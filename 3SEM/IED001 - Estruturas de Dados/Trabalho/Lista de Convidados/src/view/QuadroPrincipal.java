@@ -4,25 +4,38 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import controller.ListaDupla;
+import model.Convidado;
+
 public class QuadroPrincipal<T> extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	// Variáveis iniciadas pelo QuadroPrincipal
+	private ListaDupla<Convidado> listaConvidados;
 	private FormConvidado formConvidado;
-	private PainelLista<T> painelLista;
+	private PainelLista painelLista;
 
 	// Construtor do QuadroPrincipal
 	public QuadroPrincipal() {
 		super("Lista de Convidados");
 
 		setLayout(new BorderLayout());
-
-		formConvidado = new FormConvidado();
-		add(formConvidado, BorderLayout.WEST);
-
-		painelLista = new PainelLista<T>();
+		
+		listaConvidados = new ListaDupla<Convidado>();
+		formConvidado = new FormConvidado(listaConvidados, painelLista);
+		painelLista = new PainelLista();
 		add(painelLista, BorderLayout.CENTER);
+		
+		add(formConvidado, BorderLayout.WEST);
+		
+		formConvidado.setFormListener(new FormListener() {
+			public void formEventOcurred(FormEvent e) {
+				
+				painelLista.alteraTexto(listaConvidados.imprimeLista());
+;			}
+		});
+		
 
 		setSize(1280, 720);
 		setResizable(true);
