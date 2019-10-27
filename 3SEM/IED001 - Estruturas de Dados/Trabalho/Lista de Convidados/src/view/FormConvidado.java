@@ -95,7 +95,6 @@ public class FormConvidado extends JPanel {
 	private Icon iconePosicao = new ImageIcon("src/assets/icone_insere_posicao.png");
 	private Icon iconeLimpar = new ImageIcon("src/assets/icone_limpar_campos.png");
 
-
 	private Icon checkNao = new ImageIcon("src/assets/checknao.png");
 	private Icon checkSim = new ImageIcon("src/assets/checksim.png");;
 
@@ -150,7 +149,7 @@ public class FormConvidado extends JPanel {
 	}
 
 	// Construtor do FormConvidado
-	public FormConvidado(ListaDupla<Convidado> lista, PainelLista painel) {
+	public FormConvidado(ListaDupla<Convidado> lista) {
 		
 		this.lista = lista;
 		

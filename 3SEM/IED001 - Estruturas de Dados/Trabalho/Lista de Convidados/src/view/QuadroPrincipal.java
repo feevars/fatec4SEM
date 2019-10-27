@@ -24,7 +24,7 @@ public class QuadroPrincipal<T> extends JFrame {
 		setLayout(new BorderLayout());
 		
 		listaConvidados = new ListaDupla<Convidado>();
-		formConvidado = new FormConvidado(listaConvidados, painelLista);
+		formConvidado = new FormConvidado(listaConvidados);
 		painelLista = new PainelLista();
 		
 		barraDeFerramentas = new BarraDeFerramentas();
