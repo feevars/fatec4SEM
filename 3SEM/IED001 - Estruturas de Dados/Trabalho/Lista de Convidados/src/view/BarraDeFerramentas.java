@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
@@ -11,10 +10,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 public class BarraDeFerramentas extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton btnNovaLista;
 	private JButton btnAbrirLista;
 	private JButton btnSalvarLista;

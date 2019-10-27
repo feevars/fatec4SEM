@@ -239,8 +239,8 @@ public class FormConvidado extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lista.inserePrimeiro(novoConvidado());
-//				EventoFormConvidado ev = new EventoFormConvidado(this, lista.imprimeLista());
-//				formListener.formEventOcurred(ev);
+				EventoFormConvidado ev = new EventoFormConvidado(this, lista);
+				formListener.formEventOcurred(ev);
 				limpaCampos();
 			}
 		});
@@ -253,8 +253,7 @@ public class FormConvidado extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lista.insereUltimo(novoConvidado());
-//				EventoFormConvidado ev = new EventoFormConvidado(this, lista.imprimeLista());
-				EventoFormConvidado<Convidado> ev = new EventoFormConvidado<Convidado>(this, lista);
+				EventoFormConvidado ev = new EventoFormConvidado(this, lista);
 				formListener.formEventOcurred(ev);
 				limpaCampos();
 			}
@@ -269,8 +268,8 @@ public class FormConvidado extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int posicao = Integer.parseInt(JOptionPane.showInputDialog("Digite a posição que você deseja inserir"));
 				lista.inserePosicao(novoConvidado(), posicao);
-//				EventoFormConvidado ev = new EventoFormConvidado(this, lista.imprimeLista());
-//				formListener.formEventOcurred(ev);
+				EventoFormConvidado ev = new EventoFormConvidado(this, lista);
+				formListener.formEventOcurred(ev);
 				limpaCampos();
 			}
 			

@@ -3,10 +3,9 @@ package view;
 import java.util.EventObject;
 
 import controller.ListaDupla;
-import controller.No;
 import model.Convidado;
 
-public class EventoFormConvidado<T> extends EventObject {
+public class EventoFormConvidado extends EventObject {
 	
 	/**
 	 * 

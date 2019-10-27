@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import controller.ListaDupla;
 import model.Convidado;
@@ -44,6 +43,8 @@ public class QuadroPrincipal<T> extends JFrame {
 			public void formEventOcurred(EventoFormConvidado e) {
 
 				painelLista.removeAll();
+				painelLista.setBackground(new Color(46,41,79));
+				painelLista.iniciaConteudo();
 				celulas = new CelulaConvidado[listaConvidados.vetorConvidados().length];
 
 				for (int i = 0; i < listaConvidados.vetorConvidados().length; i++) {
@@ -63,11 +64,11 @@ public class QuadroPrincipal<T> extends JFrame {
 							listaConvidados.vetorConvidados()[i].isAcessibilidade(),
 							listaConvidados.vetorConvidados()[i].getLote(),
 							listaConvidados.vetorConvidados()[i].getAdicao());
-					painelLista.add(this.celulas[i]);
+					painelLista.setConteudo(this.celulas[i]);
 				}
 
-				painelLista.repaint();
 				painelLista.revalidate();
+				painelLista.repaint();
 			}
 		});
 

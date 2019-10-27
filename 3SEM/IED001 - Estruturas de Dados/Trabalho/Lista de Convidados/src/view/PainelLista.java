@@ -1,31 +1,21 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
-import controller.ListaDupla;
 import model.Convidado;
 
 public class PainelLista extends JPanel {
-
+	
+	private JScrollPane painelScroll;
+	private JPanel conteudo;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private JScrollPane painelRolagem;
-	private JTextArea listaView;
-
-	private CelulaConvidado[] celulas;
 
 	// public PainelLista() {
 	//
@@ -54,15 +44,27 @@ public class PainelLista extends JPanel {
 
 	public PainelLista(Convidado[] convidados) {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+		setBackground(new Color(46,41,79));
+		
+		conteudo = new JPanel();
+		painelScroll = new JScrollPane(conteudo);
+		
+		add(painelScroll);
 
 		
-
 		setVisible(true);
 
 	}
-
-	public void alteraTexto(String texto) {
-		listaView.setText(texto);
+	
+	public void setConteudo(CelulaConvidado c) {
+		conteudo.add(c);
 	}
+	
+	public void iniciaConteudo() {
+		conteudo = new JPanel();
+		conteudo.setLayout(new BoxLayout(conteudo, BoxLayout.Y_AXIS));
+		painelScroll = new JScrollPane(conteudo);
+		add(painelScroll);
+	}
+	
 }
