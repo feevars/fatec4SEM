@@ -2,6 +2,8 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import model.Convidado;
+
 public class ListaDupla<T> {
 
 	//Variáveis de uma lista duplamente encadeada
@@ -127,6 +129,23 @@ public class ListaDupla<T> {
 		this.qtdNo++;
 		//Incrementa o contador de ID
 		this.contaId++;
+	}
+	
+	public Convidado [] vetorConvidados(){
+		
+		if(this.qtdNo == 0) return null;
+		else {
+			No<T> contador = this.primeiro;
+			Convidado [] vetorConteudo = new Convidado[this.qtdNo];
+			int i = 0;
+			while(contador != null) {
+				vetorConteudo[i] = (Convidado) contador.getConteudo();
+				contador = contador.getProximo();
+				i++;
+			};
+				
+			return vetorConteudo;
+		}
 	}
 	
 	public String imprimeLista() {

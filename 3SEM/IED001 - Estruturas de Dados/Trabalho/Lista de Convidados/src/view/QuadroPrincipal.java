@@ -35,8 +35,8 @@ public class QuadroPrincipal<T> extends JFrame {
 		
 		add(formConvidado, BorderLayout.WEST);
 		
-		formConvidado.setFormListener(new FormListener() {
-			public void formEventOcurred(FormEvent e) {
+		formConvidado.setFormListener(new ListenerFormConvidado() {
+			public void formEventOcurred(EventoFormConvidado e) {
 				
 				painelLista.alteraTexto(listaConvidados.imprimeLista());
 			}

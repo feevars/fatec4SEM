@@ -11,6 +11,11 @@ import javax.swing.JPanel;
 
 public class CelulaConvidado extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel labelId;
 	private JLabel labelNomeCompleto;
 	private JLabel labelEmail;
@@ -38,6 +43,7 @@ public class CelulaConvidado extends JPanel {
 			boolean outros,
 			String observacoes,
 			boolean acessibilidade,
+			String lote,
 			String adicao) {
 		this.labelId = new JLabel("Convidado " + id);
 		this.labelNomeCompleto = new JLabel(nome + " " + sobrenome);
@@ -66,6 +72,7 @@ public class CelulaConvidado extends JPanel {
 		
 		this.labelObservacoes = new JLabel("Observações:\n" + observacoes);
 		this.labelAdicao = new JLabel("Adicionado em: " + adicao);
+		this.labelLote = new JLabel("Lote: " + lote);
 		
 		this.setLayout(new BorderLayout());
 		this.add(labelId, BorderLayout.LINE_START);

@@ -48,7 +48,7 @@ public class FormConvidado extends JPanel {
 	// Variáveis do formulário de convidado
 	private static final Color CORFUNDO = new Color(221, 205, 255);
 	
-	private FormListener formListener;
+	private ListenerFormConvidado formListener;
 	private ListaDupla<Convidado> lista;
 
 	private JLabel labelNome;
@@ -239,8 +239,8 @@ public class FormConvidado extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lista.inserePrimeiro(novoConvidado());
-				FormEvent ev = new FormEvent(this, lista.imprimeLista());
-				formListener.formEventOcurred(ev);
+//				EventoFormConvidado ev = new EventoFormConvidado(this, lista.imprimeLista());
+//				formListener.formEventOcurred(ev);
 				limpaCampos();
 			}
 		});
@@ -253,7 +253,8 @@ public class FormConvidado extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lista.insereUltimo(novoConvidado());
-				FormEvent ev = new FormEvent(this, lista.imprimeLista());
+//				EventoFormConvidado ev = new EventoFormConvidado(this, lista.imprimeLista());
+				EventoFormConvidado<Convidado> ev = new EventoFormConvidado<Convidado>(this, lista);
 				formListener.formEventOcurred(ev);
 				limpaCampos();
 			}
@@ -268,8 +269,8 @@ public class FormConvidado extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int posicao = Integer.parseInt(JOptionPane.showInputDialog("Digite a posição que você deseja inserir"));
 				lista.inserePosicao(novoConvidado(), posicao);
-				FormEvent ev = new FormEvent(this, lista.imprimeLista());
-				formListener.formEventOcurred(ev);
+//				EventoFormConvidado ev = new EventoFormConvidado(this, lista.imprimeLista());
+//				formListener.formEventOcurred(ev);
 				limpaCampos();
 			}
 			
@@ -525,7 +526,7 @@ public class FormConvidado extends JPanel {
 		return c;
 	}
 	
-	public void setFormListener(FormListener listener) {
+	public void setFormListener(ListenerFormConvidado listener) {
 		this.formListener = listener;
 	}
 
