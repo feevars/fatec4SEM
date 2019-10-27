@@ -44,6 +44,7 @@ public class QuadroPrincipal<T> extends JFrame {
 		
 
 		setSize(1280, 720);
+		setMinimumSize(this.getSize());
 		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);

@@ -89,6 +89,12 @@ public class FormConvidado extends JPanel {
 	private JButton btnInsereUltimo;
 	private JButton btnInserePosicao;
 	private JButton btnLimpaCampos;
+	
+	private Icon iconeInicio = new ImageIcon("src/assets/icone_insere_inicio.png");
+	private Icon iconeFinal = new ImageIcon("src/assets/icone_insere_final.png");
+	private Icon iconePosicao = new ImageIcon("src/assets/icone_insere_posicao.png");
+	private Icon iconeLimpar = new ImageIcon("src/assets/icone_limpar_campos.png");
+
 
 	private Icon checkNao = new ImageIcon("src/assets/checknao.png");
 	private Icon checkSim = new ImageIcon("src/assets/checksim.png");;
@@ -228,6 +234,7 @@ public class FormConvidado extends JPanel {
 
 		btnInserePrimeiro = new JButton("Inserir no começo");
 		estiloBotao(btnInserePrimeiro);
+		btnInserePrimeiro.setIcon(iconeInicio);
 		btnInserePrimeiro.addActionListener(new ActionListener() {
 
 			@Override
@@ -241,6 +248,7 @@ public class FormConvidado extends JPanel {
 
 		btnInsereUltimo = new JButton("Inserir no final");
 		estiloBotao(btnInsereUltimo);
+		btnInsereUltimo.setIcon(iconeFinal);
 		btnInsereUltimo.addActionListener(new ActionListener() {
 
 			@Override
@@ -253,6 +261,7 @@ public class FormConvidado extends JPanel {
 		});
 
 		btnInserePosicao = new JButton("Inserir na posição");
+		btnInserePosicao.setIcon(iconePosicao);
 		estiloBotao(btnInserePosicao);
 		btnInserePosicao.addActionListener(new ActionListener() {
 
@@ -271,6 +280,7 @@ public class FormConvidado extends JPanel {
 		estiloBotao(btnLimpaCampos);
 		btnLimpaCampos.setBackground(Color.DARK_GRAY.darker());
 		btnLimpaCampos.setForeground(Color.GRAY.brighter());
+		btnLimpaCampos.setIcon(iconeLimpar);
 		btnLimpaCampos.addActionListener(new ActionListener() {
 			
 			@Override
@@ -473,7 +483,10 @@ public class FormConvidado extends JPanel {
 		gc.gridx = 1;
 		add(btnInserePosicao, gc);
 
-		setPreferredSize(new Dimension(400, 720));
+		setMinimumSize(new Dimension(400, 720));
+		
+		setPreferredSize(new Dimension(530, 720));
+		setMaximumSize(new Dimension(600, 720));
 
 	}
 
