@@ -26,6 +26,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.AbstractBorder;
@@ -78,6 +79,7 @@ public class FormConvidado extends JPanel {
 	private JCheckBox checkAcessibilidade;
 
 	private JLabel labelObservacoes;
+	private JScrollPane scrollObservacoes;
 	private JTextArea areaObservacoes;
 
 	private JLabel labelLote;
@@ -132,7 +134,11 @@ public class FormConvidado extends JPanel {
 
 	private JButton estiloBotao(JButton botao) {
 		botao.setFont(fonteLabel);
+		botao.setBackground(new Color(46,41,79));
+		botao.setForeground(Color.WHITE);
 		botao.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		botao.setMinimumSize(new Dimension(100,40));
+		botao.setMaximumSize(new Dimension(200,40));
 
 		return botao;
 	}
@@ -204,7 +210,10 @@ public class FormConvidado extends JPanel {
 		estiloLabel(labelObservacoes);
 		areaObservacoes = new JTextArea();
 		estiloArea(areaObservacoes);
-
+		scrollObservacoes = new JScrollPane(areaObservacoes);
+		scrollObservacoes.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollObservacoes.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		
 		labelLote = new JLabel("Lote:");
 		estiloLabel(labelLote);
 		tipoLote = new JComboBox<String>();
@@ -219,7 +228,6 @@ public class FormConvidado extends JPanel {
 
 		btnInserePrimeiro = new JButton("Inserir no começo");
 		estiloBotao(btnInserePrimeiro);
-		btnInserePrimeiro.setForeground(Color.GREEN.darker());
 		btnInserePrimeiro.addActionListener(new ActionListener() {
 
 			@Override
@@ -233,7 +241,6 @@ public class FormConvidado extends JPanel {
 
 		btnInsereUltimo = new JButton("Inserir no final");
 		estiloBotao(btnInsereUltimo);
-		btnInsereUltimo.setForeground(Color.GREEN.darker());
 		btnInsereUltimo.addActionListener(new ActionListener() {
 
 			@Override
@@ -247,7 +254,6 @@ public class FormConvidado extends JPanel {
 
 		btnInserePosicao = new JButton("Inserir na posição");
 		estiloBotao(btnInserePosicao);
-		btnInserePosicao.setForeground(Color.GREEN.darker());
 		btnInserePosicao.addActionListener(new ActionListener() {
 
 			@Override
@@ -263,7 +269,8 @@ public class FormConvidado extends JPanel {
 
 		btnLimpaCampos = new JButton("Limpar campos");
 		estiloBotao(btnLimpaCampos);
-		btnLimpaCampos.setForeground(Color.RED.darker());
+		btnLimpaCampos.setBackground(Color.DARK_GRAY.darker());
+		btnLimpaCampos.setForeground(Color.GRAY.brighter());
 		btnLimpaCampos.addActionListener(new ActionListener() {
 			
 			@Override
@@ -410,7 +417,6 @@ public class FormConvidado extends JPanel {
 		gc.gridwidth = 2;
 		gc.insets = new Insets(6, 6, 0, 6);
 		gc.weighty = 0.03;
-
 		gc.gridx = 0;
 		gc.gridy = 11;
 		add(labelObservacoes, gc);
@@ -421,7 +427,10 @@ public class FormConvidado extends JPanel {
 		gc.fill = GridBagConstraints.BOTH;
 		gc.weighty = 0.2;
 		gc.gridy = 12;
-		add(areaObservacoes, gc);
+		gc.ipady = 50;
+
+		add(scrollObservacoes, gc);
+		gc.ipady = 0;
 
 		// Linha 13: checkbox acessibilidade
 		gc.anchor = GridBagConstraints.LINE_START;
