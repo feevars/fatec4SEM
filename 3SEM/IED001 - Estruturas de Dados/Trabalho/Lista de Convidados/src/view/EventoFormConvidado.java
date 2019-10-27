@@ -14,7 +14,7 @@ public class EventoFormConvidado<T> extends EventObject {
 	private static final long serialVersionUID = 1L;
 	
 	private String listaImpressa;
-	private No<T> [] vetorNos;
+	private Convidado[] vetorNos;
 
 	public EventoFormConvidado(Object source) {
 		super(source);	
@@ -28,12 +28,12 @@ public class EventoFormConvidado<T> extends EventObject {
 		this.setVetor(lista);
 	}
 	
-	public No<T> [] getVetor() {
+	public Convidado[] getVetor() {
 		return vetorNos;
 	}
 	
 	private void setVetor(ListaDupla<Convidado> lista) {
-		this.vetorNos = (No<T>[]) lista.vetorConteudo();
+		this.vetorNos = lista.vetorConvidados();
 	}
 	
 	

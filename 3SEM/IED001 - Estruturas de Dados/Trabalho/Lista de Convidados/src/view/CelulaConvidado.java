@@ -29,14 +29,14 @@ public class CelulaConvidado extends JPanel {
 	private JLabel labelAdicao;
 	
 	public CelulaConvidado(
-			String id,
+			int i,
 			String nome,
 			String sobrenome,
 			String email,
 			String telefone,
 			String docTipo,
 			String docNum,
-			String nascimento,
+			Date nascimento,
 			boolean vegano,
 			boolean vegetariano,
 			boolean onivoro,
@@ -44,14 +44,14 @@ public class CelulaConvidado extends JPanel {
 			String observacoes,
 			boolean acessibilidade,
 			String lote,
-			String adicao) {
-		this.labelId = new JLabel("Convidado " + id);
+			Timestamp timestamp) {
+		this.labelId = new JLabel("Convidado " + i);
 		this.labelNomeCompleto = new JLabel(nome + " " + sobrenome);
 		
 		this.labelEmail = new JLabel(email);
 		this.labelTelefone = new JLabel(telefone);
 		this.labelDocumento = new JLabel(docTipo + ": " + docNum);
-		this.labelNascimento = new JLabel(nascimento);
+		this.labelNascimento = new JLabel(nascimento.toString());
 		this.labelAlimentar = new JLabel("Modelo alientar: ");
 		if(vegano) this.labelAlimentar.setText(labelAlimentar.getText() + "[Vegano]");
 		if(vegetariano)	this.labelAlimentar.setText(labelAlimentar.getText() + "[Vegetariano]");
@@ -68,10 +68,10 @@ public class CelulaConvidado extends JPanel {
 		painelInfo.add(labelNascimento);
 		painelInfo.add(labelAlimentar);
 		painelInfo.add(labelAcessibilidade);
-		painelInfo.setPreferredSize(new Dimension(300,120));
+		painelInfo.setSize(new Dimension(600,120));
 		
 		this.labelObservacoes = new JLabel("Observações:\n" + observacoes);
-		this.labelAdicao = new JLabel("Adicionado em: " + adicao);
+		this.labelAdicao = new JLabel("Adicionado em: " + timestamp);
 		this.labelLote = new JLabel("Lote: " + lote);
 		
 		this.setLayout(new BorderLayout());
