@@ -2,14 +2,16 @@ package view;
 
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import model.Convidado;
 
 public class PainelLista extends JPanel {
-	
+
 	private JScrollPane painelScroll;
 	private JPanel conteudo;
 	/**
@@ -43,29 +45,32 @@ public class PainelLista extends JPanel {
 	// }
 
 	public PainelLista(Convidado[] convidados) {
+		setBackground(new Color(46, 41, 79));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setBackground(new Color(46,41,79));
-		
 		conteudo = new JPanel();
 		painelScroll = new JScrollPane(conteudo);
-		
+		conteudo.setBackground(new Color(46, 41, 79));
+		JLabel labelVazia = new JLabel("Adicione um convidado ou carregue uma lista para começar.");
+		labelVazia.setForeground(Color.WHITE);
+		conteudo.add(labelVazia);
+		conteudo.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
 		add(painelScroll);
 
-		
 		setVisible(true);
 
 	}
-	
+
 	public void setConteudo(CelulaConvidado c) {
 		conteudo.add(c);
 	}
-	
+
 	public void iniciaConteudo() {
 		conteudo = new JPanel();
 		conteudo.setLayout(new BoxLayout(conteudo, BoxLayout.Y_AXIS));
-		
+
 		painelScroll = new JScrollPane(conteudo);
 		add(painelScroll);
 	}
-	
+
 }

@@ -11,9 +11,11 @@ import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -36,13 +38,18 @@ public class CelulaConvidado extends JPanel {
 	private JLabel labelAcessibilidade;
 	private JLabel labelLote;
 	private JLabel labelAdicao;
-	
+
+	private JButton btnEditar;
+	private JButton btnExcluir;
 
 	private Font fonteInfo = new Font("Trebuchet Ms", Font.ITALIC, 11);
 	private Font fonteNome = new Font("Trebuchet Ms", Font.ITALIC, 18);
 	private Font fonteID = new Font("Trebuchet Ms", Font.BOLD, 32);
 	private Font fonteBaixo = new Font("Courier New", Font.BOLD, 14);
-	
+
+	private Icon iconeEditar = new ImageIcon("src/assets/icone_editar_convidado.png");
+	private Icon iconeExcluir = new ImageIcon("src/assets/icone_excluir_convidado.png");
+
 	private Color azulEscuro = new Color(46, 41, 79);
 	private Color azulClaro = new Color(72, 172, 240);
 	private Color cinzaEscuro = new Color(75, 82, 103);
@@ -64,7 +71,7 @@ public class CelulaConvidado extends JPanel {
 		painelId.add(Box.createHorizontalGlue());
 		painelId.add(labelId);
 		painelId.setBackground(cinzaEscuro);
-		painelId.setPreferredSize(new Dimension(160,160));
+		painelId.setPreferredSize(new Dimension(160, 160));
 
 		this.labelEmail = new JLabel("Email: " + email);
 		estiloLabelInfo(labelEmail);
@@ -89,8 +96,6 @@ public class CelulaConvidado extends JPanel {
 			this.labelAcessibilidade.setText("Necessita de recursos de acessibilidade.");
 		estiloLabelBaixo(labelAcessibilidade);
 		labelAcessibilidade.setForeground(Color.RED.darker());
-		this.labelAdicao = new JLabel("Adicionado em: " + timestamp);
-		estiloLabelInfo(labelAdicao);
 
 		JPanel painelInfo = new JPanel();
 		painelInfo.setLayout(new BoxLayout(painelInfo, BoxLayout.Y_AXIS));
@@ -100,26 +105,39 @@ public class CelulaConvidado extends JPanel {
 		painelInfo.add(labelDocumento);
 		painelInfo.add(labelNascimento);
 		painelInfo.add(labelAlimentar);
-		painelInfo.add(labelAdicao);
 		painelInfo.setPreferredSize(new Dimension(300, 120));
-		
+
 		JPanel painelMeio = new JPanel();
-		
 		Border margemObservacoes = BorderFactory.createEmptyBorder(3, 3, 0, 3);
 		TitledBorder bordaObservacoes = BorderFactory.createTitledBorder("Observacoes");
 		bordaObservacoes.setTitleFont(fonteInfo);
 		bordaObservacoes.setBorder(new LineBorder(Color.WHITE, 1, true));
 		bordaObservacoes.setTitleColor(Color.WHITE);
 		Border bordaCompostaObs = BorderFactory.createCompoundBorder(margemObservacoes, bordaObservacoes);
-		
+
 		labelObservacoes = new JLabel("<html><p width=\"240\" align=\"center\">" + observacoes + "</p></html>");
 		estiloLabelInfo(labelObservacoes);
 		painelMeio.setBorder(bordaCompostaObs);
 		painelMeio.setBackground(cinzaEscuro);
 		painelMeio.add(labelObservacoes);
 
+		JPanel painelCima = new JPanel();
+		painelCima.setLayout(new BoxLayout(painelCima, BoxLayout.X_AXIS));
+		this.labelAdicao = new JLabel("Adicionado em: " + timestamp);
+		estiloLabelInfo(labelAdicao);
+		labelAdicao.setPreferredSize(new Dimension(620, 30));
+		btnEditar = new JButton();
+		btnExcluir = new JButton();
+		estiloBotaoCima(btnEditar);
+		estiloBotaoCima(btnExcluir);
+		btnEditar.setIcon(iconeEditar);
+		btnExcluir.setIcon(iconeExcluir);
+		painelCima.setPreferredSize(new Dimension(720, 20));
+		painelCima.setBackground(azulClaro);
+		painelCima.add(labelAdicao);
+		painelCima.add(btnEditar);
+		painelCima.add(btnExcluir);
 
-		
 		this.labelLote = new JLabel("Lote: " + lote);
 		estiloLabelBaixo(labelLote);
 		JPanel painelBaixo = new JPanel();
@@ -137,7 +155,8 @@ public class CelulaConvidado extends JPanel {
 		bordaTitulo.setTitleColor(azulClaro);
 		Border bordaComposta = BorderFactory.createCompoundBorder(margemExterna, bordaTitulo);
 		this.setBorder(bordaComposta);
-		
+
+		this.add(painelCima, BorderLayout.NORTH);
 		this.add(painelId, BorderLayout.WEST);
 		this.add(painelInfo, BorderLayout.EAST);
 		this.add(painelMeio, BorderLayout.CENTER);
@@ -154,7 +173,7 @@ public class CelulaConvidado extends JPanel {
 
 		return l;
 	}
-	
+
 	public JLabel estiloLabelBaixo(JLabel l) {
 
 		l.setFont(fonteBaixo);
@@ -164,5 +183,15 @@ public class CelulaConvidado extends JPanel {
 
 		return l;
 	}
-	
+
+	public JButton estiloBotaoCima(JButton b) {
+		b.setSize(30, 30);
+		b.setPreferredSize(b.getSize());
+		b.setMaximumSize(b.getSize());
+		b.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		b.setBackground(azulClaro);
+
+		return b;
+	}
+
 }

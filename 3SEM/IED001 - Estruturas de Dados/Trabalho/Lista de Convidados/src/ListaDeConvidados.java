@@ -1,6 +1,3 @@
-import java.awt.event.WindowEvent;
-import java.lang.reflect.InvocationTargetException;
-
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -33,7 +30,7 @@ public class ListaDeConvidados {
 				} catch (IllegalAccessException e) {
 					// handle exception
 				}
-				new QuadroPrincipal();
+				new QuadroPrincipal<Object>();
 			}
 		});
 	}
