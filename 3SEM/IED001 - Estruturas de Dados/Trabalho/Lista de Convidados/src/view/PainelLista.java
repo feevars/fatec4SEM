@@ -63,6 +63,7 @@ public class PainelLista extends JPanel {
 	public void iniciaConteudo() {
 		conteudo = new JPanel();
 		conteudo.setLayout(new BoxLayout(conteudo, BoxLayout.Y_AXIS));
+		
 		painelScroll = new JScrollPane(conteudo);
 		add(painelScroll);
 	}

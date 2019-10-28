@@ -66,7 +66,7 @@ public class QuadroPrincipal<T> extends JFrame {
 							listaConvidados.vetorConvidados()[i].getAdicao());
 					painelLista.setConteudo(this.celulas[i]);
 				}
-
+				painelLista.setBackground(Color.BLACK);
 				painelLista.revalidate();
 				painelLista.repaint();
 			}
