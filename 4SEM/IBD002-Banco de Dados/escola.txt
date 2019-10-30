@@ -256,3 +256,63 @@ mysql> SELECT * FROM TABALUNOS WHERE SEXO='F';
 +-----------+------------------+------+------------+-------+-------+-------+
 7 rows in set (0.00 sec)
 
+mysql> SELECT * FROM TABALUNOS WHERE nome = A%;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SELECT * FROM TABALUNOS WHERE nome = 'A%';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM TABALUNOS WHERE nome = '%A';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM TABALUNOS WHERE nome = %'A';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%'A'' at line 1
+mysql> SELECT * FROM TABALUNOS WHERE nome LIKE 'A%';
++-----------+-------------------+------+------------+-------+-------+-------+
+| matricula | nome              | sexo | datanasc   | curso | nota1 | nota2 |
++-----------+-------------------+------+------------+-------+-------+-------+
+|         3 | Alexandre Cardoso | m    | 1998-01-10 | ADS   |  0.00 | 10.00 |
+|         8 | Ana Luiza Santos  | f    | 1996-05-13 | JOG   |  0.00 |  8.50 |
++-----------+-------------------+------+------------+-------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM TABALUNOS WHERE nome LIKE 'A%' OR nome LIKE 'E%' ;
++-----------+-------------------+------+------------+-------+-------+-------+
+| matricula | nome              | sexo | datanasc   | curso | nota1 | nota2 |
++-----------+-------------------+------+------------+-------+-------+-------+
+|         3 | Alexandre Cardoso | m    | 1998-01-10 | ADS   |  0.00 | 10.00 |
+|         8 | Ana Luiza Santos  | f    | 1996-05-13 | JOG   |  0.00 |  8.50 |
+|        12 | Erica Mendes      | f    | NULL       | NULL  |  NULL |  NULL |
++-----------+-------------------+------+------------+-------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM TABALUNOS WHERE nome LIKE 'A%' OR nome LIKE 'E%' OR nome LIKE 'I%' OR 'O%';
++-----------+-------------------+------+------------+-------+-------+-------+
+| matricula | nome              | sexo | datanasc   | curso | nota1 | nota2 |
++-----------+-------------------+------+------------+-------+-------+-------+
+|         3 | Alexandre Cardoso | m    | 1998-01-10 | ADS   |  0.00 | 10.00 |
+|         8 | Ana Luiza Santos  | f    | 1996-05-13 | JOG   |  0.00 |  8.50 |
+|        12 | Erica Mendes      | f    | NULL       | NULL  |  NULL |  NULL |
++-----------+-------------------+------+------------+-------+-------+-------+
+3 rows in set, 1 warning (0.02 sec)
+
+mysql> SELECT * FROM TABALUNOS WHERE nome LIKE 'A%' OR nome LIKE 'E%' OR nome LIKE 'I%' OR nome LIKE 'O%' OR nome LIKE 'U%';
++-----------+-------------------+------+------------+-------+-------+-------+
+| matricula | nome              | sexo | datanasc   | curso | nota1 | nota2 |
++-----------+-------------------+------+------------+-------+-------+-------+
+|         3 | Alexandre Cardoso | m    | 1998-01-10 | ADS   |  0.00 | 10.00 |
+|         8 | Ana Luiza Santos  | f    | 1996-05-13 | JOG   |  0.00 |  8.50 |
+|        12 | Erica Mendes      | f    | NULL       | NULL  |  NULL |  NULL |
++-----------+-------------------+------+------------+-------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> 
+mysql> ^C
+mysql> ^C
+mysql> \C
+ERROR: 
+Usage: \C charset_name | charset charset_name
+mysql> EXITE
+    -> EXIT
+    -> ^C
+mysql> exit
