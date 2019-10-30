@@ -28,6 +28,22 @@ public class ListaDupla<T> {
 		return contaId;
 	}
 
+	public No<T> getContador() {
+		return contador;
+	}
+
+	public No<T> getPrimeiro() {
+		return primeiro;
+	}
+
+	public No<T> getUltimo() {
+		return ultimo;
+	}
+
+	public void setContador(No<T> contador) {
+		this.contador = contador;
+	}
+
 	// Método "está vazia?"
 	public boolean estaVazia() {
 		return this.qtdNo == 0;
@@ -47,6 +63,21 @@ public class ListaDupla<T> {
 		this.contaId++;
 	}
 
+	// Método REMOVE PRIMEIRO
+	public void removePrimeiro() {
+		if (qtdNo == 1) {
+			this.primeiro = null;
+			this.ultimo = null;
+			this.contador = this.primeiro;
+		} else {
+			this.contador = this.primeiro;
+			this.primeiro = this.primeiro.getProximo();
+			this.primeiro.setAnterior(null);
+			this.contador = this.primeiro;
+		}
+		this.qtdNo--;
+	}
+
 	// Método INSERE ÚLTIMO
 	public void insereUltimo(T conteudo) {
 		No<T> novoNo = new No<T>(conteudo);
@@ -59,6 +90,21 @@ public class ListaDupla<T> {
 		this.contador = this.primeiro;
 		this.qtdNo++;
 		this.contaId++;
+	}
+
+	// Método Remove Último
+	public void removeUltimo() {
+		if (qtdNo == 1) {
+			this.primeiro = null;
+			this.ultimo = null;
+			this.contador = this.primeiro;
+		} else {
+			this.contador = this.ultimo;
+			this.ultimo = this.ultimo.getAnterior();
+			this.ultimo.setProximo(null);
+			this.contador = this.primeiro;
+		}
+		this.qtdNo--;
 	}
 
 	// // Método INSERE POSIÇÃO (sem recursão)
@@ -113,22 +159,34 @@ public class ListaDupla<T> {
 			return inserePosicao(conteudo, posicao - 1);
 		}
 	}
-	
+
+	// Método recursivo para remover posicao
+	public void removePosicao(int posicao) {
+		if (posicao == 1) {
+			this.contador.getAnterior().setProximo(this.contador.getProximo());
+			this.contador.getProximo().setAnterior(this.contador.getAnterior());
+			this.contador = this.primeiro;
+			this.qtdNo--;
+		} else {
+			this.contador = this.contador.getProximo();
+			removePosicao(posicao - 1);
+		}
+	}
+
 	// Método de impressão recursivo de String
 	public String listaString() {
-		if(this.estaVazia()) return "A lista está vazia.";
-		if(this.contador == this.ultimo) {
+		if (this.estaVazia())
+			return "A lista está vazia.";
+		if (this.contador == this.ultimo) {
 			this.listaTexto += this.ultimo.toString();
 			String listaImpressa = listaTexto;
 			this.listaTexto = "";
 			this.contador = this.primeiro;
 			return listaImpressa;
-		}
-		else {
+		} else {
 			this.listaTexto += this.contador.toString();
 			this.contador = this.contador.getProximo();
 			return listaString();
 		}
-			
 	}
 }

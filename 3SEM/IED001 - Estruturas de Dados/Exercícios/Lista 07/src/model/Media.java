@@ -6,7 +6,7 @@ public class Media {
 	private int idDisciplina;
 	private double mediaFinal;
 
-	public Media(int idAluno, int idDisciplina, int mediaFinal) {
+	public Media(int idAluno, int idDisciplina, double mediaFinal) {
 		this.idAluno = idAluno;
 		this.idDisciplina = idDisciplina;
 		this.mediaFinal = mediaFinal;
@@ -26,5 +26,9 @@ public class Media {
 
 	public void setMediaFinal(double mediaFinal) {
 		this.mediaFinal = mediaFinal;
+	}
+	
+	public String toString() {
+		return "Id Aluno: " + idAluno + "\tId da Disciplina: " + idDisciplina + "\nMédia: " + mediaFinal + "\n";
 	}
 }

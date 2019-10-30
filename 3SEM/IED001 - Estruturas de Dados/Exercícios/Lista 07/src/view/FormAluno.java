@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -67,11 +68,42 @@ public class FormAluno extends JPanel {
 		painelBotoes.add(btnPosicao);
 		
 		this.btnInicio.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Aluno novoAluno = new Aluno(listaAlunos.getContaId(), campoNome.getText(), campoCurso.getText(), (listaSemestre.getSelectedIndex() + 1));
 				listaAlunos.inserePrimeiro(novoAluno);
+				EventoFormAluno ev = new EventoFormAluno(this, listaAlunos.listaString());
+				formListener.FormEventOcurred(ev);
+				limpaCampos();
+			}
+		});
+		this.btnFinal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Aluno novoAluno = new Aluno(listaAlunos.getContaId(), campoNome.getText(), campoCurso.getText(), (listaSemestre.getSelectedIndex() + 1));
+				listaAlunos.insereUltimo(novoAluno);
+				EventoFormAluno ev = new EventoFormAluno(this, listaAlunos.listaString());
+				formListener.FormEventOcurred(ev);
+				limpaCampos();
+			}
+		});
+		this.btnPosicao.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Aluno novoAluno = new Aluno(listaAlunos.getContaId(), campoNome.getText(), campoCurso.getText(), (listaSemestre.getSelectedIndex() + 1));
+				int posicao = Integer.parseInt(JOptionPane.showInputDialog("Digite a posição da lista para\n"
+						+ "inserir um novo aluno."));
+				if (posicao < 2) {
+					JOptionPane.showMessageDialog(null, "A posição é inferior a 2.\n"
+							+ "Inserindo na primeira posição.");
+					listaAlunos.inserePrimeiro(novoAluno);
+				}else if (posicao > listaAlunos.getQtdNo()) {
+					JOptionPane.showMessageDialog(null, "A posição é maior do que o tamanho da lista."
+							+ "Inserindo na última posição.");
+					listaAlunos.insereUltimo(novoAluno);
+				}else {
+					listaAlunos.inserePosicao(novoAluno, posicao);
+				}
 				EventoFormAluno ev = new EventoFormAluno(this, listaAlunos.listaString());
 				formListener.FormEventOcurred(ev);
 				limpaCampos();

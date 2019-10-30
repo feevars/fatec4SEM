@@ -10,7 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import controller.ListaDupla;
+import model.Aluno;
 import model.Disciplina;
+import model.Media;
 
 public class PainelListas extends JPanel {
 
@@ -27,11 +29,7 @@ public class PainelListas extends JPanel {
 	private JButton btnImprimeDisciplinas;
 	private JButton btnImprimeMedias;
 	
-	private ListaDupla<Disciplina> listaDisciplinas;
-	
-	public PainelListas(ListaDupla<Disciplina> listaDisciplinas) {
-		
-		this.listaDisciplinas = listaDisciplinas;
+	public PainelListas(ListaDupla<Media> listaMedias, ListaDupla<Aluno> listaAlunos, ListaDupla<Disciplina> listaDisciplinas) {
 				
 		this.areaListas = new JTextArea();
 		this.scrollListas = new JScrollPane(areaListas);
@@ -49,12 +47,25 @@ public class PainelListas extends JPanel {
 		this.painelBotoes.add(btnImprimeDisciplinas);
 		this.painelBotoes.add(btnImprimeMedias);
 		
+		this.btnImprimeAlunos.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				alteraTexto("Lista de alunos:\n\n" + listaAlunos.listaString());
+			}
+		});
+		
 		this.btnImprimeDisciplinas.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				alteraTexto("Lista de disciplinas:\n\n" + listaDisciplinas.listaString());
+			}
+		});
+		
+		this.btnImprimeMedias.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				alteraTexto(listaDisciplinas.listaString());
-				
+				alteraTexto("Lista de médias:\n\n" + listaMedias.listaString());
 			}
 		});
 		
