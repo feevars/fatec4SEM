@@ -36,7 +36,7 @@ public class FormAluno extends JPanel {
 		this.campoNome = new JTextField(56);
 		this.labelCurso = new JLabel("Curso:");
 		this.campoCurso = new JTextField(56);
-		this.labelSemestre = new JLabel("Semestre");
+		this.labelSemestre = new JLabel("Semestre:");
 		this.listaSemestre = new JComboBox<String>();
 		this.listaSemestre.addItem("1");
 		this.listaSemestre.addItem("2");

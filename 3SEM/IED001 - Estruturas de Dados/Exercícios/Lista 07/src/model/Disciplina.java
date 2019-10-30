@@ -21,4 +21,9 @@ public class Disciplina {
 	public int getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "Id: " + id + "\nNome: " + nome + "\n";
+	}
 }

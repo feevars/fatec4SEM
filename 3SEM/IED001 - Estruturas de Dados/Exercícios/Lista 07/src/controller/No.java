@@ -35,4 +35,11 @@ public class No<T> {
 	public void setProximo(No<T> proximo) {
 		this.proximo = proximo;
 	}
+
+	@Override
+	public String toString() {
+		return conteudo + "\n";
+	}
+	
+	
 }

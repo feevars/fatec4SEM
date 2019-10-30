@@ -6,6 +6,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.ListaDupla;
+import model.Aluno;
+import model.Disciplina;
+import model.Media;
+
 public class QuadroPrincipal extends JFrame {
 
 	/**
@@ -16,12 +21,30 @@ public class QuadroPrincipal extends JFrame {
 	private FormAluno formAluno;
 	private FormDisciplina formDisciplina;
 	private FormMedia formMedia;
+	private PainelListas painelListas;
+	
+	private ListaDupla<Aluno> listaAlunos;
+	private ListaDupla<Disciplina> listaDisciplinas;
+	private ListaDupla<Media> listaMedias;	
 
 	public QuadroPrincipal() {
+
+		this.listaDisciplinas = new ListaDupla<Disciplina>();
 		
 		this.formAluno = new FormAluno();
-		this.formDisciplina = new FormDisciplina();
+		this.formDisciplina = new FormDisciplina(listaDisciplinas);
 		this.formMedia = new FormMedia();
+		this.painelListas = new PainelListas(listaDisciplinas);
+		
+		this.formDisciplina.setFormListener(new ListenerFormDisciplina() {
+
+			@Override
+			public void FormEventOcurred(EventoFormDisciplina e) {
+				painelListas.alteraTexto(e.getListaImpressa());
+				
+			}
+		});
+		
 
 		JPanel boxEsquerda = new JPanel();
 		boxEsquerda.setLayout(new BoxLayout(boxEsquerda, BoxLayout.Y_AXIS));
@@ -37,6 +60,7 @@ public class QuadroPrincipal extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.add(boxEsquerda, BorderLayout.WEST);
+		this.add(painelListas, BorderLayout.CENTER);
 		
 		this.setVisible(true);
 	}
