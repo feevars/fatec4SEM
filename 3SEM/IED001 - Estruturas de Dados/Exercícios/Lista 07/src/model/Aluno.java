@@ -41,4 +41,11 @@ public class Aluno {
 	public int getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "Id: " + id + "\tNome: " + nome + "\n" + semestre +  "º semestre\tCurso: " + curso + "\n";
+	}
+	
+	
 }

@@ -2,7 +2,7 @@ package view;
 
 import java.util.EventObject;
 
-public class EventoFormDisciplina extends EventObject {
+public class EventoFormAluno extends EventObject {
 	
 	/**
 	 * 
@@ -11,12 +11,12 @@ public class EventoFormDisciplina extends EventObject {
 	
 	private String listaImpressa;
 	
-	public EventoFormDisciplina(Object source, String listaImpressa) {
+	public EventoFormAluno(Object source, String listaImpressa) {
 		super(source);
 		this.listaImpressa = listaImpressa;
 	}
 
 	public String getListaImpressa() {
-		return "Lista de disciplinas:\n\n" + listaImpressa;
+		return "Lista de alunos:\n\n" + listaImpressa;
 	}
 }

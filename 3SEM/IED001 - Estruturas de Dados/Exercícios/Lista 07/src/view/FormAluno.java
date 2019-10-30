@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -12,13 +14,18 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import controller.ListaDupla;
+import model.Aluno;
+
 public class FormAluno extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	private ListenerFormAluno formListener;
+	
 	private JLabel labelNome;
 	private JTextField campoNome;
 	private JLabel labelCurso;
@@ -30,7 +37,7 @@ public class FormAluno extends JPanel {
 	private JButton btnFinal;
 	private JButton btnPosicao;
 
-	public FormAluno() {
+	public FormAluno(ListaDupla<Aluno> listaAlunos) {
 
 		this.labelNome = new JLabel("Nome:");
 		this.campoNome = new JTextField(56);
@@ -59,6 +66,18 @@ public class FormAluno extends JPanel {
 		painelBotoes.add(btnFinal);
 		painelBotoes.add(btnPosicao);
 		
+		this.btnInicio.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Aluno novoAluno = new Aluno(listaAlunos.getContaId(), campoNome.getText(), campoCurso.getText(), (listaSemestre.getSelectedIndex() + 1));
+				listaAlunos.inserePrimeiro(novoAluno);
+				EventoFormAluno ev = new EventoFormAluno(this, listaAlunos.listaString());
+				formListener.FormEventOcurred(ev);
+				limpaCampos();
+			}
+		});
+		
 		Border margem = BorderFactory.createEmptyBorder(3, 3, 3, 3);
 		TitledBorder bordaTitulo = BorderFactory.createTitledBorder("Inserir Aluno");
 		Border bordaComposta = BorderFactory.createCompoundBorder(margem, bordaTitulo);
@@ -73,5 +92,14 @@ public class FormAluno extends JPanel {
 		this.add(painelSemestre);
 		this.add(painelBotoes);
 	}
-
+	
+	private void limpaCampos() {
+		this.campoNome.setText("");
+		this.campoCurso.setText("");
+		this.listaSemestre.setSelectedItem(0);
+	}
+	
+	public void setFormListener(ListenerFormAluno listener) {
+		this.formListener = listener;
+	}
 }

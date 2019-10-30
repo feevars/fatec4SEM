@@ -28,16 +28,25 @@ public class QuadroPrincipal extends JFrame {
 	private ListaDupla<Media> listaMedias;	
 
 	public QuadroPrincipal() {
-
+		
+		this.listaAlunos = new ListaDupla<Aluno>();
 		this.listaDisciplinas = new ListaDupla<Disciplina>();
 		
-		this.formAluno = new FormAluno();
+		this.formAluno = new FormAluno(listaAlunos);
 		this.formDisciplina = new FormDisciplina(listaDisciplinas);
 		this.formMedia = new FormMedia();
 		this.painelListas = new PainelListas(listaDisciplinas);
 		
-		this.formDisciplina.setFormListener(new ListenerFormDisciplina() {
+		this.formAluno.setFormListener(new ListenerFormAluno() {
 
+			@Override
+			public void FormEventOcurred(EventoFormAluno e) {
+				painelListas.alteraTexto(e.getListaImpressa());		
+			}
+			
+		});
+		
+		this.formDisciplina.setFormListener(new ListenerFormDisciplina() {
 			@Override
 			public void FormEventOcurred(EventoFormDisciplina e) {
 				painelListas.alteraTexto(e.getListaImpressa());
