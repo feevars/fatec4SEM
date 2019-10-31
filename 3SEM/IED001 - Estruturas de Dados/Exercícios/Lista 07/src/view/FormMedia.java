@@ -15,12 +15,12 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import controller.ListaDupla;
-import controller.MetodosDeBusca;
+import controller.MetodosAdicionais;
 import model.Aluno;
 import model.Disciplina;
 import model.Media;
 
-public class FormMedia extends JPanel implements MetodosDeBusca {
+public class FormMedia extends JPanel implements MetodosAdicionais {
 
 	/**
 	 * 
@@ -84,21 +84,21 @@ public class FormMedia extends JPanel implements MetodosDeBusca {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!MetodosDeBusca.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)) {
+				if (!MetodosAdicionais.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)) {
 					JOptionPane.showMessageDialog(null,
 							"Não exite aluno com o ID inserido." + "\nImpossível adicionar nova média.");
-				} else if (!MetodosDeBusca.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
+				} else if (!MetodosAdicionais.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
 						listaDisciplinas)) {
 					JOptionPane.showMessageDialog(null,
 							"Não exite disciplina com o ID inserido." + "\nImpossível adicionar nova média.");
-				} else if (MetodosDeBusca.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
+				} else if (MetodosAdicionais.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
 						Integer.parseInt(campoIdDisciplina.getText()), listaMedias)) {
 					JOptionPane.showMessageDialog(null, "Já existe uma média do aluno " + campoIdAluno.getText()
 							+ " na disciplina " + campoIdDisciplina.getText() + "\nImpossível adicionar nova média.");
-				} else if (MetodosDeBusca.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)
-						&& MetodosDeBusca.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
+				} else if (MetodosAdicionais.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)
+						&& MetodosAdicionais.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
 								listaDisciplinas)
-						&& !MetodosDeBusca.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
+						&& !MetodosAdicionais.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
 								Integer.parseInt(campoIdDisciplina.getText()), listaMedias)) {
 					Media novaMedia = new Media(Integer.parseInt(campoIdAluno.getText()),
 							Integer.parseInt(campoIdDisciplina.getText()), Double.parseDouble(campoMedia.getText()));
@@ -114,21 +114,21 @@ public class FormMedia extends JPanel implements MetodosDeBusca {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!MetodosDeBusca.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)) {
+				if (!MetodosAdicionais.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)) {
 					JOptionPane.showMessageDialog(null,
 							"Não exite aluno com o ID inserido." + "\nImpossível adicionar nova média.");
-				} else if (!MetodosDeBusca.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
+				} else if (!MetodosAdicionais.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
 						listaDisciplinas)) {
 					JOptionPane.showMessageDialog(null,
 							"Não exite disciplina com o ID inserido." + "\nImpossível adicionar nova média.");
-				} else if (MetodosDeBusca.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
+				} else if (MetodosAdicionais.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
 						Integer.parseInt(campoIdDisciplina.getText()), listaMedias)) {
 					JOptionPane.showMessageDialog(null, "Já existe uma média do aluno " + campoIdAluno.getText()
 							+ " na disciplina " + campoIdDisciplina.getText() + "\nImpossível adicionar nova média.");
-				} else if (MetodosDeBusca.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)
-						&& MetodosDeBusca.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
+				} else if (MetodosAdicionais.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)
+						&& MetodosAdicionais.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
 								listaDisciplinas)
-						&& !MetodosDeBusca.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
+						&& !MetodosAdicionais.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
 								Integer.parseInt(campoIdDisciplina.getText()), listaMedias)) {
 					int posicao = Integer.parseInt(JOptionPane.showInputDialog(
 							"Digite a posição da lista em que você de seja inserir a nova informação de média."));
@@ -156,21 +156,21 @@ public class FormMedia extends JPanel implements MetodosDeBusca {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!MetodosDeBusca.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)) {
+				if (!MetodosAdicionais.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)) {
 					JOptionPane.showMessageDialog(null,
 							"Não exite aluno com o ID inserido." + "\nImpossível adicionar nova média.");
-				} else if (!MetodosDeBusca.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
+				} else if (!MetodosAdicionais.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
 						listaDisciplinas)) {
 					JOptionPane.showMessageDialog(null,
 							"Não exite disciplina com o ID inserido." + "\nImpossível adicionar nova média.");
-				} else if (MetodosDeBusca.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
+				} else if (MetodosAdicionais.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
 						Integer.parseInt(campoIdDisciplina.getText()), listaMedias)) {
 					JOptionPane.showMessageDialog(null, "Já existe uma média do aluno " + campoIdAluno.getText()
 							+ " na disciplina " + campoIdDisciplina.getText() + "\nImpossível adicionar nova média.");
-				} else if (MetodosDeBusca.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)
-						&& MetodosDeBusca.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
+				} else if (MetodosAdicionais.checkIdAlunos(Integer.parseInt(campoIdAluno.getText()), listaAlunos)
+						&& MetodosAdicionais.checkIdDisciplinas(Integer.parseInt(campoIdDisciplina.getText()),
 								listaDisciplinas)
-						&& !MetodosDeBusca.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
+						&& !MetodosAdicionais.checkExisteMedia(Integer.parseInt(campoIdAluno.getText()),
 								Integer.parseInt(campoIdDisciplina.getText()), listaMedias)) {
 					Media novaMedia = new Media(Integer.parseInt(campoIdAluno.getText()),
 							Integer.parseInt(campoIdDisciplina.getText()), Double.parseDouble(campoMedia.getText()));

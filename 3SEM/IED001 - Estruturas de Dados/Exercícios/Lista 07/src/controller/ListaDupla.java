@@ -11,6 +11,8 @@ public class ListaDupla<T> {
 	private No<T> contador;
 	// String de resultados
 	private String listaTexto = "";
+	// Contador auxiliar INTEIRO para vetores
+	private int contadorInt;
 
 	public ListaDupla() {
 		this.primeiro = null;
@@ -18,6 +20,15 @@ public class ListaDupla<T> {
 		this.qtdNo = 0;
 		this.contaId = 0;
 		this.contador = this.primeiro;
+		this.contadorInt = 0;
+	}
+
+	public int getContadorInt() {
+		return contadorInt;
+	}
+
+	public void setContadorInt(int contadorInt) {
+		this.contadorInt = contadorInt;
 	}
 
 	public int getQtdNo() {

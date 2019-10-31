@@ -7,14 +7,14 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 import controller.ListaDupla;
+import controller.MetodosAdicionais;
 import model.Aluno;
 import model.Disciplina;
 import model.Media;
 
-public class BarraDeFerramentas extends JPanel {
+public class BarraDeFerramentas extends JPanel implements MetodosAdicionais {
 
 	/**
 	 * 
@@ -119,7 +119,7 @@ public class BarraDeFerramentas extends JPanel {
 		painelBtnDisciplina.add(btnRemoveDisciplinaInicio);
 		painelBtnDisciplina.add(btnRemoveDisciplinaPosicao);
 		painelBtnDisciplina.add(btnRemoveDisciplinaFinal);
-		
+
 		this.btnRemoveDisciplinaInicio.addActionListener(new ActionListener() {
 
 			@Override
@@ -130,7 +130,8 @@ public class BarraDeFerramentas extends JPanel {
 				} else {
 					listaDisciplinas.removePrimeiro();
 					EventoBarraDeFerramentas ev = new EventoBarraDeFerramentas(this,
-							"Primeiro item da lista removido.\nLista de disciplinas:\n\n" + listaDisciplinas.listaString());
+							"Primeiro item da lista removido.\nLista de disciplinas:\n\n"
+									+ listaDisciplinas.listaString());
 					formListener.FormEventOcurred(ev);
 				}
 			}
@@ -156,8 +157,9 @@ public class BarraDeFerramentas extends JPanel {
 						} else {
 							listaDisciplinas.removePosicao(posicao);
 						}
-						EventoBarraDeFerramentas ev = new EventoBarraDeFerramentas(this, "O item " + posicao
-								+ " da lista foi removido.\nLista de disciplinas:\n\n" + listaDisciplinas.listaString());
+						EventoBarraDeFerramentas ev = new EventoBarraDeFerramentas(this,
+								"O item " + posicao + " da lista foi removido.\nLista de disciplinas:\n\n"
+										+ listaDisciplinas.listaString());
 						formListener.FormEventOcurred(ev);
 					}
 				}
@@ -174,12 +176,13 @@ public class BarraDeFerramentas extends JPanel {
 				} else {
 					listaDisciplinas.removeUltimo();
 					EventoBarraDeFerramentas ev = new EventoBarraDeFerramentas(this,
-							"Último item da lista removido.\nLista de disciplinas:\n\n" + listaDisciplinas.listaString());
+							"Último item da lista removido.\nLista de disciplinas:\n\n"
+									+ listaDisciplinas.listaString());
 					formListener.FormEventOcurred(ev);
 				}
 			}
 		});
-		
+
 		this.btnRemoveMediaInicio = new JButton("<html>Remover média do início da lista</html>");
 		this.btnRemoveMediaPosicao = new JButton("<html>Remover média de uma posição determinada</html>");
 		this.btnRemoveMediaFinal = new JButton("<html>Remover média do final da lista</html>");
@@ -188,7 +191,7 @@ public class BarraDeFerramentas extends JPanel {
 		painelBtnMedia.add(btnRemoveMediaInicio);
 		painelBtnMedia.add(btnRemoveMediaPosicao);
 		painelBtnMedia.add(btnRemoveMediaFinal);
-		
+
 		this.btnRemoveMediaInicio.addActionListener(new ActionListener() {
 
 			@Override
@@ -257,6 +260,57 @@ public class BarraDeFerramentas extends JPanel {
 		painelBtnOutrosMetodos.add(btnOrdenarMedias);
 		painelBtnOutrosMetodos.add(btnAlunosAprovados);
 		painelBtnOutrosMetodos.add(btnAlunosReprovados);
+
+		this.btnOrdenarMedias.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (listaMedias.estaVazia()) {
+					JOptionPane.showMessageDialog(null, "A lista está vazia, impossível ordenar médias.");
+				} else {
+					Media[] vetorMedias = new Media[listaMedias.getQtdNo()];
+					vetorMedias = MetodosAdicionais.ListaDuplaVetorMedias(listaMedias, vetorMedias);
+					MetodosAdicionais.mergeSortMedias(vetorMedias);
+					EventoBarraDeFerramentas ev = new EventoBarraDeFerramentas(this, "Lista de médias ordenadas:\n\n"
+							+ MetodosAdicionais.vetorMediasPrint(vetorMedias, listaAlunos, listaDisciplinas));
+					formListener.FormEventOcurred(ev);
+				}
+			}
+		});
+
+		this.btnAlunosAprovados.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (listaMedias.estaVazia()) {
+					JOptionPane.showMessageDialog(null, "A lista está vazia, nada a exibir.");
+				} else {
+					Media[] vetorMedias = new Media[listaMedias.getQtdNo()];
+					vetorMedias = MetodosAdicionais.ListaDuplaVetorMedias(listaMedias, vetorMedias);
+					MetodosAdicionais.mergeSortMedias(vetorMedias);
+					EventoBarraDeFerramentas ev = new EventoBarraDeFerramentas(this, "Lista de alunos aprovados:\n\n"
+							+ MetodosAdicionais.alunosAprovados(vetorMedias, listaAlunos, listaDisciplinas));
+					formListener.FormEventOcurred(ev);
+				}
+			}
+		});
+		
+		this.btnAlunosReprovados.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (listaMedias.estaVazia()) {
+					JOptionPane.showMessageDialog(null, "A lista está vazia, nada a exibir.");
+				} else {
+					Media[] vetorMedias = new Media[listaMedias.getQtdNo()];
+					vetorMedias = MetodosAdicionais.ListaDuplaVetorMedias(listaMedias, vetorMedias);
+					MetodosAdicionais.mergeSortMedias(vetorMedias);
+					EventoBarraDeFerramentas ev = new EventoBarraDeFerramentas(this, "Lista de alunos reprovados:\n\n"
+							+ MetodosAdicionais.alunosReprovados(vetorMedias, listaAlunos, listaDisciplinas));
+					formListener.FormEventOcurred(ev);
+				}
+			}
+		});
 
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.add(painelBtnAluno);
