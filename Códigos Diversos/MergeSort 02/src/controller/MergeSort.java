@@ -26,7 +26,11 @@ public class MergeSort {
 	public void mergeSort(int [] vetor) {
 		
 		//Quando o tamanho do vetor é 1, retorna – condição de parada.
+<<<<<<< HEAD
 		if(vetor.length == 1) return;
+=======
+		
+>>>>>>> 332a6d9ff5ad67b4a7f7a3e3b1d4e268ecf9bb71
 		
 		//Inicia dois vetores com a metade do tamanho do vetor inicial:
 		int metade = vetor.length / 2;
