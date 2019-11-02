@@ -3,6 +3,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import view.MenuInicial;
 import view.WizardNovoEvento;
 
 public class SGE {
@@ -30,7 +31,7 @@ public class SGE {
 					// handle exception
 				}
 				
-//				new MenuInicial();
+				new MenuInicial();
 				new WizardNovoEvento();
 			}
 
