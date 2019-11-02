@@ -8,45 +8,34 @@ import javax.swing.JFrame;
 import controller.ListaDupla;
 import model.Convidado;
 
-public class QuadroPrincipal<T> extends JFrame {
+public class QuadroPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	// Variáveis iniciadas pelo QuadroPrincipal
 	private ListaDupla<Convidado> listaConvidados;
 	private FormConvidado formConvidado;
 	private PainelLista painelLista;
 	private BarraDeFerramentas barraDeFerramentas;
 
-	// Construtor do QuadroPrincipal
 	public QuadroPrincipal() {
 		super("Lista de Convidados");
 
-		setLayout(new BorderLayout());
+		this.listaConvidados = new ListaDupla<Convidado>();
+		this.formConvidado = new FormConvidado(listaConvidados);
+		this.painelLista = new PainelLista(listaConvidados.vetorConvidados());
+		this.barraDeFerramentas = new BarraDeFerramentas();
 
-		listaConvidados = new ListaDupla<Convidado>();
-		formConvidado = new FormConvidado(listaConvidados);
-		painelLista = new PainelLista(listaConvidados.vetorConvidados());
-
-		barraDeFerramentas = new BarraDeFerramentas();
-
-		add(barraDeFerramentas, BorderLayout.NORTH);
-
-		add(painelLista, BorderLayout.CENTER);
-
-		add(formConvidado, BorderLayout.WEST);
-
-		formConvidado.setFormListener(new ListenerFormConvidado() {
-
+		this.formConvidado.setFormListener(new ListenerFormConvidado() {
+			
 			private CelulaConvidado[] celulas;
-
+			
 			public void formEventOcurred(EventoFormConvidado e) {
-
+				
 				painelLista.removeAll();
 				painelLista.setBackground(new Color(46,41,79));
 				painelLista.iniciaConteudo();
 				celulas = new CelulaConvidado[listaConvidados.vetorConvidados().length];
-
+				
 				for (int i = 0; i < listaConvidados.vetorConvidados().length; i++) {
 					this.celulas[i] = new CelulaConvidado(listaConvidados.vetorConvidados()[i].getId(),
 							listaConvidados.vetorConvidados()[i].getNome(),
@@ -71,12 +60,16 @@ public class QuadroPrincipal<T> extends JFrame {
 				painelLista.repaint();
 			}
 		});
-
-		setSize(1280, 720);
-		setMinimumSize(this.getSize());
-		setResizable(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setVisible(true);
+		
+		this.setLayout(new BorderLayout());
+		this.add(barraDeFerramentas, BorderLayout.NORTH);
+		this.add(painelLista, BorderLayout.CENTER);
+		this.add(formConvidado, BorderLayout.WEST);
+		this.setSize(1280, 720);
+		this.setMinimumSize(this.getSize());
+		this.setResizable(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
 }

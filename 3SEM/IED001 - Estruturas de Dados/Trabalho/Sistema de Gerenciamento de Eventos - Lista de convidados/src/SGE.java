@@ -3,14 +3,15 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import view.QuadroPrincipal;
+import view.WizardNovoEvento;
 
-public class ListaDeConvidados {
+public class SGE {
 
 	public static void main(String[] args) {
 
 		SwingUtilities.invokeLater(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -28,8 +29,11 @@ public class ListaDeConvidados {
 				} catch (IllegalAccessException e) {
 					// handle exception
 				}
-				new QuadroPrincipal();
+				
+//				new MenuInicial();
+				new WizardNovoEvento();
 			}
+
 		});
 	}
 }

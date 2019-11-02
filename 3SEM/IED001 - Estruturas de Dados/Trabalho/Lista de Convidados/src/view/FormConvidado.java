@@ -40,12 +40,8 @@ import model.Convidado;
 
 public class FormConvidado extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	// Variáveis do formulário de convidado
 	private static final Color CORFUNDO = new Color(221, 205, 255);
 	
 	private ListenerFormConvidado formListener;
