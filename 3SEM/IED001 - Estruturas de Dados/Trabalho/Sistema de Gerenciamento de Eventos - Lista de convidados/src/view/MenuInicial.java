@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
 
 public class MenuInicial extends JFrame {
 
@@ -34,14 +37,29 @@ public class MenuInicial extends JFrame {
 		JButton btnNovaLista = new JButton("Nova Lista");
 		painelBotoes.add(btnNovaLista);
 		
+		
 		JButton btnAbrirListaExistente = new JButton("Abrir Lista Existente");
 		painelBotoes.add(btnAbrirListaExistente);
 		
 		JLabel lblImagemPrincipal = new JLabel("");
+		lblImagemPrincipal.setIcon(new ImageIcon("/Users/bruno/Desktop/Fatec/3SEM/IED001 - Estruturas de Dados/Trabalho/Sistema de Gerenciamento de Eventos - Lista de convidados/bin/img/cu.jpg"));
 		lblImagemPrincipal.setPreferredSize(new Dimension(300, 230));
 		lblImagemPrincipal.setMinimumSize(new Dimension(300, 230));
 		contentPane.add(lblImagemPrincipal, BorderLayout.CENTER);
 		setVisible(true);
+		
+		btnNovaLista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			//deve chamar aqui o Wizard Novo Evento
+			}
+		});
+		
+		btnAbrirListaExistente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//deve abrir o card de eventos cadastrados
+				
+			}
+		}); 
 	}
 
 }

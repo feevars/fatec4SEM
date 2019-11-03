@@ -22,6 +22,10 @@ import javax.swing.SwingConstants;
 import com.toedter.calendar.JCalendar;
 import java.awt.Window.Type;
 import com.toedter.calendar.JDateChooser;
+
+import controller.ListaDupla;
+import model.Convidado;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ActionEvent;
@@ -296,6 +300,13 @@ public class WizardNovoEvento extends JFrame {
 				CardLayout clBotoes = (CardLayout) painelBotoes.getLayout();
 				clConteudo.previous(painelConteudo);
 				clBotoes.previous(painelBotoes);
+			}
+		});
+		
+		btnIniciarLista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaDupla<Convidado> listaDeConvidados = new ListaDupla<Convidado>();
+				
 			}
 		});
 		
