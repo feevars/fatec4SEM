@@ -42,6 +42,7 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.BufferedWriter;
 import java.beans.PropertyChangeEvent;
 
 public class WizardNovoEvento extends JFrame {
@@ -402,6 +403,7 @@ public class WizardNovoEvento extends JFrame {
 							sliderAniversariante.getValue(),
 							listaConvidados,
 							null);
+					// BufferedWriter bw = new BufferedWriter(novoEvento);
 					dispose();
 					new JanelaPrincipal(novoEvento);
 				} else {

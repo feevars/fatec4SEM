@@ -1,0 +1,66 @@
+Alunos:
+---------------------------------------
+
+00 - Robson Ferreira | Análise de Sistemas | 3 semestre 
+
+01 - Bruno Harnik | Desenho Industrial | 6 semestre
+
+02 - Fernanda Reis | Veterinária | 2 semestre
+
+03 - Luiz Geraldo | Sistemas da Informação | 4 semestre
+
+04 - Jorge Garcia | Turismo | 1 semestre
+
+05 - Marcelle Dantas | Comércio Exterior | 3 semestre
+
+
+Disciplinas
+---------------------------------------
+
+00 - Metodologia de Pesquisa
+01 - Desenho técnico
+02 - Gestão de Equipes
+03 - Contabilidade
+04 - Estatística
+05 - Algoritmos e Lógica de Programação
+06 - Serigrafia
+07 - Inglês
+08 - Anatomia dos Animais Domésticos
+
+Médias
+---------------------------------------
+00 - Robson Ferreira | Análise de Sistemas | 3 semestre
+ID Aluno: 0 | ID Disciplina: 0 | Média: 8,5
+ID Aluno: 0 | ID Disciplina: 4 | Média: 10,0
+ID Aluno: 0 | ID Disciplina: 5 | Média: 8,0
+ID Aluno: 0 | ID Disciplina: 7 | Média: 9,5
+
+01 - Bruno Harnik | Desenho Industrial | 6 semestre
+ID Aluno: 1 | ID Disciplina: 0 | Média: 5,0
+ID Aluno: 1 | ID Disciplina: 1 | Média: 9,0
+ID Aluno: 1 | ID Disciplina: 6 | Média: 8,0
+ID Aluno: 1 | ID Disciplina: 7 | Média: 10,0
+
+02 - Fernanda Reis | Veterinária | 2 semestre
+ID Aluno: 2 | ID Disciplina: 0 | Média: 6,5
+ID Aluno: 2 | ID Disciplina: 7 | Média: 8,5
+ID Aluno: 2 | ID Disciplina: 8 | Média: 4,5
+
+03 - Luiz Geraldo | Sistemas da Informação | 4 semestre
+ID Aluno: 3 | ID Disciplina: 0 | Média: 9,0
+ID Aluno: 3 | ID Disciplina: 4 | Média: 7,0
+ID Aluno: 3 | ID Disciplina: 5 | Média: 8,0
+ID Aluno: 3 | ID Disciplina: 7 | Média: 8,0
+
+04 - Jorge Garcia | Turismo | 1 semestre
+ID Aluno: 4 | ID Disciplina: 0 | Média: 7,0
+ID Aluno: 4 | ID Disciplina: 2 | Média: 9,0
+ID Aluno: 4 | ID Disciplina: 3 | Média: 3,5
+ID Aluno: 4 | ID Disciplina: 7 | Média: 10,0
+
+05 - Marcelle Dantas | Comércio Exterior | 3 semestre
+ID Aluno: 5 | ID Disciplina: 0 | Média: 9,0
+ID Aluno: 5 | ID Disciplina: 2 | Média: 5,0
+ID Aluno: 5 | ID Disciplina: 3 | Média: 8,0
+ID Aluno: 5 | ID Disciplina: 4 | Média: 6,5
+ID Aluno: 5 | ID Disciplina: 7 | Média: 7,0
