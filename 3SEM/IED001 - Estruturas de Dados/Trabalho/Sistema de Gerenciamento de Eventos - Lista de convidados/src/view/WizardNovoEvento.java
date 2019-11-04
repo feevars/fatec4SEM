@@ -1,6 +1,5 @@
 package view;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -8,6 +7,7 @@ import java.awt.CardLayout;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
@@ -23,6 +23,8 @@ import model.Convidado;
 import model.Evento;
 
 import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import java.awt.Dimension;
@@ -33,7 +35,14 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class WizardNovoEvento extends JFrame {
 
@@ -234,12 +243,6 @@ public class WizardNovoEvento extends JFrame {
 		painelAniversariante.add(lblAniversariante);
 
 		JSlider sliderAniversariante = new JSlider();
-		sliderAniversariante.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				lblAniversariante
-						.setText(sliderAniversariante.getValue() + "% de desconto para aniversariantes do mês.");
-			}
-		});
 		sliderAniversariante.setValue(0);
 		painelAniversariante.add(sliderAniversariante);
 
@@ -272,6 +275,19 @@ public class WizardNovoEvento extends JFrame {
 		JButton btnIniciarLista = new JButton("Iniciar lista");
 		painelBtnEtapa2.add(btnIniciarLista);
 
+		convitesRestantes = (int) spinnerQtdConvidados.getValue() % 3;
+
+		cl1 = ((int) spinnerQtdConvidados.getValue() / 3) + convitesRestantes;
+		cl2 = cl3 = ((int) spinnerQtdConvidados.getValue() / 3);
+
+		spinnerConvites1.setValue(cl1);
+		spinnerConvites2.setValue(cl2);
+		spinnerConvites3.setValue(cl3);
+
+		spinnerConvites1.setModel(new SpinnerNumberModel(cl1, 0, cl1, 1));
+		spinnerConvites2.setModel(new SpinnerNumberModel(cl2, 0, cl2, 1));
+		spinnerConvites3.setModel(new SpinnerNumberModel(cl3, 0, cl3, 1));
+
 		btnAvancar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout clConteudo = (CardLayout) painelConteudo.getLayout();
@@ -289,20 +305,6 @@ public class WizardNovoEvento extends JFrame {
 				clBotoes.previous(painelBotoes);
 			}
 		});
-
-		convitesRestantes = (int) spinnerQtdConvidados.getValue() % 3;
-
-		cl1 = ((int) spinnerQtdConvidados.getValue() / 3) + convitesRestantes;
-		cl2 = cl3 = ((int) spinnerQtdConvidados.getValue() / 3);
-
-		spinnerConvites1.setValue(cl1);
-		spinnerConvites2.setValue(cl2);
-		spinnerConvites3.setValue(cl3);
-
-		spinnerConvites1.setModel(new SpinnerNumberModel(cl1, 0, cl1, 1));
-		spinnerConvites2.setModel(new SpinnerNumberModel(cl2, 0, cl2, 1));
-		spinnerConvites3.setModel(new SpinnerNumberModel(cl3, 0, cl3, 1));
-
 		spinnerQtdConvidados.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 
@@ -369,6 +371,13 @@ public class WizardNovoEvento extends JFrame {
 		convitesRestantes = (int) spinnerQtdConvidados.getValue() - (int) spinnerConvites1.getValue()
 				- (int) spinnerConvites2.getValue() - (int) spinnerConvites3.getValue();
 
+		sliderAniversariante.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				lblAniversariante
+						.setText(sliderAniversariante.getValue() + "% de desconto para aniversariantes do mês.");
+			}
+		});
+
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -378,22 +387,60 @@ public class WizardNovoEvento extends JFrame {
 
 		btnIniciarLista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaDupla<Convidado> listaConvidados = new ListaDupla<Convidado>();
-				Evento novoEvento = new Evento(txtNomeDoEvento.getText(), escolhaDataEvento.getDate(),
-						Integer.parseInt(spinnerQtdConvidados.getValue().toString()), escolhaDataLote1.getDate(),
-						Integer.parseInt(spinnerConvites1.getValue().toString()),
-						Double.parseDouble(spinnerValor1.getValue().toString()), escolhaDataLote2.getDate(),
-						Integer.parseInt(spinnerConvites2.getValue().toString()),
-						Double.parseDouble(spinnerValor2.getValue().toString()), escolhaDataLote3.getDate(),
-						Integer.parseInt(spinnerConvites3.getValue().toString()),
-						Double.parseDouble(spinnerValor3.getValue().toString()),
-						Double.parseDouble(spinnerValorPortaria.getValue().toString()), sliderAniversariante.getValue(),
-						listaConvidados);
-				dispose();
-				new JanelaPrincipal(novoEvento);
+				if (validaBotao(txtNomeDoEvento, escolhaDataEvento, escolhaDataLote1, escolhaDataLote2,
+						escolhaDataLote3)) {
+					ListaDupla<Convidado> listaConvidados = new ListaDupla<Convidado>();
+					Evento novoEvento = new Evento(txtNomeDoEvento.getText(), escolhaDataEvento.getDate(),
+							Integer.parseInt(spinnerQtdConvidados.getValue().toString()), escolhaDataLote1.getDate(),
+							Integer.parseInt(spinnerConvites1.getValue().toString()),
+							Double.parseDouble(spinnerValor1.getValue().toString()), escolhaDataLote2.getDate(),
+							Integer.parseInt(spinnerConvites2.getValue().toString()),
+							Double.parseDouble(spinnerValor2.getValue().toString()), escolhaDataLote3.getDate(),
+							Integer.parseInt(spinnerConvites3.getValue().toString()),
+							Double.parseDouble(spinnerValor3.getValue().toString()),
+							Double.parseDouble(spinnerValorPortaria.getValue().toString()),
+							sliderAniversariante.getValue(),
+							listaConvidados,
+							null);
+					dispose();
+					new JanelaPrincipal(novoEvento);
+				} else {
+					JOptionPane.showMessageDialog(null, "Um novo evento possui as seguintes validações:\n"
+							+ "• O campo de nome deve possuir pelo menos 1 caractere e não pode ser uma \"barra de espaço\";\n"
+							+ "• Nenhum campo de data pode ser nulo;\n"
+							+ "• Um evento só pode ser marcado, pelo menos, daqui a 4 dias;\n"
+							+ "• A data limite do Lote 3 deve ser anterior à data do evento;\n"
+							+ "• A data limite do Lote 2 deve ser anterior à data do limte do Lote 3;\n"
+							+ "• A data limite do Lote 1 deve ser anterior à data do limte do Lote 2;\n"
+							+ "• A data limite do Lote 1 deve ser posterior à data de hoje.\n\n"
+							+ "Por favor, verifique os campos e tente novamente.");
+				}
 			}
 		});
 
 		setVisible(true);
+	}
+
+	public boolean validaBotao(JTextField campoNomeDoEvento, JDateChooser campoDataDoEvento,
+			JDateChooser campoDataLote1, JDateChooser campoDataLote2, JDateChooser campoDataLote3) {
+		Date hoje = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(hoje);
+		c.add(Calendar.DATE, 4);
+		Date daquiQuatroDias = c.getTime();
+
+		if (campoNomeDoEvento.getText().length() > 0
+			&& campoNomeDoEvento.getText() != " "
+			&& campoDataDoEvento.getDate() != null
+			&& campoDataLote1.getDate() != null
+			&& campoDataLote2.getDate() != null
+			&& campoDataLote3.getDate() != null			
+			&& campoDataDoEvento.getDate().after(daquiQuatroDias)
+			&& campoDataLote3.getDate().before(campoDataDoEvento.getDate())
+			&& campoDataLote2.getDate().before(campoDataLote3.getDate())
+			&& campoDataLote1.getDate().before(campoDataLote2.getDate())
+			&& campoDataLote1.getDate().after(hoje))
+			return true;
+		else return false;
 	}
 }

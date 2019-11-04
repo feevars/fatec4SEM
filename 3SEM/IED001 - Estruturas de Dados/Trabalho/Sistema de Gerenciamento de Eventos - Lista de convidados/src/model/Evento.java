@@ -21,10 +21,11 @@ public class Evento {
 	private double valorPortaria;
 	private int descontoAniversariante;
 	private ListaDupla<Convidado> listaConvidados;
+	private String caminhoDoArquivo;
 	
 	public Evento(String nome, Date dataEvento, int qtdConvites, Date dataLote1, int qtdLote1, double valorLote1,
 			Date dataLote2, int qtdLote2, double valorLote2, Date dateLote3, int qtdLote3, double valorLote3,
-			double valorPortaria, int descontoAniversariante, ListaDupla<Convidado> listaConvidados) {
+			double valorPortaria, int descontoAniversariante, ListaDupla<Convidado> listaConvidados, String caminhoDoArquivo) {
 		super();
 		this.nome = nome;
 		this.dataEvento = dataEvento;
@@ -41,6 +42,7 @@ public class Evento {
 		this.valorPortaria = valorPortaria;
 		this.descontoAniversariante = descontoAniversariante;
 		this.listaConvidados = listaConvidados;
+		this.caminhoDoArquivo = caminhoDoArquivo;
 	}
 
 	public String getNome() {

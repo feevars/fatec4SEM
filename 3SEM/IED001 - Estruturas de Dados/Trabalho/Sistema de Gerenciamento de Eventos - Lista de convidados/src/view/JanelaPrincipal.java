@@ -15,19 +15,22 @@ public class JanelaPrincipal extends JFrame {
 	private JPanel contentPane;
 	private FormConvidado formConvidado;
 	private DadosDoEvento dadosDoEvento;
+	private BarraDeFerramentas barraDeFerramentas;
 
 	public JanelaPrincipal(Evento evento) {
 		formConvidado = new FormConvidado();
 		dadosDoEvento = new DadosDoEvento(evento);
+		barraDeFerramentas = new BarraDeFerramentas(evento);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1280,720);
 		setMinimumSize(getSize());
 		setResizable(true);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(null);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.add(dadosDoEvento, BorderLayout.NORTH);
+		contentPane.add(barraDeFerramentas, BorderLayout.NORTH);
+		contentPane.add(dadosDoEvento, BorderLayout.SOUTH);
 		contentPane.add(formConvidado, BorderLayout.WEST);
 		setContentPane(contentPane);
 		setVisible(true);
