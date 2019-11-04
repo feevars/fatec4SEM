@@ -2,12 +2,17 @@ package view;
 
 import javax.swing.JPanel;
 
+import controller.BuffersArquivo;
 import model.Evento;
 import java.awt.Dimension;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class BarraDeFerramentas extends JPanel {
 
@@ -46,7 +51,21 @@ public class BarraDeFerramentas extends JPanel {
 		btnSalvarEvento.setToolTipText("Salvar Evento");
 		add(btnSalvarEvento);
 		
-
+		btnSalvarEvento.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BuffersArquivo ba = new BuffersArquivo();
+				try {
+					ba.escreveArquivo(evento);
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}finally {
+					JOptionPane.showMessageDialog(null, "Arquivo gravado com sucesso!");
+				}
+			}
+		});
 	}
-
 }

@@ -43,6 +43,7 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.BufferedWriter;
+import java.text.ParseException;
 import java.beans.PropertyChangeEvent;
 
 public class WizardNovoEvento extends JFrame {
@@ -405,7 +406,12 @@ public class WizardNovoEvento extends JFrame {
 							null);
 					// BufferedWriter bw = new BufferedWriter(novoEvento);
 					dispose();
-					new JanelaPrincipal(novoEvento);
+					try {
+						new JanelaPrincipal(novoEvento);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Um novo evento possui as seguintes validações:\n"
 							+ "• O campo de nome deve possuir pelo menos 1 caractere e não pode ser uma \"barra de espaço\";\n"

@@ -15,7 +15,7 @@ public class Evento {
 	private Date dataLote2;
 	private int qtdLote2;
 	private double valorLote2;
-	private Date dateLote3;
+	private Date dataLote3;
 	private int qtdLote3;
 	private double valorLote3;
 	private double valorPortaria;
@@ -36,7 +36,7 @@ public class Evento {
 		this.dataLote2 = dataLote2;
 		this.qtdLote2 = qtdLote2;
 		this.valorLote2 = valorLote2;
-		this.dateLote3 = dateLote3;
+		this.dataLote3 = dateLote3;
 		this.qtdLote3 = qtdLote3;
 		this.valorLote3 = valorLote3;
 		this.valorPortaria = valorPortaria;
@@ -117,12 +117,12 @@ public class Evento {
 		this.valorLote2 = valorLote2;
 	}
 
-	public Date getDateLote3() {
-		return dateLote3;
+	public Date getDataLote3() {
+		return dataLote3;
 	}
 
-	public void setDateLote3(Date dateLote3) {
-		this.dateLote3 = dateLote3;
+	public void setDataLote3(Date dateLote3) {
+		this.dataLote3 = dateLote3;
 	}
 
 	public int getQtdLote3() {

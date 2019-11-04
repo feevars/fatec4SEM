@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +18,7 @@ public class JanelaPrincipal extends JFrame {
 	private DadosDoEvento dadosDoEvento;
 	private BarraDeFerramentas barraDeFerramentas;
 
-	public JanelaPrincipal(Evento evento) {
+	public JanelaPrincipal(Evento evento) throws ParseException {
 		formConvidado = new FormConvidado();
 		dadosDoEvento = new DadosDoEvento(evento);
 		barraDeFerramentas = new BarraDeFerramentas(evento);
