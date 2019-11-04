@@ -7,13 +7,14 @@ import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.text.ParseException;
 
@@ -22,6 +23,15 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JButton;
 
 public class FormConvidado extends JPanel {
 	/**
@@ -37,9 +47,9 @@ public class FormConvidado extends JPanel {
 		setPreferredSize(new Dimension(400, 720));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{100, 275, 0};
-		gridBagLayout.rowHeights = new int[]{40, 40, 40, 40, 40, 40, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{40, 40, 40, 40, 40, 40, 120, 50, 60, 181, 40, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNome = new JLabel("<html><p align=\"right\">Nome:</p></html>");
@@ -101,7 +111,8 @@ public class FormConvidado extends JPanel {
 		gbc_lblTelefone.gridy = 3;
 		add(lblTelefone, gbc_lblTelefone);
 		
-		JComboBox<String> comboDocumento = new JComboBox();
+		JComboBox<String> comboDocumento = new JComboBox<String>();
+		comboDocumento.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		comboDocumento.addItem("RG");
 		comboDocumento.addItem("CPF");
 		comboDocumento.addItem("CNH");
@@ -122,6 +133,7 @@ public class FormConvidado extends JPanel {
 		gbc_txtTelefone.gridy = 3;
 		add(txtTelefone, gbc_txtTelefone);
 		GridBagConstraints gbc_comboDocumento = new GridBagConstraints();
+		gbc_comboDocumento.anchor = GridBagConstraints.WEST;
 		gbc_comboDocumento.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboDocumento.insets = new Insets(0, 0, 5, 5);
 		gbc_comboDocumento.gridx = 0;
@@ -131,14 +143,100 @@ public class FormConvidado extends JPanel {
 		JFormattedTextField txtDocumento = new JFormattedTextField();
 		GridBagConstraints gbc_txtDocumento = new GridBagConstraints();
 		gbc_txtDocumento.insets = new Insets(0, 0, 5, 0);
-		gbc_txtDocumento.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtDocumento.fill = GridBagConstraints.BOTH;
 		gbc_txtDocumento.gridx = 1;
 		gbc_txtDocumento.gridy = 4;
 		add(txtDocumento, gbc_txtDocumento);
 		
 		try {
 			MaskFormatter maskRg = new MaskFormatter("##.###.###-##");
-			maskRg.install(txtDocumento);
+			txtDocumento.setFormatterFactory(new DefaultFormatterFactory(maskRg));
+			
+			JLabel lblDataDeNascimento = new JLabel("<html><p align=\"right\">Data de nascimento:</p></html>");
+			GridBagConstraints gbc_lblDataDeNascimento = new GridBagConstraints();
+			gbc_lblDataDeNascimento.fill = GridBagConstraints.VERTICAL;
+			gbc_lblDataDeNascimento.anchor = GridBagConstraints.EAST;
+			gbc_lblDataDeNascimento.insets = new Insets(0, 0, 5, 5);
+			gbc_lblDataDeNascimento.gridx = 0;
+			gbc_lblDataDeNascimento.gridy = 5;
+			add(lblDataDeNascimento, gbc_lblDataDeNascimento);
+			
+			JDateChooser dateChooser = new JDateChooser();
+			dateChooser.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+			GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+			gbc_dateChooser.insets = new Insets(0, 0, 5, 0);
+			gbc_dateChooser.fill = GridBagConstraints.BOTH;
+			gbc_dateChooser.gridx = 1;
+			gbc_dateChooser.gridy = 5;
+			add(dateChooser, gbc_dateChooser);
+			
+			JLabel lblObservacoes = new JLabel("<html><p align=\"right\">Observações:</p></html>");
+			GridBagConstraints gbc_lblObservacoes = new GridBagConstraints();
+			gbc_lblObservacoes.anchor = GridBagConstraints.NORTHEAST;
+			gbc_lblObservacoes.insets = new Insets(0, 0, 5, 5);
+			gbc_lblObservacoes.gridx = 0;
+			gbc_lblObservacoes.gridy = 6;
+			add(lblObservacoes, gbc_lblObservacoes);
+			
+			JScrollPane scrollObservacoes = new JScrollPane();
+			scrollObservacoes.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			GridBagConstraints gbc_scrollObservacoes = new GridBagConstraints();
+			gbc_scrollObservacoes.insets = new Insets(0, 0, 5, 0);
+			gbc_scrollObservacoes.fill = GridBagConstraints.BOTH;
+			gbc_scrollObservacoes.gridx = 1;
+			gbc_scrollObservacoes.gridy = 6;
+			add(scrollObservacoes, gbc_scrollObservacoes);
+			
+			JTextArea txtrObservacoes = new JTextArea();
+			scrollObservacoes.setViewportView(txtrObservacoes);
+			txtrObservacoes.setLineWrap(true);
+			
+			JCheckBox checkVip = new JCheckBox("<html><p align=\"right\">VIP:</p></html>");
+			checkVip.setHorizontalTextPosition(SwingConstants.LEFT);
+			checkVip.setHorizontalAlignment(SwingConstants.RIGHT);
+			GridBagConstraints gbc_checkVip = new GridBagConstraints();
+			gbc_checkVip.anchor = GridBagConstraints.EAST;
+			gbc_checkVip.insets = new Insets(0, 0, 5, 5);
+			gbc_checkVip.gridx = 0;
+			gbc_checkVip.gridy = 7;
+			add(checkVip, gbc_checkVip);
+			
+			JCheckBox chckbxAcessibilidade = new JCheckBox("<html><p align=\"right\">Necessita de recursos de acessibilidade:</p></html>");
+			chckbxAcessibilidade.setHorizontalTextPosition(SwingConstants.LEFT);
+			chckbxAcessibilidade.setHorizontalAlignment(SwingConstants.RIGHT);
+			GridBagConstraints gbc_chckbxAcessibilidade = new GridBagConstraints();
+			gbc_chckbxAcessibilidade.fill = GridBagConstraints.BOTH;
+			gbc_chckbxAcessibilidade.insets = new Insets(0, 0, 5, 0);
+			gbc_chckbxAcessibilidade.gridx = 1;
+			gbc_chckbxAcessibilidade.gridy = 7;
+			add(chckbxAcessibilidade, gbc_chckbxAcessibilidade);
+			
+			JPanel painelBotoes = new JPanel();
+			GridBagConstraints gbc_painelBotoes = new GridBagConstraints();
+			gbc_painelBotoes.insets = new Insets(0, 0, 5, 0);
+			gbc_painelBotoes.fill = GridBagConstraints.BOTH;
+			gbc_painelBotoes.gridx = 1;
+			gbc_painelBotoes.gridy = 8;
+			add(painelBotoes, gbc_painelBotoes);
+			painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.X_AXIS));
+			
+			JButton btnLimparCampos = new JButton("<html><p align=\"center\">Limpar Campos</p></html>");
+			btnLimparCampos.setPreferredSize(new Dimension(142, 60));
+			btnLimparCampos.setMinimumSize(new Dimension(95, 60));
+			painelBotoes.add(btnLimparCampos);
+			
+			JButton btnAdicionarConvidado = new JButton("<html><p align=\"center\">Adicionar Convidado</p></html>");
+			btnAdicionarConvidado.setMinimumSize(new Dimension(111, 60));
+			btnAdicionarConvidado.setPreferredSize(new Dimension(175, 60));
+			painelBotoes.add(btnAdicionarConvidado);
+			
+			JLabel lblLote = new JLabel("Lote atual:");
+			lblLote.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+			GridBagConstraints gbc_lblLote = new GridBagConstraints();
+			gbc_lblLote.anchor = GridBagConstraints.WEST;
+			gbc_lblLote.gridx = 1;
+			gbc_lblLote.gridy = 10;
+			add(lblLote, gbc_lblLote);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -150,24 +248,47 @@ public class FormConvidado extends JPanel {
 				
 				case "RG":
 					try {
+						txtDocumento.setValue(null);
 						MaskFormatter maskRg = new MaskFormatter("##.###.###-##");
-						maskRg.install(txtDocumento);
+						maskRg.setPlaceholderCharacter(' ');
+						txtDocumento.setFormatterFactory(new DefaultFormatterFactory(maskRg));
 					} catch (ParseException ex) {
 						ex.printStackTrace();
 					}
 					break;
 				case "CPF":
 					try {
-						txtDocumento.removeAll();
+						txtDocumento.setValue(null);
+						txtDocumento.setText("");
 						MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
-						maskCpf.install(txtDocumento);
+						maskCpf.setPlaceholderCharacter(' ');
+						txtDocumento.setFormatterFactory(new DefaultFormatterFactory(maskCpf));
 					} catch (ParseException ex) {
 						ex.printStackTrace();
 					}
 					break;
-				}
-				
-				
+				case "CNH":
+					try {
+						txtDocumento.setValue(null);
+						txtDocumento.setText("");
+						MaskFormatter maskCpf = new MaskFormatter("###########");
+						maskCpf.setPlaceholderCharacter(' ');
+						txtDocumento.setFormatterFactory(new DefaultFormatterFactory(maskCpf));
+					} catch (ParseException ex) {
+						ex.printStackTrace();
+					}
+					break;
+				case "Passaporte":
+					txtDocumento.setValue(null);
+					txtDocumento.setText("");
+					txtDocumento.setFormatterFactory(new DefaultFormatterFactory(null));
+					break;
+				case "Outro":
+					txtDocumento.setValue(null);
+					txtDocumento.setText("");
+					txtDocumento.setFormatterFactory(new DefaultFormatterFactory(null));
+					break;
+				}				
 			}
 		});
 	}

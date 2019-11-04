@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,26 +10,21 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
-import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
 import java.awt.GridLayout;
 import javax.swing.JSpinner;
 import java.awt.Component;
 import javax.swing.SwingConstants;
-import com.toedter.calendar.JCalendar;
-import java.awt.Window.Type;
 import com.toedter.calendar.JDateChooser;
 
 import controller.ListaDupla;
 import model.Convidado;
+import model.Evento;
 
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemListener;
 import javax.swing.JSeparator;
-import java.awt.Rectangle;
 import java.awt.Dimension;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
@@ -39,8 +32,6 @@ import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import javax.swing.JSlider;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
@@ -104,7 +95,6 @@ public class WizardNovoEvento extends JFrame {
 
 		JDateChooser escolhaDataEvento = new JDateChooser();
 		escolhaDataEvento.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		BorderLayout borderLayout = (BorderLayout) escolhaDataEvento.getLayout();
 		painelDataDoEvento.add(escolhaDataEvento);
 
 		JPanel painelQtdPessoas = new JPanel();
@@ -240,13 +230,14 @@ public class WizardNovoEvento extends JFrame {
 		JPanel painelAniversariante = new JPanel();
 		painelDetalhes.add(painelAniversariante);
 
-		JLabel lblAniversariante = new JLabel("Desconto para aniversariantes:");
+		JLabel lblAniversariante = new JLabel("Desconto para aniversariantes do mês:");
 		painelAniversariante.add(lblAniversariante);
 
 		JSlider sliderAniversariante = new JSlider();
 		sliderAniversariante.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblAniversariante.setText(sliderAniversariante.getValue() + "% de desconto para aniversariantes.");
+				lblAniversariante
+						.setText(sliderAniversariante.getValue() + "% de desconto para aniversariantes do mês.");
 			}
 		});
 		sliderAniversariante.setValue(0);
@@ -257,12 +248,8 @@ public class WizardNovoEvento extends JFrame {
 		flowLayout.setAlignment(FlowLayout.TRAILING);
 		contentPane.add(painelInferior);
 
-		JButton btnCancelar1 = new JButton("Cancelar");
-		painelInferior.add(btnCancelar1);
-		btnCancelar1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		JButton btnCancelar = new JButton("Cancelar");
+		painelInferior.add(btnCancelar);
 
 		painelBotoes = new JPanel();
 		painelInferior.add(painelBotoes);
@@ -302,14 +289,7 @@ public class WizardNovoEvento extends JFrame {
 				clBotoes.previous(painelBotoes);
 			}
 		});
-		
-		btnIniciarLista.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ListaDupla<Convidado> listaDeConvidados = new ListaDupla<Convidado>();
-				
-			}
-		});
-		
+
 		convitesRestantes = (int) spinnerQtdConvidados.getValue() % 3;
 
 		cl1 = ((int) spinnerQtdConvidados.getValue() / 3) + convitesRestantes;
@@ -322,7 +302,7 @@ public class WizardNovoEvento extends JFrame {
 		spinnerConvites1.setModel(new SpinnerNumberModel(cl1, 0, cl1, 1));
 		spinnerConvites2.setModel(new SpinnerNumberModel(cl2, 0, cl2, 1));
 		spinnerConvites3.setModel(new SpinnerNumberModel(cl3, 0, cl3, 1));
-		
+
 		spinnerQtdConvidados.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 
@@ -347,8 +327,9 @@ public class WizardNovoEvento extends JFrame {
 			public void stateChanged(ChangeEvent e) {
 				cl1 = (int) spinnerConvites1.getValue();
 				convitesRestantes = (int) spinnerQtdConvidados.getValue() - cl1 - cl2 - cl3;
-				
-				spinnerConvites2.setModel(new SpinnerNumberModel(cl2, 0, cl2 + (convitesRestantes / 2) + (convitesRestantes % 2), 1));
+
+				spinnerConvites2.setModel(
+						new SpinnerNumberModel(cl2, 0, cl2 + (convitesRestantes / 2) + (convitesRestantes % 2), 1));
 				spinnerConvites2.setValue(cl2);
 				spinnerConvites3.setModel(new SpinnerNumberModel(cl3, 0, cl3 + (convitesRestantes / 2), 1));
 				spinnerConvites3.setValue(cl3);
@@ -356,27 +337,29 @@ public class WizardNovoEvento extends JFrame {
 		});
 
 		spinnerConvites2.addChangeListener(new ChangeListener() {
-			
+
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				cl2 = (int) spinnerConvites2.getValue();
 				convitesRestantes = (int) spinnerQtdConvidados.getValue() - cl1 - cl2 - cl3;
-				
-				spinnerConvites1.setModel(new SpinnerNumberModel(cl1, 0, cl1 + (convitesRestantes / 2) + (convitesRestantes % 2), 1));
+
+				spinnerConvites1.setModel(
+						new SpinnerNumberModel(cl1, 0, cl1 + (convitesRestantes / 2) + (convitesRestantes % 2), 1));
 				spinnerConvites1.setValue(cl1);
 				spinnerConvites3.setModel(new SpinnerNumberModel(cl3, 0, cl3 + (convitesRestantes / 2), 1));
 				spinnerConvites3.setValue(cl3);
 			}
 		});
-		
+
 		spinnerConvites3.addChangeListener(new ChangeListener() {
-			
+
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				cl3 = (int) spinnerConvites3.getValue();
 				convitesRestantes = (int) spinnerQtdConvidados.getValue() - cl1 - cl2 - cl3;
-				
-				spinnerConvites1.setModel(new SpinnerNumberModel(cl1, 0, cl1 + (convitesRestantes / 2) + (convitesRestantes % 2), 1));
+
+				spinnerConvites1.setModel(
+						new SpinnerNumberModel(cl1, 0, cl1 + (convitesRestantes / 2) + (convitesRestantes % 2), 1));
 				spinnerConvites1.setValue(cl1);
 				spinnerConvites2.setModel(new SpinnerNumberModel(cl2, 0, cl2 + (convitesRestantes / 2), 1));
 				spinnerConvites2.setValue(cl2);
@@ -385,6 +368,31 @@ public class WizardNovoEvento extends JFrame {
 
 		convitesRestantes = (int) spinnerQtdConvidados.getValue() - (int) spinnerConvites1.getValue()
 				- (int) spinnerConvites2.getValue() - (int) spinnerConvites3.getValue();
+
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MenuInicial();
+			}
+		});
+
+		btnIniciarLista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaDupla<Convidado> listaConvidados = new ListaDupla<Convidado>();
+				Evento novoEvento = new Evento(txtNomeDoEvento.getText(), escolhaDataEvento.getDate(),
+						Integer.parseInt(spinnerQtdConvidados.getValue().toString()), escolhaDataLote1.getDate(),
+						Integer.parseInt(spinnerConvites1.getValue().toString()),
+						Double.parseDouble(spinnerValor1.getValue().toString()), escolhaDataLote2.getDate(),
+						Integer.parseInt(spinnerConvites2.getValue().toString()),
+						Double.parseDouble(spinnerValor2.getValue().toString()), escolhaDataLote3.getDate(),
+						Integer.parseInt(spinnerConvites3.getValue().toString()),
+						Double.parseDouble(spinnerValor3.getValue().toString()),
+						Double.parseDouble(spinnerValorPortaria.getValue().toString()), sliderAniversariante.getValue(),
+						listaConvidados);
+				dispose();
+				new JanelaPrincipal(novoEvento);
+			}
+		});
 
 		setVisible(true);
 	}

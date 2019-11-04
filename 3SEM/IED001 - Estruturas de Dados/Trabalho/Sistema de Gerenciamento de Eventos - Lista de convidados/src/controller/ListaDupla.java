@@ -118,39 +118,6 @@ public class ListaDupla<T> {
 		this.qtdNo--;
 	}
 
-	// // Método INSERE POSIÇÃO (sem recursão)
-	// public void inserePosicao(T conteudo, int posicao) {
-	// if(posicao < 2) {
-	// this.inserePrimeiro(conteudo);
-	// return;
-	// }else if(posicao > this.qtdNo) {
-	// this.insereUltimo(conteudo);
-	// return;
-	// }else if(posicao < this.qtdNo / 2) {
-	// No<T> novoNo = new No<T>(conteudo);
-	// No<T> contador = this.primeiro;
-	// for (int i = 1; i < posicao - 1; i++) {
-	// contador = contador.getProximo();
-	// }
-	// novoNo.setAnterior(contador);
-	// novoNo.setProximo(contador.getProximo());
-	// contador.getProximo().setAnterior(novoNo);
-	// contador.setProximo(novoNo);
-	// }else{
-	// No<T> novoNo = new No<T>(conteudo);
-	// No<T> contador = this.ultimo;
-	// for (int i = this.qtdNo; i > posicao; i--) {
-	// contador = contador.getAnterior();
-	// }
-	// novoNo.setProximo(contador);
-	// novoNo.setAnterior(contador.getAnterior());
-	// contador.getAnterior().setProximo(novoNo);
-	// contador.setAnterior(novoNo);
-	// }
-	// this.qtdNo++;
-	// this.contaId++;
-	// }
-
 	// Método INSERE POSIÇÃO (recursivo)
 	public No<T> inserePosicao(T conteudo, int posicao) {
 		if (posicao == 2) {

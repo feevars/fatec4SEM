@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -50,7 +49,8 @@ public class MenuInicial extends JFrame {
 		
 		btnNovaLista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//deve chamar aqui o Wizard Novo Evento
+				dispose();
+				new WizardNovoEvento();
 			}
 		});
 		
