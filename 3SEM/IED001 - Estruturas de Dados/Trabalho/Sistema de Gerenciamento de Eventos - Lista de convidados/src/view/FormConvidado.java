@@ -3,6 +3,7 @@ package view;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -21,22 +22,16 @@ import java.util.Date;
 
 import com.toedter.calendar.JDateChooser;
 
-import controller.BuffersArquivo;
-import controller.ListaDupla;
 import model.Convidado;
+import model.Evento;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
-import java.sql.Timestamp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -44,33 +39,55 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
 public class FormConvidado extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -6302842264749013613L;
 
-	private static final Color CINZA = new Color(75, 82, 103);
+//	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
 	private static final Color VIOLETA = new Color(134, 97, 193);
 
 	private JTextField txtNome;
 	private JTextField txtSobrenome;
 	private JTextField txtEmail;
-
-	private BuffersArquivo buffer = new BuffersArquivo();
-
-	public FormConvidado() throws ParseException {
+	private JFormattedTextField txtTelefone;
+	private JFormattedTextField txtDocumento;
+	private JComboBox<String> comboDocumento;
+	private JDateChooser escolhaDataNascimento;
+	private JCheckBox checkVip;
+	private JCheckBox chckbxAcessibilidade;
+	private Date dataAtual;
+	private int loteAtual;
+	
+	public FormConvidado(Evento evento) throws ParseException {
 		setBorder(new CompoundBorder(new EmptyBorder(3, 3, 3, 3),
 				new TitledBorder(new EtchedBorder(EtchedBorder.RAISED, Color.WHITE, VIOLETA), "Adicionar Convidado",
 						TitledBorder.CENTER, TitledBorder.TOP, null, Color.WHITE)));
 		setPreferredSize(new Dimension(400, 720));
 		setBackground(AZUL_ESCURO);
 		setForeground(Color.WHITE);
+		
+		dataAtual = new Date();
+		
+		if (dataAtual.before(evento.getDataLote1())
+				&& evento.getQtdLote1() > 0) {
+			loteAtual = 1;
+		} else if (dataAtual.after(evento.getDataLote1()) && dataAtual.before(evento.getDataLote2())
+				&& evento.getQtdLote2() > 0) {
+			loteAtual = 2;
+		} else if (dataAtual.after(evento.getDataLote2()) && dataAtual.before(evento.getDataLote3())
+				&& evento.getQtdLote3() > 0) {
+			loteAtual = 3;
+		} else {
+			loteAtual = 0; // Portaria
+		}
+		
+
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 100, 275, 0 };
-		gridBagLayout.rowHeights = new int[] { 40, 40, 40, 40, 40, 40, 120, 50, 60, 181, 40, 0 };
+		gridBagLayout.rowHeights = new int[] { 40, 40, 40, 40, 40, 40, 50, 60, 181, 40, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
@@ -137,7 +154,7 @@ public class FormConvidado extends JPanel {
 		gbc_lblTelefone.gridy = 3;
 		add(lblTelefone, gbc_lblTelefone);
 
-		JComboBox<String> comboDocumento = new JComboBox<String>();
+		comboDocumento = new JComboBox<String>();
 		comboDocumento.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		comboDocumento.addItem("RG");
 		comboDocumento.addItem("CPF");
@@ -145,7 +162,7 @@ public class FormConvidado extends JPanel {
 		comboDocumento.addItem("Passaporte");
 		comboDocumento.addItem("Outro");
 
-		JFormattedTextField txtTelefone = new JFormattedTextField();
+		txtTelefone = new JFormattedTextField();
 		GridBagConstraints gbc_txtTelefone = new GridBagConstraints();
 		try {
 			MaskFormatter maskTelefone = new MaskFormatter("(##) #####-####");
@@ -166,7 +183,7 @@ public class FormConvidado extends JPanel {
 		gbc_comboDocumento.gridy = 4;
 		add(comboDocumento, gbc_comboDocumento);
 
-		JFormattedTextField txtDocumento = new JFormattedTextField();
+		txtDocumento = new JFormattedTextField();
 		GridBagConstraints gbc_txtDocumento = new GridBagConstraints();
 		gbc_txtDocumento.insets = new Insets(0, 0, 5, 0);
 		gbc_txtDocumento.fill = GridBagConstraints.BOTH;
@@ -187,7 +204,7 @@ public class FormConvidado extends JPanel {
 		gbc_lblDataDeNascimento.gridy = 5;
 		add(lblDataDeNascimento, gbc_lblDataDeNascimento);
 
-		JDateChooser escolhaDataNascimento = new JDateChooser();
+		escolhaDataNascimento = new JDateChooser();
 		escolhaDataNascimento.setBackground(AZUL_ESCURO);
 		escolhaDataNascimento.setForeground(Color.WHITE);
 		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
@@ -197,29 +214,7 @@ public class FormConvidado extends JPanel {
 		gbc_dateChooser.gridy = 5;
 		add(escolhaDataNascimento, gbc_dateChooser);
 
-		JLabel lblObservacoes = new JLabel("<html><p align=\"right\">Observações:</p></html>");
-		lblObservacoes.setForeground(Color.WHITE);
-		GridBagConstraints gbc_lblObservacoes = new GridBagConstraints();
-		gbc_lblObservacoes.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblObservacoes.insets = new Insets(0, 0, 5, 5);
-		gbc_lblObservacoes.gridx = 0;
-		gbc_lblObservacoes.gridy = 6;
-		add(lblObservacoes, gbc_lblObservacoes);
-
-		JScrollPane scrollObservacoes = new JScrollPane();
-		scrollObservacoes.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		GridBagConstraints gbc_scrollObservacoes = new GridBagConstraints();
-		gbc_scrollObservacoes.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollObservacoes.fill = GridBagConstraints.BOTH;
-		gbc_scrollObservacoes.gridx = 1;
-		gbc_scrollObservacoes.gridy = 6;
-		add(scrollObservacoes, gbc_scrollObservacoes);
-
-		JTextArea txtrObservacoes = new JTextArea();
-		scrollObservacoes.setViewportView(txtrObservacoes);
-		txtrObservacoes.setLineWrap(true);
-
-		JCheckBox checkVip = new JCheckBox("<html><p align=\"right\">VIP:</p></html>");
+		checkVip = new JCheckBox("<html><p align=\"right\">VIP:</p></html>");
 		checkVip.setIcon(new ImageIcon(FormConvidado.class.getResource("/assets/checknao.png")));
 		checkVip.setSelectedIcon(new ImageIcon(FormConvidado.class.getResource("/assets/checksim.png")));
 		checkVip.setForeground(Color.WHITE);
@@ -229,10 +224,10 @@ public class FormConvidado extends JPanel {
 		gbc_checkVip.anchor = GridBagConstraints.EAST;
 		gbc_checkVip.insets = new Insets(0, 0, 5, 5);
 		gbc_checkVip.gridx = 0;
-		gbc_checkVip.gridy = 7;
+		gbc_checkVip.gridy = 6;
 		add(checkVip, gbc_checkVip);
 
-		JCheckBox chckbxAcessibilidade = new JCheckBox(
+		chckbxAcessibilidade = new JCheckBox(
 				"<html><p align=\"right\">Necessita de recursos de acessibilidade:</p></html>");
 		chckbxAcessibilidade.setSelectedIcon(new ImageIcon(FormConvidado.class.getResource("/assets/checksim.png")));
 		chckbxAcessibilidade.setIcon(new ImageIcon(FormConvidado.class.getResource("/assets/checknao.png")));
@@ -243,7 +238,7 @@ public class FormConvidado extends JPanel {
 		gbc_chckbxAcessibilidade.fill = GridBagConstraints.BOTH;
 		gbc_chckbxAcessibilidade.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxAcessibilidade.gridx = 1;
-		gbc_chckbxAcessibilidade.gridy = 7;
+		gbc_chckbxAcessibilidade.gridy = 6;
 		add(chckbxAcessibilidade, gbc_chckbxAcessibilidade);
 
 		JPanel painelBotoes = new JPanel();
@@ -253,7 +248,7 @@ public class FormConvidado extends JPanel {
 		gbc_painelBotoes.insets = new Insets(0, 0, 5, 0);
 		gbc_painelBotoes.fill = GridBagConstraints.BOTH;
 		gbc_painelBotoes.gridx = 1;
-		gbc_painelBotoes.gridy = 8;
+		gbc_painelBotoes.gridy = 7;
 		add(painelBotoes, gbc_painelBotoes);
 		painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.X_AXIS));
 
@@ -268,14 +263,20 @@ public class FormConvidado extends JPanel {
 		btnAdicionarConvidado.setMinimumSize(new Dimension(111, 60));
 		btnAdicionarConvidado.setPreferredSize(new Dimension(175, 60));
 		painelBotoes.add(btnAdicionarConvidado);
-
-		JLabel lblLote = new JLabel("Lote atual:");
+		
+		
+		JLabel lblLote = new JLabel();
+		if(loteAtual == 0) {
+			lblLote.setText("Portaria");
+		}else {
+			lblLote.setText(loteAtual + "º Lote");
+		}
 		lblLote.setForeground(VIOLETA);
 		lblLote.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblLote = new GridBagConstraints();
 		gbc_lblLote.anchor = GridBagConstraints.WEST;
 		gbc_lblLote.gridx = 1;
-		gbc_lblLote.gridy = 10;
+		gbc_lblLote.gridy = 9;
 		add(lblLote, gbc_lblLote);
 
 		comboDocumento.addItemListener(new ItemListener() {
@@ -330,34 +331,65 @@ public class FormConvidado extends JPanel {
 		
 		btnLimparCampos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtNome.setText("");
-				txtSobrenome.setText("");
-				txtEmail.setText("");
-				txtTelefone.setText("");
-				txtrObservacoes.setText("");
-				comboDocumento.removeItemAt(0);;
-				checkVip.setSelected(false);
-				chckbxAcessibilidade.setSelected(false);
-				txtDocumento.setText("");	
+				limparCampos();
 			}
 		});
 		
 		btnAdicionarConvidado.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				ListaDupla<Convidado> listaConvidados = new ListaDupla<Convidado>();
-				Convidado novoConvidado = new Convidado(novoConvidado.getId(), 
-						txtNome.getText(), txtSobrenome.getText(),	
-						txtEmail.getText(), txtTelefone.getText(),
-						escolhaDataNascimento.getDate(), comboDocumento.getSelectedIndex(),
-						txtDocumento.getText(), chckbxAcessibilidade.isSelected(), 
-						txtrObservacoes.getText());
 				
-				listaConvidados.inserePrimeiro(novoConvidado);
+				
+				double porcentagemRestante = ((double)(evento.getQtdConvites() - evento.getListaConvidados().getQtdNo()) * 100) / (double) evento.getQtdConvites();
+				
+				if(evento.getQtdConvites() <= evento.getListaConvidados().getQtdNo()) {
+					JOptionPane.showMessageDialog(null, "Seu evento já está lotado.\n"
+							+ "Impossível adicionar novo convidado.");	
+				}else {
+					Convidado novoConvidado = new Convidado(evento.getListaConvidados().getContaId(),
+							txtNome.getText(),
+							txtSobrenome.getText(),
+							txtEmail.getText(),
+							txtTelefone.getText(),
+							escolhaDataNascimento.getDate(),
+							comboDocumento.getSelectedItem().toString(),
+							txtDocumento.getText(),
+							chckbxAcessibilidade.isSelected(),
+							checkVip.isSelected(),
+							loteAtual);
+					evento.getListaConvidados().inserePrimeiro(novoConvidado);
+					switch (loteAtual) {
+					case 1:
+						evento.setQtdLote1(evento.getQtdLote1() - 1);
+						break;
+					case 2:
+						evento.setQtdLote2(evento.getQtdLote2() - 1);
+						break;
+					case 3:
+						evento.setQtdLote3(evento.getQtdLote3() - 1);
+						break;
+					default:
+						break;
+					}
+					
+					JOptionPane.showMessageDialog(null, "Convidado adicionado.\n"
+							+ "Restam " + porcentagemRestante + "% da lista.");
+					limparCampos();
+				}
 			}
-			
 		});
+	}
+	
+	public void limparCampos() {
+		txtNome.setText("");
+		txtSobrenome.setText("");
+		txtEmail.setText("");
+		txtTelefone.setText("");
+		escolhaDataNascimento.setDate(null);
+		comboDocumento.setSelectedIndex(0);
+		checkVip.setSelected(false);
+		chckbxAcessibilidade.setSelected(false);
+		txtDocumento.setText("");	
 	}
 
 }

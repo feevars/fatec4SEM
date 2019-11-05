@@ -19,7 +19,7 @@ public class JanelaPrincipal extends JFrame {
 	private BarraDeFerramentas barraDeFerramentas;
 
 	public JanelaPrincipal(Evento evento) throws ParseException {
-		formConvidado = new FormConvidado();
+		formConvidado = new FormConvidado(evento);
 		dadosDoEvento = new DadosDoEvento(evento);
 		barraDeFerramentas = new BarraDeFerramentas(evento);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

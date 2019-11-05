@@ -3,8 +3,8 @@ package controller;
 public class No<T>{
 	
 	private T conteudo;
-	private No proximo;
-	private No anterior;
+	private No<T> proximo;
+	private No<T> anterior;
 	
 	public No(T conteudo) {
 		this.conteudo = conteudo;
@@ -20,25 +20,25 @@ public class No<T>{
 		this.conteudo = conteudo;
 	}
 
-	public No getProximo() {
+	public No<T> getProximo() {
 		return proximo;
 	}
 
-	public void setProximo(No proximo) {
+	public void setProximo(No<T> proximo) {
 		this.proximo = proximo;
 	}
 
-	public No getAnterior() {
+	public No<T> getAnterior() {
 		return anterior;
 	}
 
-	public void setAnterior(No anterior) {
+	public void setAnterior(No<T> anterior) {
 		this.anterior = anterior;
 	}
 
 	@Override
 	public String toString() {
-		return "No [conteudo=" + conteudo + ", proximo=" + proximo + ", anterior=" + anterior + "]";
+		return conteudo.toString();
 	}
 	
 	

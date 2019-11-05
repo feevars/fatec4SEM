@@ -11,16 +11,26 @@ public class Convidado {
 	private String email;
 	private String telefone;
 	private Date nascimento;
-	private boolean aniversariante;
-	private boolean acessibilidade;
 	private String tipoDocumento;
 	private String numDocumento;
-	private String observacoes;
-	private String lote;
+	private boolean acessibilidade;
+	private boolean vip;
+	private int lote;
 	private Timestamp adicao;
 
-	public Convidado(int id, String nome, String sobreNome, String email, String telefone, Date nascimento,
-			boolean aniversariante, String tipoDocumento, String numDocumento, boolean acessibilidade, String observacoes, String lote) {
+	public Convidado(
+						int id,
+						String nome,
+						String sobreNome,
+						String email,
+						String telefone,
+						Date nascimento,
+						String tipoDocumento,
+						String numDocumento,
+						boolean acessibilidade,
+						boolean vip,
+						int lote
+					) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -31,7 +41,7 @@ public class Convidado {
 		this.tipoDocumento = tipoDocumento;
 		this.numDocumento = numDocumento;
 		this.acessibilidade = acessibilidade;
-		this.observacoes = observacoes;
+		this.vip = vip;
 		this.lote = lote;
 
 		Date data = new Date();
@@ -94,8 +104,15 @@ public class Convidado {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
-
 	
+	public boolean isVip() {
+		return vip;
+	}
+
+	public void setVip(boolean vip) {
+		this.vip = vip;
+	}
+
 	public boolean isAcessibilidade() {
 		return acessibilidade;
 	}
@@ -104,20 +121,8 @@ public class Convidado {
 		this.acessibilidade = acessibilidade;
 	}
 
-	public String getObservacoes() {
-		return observacoes;
-	}
-
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
-	}
-
-	public String getLote() {
+	public int getLote() {
 		return lote;
-	}
-
-	public void setLote(String lote) {
-		this.lote = lote;
 	}
 
 	public int getId() {
@@ -130,9 +135,17 @@ public class Convidado {
 
 	@Override
 	public String toString() {
-		return "Convidado [id=" + id + ", nome=" + nome + ", sobreNome=" + sobreNome + ", email=" + email
-				+ ", telefone=" + telefone + ", nascimento=" + nascimento + ", aniversariante=" + aniversariante
-				+ ", acessibilidade=" + acessibilidade + ", observacoes=" + observacoes + ", lote=" + lote + ", adicao="
-				+ adicao + "]\n";
+		return "ID: " + id
+				+"\nNome: " + nome
+				+ "\nSobrenome: " + sobreNome
+				+ "\nEmail: " + email
+				+ "\nTelefone: " + telefone
+				+ "\nNascimento: " + nascimento
+				+ "\nTipo do Documento: " + tipoDocumento
+				+ "\nNúmero do Documento: " + numDocumento
+				+ "\nAcessibilidade: " + acessibilidade
+				+ "\nVIP: " + vip
+				+ "\nLote: " + lote
+				+ "\nAdição: " + adicao;
 	}
 }

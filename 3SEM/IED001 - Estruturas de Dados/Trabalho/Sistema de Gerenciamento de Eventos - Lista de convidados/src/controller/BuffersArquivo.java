@@ -70,6 +70,9 @@ public class BuffersArquivo {
 		bw.write(evento.getDataLote3().toString());
 		bw.newLine();
 		bw.write("=====================================================");
+		bw.newLine();
+		bw.write(evento.getListaConvidados().listaString());
+		bw.newLine();
 		bw.close();
 	}
 

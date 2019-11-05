@@ -15,12 +15,12 @@ public class ListaDupla<T> {
 	private int contadorInt;
 
 	public ListaDupla() {
-		this.primeiro = null;
-		this.ultimo = null;
-		this.qtdNo = 0;
-		this.contaId = 0;
-		this.contador = this.primeiro;
-		this.contadorInt = 0;
+		primeiro = null;
+		ultimo = null;
+		qtdNo = 0;
+		contaId = 1;
+		contador = primeiro;
+		contadorInt = 0;
 	}
 
 	public int getContadorInt() {
@@ -63,77 +63,76 @@ public class ListaDupla<T> {
 	// Método INSERE PRIMEIRO
 	public void inserePrimeiro(T conteudo) {
 		No<T> novoNo = new No<T>(conteudo);
-		if (this.estaVazia())
-			this.ultimo = novoNo;
+		if (estaVazia())
+			ultimo = novoNo;
 		else
-			this.primeiro.setAnterior(novoNo);
-		novoNo.setProximo(this.primeiro);
-		this.primeiro = novoNo;
-		this.contador = this.primeiro;
-		this.qtdNo++;
-		this.contaId++;
+			primeiro.setAnterior(novoNo);
+		novoNo.setProximo(primeiro);
+		primeiro = novoNo;
+		contador = primeiro;
+		qtdNo++;
+		contaId++;
 	}
 
 	// Método REMOVE PRIMEIRO
 	public void removePrimeiro() {
 		if (qtdNo == 1) {
-			this.primeiro = null;
-			this.ultimo = null;
-			this.contador = this.primeiro;
+			primeiro = null;
+			ultimo = null;
+			contador = this.primeiro;
 		} else {
-			this.contador = this.primeiro;
-			this.primeiro = this.primeiro.getProximo();
-			this.primeiro.setAnterior(null);
-			this.contador = this.primeiro;
+			contador = primeiro;
+			primeiro = (No<T>) primeiro.getProximo();
+			primeiro.setAnterior(null);
+			contador = primeiro;
 		}
-		this.qtdNo--;
+		qtdNo--;
 	}
 
 	// Método INSERE ÚLTIMO
 	public void insereUltimo(T conteudo) {
 		No<T> novoNo = new No<T>(conteudo);
-		if (this.estaVazia())
-			this.primeiro = novoNo;
+		if (estaVazia())
+			primeiro = novoNo;
 		else
-			this.ultimo.setProximo(novoNo);
-		novoNo.setAnterior(this.ultimo);
-		this.ultimo = novoNo;
-		this.contador = this.primeiro;
-		this.qtdNo++;
-		this.contaId++;
+			ultimo.setProximo(novoNo);
+		novoNo.setAnterior(ultimo);
+		ultimo = novoNo;
+		contador = primeiro;
+		qtdNo++;
+		contaId++;
 	}
 
 	// Método Remove Último
 	public void removeUltimo() {
 		if (qtdNo == 1) {
-			this.primeiro = null;
-			this.ultimo = null;
-			this.contador = this.primeiro;
+			primeiro = null;
+			ultimo = null;
+			contador = primeiro;
 		} else {
-			this.contador = this.ultimo;
-			this.ultimo = this.ultimo.getAnterior();
-			this.ultimo.setProximo(null);
-			this.contador = this.primeiro;
+			contador = ultimo;
+			ultimo = ultimo.getAnterior();
+			ultimo.setProximo(null);
+			contador = primeiro;
 		}
-		this.qtdNo--;
+		qtdNo--;
 	}
 
 	// Método INSERE POSIÇÃO (recursivo)
 	public No<T> inserePosicao(T conteudo, int posicao) {
 		if (posicao == 2) {
-			// Retorno a inserção - ponto de parada
 			No<T> novoNo = new No<T>(conteudo);
-			novoNo.setAnterior(this.contador);
-			novoNo.setProximo(this.contador.getProximo());
-			this.contador.getProximo().setAnterior(novoNo);
-			this.contador.setProximo(novoNo);
-			this.qtdNo++;
-			this.contaId++;
-			this.contador = this.primeiro;
+			novoNo.setAnterior(contador);
+			novoNo.setProximo(contador.getProximo());
+			contador.getProximo().setAnterior(novoNo);
+			contador.setProximo(novoNo);
+			qtdNo++;
+			contaId++;
+			contador = primeiro;
 			return novoNo;
 		} else {
 			// Recursividade
-			this.contador = this.contador.getProximo();
+			contador = contador.getProximo();
 			return inserePosicao(conteudo, posicao - 1);
 		}
 	}
@@ -141,33 +140,30 @@ public class ListaDupla<T> {
 	// Método recursivo para remover posicao
 	public void removePosicao(int posicao) {
 		if (posicao == 1) {
-			this.contador.getAnterior().setProximo(this.contador.getProximo());
-			this.contador.getProximo().setAnterior(this.contador.getAnterior());
-			this.contador = this.primeiro;
-			this.qtdNo--;
+			contador.getAnterior().setProximo(contador.getProximo());
+			contador.getProximo().setAnterior(contador.getAnterior());
+			contador = primeiro;
+			qtdNo--;
 		} else {
-			this.contador = this.contador.getProximo();
+			contador = contador.getProximo();
 			removePosicao(posicao - 1);
 		}
 	}
 
 	// Método de impressão recursivo de String
 	public String listaString() {
-		if (this.estaVazia())
+		if (estaVazia())
 			return "A lista está vazia.";
-		if (this.contador == this.ultimo) {
-			this.listaTexto += this.ultimo.toString();
+		if (contador == ultimo) {
+			listaTexto += ultimo.toString();
 			String listaImpressa = listaTexto;
-			this.listaTexto = "";
-			this.contador = this.primeiro;
+			listaTexto = "";
+			contador = primeiro;
 			return listaImpressa;
 		} else {
-			this.listaTexto += this.contador.toString();
-			this.contador = this.contador.getProximo();
+			listaTexto += contador.toString();
+			contador = contador.getProximo();
 			return listaString();
 		}
 	}
-
-	
-
 }
