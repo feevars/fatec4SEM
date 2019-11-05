@@ -17,14 +17,18 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.text.ParseException;
+import java.util.Date;
 
 import com.toedter.calendar.JDateChooser;
 
 import controller.BuffersArquivo;
+import controller.ListaDupla;
+import model.Convidado;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
+import java.sql.Timestamp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -323,13 +327,36 @@ public class FormConvidado extends JPanel {
 				}
 			}
 		});
+		
+		btnLimparCampos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtNome.setText("");
+				txtSobrenome.setText("");
+				txtEmail.setText("");
+				txtTelefone.setText("");
+				txtrObservacoes.setText("");
+				comboDocumento.removeItemAt(0);;
+				checkVip.setSelected(false);
+				chckbxAcessibilidade.setSelected(false);
+				txtDocumento.setText("");	
+			}
+		});
+		
 		btnAdicionarConvidado.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				ListaDupla<Convidado> listaConvidados = new ListaDupla<Convidado>();
+				Convidado novoConvidado = new Convidado(novoConvidado.getId(), 
+						txtNome.getText(), txtSobrenome.getText(),	
+						txtEmail.getText(), txtTelefone.getText(),
+						escolhaDataNascimento.getDate(), comboDocumento.getSelectedIndex(),
+						txtDocumento.getText(), chckbxAcessibilidade.isSelected(), 
+						txtrObservacoes.getText());
 				
+				listaConvidados.inserePrimeiro(novoConvidado);
 			}
+			
 		});
 	}
 

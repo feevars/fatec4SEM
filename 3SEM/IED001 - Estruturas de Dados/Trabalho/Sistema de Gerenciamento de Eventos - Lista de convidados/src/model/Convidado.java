@@ -13,12 +13,14 @@ public class Convidado {
 	private Date nascimento;
 	private boolean aniversariante;
 	private boolean acessibilidade;
+	private String tipoDocumento;
+	private String numDocumento;
 	private String observacoes;
 	private String lote;
 	private Timestamp adicao;
 
 	public Convidado(int id, String nome, String sobreNome, String email, String telefone, Date nascimento,
-			boolean aniversariante, boolean acessibilidade, String observacoes, String lote) {
+			boolean aniversariante, String tipoDocumento, String numDocumento, boolean acessibilidade, String observacoes, String lote) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -26,7 +28,8 @@ public class Convidado {
 		this.email = email;
 		this.telefone = telefone;
 		this.nascimento = nascimento;
-		this.aniversariante = aniversariante;
+		this.tipoDocumento = tipoDocumento;
+		this.numDocumento = numDocumento;
 		this.acessibilidade = acessibilidade;
 		this.observacoes = observacoes;
 		this.lote = lote;
@@ -34,6 +37,22 @@ public class Convidado {
 		Date data = new Date();
 		long hora = data.getTime();
 		this.adicao = new Timestamp(hora);
+	}
+
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public String getNumDocumento() {
+		return numDocumento;
+	}
+
+	public void setNumDocumento(String numDocumento) {
+		this.numDocumento = numDocumento;
 	}
 
 	public String getNome() {
@@ -76,14 +95,7 @@ public class Convidado {
 		this.nascimento = nascimento;
 	}
 
-	public boolean isAniversariante() {
-		return aniversariante;
-	}
-
-	public void setAniversariante(boolean aniversariante) {
-		this.aniversariante = aniversariante;
-	}
-
+	
 	public boolean isAcessibilidade() {
 		return acessibilidade;
 	}
