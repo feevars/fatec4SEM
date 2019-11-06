@@ -193,7 +193,7 @@ public class FormConvidado extends JPanel {
 		gbc_txtDocumento.gridy = 4;
 		add(txtDocumento, gbc_txtDocumento);
 
-		MaskFormatter maskRg = new MaskFormatter("##.###.###-##");
+		MaskFormatter maskRg = new MaskFormatter("##.###.###-#");
 		txtDocumento.setFormatterFactory(new DefaultFormatterFactory(maskRg));
 
 		JLabel lblDataDeNascimento = new JLabel("<html><p align=\"right\">Data de nascimento:</p></html>");
@@ -288,7 +288,7 @@ public class FormConvidado extends JPanel {
 				case "RG":
 					try {
 						txtDocumento.setValue(null);
-						MaskFormatter maskRg = new MaskFormatter("##.###.###-##");
+						MaskFormatter maskRg = new MaskFormatter("##.###.###-#");
 						maskRg.setPlaceholderCharacter(' ');
 						txtDocumento.setFormatterFactory(new DefaultFormatterFactory(maskRg));
 					} catch (ParseException ex) {

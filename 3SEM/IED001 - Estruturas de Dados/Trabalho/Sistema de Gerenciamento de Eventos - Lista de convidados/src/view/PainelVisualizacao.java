@@ -26,6 +26,7 @@ public class PainelVisualizacao extends JPanel {
 		setBackground(CINZA);
 		setPreferredSize(new Dimension(480, 540));
 		conteudo = new JPanel();
+		conteudo.setBackground(CINZA);
 		conteudo.setBorder(null);
 		conteudo.setLayout(new BoxLayout(conteudo, BoxLayout.Y_AXIS));
 		scrollVisualizacao = new JScrollPane(conteudo);
@@ -39,7 +40,7 @@ public class PainelVisualizacao extends JPanel {
 	}
 
 	public void adicionaCelula(CelulaConvidado celula) {
-		conteudo.add(celula);
+		conteudo.add(celula, 0);
 		conteudo.repaint();
 		conteudo.revalidate();
 		repaint();

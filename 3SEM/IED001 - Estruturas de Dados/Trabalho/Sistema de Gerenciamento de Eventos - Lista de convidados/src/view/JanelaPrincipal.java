@@ -39,7 +39,7 @@ public class JanelaPrincipal extends JFrame {
 			
 			public void formEventOcurred(FormConvidadoEvent e) {
 				
-				CelulaConvidado novaCelula = new CelulaConvidado();
+				CelulaConvidado novaCelula = new CelulaConvidado(evento.getListaConvidados().getPrimeiro().getConteudo());
 				painelVisualizacao.adicionaCelula(novaCelula);				
 			}
 		});
