@@ -135,17 +135,18 @@ public class Convidado {
 
 	@Override
 	public String toString() {
-		return "ID: " + id
-				+"\nNome: " + nome
-				+ "\nSobrenome: " + sobreNome
-				+ "\nEmail: " + email
-				+ "\nTelefone: " + telefone
-				+ "\nNascimento: " + nascimento
-				+ "\nTipo do Documento: " + tipoDocumento
-				+ "\nNúmero do Documento: " + numDocumento
-				+ "\nAcessibilidade: " + acessibilidade
-				+ "\nVIP: " + vip
-				+ "\nLote: " + lote
-				+ "\nAdição: " + adicao;
+		return id
+				+"\n" + nome
+				+ "\n" + sobreNome
+				+ "\n" + email
+				+ "\n" + telefone
+				+ "\n" + nascimento
+				+ "\n" + tipoDocumento
+				+ "\n" + numDocumento
+				+ "\n" + acessibilidade
+				+ "\n" + vip
+				+ "\n" + lote
+				+ "\n" + adicao
+				+ "\n";
 	}
 }

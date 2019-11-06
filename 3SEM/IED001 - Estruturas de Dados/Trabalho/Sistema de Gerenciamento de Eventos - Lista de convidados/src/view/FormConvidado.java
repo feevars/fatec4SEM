@@ -58,11 +58,13 @@ public class FormConvidado extends JPanel {
 	private Date dataAtual;
 	private int loteAtual;
 	
+	private FormConvidadoListener formListener;
+	
 	public FormConvidado(Evento evento) throws ParseException {
 		setBorder(new CompoundBorder(new EmptyBorder(3, 3, 3, 3),
 				new TitledBorder(new EtchedBorder(EtchedBorder.RAISED, Color.WHITE, VIOLETA), "Adicionar Convidado",
 						TitledBorder.CENTER, TitledBorder.TOP, null, Color.WHITE)));
-		setPreferredSize(new Dimension(400, 720));
+		setPreferredSize(new Dimension(320, 560));
 		setBackground(AZUL_ESCURO);
 		setForeground(Color.WHITE);
 		
@@ -338,8 +340,7 @@ public class FormConvidado extends JPanel {
 		btnAdicionarConvidado.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				
+						
 				double porcentagemRestante = ((double)(evento.getQtdConvites() - evento.getListaConvidados().getQtdNo()) * 100) / (double) evento.getQtdConvites();
 				
 				if(evento.getQtdConvites() <= evento.getListaConvidados().getQtdNo()) {
@@ -374,6 +375,8 @@ public class FormConvidado extends JPanel {
 					
 					JOptionPane.showMessageDialog(null, "Convidado adicionado.\n"
 							+ "Restam " + porcentagemRestante + "% da lista.");
+					FormConvidadoEvent ev = new FormConvidadoEvent(this, evento.getListaConvidados().getPrimeiro().getConteudo());
+					formListener.formEventOcurred(ev);
 					limparCampos();
 				}
 			}
@@ -390,6 +393,10 @@ public class FormConvidado extends JPanel {
 		checkVip.setSelected(false);
 		chckbxAcessibilidade.setSelected(false);
 		txtDocumento.setText("");	
+	}
+	
+	public void setFormListener(FormConvidadoListener listener) {
+		this.formListener = listener;
 	}
 
 }

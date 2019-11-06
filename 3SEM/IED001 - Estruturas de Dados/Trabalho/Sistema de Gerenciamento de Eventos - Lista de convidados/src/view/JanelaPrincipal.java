@@ -15,25 +15,35 @@ public class JanelaPrincipal extends JFrame {
 	
 	private JPanel contentPane;
 	private FormConvidado formConvidado;
-	private DadosDoEvento dadosDoEvento;
 	private BarraDeFerramentas barraDeFerramentas;
+	private PainelVisualizacao painelVisualizacao;
 
 	public JanelaPrincipal(Evento evento) throws ParseException {
 		formConvidado = new FormConvidado(evento);
-		dadosDoEvento = new DadosDoEvento(evento);
 		barraDeFerramentas = new BarraDeFerramentas(evento);
+		painelVisualizacao = new PainelVisualizacao();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1280,720);
+		setSize(800,600);
 		setMinimumSize(getSize());
-		setResizable(true);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(barraDeFerramentas, BorderLayout.NORTH);
-		contentPane.add(dadosDoEvento, BorderLayout.SOUTH);
 		contentPane.add(formConvidado, BorderLayout.WEST);
+		contentPane.add(painelVisualizacao, BorderLayout.CENTER);
 		setContentPane(contentPane);
+		
+		formConvidado.setFormListener(new FormConvidadoListener() {
+			
+			public void formEventOcurred(FormConvidadoEvent e) {
+				
+				CelulaConvidado novaCelula = new CelulaConvidado();
+				painelVisualizacao.adicionaCelula(novaCelula);				
+			}
+		});
+		
 		setVisible(true);
 	}
 

@@ -27,7 +27,7 @@ public class BarraDeFerramentas extends JPanel {
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		flowLayout.setVgap(0);
 		flowLayout.setHgap(0);
-		setPreferredSize(new Dimension(1280, 40));
+		setPreferredSize(new Dimension(800, 40));
 		setBackground(AZUL_ESCURO);
 		
 		JButton btnNovoEvento = new JButton("");

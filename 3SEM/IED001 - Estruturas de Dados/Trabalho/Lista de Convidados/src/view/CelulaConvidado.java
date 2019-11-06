@@ -60,6 +60,7 @@ public class CelulaConvidado extends JPanel {
 			String observacoes, boolean acessibilidade, String lote, Timestamp timestamp) {
 
 		this.labelIdTitulo = new JLabel("Convidado:");
+		setPreferredSize(new Dimension(480, 180));
 		estiloLabelInfo(labelIdTitulo);
 		labelIdTitulo.setForeground(azulClaro);
 		this.labelId = new JLabel("" + id);

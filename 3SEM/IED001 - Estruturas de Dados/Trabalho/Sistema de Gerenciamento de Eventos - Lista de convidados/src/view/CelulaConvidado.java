@@ -22,7 +22,8 @@ public class CelulaConvidado extends JPanel {
 	private static final long serialVersionUID = 8005257527912286592L;
 
 	public CelulaConvidado() {
-		setPreferredSize(new Dimension(880, 140));
+		setPreferredSize(new Dimension(480, 140));
+		setMaximumSize(getPreferredSize());
 		setBorder(new CompoundBorder(new EmptyBorder(3, 3, 3, 3), new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Nome", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0))));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{120, 0, 240, 40, 0};
@@ -38,27 +39,11 @@ public class CelulaConvidado extends JPanel {
 		gbc_lblId.gridy = 0;
 		add(lblId, gbc_lblId);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBorder(new TitledBorder(null, "Observa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 0;
-		add(scrollPane, gbc_scrollPane);
-		
-		JTextArea txtrObservacoes = new JTextArea();
-		txtrObservacoes.setEnabled(false);
-		txtrObservacoes.setEditable(false);
-		txtrObservacoes.setLineWrap(true);
-		scrollPane.setViewportView(txtrObservacoes);
-		
 		JPanel painelDados = new JPanel();
 		GridBagConstraints gbc_painelDados = new GridBagConstraints();
 		gbc_painelDados.insets = new Insets(0, 0, 5, 5);
 		gbc_painelDados.fill = GridBagConstraints.HORIZONTAL;
-		gbc_painelDados.gridx = 2;
+		gbc_painelDados.gridx = 1;
 		gbc_painelDados.gridy = 0;
 		add(painelDados, gbc_painelDados);
 		painelDados.setLayout(new BoxLayout(painelDados, BoxLayout.Y_AXIS));
@@ -74,6 +59,13 @@ public class CelulaConvidado extends JPanel {
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de nascimento:");
 		painelDados.add(lblDataDeNascimento);
+		
+		JLabel lblAcessibilidade = new JLabel("Acessibilidade");
+		GridBagConstraints gbc_lblAcessibilidade = new GridBagConstraints();
+		gbc_lblAcessibilidade.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAcessibilidade.gridx = 2;
+		gbc_lblAcessibilidade.gridy = 0;
+		add(lblAcessibilidade, gbc_lblAcessibilidade);
 		
 		JPanel painelBotoes = new JPanel();
 		GridBagConstraints gbc_painelBotoes = new GridBagConstraints();
@@ -103,16 +95,10 @@ public class CelulaConvidado extends JPanel {
 		gbc_lblAdicao.gridy = 1;
 		add(lblAdicao, gbc_lblAdicao);
 		
-		JLabel lblAcessibilidade = new JLabel("Acessibilidade");
-		GridBagConstraints gbc_lblAcessibilidade = new GridBagConstraints();
-		gbc_lblAcessibilidade.insets = new Insets(0, 0, 0, 5);
-		gbc_lblAcessibilidade.gridx = 2;
-		gbc_lblAcessibilidade.gridy = 1;
-		add(lblAcessibilidade, gbc_lblAcessibilidade);
-		
 		JLabel lblVip = new JLabel("VIP");
 		GridBagConstraints gbc_lblVip = new GridBagConstraints();
-		gbc_lblVip.gridx = 3;
+		gbc_lblVip.insets = new Insets(0, 0, 0, 5);
+		gbc_lblVip.gridx = 2;
 		gbc_lblVip.gridy = 1;
 		add(lblVip, gbc_lblVip);
 		
