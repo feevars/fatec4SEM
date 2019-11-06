@@ -23,6 +23,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.FlowLayout;
 
 public class CelulaConvidado extends JPanel {
 
@@ -45,7 +47,7 @@ public class CelulaConvidado extends JPanel {
 								TitledBorder.TOP, null, new Color(255, 255, 255))));
 		setBackground(CINZA);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 80, 0, 30, 0 };
+		gridBagLayout.columnWidths = new int[] { 80, 320, 40, 0 };
 		gridBagLayout.rowHeights = new int[] { 84, 20, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
@@ -110,17 +112,33 @@ public class CelulaConvidado extends JPanel {
 		JPanel painelBotoes = new JPanel();
 		painelBotoes.setBackground(CINZA);
 		GridBagConstraints gbc_painelBotoes = new GridBagConstraints();
-		gbc_painelBotoes.anchor = GridBagConstraints.NORTH;
+		gbc_painelBotoes.anchor = GridBagConstraints.NORTHEAST;
 		gbc_painelBotoes.insets = new Insets(0, 0, 5, 0);
 		gbc_painelBotoes.gridx = 2;
 		gbc_painelBotoes.gridy = 0;
 		add(painelBotoes, gbc_painelBotoes);
-		painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
+		painelBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 
-		JButton btnEditar = new JButton("editar");
+		JButton btnEditar = new JButton("");
+		btnEditar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnEditar.setIconTextGap(0);
+		btnEditar.setPreferredSize(new Dimension(25, 25));
+		btnEditar.setMaximumSize(btnEditar.getPreferredSize());
+		btnEditar.setMinimumSize(btnEditar.getPreferredSize());
+		btnEditar.setBackground(CINZA);
+		btnEditar.setToolTipText("Editar convidado");
+		btnEditar.setIcon(new ImageIcon(CelulaConvidado.class.getResource("/assets/icone_editar_convidado.png")));
 		painelBotoes.add(btnEditar);
 
-		JButton btnExcluir = new JButton("excluir");
+		JButton btnExcluir = new JButton("");
+		btnExcluir.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnExcluir.setIconTextGap(0);
+		btnExcluir.setPreferredSize(new Dimension(25, 25));
+		btnExcluir.setMaximumSize(btnExcluir.getPreferredSize());
+		btnExcluir.setMinimumSize(btnExcluir.getPreferredSize());
+		btnExcluir.setBackground(CINZA);
+		btnExcluir.setToolTipText("Excluir convidado");
+		btnExcluir.setIcon(new ImageIcon(CelulaConvidado.class.getResource("/assets/icone_excluir_convidado.png")));
 		painelBotoes.add(btnExcluir);
 
 		JLabel lblLote = new JLabel();
