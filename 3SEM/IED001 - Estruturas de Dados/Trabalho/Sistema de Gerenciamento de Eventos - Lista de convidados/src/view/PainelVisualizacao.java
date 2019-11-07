@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
+import model.Evento;
+
 import java.awt.FlowLayout;
 
 public class PainelVisualizacao extends JPanel {
@@ -17,7 +20,7 @@ public class PainelVisualizacao extends JPanel {
 
 	private JScrollPane scrollVisualizacao;
 	private JPanel conteudo;
-
+	
 	public PainelVisualizacao() {
 		FlowLayout flowLayout = (FlowLayout) getLayout();
 		flowLayout.setVgap(0);

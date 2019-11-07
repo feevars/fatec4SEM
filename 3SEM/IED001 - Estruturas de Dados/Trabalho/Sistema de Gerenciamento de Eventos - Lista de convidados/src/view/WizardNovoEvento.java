@@ -18,7 +18,7 @@ import java.awt.Component;
 import javax.swing.SwingConstants;
 import com.toedter.calendar.JDateChooser;
 
-import controller.ListaDupla;
+import controller.ListaConvidados;
 import model.Convidado;
 import model.Evento;
 
@@ -391,7 +391,7 @@ public class WizardNovoEvento extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (validaBotao(txtNomeDoEvento, escolhaDataEvento, escolhaDataLote1, escolhaDataLote2,
 						escolhaDataLote3)) {
-					ListaDupla<Convidado> listaConvidados = new ListaDupla<Convidado>();
+					ListaConvidados listaConvidados = new ListaConvidados();
 					Evento novoEvento = new Evento(txtNomeDoEvento.getText(), escolhaDataEvento.getDate(),
 							Integer.parseInt(spinnerQtdConvidados.getValue().toString()), escolhaDataLote1.getDate(),
 							Integer.parseInt(spinnerConvites1.getValue().toString()),

@@ -5,6 +5,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
 import javax.swing.border.CompoundBorder;
@@ -12,30 +14,43 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import model.Convidado;
+import model.Evento;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 
-public class CelulaConvidado extends JPanel {
+public class CelulaConvidado extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 8005257527912286592L;
-
+	
+	private JButton btnEditar;
+	private JButton btnExcluir;
+	
+	private Convidado convidado;
+	private Evento evento;
+		
 	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_CLARO = new Color(72, 172, 240);
 	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
 	private static final Color VIOLETA = new Color(134, 97, 193);
 
-	public CelulaConvidado(Convidado convidado) {
+	public CelulaConvidado(Evento evento, Convidado convidado) {
+		this.convidado = convidado;
+		this.evento = evento;
 		setPreferredSize(new Dimension(460, 140));
 		setMaximumSize(getPreferredSize());
 		setBorder(
@@ -54,7 +69,7 @@ public class CelulaConvidado extends JPanel {
 		setLayout(gridBagLayout);
 
 		JLabel lblId = new JLabel(
-				"<html><p align=\"Left\">Id:</p><p align=\"Center\" width=\"80\">" + convidado.getId() + "</p></html>");
+				"<html><p align=\"Left\">Id:</p><p align=\"Center\" width=\"80\"><b>" + convidado.getId() + "</b></p></html>");
 		lblId.setForeground(Color.WHITE);
 		lblId.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		lblId.setHorizontalAlignment(SwingConstants.LEFT);
@@ -119,7 +134,7 @@ public class CelulaConvidado extends JPanel {
 		add(painelBotoes, gbc_painelBotoes);
 		painelBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 
-		JButton btnEditar = new JButton("");
+		btnEditar = new JButton("");
 		btnEditar.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnEditar.setIconTextGap(0);
 		btnEditar.setPreferredSize(new Dimension(25, 25));
@@ -130,7 +145,7 @@ public class CelulaConvidado extends JPanel {
 		btnEditar.setIcon(new ImageIcon(CelulaConvidado.class.getResource("/assets/icone_editar_convidado.png")));
 		painelBotoes.add(btnEditar);
 
-		JButton btnExcluir = new JButton("");
+		btnExcluir = new JButton("");
 		btnExcluir.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnExcluir.setIconTextGap(0);
 		btnExcluir.setPreferredSize(new Dimension(25, 25));
@@ -174,7 +189,27 @@ public class CelulaConvidado extends JPanel {
 		gbc_lblVip.gridx = 2;
 		gbc_lblVip.gridy = 1;
 		add(lblVip, gbc_lblVip);
+		
+		btnExcluir.addActionListener(this);
+	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnExcluir) {
+			removeAll();
+			revalidate();
+			repaint();
+			setVisible(false);
+			if (convidado.getLote() == 1) {
+				evento.setQtdLote1(evento.getQtdLote1() + 1);
+			}else if (convidado.getLote() == 2) {
+				evento.setQtdLote2(evento.getQtdLote2() + 1);
+			}else if (convidado.getLote() == 3) {
+				evento.setQtdLote3(evento.getQtdLote3() + 1);
+			}
+			evento.getListaConvidados().removeId(convidado.getId());
+		}
+		
 	}
 
 }

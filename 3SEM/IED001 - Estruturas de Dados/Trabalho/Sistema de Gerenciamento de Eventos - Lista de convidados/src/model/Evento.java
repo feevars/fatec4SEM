@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-import controller.ListaDupla;
+import controller.ListaConvidados;
 
 public class Evento {
 	
@@ -20,12 +20,12 @@ public class Evento {
 	private double valorLote3;
 	private double valorPortaria;
 	private int descontoAniversariante;
-	private ListaDupla<Convidado> listaConvidados;
+	private ListaConvidados listaConvidados;
 	private String caminhoDoArquivo;
 	
 	public Evento(String nome, Date dataEvento, int qtdConvites, Date dataLote1, int qtdLote1, double valorLote1,
 			Date dataLote2, int qtdLote2, double valorLote2, Date dateLote3, int qtdLote3, double valorLote3,
-			double valorPortaria, int descontoAniversariante, ListaDupla<Convidado> listaConvidados, String caminhoDoArquivo) {
+			double valorPortaria, int descontoAniversariante, ListaConvidados listaConvidados, String caminhoDoArquivo) {
 		super();
 		this.nome = nome;
 		this.dataEvento = dataEvento;
@@ -157,11 +157,11 @@ public class Evento {
 		this.descontoAniversariante = descontoAniversariante;
 	}
 
-	public ListaDupla<Convidado> getListaConvidados() {
+	public ListaConvidados getListaConvidados() {
 		return listaConvidados;
 	}
 
-	public void setListaConvidados(ListaDupla<Convidado> listaConvidados) {
+	public void setListaConvidados(ListaConvidados listaConvidados) {
 		this.listaConvidados = listaConvidados;
 	}
 	

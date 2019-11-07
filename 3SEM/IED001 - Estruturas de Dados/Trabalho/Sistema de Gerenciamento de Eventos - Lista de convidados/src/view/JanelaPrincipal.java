@@ -17,7 +17,7 @@ public class JanelaPrincipal extends JFrame {
 	private FormConvidado formConvidado;
 	private BarraDeFerramentas barraDeFerramentas;
 	private PainelVisualizacao painelVisualizacao;
-
+	
 	public JanelaPrincipal(Evento evento) throws ParseException {
 		formConvidado = new FormConvidado(evento);
 		barraDeFerramentas = new BarraDeFerramentas(evento);
@@ -39,12 +39,11 @@ public class JanelaPrincipal extends JFrame {
 			
 			public void formEventOcurred(FormConvidadoEvent e) {
 				
-				CelulaConvidado novaCelula = new CelulaConvidado(evento.getListaConvidados().getPrimeiro().getConteudo());
+				CelulaConvidado novaCelula = new CelulaConvidado(evento, evento.getListaConvidados().getPrimeiro().getConteudo());
 				painelVisualizacao.adicionaCelula(novaCelula);				
 			}
 		});
 		
 		setVisible(true);
 	}
-
 }

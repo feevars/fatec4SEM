@@ -1,26 +1,72 @@
 package controller;
 
-public class ListaDupla<T> {
+import javax.swing.JOptionPane;
+
+import model.Convidado;
+
+public class ListaConvidados {
 	
-	private No<T> primeiro;
-	private No<T> ultimo;
+	private No primeiro;
+	private No ultimo;
 	private int qtdNo;
 	// Conta id:
 	private int contaId;
 	// Contador auxiliar da recursão
-	private No<T> contador;
+	private No contador;
 	// String de resultados
 	private String listaTexto = "";
 	// Contador auxiliar INTEIRO para vetores
 	private int contadorInt;
 
-	public ListaDupla() {
+	public ListaConvidados() {
 		primeiro = null;
 		ultimo = null;
 		qtdNo = 0;
 		contaId = 1;
 		contador = primeiro;
 		contadorInt = 0;
+	}
+	
+	public class No{
+		
+		private Convidado conteudo;
+		private No proximo;
+		private No anterior;
+		
+		public No(Convidado conteudo) {
+			this.conteudo = conteudo;
+			this.proximo = null;
+			this.anterior = null;
+		}
+
+		public Convidado getConteudo() {
+			return conteudo;
+		}
+
+		public void setConteudo(Convidado conteudo) {
+			this.conteudo = conteudo;
+		}
+
+		public No getProximo() {
+			return proximo;
+		}
+
+		public void setProximo(No proximo) {
+			this.proximo = proximo;
+		}
+
+		public No getAnterior() {
+			return anterior;
+		}
+
+		public void setAnterior(No anterior) {
+			this.anterior = anterior;
+		}
+
+		@Override
+		public String toString() {
+			return conteudo.toString();
+		}
 	}
 
 	public int getContadorInt() {
@@ -39,19 +85,19 @@ public class ListaDupla<T> {
 		return contaId;
 	}
 
-	public No<T> getContador() {
+	public No getContador() {
 		return contador;
 	}
 
-	public No<T> getPrimeiro() {
+	public No getPrimeiro() {
 		return primeiro;
 	}
 
-	public No<T> getUltimo() {
+	public No getUltimo() {
 		return ultimo;
 	}
 
-	public void setContador(No<T> contador) {
+	public void setContador(No contador) {
 		this.contador = contador;
 	}
 
@@ -61,8 +107,8 @@ public class ListaDupla<T> {
 	}
 
 	// Método INSERE PRIMEIRO
-	public void inserePrimeiro(T conteudo) {
-		No<T> novoNo = new No<T>(conteudo);
+	public void inserePrimeiro(Convidado conteudo) {
+		No novoNo = new No(conteudo);
 		if (estaVazia())
 			ultimo = novoNo;
 		else
@@ -82,7 +128,7 @@ public class ListaDupla<T> {
 			contador = this.primeiro;
 		} else {
 			contador = primeiro;
-			primeiro = (No<T>) primeiro.getProximo();
+			primeiro = primeiro.getProximo();
 			primeiro.setAnterior(null);
 			contador = primeiro;
 		}
@@ -90,8 +136,8 @@ public class ListaDupla<T> {
 	}
 
 	// Método INSERE ÚLTIMO
-	public void insereUltimo(T conteudo) {
-		No<T> novoNo = new No<T>(conteudo);
+	public void insereUltimo(Convidado conteudo) {
+		No novoNo = new No(conteudo);
 		if (estaVazia())
 			primeiro = novoNo;
 		else
@@ -119,9 +165,9 @@ public class ListaDupla<T> {
 	}
 
 	// Método INSERE POSIÇÃO (recursivo)
-	public No<T> inserePosicao(T conteudo, int posicao) {
+	public No inserePosicao(Convidado conteudo, int posicao) {
 		if (posicao == 2) {
-			No<T> novoNo = new No<T>(conteudo);
+			No novoNo = new No(conteudo);
 			novoNo.setAnterior(contador);
 			novoNo.setProximo(contador.getProximo());
 			contador.getProximo().setAnterior(novoNo);
@@ -148,6 +194,22 @@ public class ListaDupla<T> {
 			contador = contador.getProximo();
 			removePosicao(posicao - 1);
 		}
+	}
+	
+	// Método recursivo para remover um nó que possua um determinado ID
+	public void removeId(int id) {
+		if (contador.getConteudo().getId() == id) {
+			contador.getAnterior().setProximo(contador.getProximo());
+			contador.getProximo().setAnterior(contador.getAnterior());
+			contador = primeiro;
+			qtdNo--;
+			return;
+		}else if (contador == null) {
+			JOptionPane.showMessageDialog(null, "Não existe convidado com o ID solicitado nesta remoção.");
+			return;
+		}
+		contador = contador.getProximo();
+		removeId(id);
 	}
 
 	// Método de impressão recursivo de String
