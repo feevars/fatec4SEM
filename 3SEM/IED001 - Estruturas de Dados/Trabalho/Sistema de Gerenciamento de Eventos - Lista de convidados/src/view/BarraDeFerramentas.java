@@ -30,28 +30,56 @@ public class BarraDeFerramentas extends JPanel {
 		setPreferredSize(new Dimension(800, 40));
 		setBackground(AZUL_ESCURO);
 		
-		JButton btnNovoEvento = new JButton("");
-		btnNovoEvento.setPreferredSize(new Dimension(40, 40));
-		btnNovoEvento.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_nova.png")));
-		btnNovoEvento.setBackground(CINZA);
-		btnNovoEvento.setToolTipText("Novo Evento");
-		add(btnNovoEvento);
+		JButton btnNovo = new JButton("");
+		btnNovo.setPreferredSize(new Dimension(40, 40));
+		btnNovo.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_novo.png")));
+		btnNovo.setBackground(CINZA);
+		btnNovo.setToolTipText("Novo Evento");
+		add(btnNovo);
 		
-		JButton btnAbrirEvento = new JButton("");
-		btnAbrirEvento.setPreferredSize(new Dimension(40, 40));
-		btnAbrirEvento.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_abrir.png")));
-		btnAbrirEvento.setBackground(CINZA);
-		btnAbrirEvento.setToolTipText("Abrir Evento");
-		add(btnAbrirEvento);
+		JButton btnAbrir = new JButton("");
+		btnAbrir.setPreferredSize(new Dimension(40, 40));
+		btnAbrir.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_abrir.png")));
+		btnAbrir.setBackground(CINZA);
+		btnAbrir.setToolTipText("Abrir Evento");
+		add(btnAbrir);
 		
-		JButton btnSalvarEvento = new JButton("");
-		btnSalvarEvento.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_salvar.png")));
-		btnSalvarEvento.setPreferredSize(new Dimension(40, 40));
-		btnSalvarEvento.setBackground(CINZA);
-		btnSalvarEvento.setToolTipText("Salvar Evento");
-		add(btnSalvarEvento);
+		JButton btnSalvar = new JButton("");
+		btnSalvar.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_salvar.png")));
+		btnSalvar.setPreferredSize(new Dimension(40, 40));
+		btnSalvar.setBackground(CINZA);
+		btnSalvar.setToolTipText("Salvar Evento");
+		add(btnSalvar);
 		
-		btnSalvarEvento.addActionListener(new ActionListener() {
+		JButton btnSalvarComo = new JButton("");
+		btnSalvarComo.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_salvar_como.png")));
+		btnSalvarComo.setToolTipText("Salvar Evento como...");
+		btnSalvarComo.setPreferredSize(new Dimension(40, 40));
+		btnSalvarComo.setBackground(CINZA);
+		add(btnSalvarComo);
+		
+		JButton btnEstatisticas = new JButton("");
+		btnEstatisticas.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_estatisticas.png")));
+		btnEstatisticas.setToolTipText("Estatísticas");
+		btnEstatisticas.setPreferredSize(new Dimension(40, 40));
+		btnEstatisticas.setBackground(CINZA);
+		add(btnEstatisticas);
+		
+		JButton btnOrdenar = new JButton("");
+		btnOrdenar.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_ordenar.png")));
+		btnOrdenar.setToolTipText("Ordenar Lista");
+		btnOrdenar.setPreferredSize(new Dimension(40, 40));
+		btnOrdenar.setBackground(CINZA);
+		add(btnOrdenar);
+		
+		JButton btnBuscar = new JButton("");
+		btnBuscar.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_buscar.png")));
+		btnBuscar.setToolTipText("Buscar");
+		btnBuscar.setPreferredSize(new Dimension(40, 40));
+		btnBuscar.setBackground(CINZA);
+		add(btnBuscar);
+		
+		btnSalvar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
