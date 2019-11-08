@@ -46,6 +46,8 @@ public class BuffersArquivo {
 			bw.newLine();
 			bw.write(String.valueOf(evento.getDescontoAniversariante()));
 			bw.newLine();
+			bw.write(evento.getCaminhoDoArquivo());
+			bw.newLine();
 			bw.write(String.format("%.2f", evento.getValorPortaria()));
 			bw.newLine();
 			bw.write(String.format("%.2f", evento.getValorLote1()));
