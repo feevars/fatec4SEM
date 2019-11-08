@@ -62,8 +62,6 @@ public class BarraDeFerramentas extends JPanel {
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}finally {
-					JOptionPane.showMessageDialog(null, "Arquivo gravado com sucesso!");
 				}
 			}
 		});

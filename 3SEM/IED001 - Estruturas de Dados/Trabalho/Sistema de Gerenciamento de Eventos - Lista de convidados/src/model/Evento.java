@@ -165,4 +165,11 @@ public class Evento {
 		this.listaConvidados = listaConvidados;
 	}
 	
+	public String getCaminhoDoArquivo() {
+		return caminhoDoArquivo;
+	}
+	
+	public void setCaminhoDoArquivo(String caminhoDoArquivo) {
+		this.caminhoDoArquivo = caminhoDoArquivo;
+	}
 }
