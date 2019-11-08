@@ -17,7 +17,7 @@ import model.Evento;
 public class BuffersArquivo {
 
 	private JFileChooser escolhedorDeArquivos;
-	private FileNameExtensionFilter filtro = new FileNameExtensionFilter("Somente documentos .TXT", "txt");
+	private FileNameExtensionFilter filtro = new FileNameExtensionFilter("Somente documentos de texto (.txt)", "txt");
 	private String caminho;
 
 	public void escreveArquivo(Evento evento) throws IOException {
@@ -25,9 +25,10 @@ public class BuffersArquivo {
 		escolhedorDeArquivos = new JFileChooser();
 		escolhedorDeArquivos.setCurrentDirectory(
 				new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
-		escolhedorDeArquivos.setDialogTitle("Titulo");
+		escolhedorDeArquivos.setDialogTitle("Salvar evento...");
 		escolhedorDeArquivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		escolhedorDeArquivos.setFileFilter(filtro);
+		escolhedorDeArquivos.setApproveButtonText("Salvar");
 		escolhedorDeArquivos.setAcceptAllFileFilterUsed(false);
 
 		if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
@@ -77,7 +78,5 @@ public class BuffersArquivo {
 		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
 		}
-
 	}
-
 }

@@ -199,9 +199,17 @@ public class ListaConvidados {
 	// Método recursivo para remover um nó que possua um determinado ID
 	public void removeId(int id) {
 		if (contador.getConteudo().getId() == id) {
-			contador.getAnterior().setProximo(contador.getProximo());
-			contador.getProximo().setAnterior(contador.getAnterior());
-			contador = primeiro;
+			if (contador == primeiro) {
+				removePrimeiro();
+				return;
+			}else if (contador == ultimo) {
+				removeUltimo();
+				return;
+			}else {
+				contador.getAnterior().setProximo(contador.getProximo());
+				contador.getProximo().setAnterior(contador.getAnterior());
+				contador = primeiro;				
+			}
 			qtdNo--;
 			return;
 		}else if (contador == null) {
