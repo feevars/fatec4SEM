@@ -1,6 +1,9 @@
 package model;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class Convidado {
@@ -103,6 +106,16 @@ public class Convidado {
 
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
+	}
+	
+	public int getIdade() {
+		
+		if(getNascimento() == null) return -1;
+
+		Date dAtual = new Date();
+		LocalDate ldAtual = dAtual.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate ldNascimento = nascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		return Period.between(ldNascimento, ldAtual).getYears();
 	}
 	
 	public boolean isVip() {

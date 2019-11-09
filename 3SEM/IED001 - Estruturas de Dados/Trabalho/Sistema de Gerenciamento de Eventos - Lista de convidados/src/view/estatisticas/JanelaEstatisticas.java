@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.Evento;
+import java.awt.CardLayout;
 
 public class JanelaEstatisticas extends JFrame {
 
@@ -15,6 +16,7 @@ public class JanelaEstatisticas extends JFrame {
 	
 	private GraficoConvidadoLote graficoConvidadoLote;
 	private BotoesEstatisticas botoesEstatisticas;
+	private JPanel painelGraficos;
 
 
 	public JanelaEstatisticas(Evento evento) {
@@ -28,9 +30,44 @@ public class JanelaEstatisticas extends JFrame {
 		setContentPane(contentPane);
 		
 		graficoConvidadoLote = new GraficoConvidadoLote(evento);
+		
+		CardLayout clPainelGraficos = new CardLayout();
+		painelGraficos = new JPanel();
+		painelGraficos.setLayout(clPainelGraficos);
+		painelGraficos.add(graficoConvidadoLote, "Convidados por Lote");
+		
 		botoesEstatisticas = new BotoesEstatisticas();
+		botoesEstatisticas.setBotoesEstatisticasListener(new BotoesEstatisticasListener() {
+			
+			@Override
+			public void formEventOcurred(BotoesEstatisticasEvent e) {
+				
+				switch (e.getPainel()) {
+				case 0:
+					clPainelGraficos.first(painelGraficos);
+					break;
+				case 1:
+					clPainelGraficos.show(painelGraficos, "Convidados por Lote");
+					break;
+				case 2:
+					
+					break;
+				case 3:
+					
+					break;
+				case 4:
+					
+					break;
+
+				default:
+					break;
+				}
+			}
+		});
 		contentPane.add(botoesEstatisticas, BorderLayout.WEST);
-		contentPane.add(graficoConvidadoLote, BorderLayout.CENTER);
+
+		contentPane.add(painelGraficos, BorderLayout.CENTER);
+
 		setVisible(true);
 	}
 

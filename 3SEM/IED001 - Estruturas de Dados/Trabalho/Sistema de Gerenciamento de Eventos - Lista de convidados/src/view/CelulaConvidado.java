@@ -27,16 +27,16 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 
-public class CelulaConvidado extends JPanel implements ActionListener{
+public class CelulaConvidado extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 8005257527912286592L;
-	
+
 	private JButton btnEditar;
 	private JButton btnExcluir;
-	
+
 	private Convidado convidado;
 	private Evento evento;
-		
+
 	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_CLARO = new Color(72, 172, 240);
 //	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
@@ -62,8 +62,8 @@ public class CelulaConvidado extends JPanel implements ActionListener{
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
-		JLabel lblId = new JLabel(
-				"<html><p align=\"Left\">Id:</p><p align=\"Center\" width=\"80\"><b>" + convidado.getId() + "</b></p></html>");
+		JLabel lblId = new JLabel("<html><p align=\"Left\">Id:</p><p align=\"Center\" width=\"80\"><b>"
+				+ convidado.getId() + "</b></p></html>");
 		lblId.setForeground(Color.WHITE);
 		lblId.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		lblId.setHorizontalAlignment(SwingConstants.LEFT);
@@ -101,12 +101,18 @@ public class CelulaConvidado extends JPanel implements ActionListener{
 		lblDocumento.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		painelDados.add(lblDocumento);
 
+		String idade = "";
+
+		if (convidado.getIdade() != -1) {
+			idade = " - " + convidado.getIdade() + " anos";
+		}
+
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		String dataFormatada = " ";
 		if (convidado.getNascimento() != null)
 			dataFormatada = df.format(convidado.getNascimento());
 		JLabel lblDataDeNascimento = new JLabel(
-				"<html><p align=\"Left\">Data de Nascimento: " + dataFormatada + "</p></html>");
+				"<html><p align=\"Left\">Data de Nascimento: " + dataFormatada + idade + "</p></html>");
 		lblDataDeNascimento.setForeground(Color.WHITE);
 		lblDataDeNascimento.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		painelDados.add(lblDataDeNascimento);
@@ -183,27 +189,27 @@ public class CelulaConvidado extends JPanel implements ActionListener{
 		gbc_lblVip.gridx = 2;
 		gbc_lblVip.gridy = 1;
 		add(lblVip, gbc_lblVip);
-		
+
 		btnExcluir.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == btnExcluir) {
+		if (e.getSource() == btnExcluir) {
 			removeAll();
 			revalidate();
 			repaint();
 			setVisible(false);
 			if (convidado.getLote() == 1) {
 				evento.setQtdLote1(evento.getQtdLote1() + 1);
-			}else if (convidado.getLote() == 2) {
+			} else if (convidado.getLote() == 2) {
 				evento.setQtdLote2(evento.getQtdLote2() + 1);
-			}else if (convidado.getLote() == 3) {
+			} else if (convidado.getLote() == 3) {
 				evento.setQtdLote3(evento.getQtdLote3() + 1);
 			}
 			evento.getListaConvidados().removeId(convidado.getId());
 		}
-		
+
 	}
 
 }

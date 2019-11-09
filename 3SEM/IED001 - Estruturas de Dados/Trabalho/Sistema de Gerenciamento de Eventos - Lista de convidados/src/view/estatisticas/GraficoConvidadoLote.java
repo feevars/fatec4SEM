@@ -35,6 +35,18 @@ public class GraficoConvidadoLote extends JPanel {
 		
 	}
 	
+	private void contaLotes() {
+		
+		while(evento.getListaConvidados().getContador() != null) {
+			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 0) this.qtdPortaria++;
+			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 1) this.qtdLote1++;
+			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 2) this.qtdLote2++;
+			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 3) this.qtdLote3++;
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+	}
+	
 	public void criaGrafico() {
 		DefaultPieDataset dadosNoGrafico = new DefaultPieDataset();
 		dadosNoGrafico.setValue("Lote 1: " + qtdLote1, qtdLote1);
@@ -47,17 +59,5 @@ public class GraficoConvidadoLote extends JPanel {
 				+ "Total: " + (qtdLote1 + qtdLote2 + qtdLote3 + qtdPortaria), dadosNoGrafico);
 		ChartPanel painelGrafico = new ChartPanel(grafico);
 		add(painelGrafico);
-	}
-	
-	private void contaLotes() {
-		
-		while(evento.getListaConvidados().getContador() != null) {
-			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 0) this.qtdPortaria++;
-			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 1) this.qtdLote1++;
-			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 2) this.qtdLote2++;
-			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 3) this.qtdLote3++;
-			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
-		}
-		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
 	}
 }
