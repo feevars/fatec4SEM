@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.Color;
@@ -8,6 +9,7 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import controller.ListaConvidados;
 import model.Evento;
 
 import java.awt.FlowLayout;
@@ -48,7 +50,13 @@ public class PainelVisualizacao extends JPanel {
 		conteudo.revalidate();
 		repaint();
 		revalidate();
-
 	}
-
+	
+	public void imprimeLista(ListaConvidados lista) {
+		conteudo.removeAll();
+		if (lista.estaVazia()) {
+			conteudo.add(new JLabel("A lista está vazia."));
+		}
+	}
+	
 }
