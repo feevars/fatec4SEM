@@ -7,6 +7,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 import model.Evento;
@@ -32,18 +33,20 @@ public class GraficoConvidadoLote extends JPanel {
 		this.qtdLote3 = 0;
 		
 		contaLotes();
-//		criaGrafico();
+		criaGrafico();
 		
 	}
 	
 	public void criaGrafico() {
-		DefaultCategoryDataset dadosNoGrafico = new DefaultCategoryDataset();
-		dadosNoGrafico.setValue(qtdLote1, "Lote 1", "");
-		dadosNoGrafico.setValue(qtdLote2, "Lote 2", "");
-		dadosNoGrafico.setValue(qtdLote3, "Lote 3", "");
-		dadosNoGrafico.setValue(qtdPortaria, "Portaria", "");
+		DefaultPieDataset dadosNoGrafico = new DefaultPieDataset();
+		dadosNoGrafico.setValue("Lote 1: " + qtdLote1, qtdLote1);
+		dadosNoGrafico.setValue("Lote 2: " + qtdLote2, qtdLote2);
+		dadosNoGrafico.setValue("Lote 3: " + qtdLote3, qtdLote3);
+		dadosNoGrafico.setValue("Portaria: " + qtdPortaria, qtdPortaria);
+
 		
-		JFreeChart grafico = ChartFactory.createBarChart("Convites vendidos em cada lote", "A", "B", dadosNoGrafico);
+		JFreeChart grafico = ChartFactory.createPieChart3D("Quantidade de convites por lote\n"
+				+ "Total: " + (qtdLote1 + qtdLote2 + qtdLote3 + qtdPortaria), dadosNoGrafico);
 		ChartPanel painelGrafico = new ChartPanel(grafico);
 		add(painelGrafico);
 	}
@@ -56,7 +59,6 @@ public class GraficoConvidadoLote extends JPanel {
 			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 2) this.qtdLote2++;
 			if(evento.getListaConvidados().getContador().getConteudo().getLote() == 3) this.qtdLote3++;
 			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
-			System.out.println("Lote 1: " + qtdLote1 + "\nLote 2: " + qtdLote2 + "\nLote 3: " + qtdLote3 + "\nPortaria: " + qtdPortaria);
 		}
 		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
 	}
