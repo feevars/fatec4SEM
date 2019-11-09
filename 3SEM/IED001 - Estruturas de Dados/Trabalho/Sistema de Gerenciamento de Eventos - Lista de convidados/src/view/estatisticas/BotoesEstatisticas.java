@@ -1,12 +1,9 @@
-package view;
+package view.estatisticas;
 
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.Color;
 
 public class BotoesEstatisticas extends JPanel {
@@ -14,9 +11,9 @@ public class BotoesEstatisticas extends JPanel {
 	private static final long serialVersionUID = -7766384107156740142L;
 	
 	private static final Color CINZA = new Color(75, 82, 103);
-	private static final Color AZUL_CLARO = new Color(72, 172, 240);
+//	private static final Color AZUL_CLARO = new Color(72, 172, 240);
 	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
-	private static final Color VIOLETA = new Color(134, 97, 193);
+//	private static final Color VIOLETA = new Color(134, 97, 193);
 
 	public BotoesEstatisticas() {
 		setBackground(AZUL_ESCURO);

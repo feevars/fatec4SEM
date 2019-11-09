@@ -1,11 +1,9 @@
-package view;
+package view.estatisticas;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import model.Evento;
 
@@ -25,6 +23,7 @@ public class JanelaEstatisticas extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel();
+		
 		contentPane.setLayout(new BorderLayout());
 		setContentPane(contentPane);
 		

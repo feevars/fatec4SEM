@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 
 import controller.BuffersArquivo;
 import model.Evento;
+import view.estatisticas.JanelaEstatisticas;
+
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;

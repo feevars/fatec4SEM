@@ -18,16 +18,10 @@ import model.Evento;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -45,7 +39,7 @@ public class CelulaConvidado extends JPanel implements ActionListener{
 		
 	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_CLARO = new Color(72, 172, 240);
-	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
+//	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
 	private static final Color VIOLETA = new Color(134, 97, 193);
 
 	public CelulaConvidado(Evento evento, Convidado convidado) {

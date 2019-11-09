@@ -2,7 +2,6 @@ package view;
 
 import java.util.EventObject;
 
-import controller.ListaConvidados;
 import model.Convidado;
 
 public class FormConvidadoEvent extends EventObject {

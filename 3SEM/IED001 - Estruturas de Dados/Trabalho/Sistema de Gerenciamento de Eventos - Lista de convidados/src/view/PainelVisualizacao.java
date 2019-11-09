@@ -10,7 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import controller.ListaConvidados;
-import model.Evento;
 
 import java.awt.FlowLayout;
 

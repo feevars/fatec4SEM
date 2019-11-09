@@ -19,7 +19,6 @@ import javax.swing.SwingConstants;
 import com.toedter.calendar.JDateChooser;
 
 import controller.ListaConvidados;
-import model.Convidado;
 import model.Evento;
 
 import java.awt.event.ActionListener;
@@ -35,16 +34,8 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.BufferedWriter;
 import java.text.ParseException;
-import java.beans.PropertyChangeEvent;
 
 public class WizardNovoEvento extends JFrame {
 

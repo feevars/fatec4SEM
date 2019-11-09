@@ -1,4 +1,4 @@
-package view;
+package view.estatisticas;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -6,9 +6,7 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 
 import model.Evento;
 
