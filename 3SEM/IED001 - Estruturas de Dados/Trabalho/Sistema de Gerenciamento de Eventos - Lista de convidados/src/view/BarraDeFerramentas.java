@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class BarraDeFerramentas extends JPanel implements ActionListener{
+public class BarraDeFerramentas extends JPanel{
 
 	private static final long serialVersionUID = 8481528081497930411L;
 
@@ -29,8 +29,6 @@ public class BarraDeFerramentas extends JPanel implements ActionListener{
 	private JButton btnOrdenar;
 	private JButton btnBuscar;
 	
-	private Evento evento;
-
 	public BarraDeFerramentas(Evento evento) {
 		setForeground(Color.WHITE);
 		FlowLayout flowLayout = (FlowLayout) getLayout();
@@ -96,39 +94,84 @@ public class BarraDeFerramentas extends JPanel implements ActionListener{
 		btnBuscar.setBackground(CINZA);
 		add(btnBuscar);
 
-		btnNovo.addActionListener(this);
-		btnAbrir.addActionListener(this);
-		btnSalvar.addActionListener(this);
-		btnSalvarComo.addActionListener(this);
-		btnRecarregar.addActionListener(this);
-		btnEstatisticas.addActionListener(this);
-		btnOrdenar.addActionListener(this);
-		btnBuscar.addActionListener(this);
-		
-	}
-
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == btnSalvarComo) {
-			BuffersArquivo ba = new BuffersArquivo();
-			try {
-				ba.escreveArquivo(evento);
-
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		
-		if (e.getSource() == btnRecarregar) {
+		btnNovo.addActionListener(new ActionListener() {
 			
-		}
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
-		if (e.getSource() == btnEstatisticas) {
-			new JanelaEstatisticas(evento);
-		}
+		btnAbrir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		btnSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		btnSalvarComo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BuffersArquivo ba = new BuffersArquivo();
+				try {
+					ba.escreveArquivo(evento);
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		btnRecarregar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		btnEstatisticas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new JanelaEstatisticas(evento);
+				
+			}
+		});
+		
+		btnOrdenar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		btnBuscar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 	}
 }
