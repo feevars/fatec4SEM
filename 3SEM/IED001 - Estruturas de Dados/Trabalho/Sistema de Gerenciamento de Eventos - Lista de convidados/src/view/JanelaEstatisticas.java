@@ -16,18 +16,22 @@ public class JanelaEstatisticas extends JFrame {
 	private JPanel contentPane;
 	
 	private GraficoConvidadoLote graficoConvidadoLote;
+	private BotoesEstatisticas botoesEstatisticas;
 
 
 	public JanelaEstatisticas(Evento evento) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(800, 600);
+		setSize(600, 360);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new BorderLayout());
 		setContentPane(contentPane);
 		
 		graficoConvidadoLote = new GraficoConvidadoLote(evento);
-		contentPane.add(graficoConvidadoLote);
+		botoesEstatisticas = new BotoesEstatisticas();
+		contentPane.add(botoesEstatisticas, BorderLayout.WEST);
+		contentPane.add(graficoConvidadoLote, BorderLayout.CENTER);
 		setVisible(true);
 	}
 
