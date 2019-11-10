@@ -70,6 +70,15 @@ public class BotoesEstatisticas extends JPanel {
 				botoesEstatisticasListener.formEventOcurred(evConvidadoLote);
 			}
 		});
+		
+		btnFaixaEtaria.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BotoesEstatisticasEvent evConvidadoLote = new BotoesEstatisticasEvent(this, 2);
+				botoesEstatisticasListener.formEventOcurred(evConvidadoLote);
+			}
+		});
 	}
 
 	public void setBotoesEstatisticasListener(BotoesEstatisticasListener botoesEstatisticasListener) {
