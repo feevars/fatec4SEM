@@ -50,7 +50,11 @@ public class JanelaPrincipal extends JFrame {
 					MetodosLista.mergeSortIdade(vetorConvidados);
 					painelVisualizacao.carregaVetorDaLista(vetorConvidados);
 					break;
-
+				case "ordenarNome":
+					Convidado [] vetorNomes = MetodosLista.vetorLista(evento.getListaConvidados());
+					MetodosLista.mergeSortNome(vetorNomes);
+					painelVisualizacao.carregaVetorDaLista(vetorNomes);
+					break;
 				default:
 					break;
 				}

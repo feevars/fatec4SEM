@@ -202,7 +202,12 @@ public class BarraDeFerramentas extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				if (evento.getListaConvidados().getQtdNo() < 2) {
+					JOptionPane.showMessageDialog(null, "Não há necessidade de ordenar menos de 2 convidados.");
+				} else {
+					BarraDeFerramentasEvent ordenarNome = new BarraDeFerramentasEvent(this, "ordenarNome");
+					barraDeFerramentasListener.formEventOcurred(ordenarNome);
+				}
 
 			}
 		});
