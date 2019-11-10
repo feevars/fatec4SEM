@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.BuffersArquivo;
 import model.Evento;
@@ -8,12 +9,14 @@ import view.estatisticas.JanelaEstatisticas;
 
 import java.awt.Dimension;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class BarraDeFerramentas extends JPanel {
@@ -73,7 +76,7 @@ public class BarraDeFerramentas extends JPanel {
 
 		btnRecarregar = new JButton("");
 		btnRecarregar
-				.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_recarregar_lista.png")));
+		.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_recarregar_lista.png")));
 		btnRecarregar.setToolTipText("Recarregar lista de convidados");
 		btnRecarregar.setPreferredSize(new Dimension(40, 40));
 		btnRecarregar.setBackground(CINZA);
@@ -131,15 +134,37 @@ public class BarraDeFerramentas extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BuffersArquivo ba = new BuffersArquivo();
-				try {
-					ba.escreveArquivo(evento);
 
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				JFileChooser escolhedorDeArquivos = new JFileChooser();
+				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Somente documentos de texto (.txt)",
+						"txt");
+				String caminho;
+
+				escolhedorDeArquivos.setCurrentDirectory(
+						new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
+				escolhedorDeArquivos.setDialogTitle("Salvar evento...");
+				escolhedorDeArquivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				escolhedorDeArquivos.setFileFilter(filtro);
+				escolhedorDeArquivos.setApproveButtonText("Salvar");
+				escolhedorDeArquivos.setAcceptAllFileFilterUsed(false);
+
+				if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
+
+					caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
+					if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt")) caminho += ".txt";
+
+					BuffersArquivo ba = new BuffersArquivo();
+					try {
+						ba.escreveArquivo(evento, caminho);
+
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());					
+					}finally {
+						evento.setCaminhoDoArquivo(caminho);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
 				}
-
 			}
 		});
 

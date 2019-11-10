@@ -73,7 +73,7 @@ public class MenuInicial extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BuffersArquivo ba = new BuffersArquivo();
 				try {
-					ba.abreArquivo("/Users/bruno/Desktop/tttt.txt");
+					ba.abreArquivo("/Users/bruno/Desktop/ListaVazia.txt");
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
