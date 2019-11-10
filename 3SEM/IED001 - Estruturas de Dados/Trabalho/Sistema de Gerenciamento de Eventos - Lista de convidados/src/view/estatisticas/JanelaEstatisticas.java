@@ -14,9 +14,10 @@ public class JanelaEstatisticas extends JFrame {
 	
 	private JPanel contentPane;
 	
-	private GraficoConvidadoLote graficoConvidadoLote;
 	private BotoesEstatisticas botoesEstatisticas;
 	private JPanel painelGraficos;
+	private GraficoConvidadoLote graficoConvidadoLote;
+	private GraficoFaixaEtaria graficoFaixaEtaria;
 
 
 	public JanelaEstatisticas(Evento evento) {
@@ -30,11 +31,13 @@ public class JanelaEstatisticas extends JFrame {
 		setContentPane(contentPane);
 		
 		graficoConvidadoLote = new GraficoConvidadoLote(evento);
+		graficoFaixaEtaria = new GraficoFaixaEtaria(evento);
 		
 		CardLayout clPainelGraficos = new CardLayout();
 		painelGraficos = new JPanel();
 		painelGraficos.setLayout(clPainelGraficos);
 		painelGraficos.add(graficoConvidadoLote, "Convidados por Lote");
+		painelGraficos.add(graficoFaixaEtaria, "Faixa Etaria");
 		
 		botoesEstatisticas = new BotoesEstatisticas();
 		botoesEstatisticas.setBotoesEstatisticasListener(new BotoesEstatisticasListener() {
@@ -50,7 +53,7 @@ public class JanelaEstatisticas extends JFrame {
 					clPainelGraficos.show(painelGraficos, "Convidados por Lote");
 					break;
 				case 2:
-					
+					clPainelGraficos.show(painelGraficos, "Faixa Etaria");
 					break;
 				case 3:
 					
