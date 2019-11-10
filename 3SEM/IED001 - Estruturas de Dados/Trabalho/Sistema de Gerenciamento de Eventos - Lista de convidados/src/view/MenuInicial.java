@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import controller.BuffersArquivo;
+import model.Evento;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -73,7 +74,8 @@ public class MenuInicial extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BuffersArquivo ba = new BuffersArquivo();
 				try {
-					ba.abreArquivo("/Users/bruno/Desktop/ListaVazia.txt");
+					Evento eventoCarregado = ba.abreArquivo("/Users/bruno/Desktop/ListaVazia.txt");
+					new JanelaPrincipal(eventoCarregado);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -81,7 +83,6 @@ public class MenuInicial extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
 			}
 		}); 
 	}

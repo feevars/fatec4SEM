@@ -2,21 +2,16 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.Convidado;
 import model.Evento;
@@ -141,6 +136,8 @@ public class BuffersArquivo {
 					boolean acessibilidade = Boolean.parseBoolean(br.readLine());
 					boolean vip = Boolean.parseBoolean(br.readLine());
 					int lote = Integer.parseInt(br.readLine());
+					
+					if(id > novoEvento.getListaConvidados().getContaId()) novoEvento.getListaConvidados().setContaId(id++);
 					
 					Convidado novoConvidado = new Convidado(id,
 															nomeConvidado,

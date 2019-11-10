@@ -80,7 +80,11 @@ public class ListaConvidados {
 	public int getQtdNo() {
 		return qtdNo;
 	}
-
+	
+	public void setContaId(int contaId) {
+		this.contaId = contaId;
+	}
+	
 	public int getContaId() {
 		return contaId;
 	}
