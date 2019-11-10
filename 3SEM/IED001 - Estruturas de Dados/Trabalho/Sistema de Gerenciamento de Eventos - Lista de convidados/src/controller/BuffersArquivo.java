@@ -18,6 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import model.Convidado;
 import model.Evento;
 
 public class BuffersArquivo {
@@ -91,6 +92,10 @@ public class BuffersArquivo {
 			Date dataLote3;
 			int qtdLote3;
 			double valorLote3;
+			
+			// Lista Dupla deve ser iniciada em um evento, mesmo que esteja vazia
+			ListaConvidados listaConvidados = new ListaConvidados();
+			
 			// Formatador de número com vírgula para double
 			Number numero;
 			NumberFormat nf = NumberFormat.getInstance(Locale.FRANCE);
@@ -105,29 +110,56 @@ public class BuffersArquivo {
 			numero = nf.parse(br.readLine());
 			valorLote1 = numero.doubleValue();
 			qtdLote1 = Integer.parseInt(br.readLine());
+			dataLote1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ROOT).parse(br.readLine());
+			numero = nf.parse(br.readLine());
+			valorLote2 = numero.doubleValue();
+			qtdLote2 = Integer.parseInt(br.readLine());
+			dataLote2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ROOT).parse(br.readLine());
+			numero = nf.parse(br.readLine());
+			valorLote3 = numero.doubleValue();
+			qtdLote3 = Integer.parseInt(br.readLine());
+			dataLote3 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ROOT).parse(br.readLine());
+			
 
-			System.out.println(verificacao + "\n" +
-							   nome + "\n" +
-							   dataEvento + "\n" + 
-							   qtdConvites + "\n" +
-							   descontoAniversariante + "\n" +
-							   valorPortaria + "\n" +
-							   valorLote1 + "\n" +
-							   qtdLote1 + "\n");
-
+			Evento novoEvento = new Evento(nome, dataEvento, qtdConvites, dataLote1, qtdLote1, valorLote1, dataLote2, qtdLote2, valorLote2, dataLote3, qtdLote3, valorLote3, valorPortaria, descontoAniversariante, listaConvidados, caminho);
+			//Começa a leitura da lista
+			String primeiraLinha = br.readLine();
 			
-			
-			
-			
-			
-			ListaConvidados listaConvidados;
-			
-			
-			
+			while (primeiraLinha != null) {				
+				if (primeiraLinha.contains("lista")) {
+					JOptionPane.showMessageDialog(null, "Foi carregado um evento com lista vazia.");
+					
+				}else {
+					int id = Integer.parseInt(primeiraLinha);
+					String nomeConvidado = br.readLine();
+					String sobrenomeConvidado = br.readLine();
+					String email = br.readLine();
+					String telefone = br.readLine();
+					Date nascimento = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ROOT).parse(br.readLine());
+					String tipoDocumento = br.readLine();
+					String numDocumento = br.readLine();
+					boolean acessibilidade = Boolean.parseBoolean(br.readLine());
+					boolean vip = Boolean.parseBoolean(br.readLine());
+					int lote = Integer.parseInt(br.readLine());
+					
+					Convidado novoConvidado = new Convidado(id,
+															nomeConvidado,
+															sobrenomeConvidado,
+															email,
+															telefone,
+															nascimento,
+															tipoDocumento,
+															numDocumento,
+															acessibilidade,
+															vip,
+															lote);
+					novoEvento.getListaConvidados().inserePrimeiro(novoConvidado);
+				}
+				primeiraLinha = br.readLine();
+			}
 			
 			br.close();
-			
-			return null;
+			return novoEvento;
 		}
 	}
 }

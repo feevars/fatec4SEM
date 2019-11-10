@@ -24,7 +24,7 @@ public class Evento {
 	private String caminhoDoArquivo;
 	
 	public Evento(String nome, Date dataEvento, int qtdConvites, Date dataLote1, int qtdLote1, double valorLote1,
-			Date dataLote2, int qtdLote2, double valorLote2, Date dateLote3, int qtdLote3, double valorLote3,
+			Date dataLote2, int qtdLote2, double valorLote2, Date dataLote3, int qtdLote3, double valorLote3,
 			double valorPortaria, int descontoAniversariante, ListaConvidados listaConvidados, String caminhoDoArquivo) {
 		super();
 		this.nome = nome;
@@ -36,7 +36,7 @@ public class Evento {
 		this.dataLote2 = dataLote2;
 		this.qtdLote2 = qtdLote2;
 		this.valorLote2 = valorLote2;
-		this.dataLote3 = dateLote3;
+		this.dataLote3 = dataLote3;
 		this.qtdLote3 = qtdLote3;
 		this.valorLote3 = valorLote3;
 		this.valorPortaria = valorPortaria;
