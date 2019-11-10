@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import controller.ListaConvidados;
+import model.Convidado;
+import model.Evento;
 
 import java.awt.FlowLayout;
 
@@ -21,8 +23,10 @@ public class PainelVisualizacao extends JPanel {
 
 	private JScrollPane scrollVisualizacao;
 	private JPanel conteudo;
+	private Evento evento;
 	
-	public PainelVisualizacao() {
+	public PainelVisualizacao(Evento evento) {
+		this.evento = evento;
 		FlowLayout flowLayout = (FlowLayout) getLayout();
 		flowLayout.setVgap(0);
 		flowLayout.setHgap(0);
@@ -45,17 +49,21 @@ public class PainelVisualizacao extends JPanel {
 
 	public void adicionaCelula(CelulaConvidado celula) {
 		conteudo.add(celula, 0);
-		conteudo.repaint();
-		conteudo.revalidate();
 		repaint();
 		revalidate();
 	}
 	
-	public void imprimeLista(ListaConvidados lista) {
+	public void carregaListaCompleta(Convidado[] vetorConvidados) {
 		conteudo.removeAll();
-		if (lista.estaVazia()) {
-			conteudo.add(new JLabel("A lista está vazia."));
+		
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			conteudo.add(new CelulaConvidado(evento, vetorConvidados[i]));
+			
 		}
+		
+		repaint();
+		revalidate();
+		
 	}
 	
 }

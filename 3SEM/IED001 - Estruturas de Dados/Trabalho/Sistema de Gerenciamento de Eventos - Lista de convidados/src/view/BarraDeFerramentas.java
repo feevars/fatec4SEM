@@ -8,6 +8,7 @@ import view.estatisticas.JanelaEstatisticas;
 
 import java.awt.Dimension;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -15,13 +16,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class BarraDeFerramentas extends JPanel{
+public class BarraDeFerramentas extends JPanel {
 
 	private static final long serialVersionUID = 8481528081497930411L;
 
 	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
-	
+
+	private BarraDeFerramentasListener barraDeFerramentasListener;
+
 	private JButton btnNovo;
 	private JButton btnAbrir;
 	private JButton btnSalvar;
@@ -30,7 +33,7 @@ public class BarraDeFerramentas extends JPanel{
 	private JButton btnEstatisticas;
 	private JButton btnOrdenar;
 	private JButton btnBuscar;
-	
+
 	public BarraDeFerramentas(Evento evento) {
 		setForeground(Color.WHITE);
 		FlowLayout flowLayout = (FlowLayout) getLayout();
@@ -69,7 +72,8 @@ public class BarraDeFerramentas extends JPanel{
 		add(btnSalvarComo);
 
 		btnRecarregar = new JButton("");
-		btnRecarregar.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_recarregar_lista.png")));
+		btnRecarregar
+				.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_recarregar_lista.png")));
 		btnRecarregar.setToolTipText("Recarregar lista de convidados");
 		btnRecarregar.setPreferredSize(new Dimension(40, 40));
 		btnRecarregar.setBackground(CINZA);
@@ -97,34 +101,34 @@ public class BarraDeFerramentas extends JPanel{
 		add(btnBuscar);
 
 		btnNovo.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		btnAbrir.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		btnSalvar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		btnSalvarComo.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BuffersArquivo ba = new BuffersArquivo();
@@ -135,45 +139,54 @@ public class BarraDeFerramentas extends JPanel{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
-		
+
 		btnRecarregar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		btnEstatisticas.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new JanelaEstatisticas(evento);
-				
+
 			}
 		});
-		
+
 		btnOrdenar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				if (evento.getListaConvidados().getQtdNo() < 2) {
+					JOptionPane.showMessageDialog(null, "Não há necessidade de ordenar menos de 2 convidados.");
+				} else {
+					BarraDeFerramentasEvent ordenarIdade = new BarraDeFerramentasEvent(this, "ordenarIdade");
+					barraDeFerramentasListener.formEventOcurred(ordenarIdade);
+				}
 			}
 		});
-		
+
 		btnBuscar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 	}
+
+	public void setBarraDeFerramentasListener(BarraDeFerramentasListener barraDeFerramentasListener) {
+		this.barraDeFerramentasListener = barraDeFerramentasListener;
+	}
+
 }

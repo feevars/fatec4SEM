@@ -3,9 +3,14 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import controller.BuffersArquivo;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Dimension;
@@ -66,7 +71,16 @@ public class MenuInicial extends JFrame {
 		
 		btnAbrirListaExistente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//deve abrir o card de eventos cadastrados
+				BuffersArquivo ba = new BuffersArquivo();
+				try {
+					ba.abreArquivo("/Users/bruno/Desktop/tttt.txt");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		}); 

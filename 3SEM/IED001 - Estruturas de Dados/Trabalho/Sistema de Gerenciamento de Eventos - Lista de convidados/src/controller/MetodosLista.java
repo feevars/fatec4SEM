@@ -2,53 +2,62 @@ package controller;
 
 import model.Convidado;
 
-public class MetodosLista {
-	
-	public static Convidado[] vetorNome(ListaConvidados listaConvidados, Convidado[] vetorConvidados) {
-		if (listaConvidados.getContador() == listaConvidados.getUltimo()) {
-			vetorConvidados[listaConvidados.getContadorInt()] = listaConvidados.getUltimo().getConteudo();
-			listaConvidados.setContador(listaConvidados.getPrimeiro());
-			listaConvidados.setContadorInt(0);
-			return vetorConvidados; 
-		} else {
-			vetorConvidados[listaConvidados.getContadorInt()] = listaConvidados.getContador().getConteudo();
-			listaConvidados.setContador(listaConvidados.getContador().getProximo());
-			listaConvidados.setContadorInt(listaConvidados.getContadorInt()+1);
-			return vetorNome(listaConvidados, vetorConvidados);
-		}
-		
-				
-	}
-	
-	public void ordenarNomes() {
-		mergeSort(vetor, auxiliar, 0, vetor.length-1);
-	}
-	public static void mergeSort(Convidado conteudo) {
-		
-	}
-	public static void intercala(Convidado conteudo) {
-		
-	}
-	
-	public static void intercalarMedia(Media[] esquerda, Media[] direita, Media[] resultado) {
-		int indiceEsq = 0, indiceDir = 0;
+public interface MetodosLista {
 
-		for (int k = 0; k < resultado.length; k++) {
-			if (indiceEsq == esquerda.length) {
-				resultado[k] = direita[indiceDir];
-				indiceDir++;
-			} else if (indiceDir == direita.length) {
-				resultado[k] = esquerda[indiceEsq];
-				indiceEsq++;
-			} else if (esquerda[indiceEsq].getMediaFinal() < direita[indiceDir].getMediaFinal()) {
-				resultado[k] = esquerda[indiceEsq];
-				indiceEsq++;
+	public static Convidado[] vetorLista(ListaConvidados listaConvidados) {
+
+		Convidado[] vetorConvidados = new Convidado[listaConvidados.getQtdNo()];
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			vetorConvidados[i] = listaConvidados.getContador().getConteudo();
+			listaConvidados.setContador(listaConvidados.getContador().getProximo());
+		}
+		listaConvidados.setContador(listaConvidados.getPrimeiro());
+
+		return vetorConvidados;
+	}
+
+	public static void mergeSortIdade(Convidado[] vetorConvidados) {
+
+		if (vetorConvidados.length == 1)
+			return;
+
+		int metade = vetorConvidados.length / 2;
+
+		Convidado[] esquerda = new Convidado[metade];
+		Convidado[] direita = new Convidado[vetorConvidados.length - metade];
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (i < metade)
+				esquerda[i] = vetorConvidados[i];
+			else
+				direita[i - metade] = vetorConvidados[i];
+		}
+
+		mergeSortIdade(esquerda);
+		mergeSortIdade(direita);
+		intercalaIdade(vetorConvidados, esquerda, direita);
+
+	}
+
+	public static void intercalaIdade(Convidado[] vetorConvidados, Convidado[] esquerda, Convidado[] direita) {
+		int iEsquerda = 0, iDireita = 0;
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (iEsquerda == esquerda.length) {
+				vetorConvidados[i] = direita[iDireita];
+				iDireita++;
+			} else if (iDireita == direita.length) {
+				vetorConvidados[i] = esquerda[iEsquerda];
+				iEsquerda++;
+			} else if (esquerda[iEsquerda].getIdade() > direita[iDireita].getIdade()) {
+				vetorConvidados[i] = esquerda[iEsquerda];
+				iEsquerda++;
 			} else {
-				resultado[k] = direita[indiceDir];
-				indiceDir++;
+				vetorConvidados[i] = direita[iDireita];
+				iDireita++;
 			}
 		}
-	
-
 	}
+
 }

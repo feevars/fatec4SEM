@@ -1,9 +1,17 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -30,11 +38,12 @@ public class BuffersArquivo {
 
 		if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
 			this.caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
-			if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt")) caminho += ".txt";
+			if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt"))
+				caminho += ".txt";
 			evento.setCaminhoDoArquivo(caminho);
 
 			BufferedWriter bw = new BufferedWriter(new FileWriter(caminho));
-			bw.write("Arquivo do SGE - Sistema de Gerenciamento de Eventos");
+			bw.write("arquivodosge");
 			bw.newLine();
 			bw.write(evento.getNome());
 			bw.newLine();
@@ -66,8 +75,6 @@ public class BuffersArquivo {
 			bw.newLine();
 			bw.write(evento.getDataLote3().toString());
 			bw.newLine();
-			bw.write("=====================================================");
-			bw.newLine();
 			bw.write(evento.getListaConvidados().listaString());
 			bw.newLine();
 			bw.close();
@@ -75,5 +82,47 @@ public class BuffersArquivo {
 		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
 		}
+	}
+
+	public Evento abreArquivo(String caminho) throws IOException, ParseException {
+
+		String verificacao;
+		
+		String nome;
+		Date dataEvento;
+		int qtdConvites;
+		Date dataLote1;
+		int qtdLote1;
+		double valorLote1;
+		Date dataLote2;
+		int qtdLote2;
+		double valorLote2;
+		Date dataLote3;
+		int qtdLote3;
+		double valorLote3;
+		double valorPortaria;
+		int descontoAniversariante;
+		ListaConvidados listaConvidados;
+		String caminhoDoArquivo;
+		
+		DecimalFormat df = new DecimalFormat("0.00");
+		df.setMaximumFractionDigits(2);
+		
+		BufferedReader br = new BufferedReader(new FileReader(caminho));
+		
+		verificacao = br.readLine();
+		nome = br.readLine();
+		dataEvento = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ROOT).parse(br.readLine());
+		qtdConvites = Integer.parseInt(br.readLine());
+		descontoAniversariante = Integer.parseInt(br.readLine());
+		caminhoDoArquivo = br.readLine();
+		//valorPortaria = Double.valueOf(br.readLine());
+		//System.out.println(valorPortaria);
+		
+		
+		
+		br.close();
+
+		return null;
 	}
 }
