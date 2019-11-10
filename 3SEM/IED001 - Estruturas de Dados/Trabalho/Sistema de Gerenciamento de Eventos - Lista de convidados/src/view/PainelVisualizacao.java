@@ -51,7 +51,19 @@ public class PainelVisualizacao extends JPanel {
 		revalidate();
 	}
 	
-	public void carregaListaCompleta(Convidado[] vetorConvidados) {
+	
+	public void carregaListaDupla() {
+		conteudo.removeAll();
+		for (int i = 0; i < evento.getListaConvidados().getQtdNo(); i++) {
+			conteudo.add(new CelulaConvidado(evento, evento.getListaConvidados().getContador().getConteudo()));
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		repaint();
+		revalidate();
+	}
+	
+	public void carregaVetorDaLista(Convidado[] vetorConvidados) {
 		conteudo.removeAll();
 		
 		for (int i = 0; i < vetorConvidados.length; i++) {
@@ -60,8 +72,7 @@ public class PainelVisualizacao extends JPanel {
 		}
 		
 		repaint();
-		revalidate();
-		
+		revalidate();	
 	}
 	
 }

@@ -141,15 +141,20 @@ public class Convidado {
 	public int getId() {
 		return id;
 	}
-
+	
+	public void setAdicao(Timestamp adicao) {
+		this.adicao = adicao;
+	}
+	
 	public Timestamp getAdicao() {
 		return adicao;
 	}
 
 	@Override
 	public String toString() {
-		return id
-				+"\n" + nome
+		return "convidado"
+				+ "\n" + id
+				+ "\n" + nome
 				+ "\n" + sobreNome
 				+ "\n" + email
 				+ "\n" + telefone

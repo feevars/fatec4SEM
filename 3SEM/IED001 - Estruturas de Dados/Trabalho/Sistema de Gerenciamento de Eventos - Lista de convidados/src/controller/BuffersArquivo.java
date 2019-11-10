@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -87,13 +88,16 @@ public class BuffersArquivo {
 			Date dataLote3;
 			int qtdLote3;
 			double valorLote3;
-			
+
 			// Lista Dupla deve ser iniciada em um evento, mesmo que esteja vazia
 			ListaConvidados listaConvidados = new ListaConvidados();
-			
+
 			// Formatador de número com vírgula para double
 			Number numero;
 			NumberFormat nf = NumberFormat.getInstance(Locale.FRANCE);
+
+			// Formatador de datas de adição
+			SimpleDateFormat adcFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 
 			// Evento
 			nome = br.readLine();
@@ -114,47 +118,43 @@ public class BuffersArquivo {
 			valorLote3 = numero.doubleValue();
 			qtdLote3 = Integer.parseInt(br.readLine());
 			dataLote3 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ROOT).parse(br.readLine());
-			
 
-			Evento novoEvento = new Evento(nome, dataEvento, qtdConvites, dataLote1, qtdLote1, valorLote1, dataLote2, qtdLote2, valorLote2, dataLote3, qtdLote3, valorLote3, valorPortaria, descontoAniversariante, listaConvidados, caminho);
-			//Começa a leitura da lista
+			Evento novoEvento = new Evento(nome, dataEvento, qtdConvites, dataLote1, qtdLote1, valorLote1, dataLote2,
+					qtdLote2, valorLote2, dataLote3, qtdLote3, valorLote3, valorPortaria, descontoAniversariante,
+					listaConvidados, caminho);
+			// Começa a leitura da lista
 			String primeiraLinha = br.readLine();
-			
-			while (primeiraLinha != null) {				
-				if (primeiraLinha.contains("lista")) {
-					JOptionPane.showMessageDialog(null, "Foi carregado um evento com lista vazia.");
-					
-				}else {
-					int id = Integer.parseInt(primeiraLinha);
-					String nomeConvidado = br.readLine();
-					String sobrenomeConvidado = br.readLine();
-					String email = br.readLine();
-					String telefone = br.readLine();
-					Date nascimento = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ROOT).parse(br.readLine());
-					String tipoDocumento = br.readLine();
-					String numDocumento = br.readLine();
-					boolean acessibilidade = Boolean.parseBoolean(br.readLine());
-					boolean vip = Boolean.parseBoolean(br.readLine());
-					int lote = Integer.parseInt(br.readLine());
-					
-					if(id > novoEvento.getListaConvidados().getContaId()) novoEvento.getListaConvidados().setContaId(id++);
-					
-					Convidado novoConvidado = new Convidado(id,
-															nomeConvidado,
-															sobrenomeConvidado,
-															email,
-															telefone,
-															nascimento,
-															tipoDocumento,
-															numDocumento,
-															acessibilidade,
-															vip,
-															lote);
-					novoEvento.getListaConvidados().inserePrimeiro(novoConvidado);
-				}
+			if (primeiraLinha.contains("lista")) {
+				JOptionPane.showMessageDialog(null, "Foi carregado um evento com lista vazia.");
+				
+			}
+			while (primeiraLinha.contains("convidado")) {
+				int id = Integer.parseInt(br.readLine());
+				String nomeConvidado = br.readLine();
+				String sobrenomeConvidado = br.readLine();
+				String email = br.readLine();
+				String telefone = br.readLine();
+				Date nascimento = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ROOT)
+						.parse(br.readLine());
+				String tipoDocumento = br.readLine();
+				String numDocumento = br.readLine();
+				boolean acessibilidade = Boolean.parseBoolean(br.readLine());
+				boolean vip = Boolean.parseBoolean(br.readLine());
+				int lote = Integer.parseInt(br.readLine());
+
+				Date dataAdicao = adcFormat.parse(br.readLine());
+				Timestamp adicao = new Timestamp(dataAdicao.getTime());
+
+				if (id > novoEvento.getListaConvidados().getContaId())
+					novoEvento.getListaConvidados().setContaId((id));
+
+				Convidado novoConvidado = new Convidado(id, nomeConvidado, sobrenomeConvidado, email, telefone,
+						nascimento, tipoDocumento, numDocumento, acessibilidade, vip, lote);
+				novoConvidado.setAdicao(adicao);
+				novoEvento.getListaConvidados().inserePrimeiro(novoConvidado);
 				primeiraLinha = br.readLine();
 			}
-			
+
 			br.close();
 			return novoEvento;
 		}

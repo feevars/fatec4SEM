@@ -22,6 +22,11 @@ public class JanelaPrincipal extends JFrame {
 		formConvidado = new FormConvidado(evento);
 		barraDeFerramentas = new BarraDeFerramentas(evento);
 		painelVisualizacao = new PainelVisualizacao(evento);
+		if (evento.getListaConvidados().getQtdNo() > 0) {
+			painelVisualizacao.carregaListaDupla();
+		}
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
 		setMinimumSize(getSize());
@@ -43,7 +48,7 @@ public class JanelaPrincipal extends JFrame {
 				case "ordenarIdade":
 					Convidado [] vetorConvidados = MetodosLista.vetorLista(evento.getListaConvidados());
 					MetodosLista.mergeSortIdade(vetorConvidados);
-					painelVisualizacao.carregaListaCompleta(vetorConvidados);
+					painelVisualizacao.carregaVetorDaLista(vetorConvidados);
 					break;
 
 				default:

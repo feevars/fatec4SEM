@@ -76,7 +76,7 @@ public class BarraDeFerramentas extends JPanel {
 
 		btnRecarregar = new JButton("");
 		btnRecarregar
-		.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_recarregar_lista.png")));
+				.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_recarregar_lista.png")));
 		btnRecarregar.setToolTipText("Recarregar lista de convidados");
 		btnRecarregar.setPreferredSize(new Dimension(40, 40));
 		btnRecarregar.setBackground(CINZA);
@@ -151,16 +151,15 @@ public class BarraDeFerramentas extends JPanel {
 				if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
 
 					caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
-					if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt")) caminho += ".txt";
+					if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt"))
+						caminho += ".txt";
 
 					BuffersArquivo ba = new BuffersArquivo();
 					try {
 						ba.escreveArquivo(evento, caminho);
-
-					} catch (IOException e1) {
-						JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());					
-					}finally {
 						evento.setCaminhoDoArquivo(caminho);
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");

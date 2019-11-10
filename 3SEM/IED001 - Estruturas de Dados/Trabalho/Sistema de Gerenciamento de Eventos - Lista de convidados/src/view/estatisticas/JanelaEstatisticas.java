@@ -22,7 +22,7 @@ public class JanelaEstatisticas extends JFrame {
 
 	public JanelaEstatisticas(Evento evento) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(600, 360);
+		setSize(720, 360);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel();
