@@ -11,11 +11,12 @@ import java.text.SimpleDateFormat;
 import java.awt.Font;
 import javax.swing.border.EmptyBorder;
 
+import controller.MetodosLista;
 import model.Evento;
 
 import java.awt.Color;
 
-public class DadosGerais extends JPanel {
+public class DadosGerais extends JPanel implements MetodosLista {
 
 	private static final long serialVersionUID = 1133228908361691330L;
 
@@ -90,15 +91,15 @@ public class DadosGerais extends JPanel {
 		gbl_painelConteudo.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		painelConteudo.setLayout(gbl_painelConteudo);
 		
-		JLabel lblMediaIdade = new JLabel("Média de idade do público:");
-		lblMediaIdade.setForeground(Color.WHITE);
+		JLabel lblMediaIdade = new JLabel("<html><p align=\"center\">Média de idade do público:</p><p align=\"center\">" + MetodosLista.mediaIdadePublico(evento) + "</p></html>");
+		lblMediaIdade.setForeground(AZUL_CLARO);
 		GridBagConstraints gbc_lblMediaIdade = new GridBagConstraints();
 		gbc_lblMediaIdade.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMediaIdade.gridx = 1;
 		gbc_lblMediaIdade.gridy = 0;
 		painelConteudo.add(lblMediaIdade, gbc_lblMediaIdade);
 		
-		JLabel lblQtdlote = new JLabel("QtdLote1");
+		JLabel lblQtdlote = new JLabel("Lote 1: " + MetodosLista.qtdConvidadoLote(evento)[1]);
 		lblQtdlote.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblQtdlote = new GridBagConstraints();
 		gbc_lblQtdlote.anchor = GridBagConstraints.WEST;
@@ -125,7 +126,7 @@ public class DadosGerais extends JPanel {
 		gbc_lblQtdVips.gridy = 2;
 		painelConteudo.add(lblQtdVips, gbc_lblQtdVips);
 		
-		JLabel lblQtdlote_1 = new JLabel("QtdLote2");
+		JLabel lblQtdlote_1 = new JLabel("Lote 2: " + MetodosLista.qtdConvidadoLote(evento)[2]);
 		lblQtdlote_1.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblQtdlote_1 = new GridBagConstraints();
 		gbc_lblQtdlote_1.anchor = GridBagConstraints.WEST;
@@ -152,7 +153,7 @@ public class DadosGerais extends JPanel {
 		gbc_lblArrecadacaolote_1.gridy = 4;
 		painelConteudo.add(lblArrecadacaolote_1, gbc_lblArrecadacaolote_1);
 		
-		JLabel lblQtdlote_2 = new JLabel("QtdLote3");
+		JLabel lblQtdlote_2 = new JLabel("Lote 3: " + MetodosLista.qtdConvidadoLote(evento)[3]);
 		lblQtdlote_2.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblQtdlote_2 = new GridBagConstraints();
 		gbc_lblQtdlote_2.anchor = GridBagConstraints.WEST;
@@ -188,7 +189,7 @@ public class DadosGerais extends JPanel {
 		gbc_lblDescontoaniversariantes.gridy = 6;
 		painelConteudo.add(lblDescontoaniversariantes, gbc_lblDescontoaniversariantes);
 		
-		JLabel lblQtdportaria = new JLabel("QtdPortaria");
+		JLabel lblQtdportaria = new JLabel("Portaria: " + MetodosLista.qtdConvidadoLote(evento)[0]);
 		lblQtdportaria.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblQtdportaria = new GridBagConstraints();
 		gbc_lblQtdportaria.anchor = GridBagConstraints.WEST;
