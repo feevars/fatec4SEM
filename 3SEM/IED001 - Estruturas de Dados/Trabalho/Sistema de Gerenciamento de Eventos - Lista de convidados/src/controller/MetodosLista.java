@@ -25,7 +25,7 @@ public interface MetodosLista {
 
 		if (vetorConvidados.length == 1)
 			return;
-		
+
 		int metade = vetorConvidados.length / 2;
 
 		Convidado[] esquerda = new Convidado[metade];
@@ -68,7 +68,7 @@ public interface MetodosLista {
 
 		if (vetorConvidados.length == 1)
 			return;
-		
+
 		int metade = vetorConvidados.length / 2;
 
 		Convidado[] esquerda = new Convidado[metade];
@@ -97,7 +97,8 @@ public interface MetodosLista {
 				vetorConvidados[i] = esquerda[iEsquerda];
 				iEsquerda++;
 
-			} else if (esquerda[iEsquerda].getNomeSobrenome().compareToIgnoreCase(direita[iDireita].getNomeSobrenome()) < 0) {
+			} else if (esquerda[iEsquerda].getNomeSobrenome()
+					.compareToIgnoreCase(direita[iDireita].getNomeSobrenome()) < 0) {
 				vetorConvidados[i] = esquerda[iEsquerda];
 				iEsquerda++;
 			} else {
@@ -159,5 +160,34 @@ public interface MetodosLista {
 		}
 		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
 		return convidadoLote;
+	}
+
+	public static double[] arrecadacaoLote(Evento evento) {
+
+		double[] arrecadacaoLote = new double[4];
+
+		double valor = 0;
+
+		while (evento.getListaConvidados().getContador() != null) {
+			if (!evento.getListaConvidados().getContador().getConteudo().isVip()) {
+
+				if (isAniversariante(evento, evento.getListaConvidados().getContador().getConteudo())) {
+					valor = (100 - evento.getDescontoAniversariante()) * 0.01;
+				}
+
+				if (evento.getListaConvidados().getContador().getConteudo().getLote() == 0)
+					arrecadacaoLote[0] += evento.getValorPortaria() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 1)
+					arrecadacaoLote[1] += evento.getValorLote1() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 2)
+					arrecadacaoLote[2] += evento.getValorLote2() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 3)
+					arrecadacaoLote[3] += evento.getValorLote3() * valor;
+			}
+			valor = 1;
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		return arrecadacaoLote;
 	}
 }
