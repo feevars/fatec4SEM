@@ -1,14 +1,8 @@
-import java.util.Date;
-
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import model.Evento;
-
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import view.JanelaPrincipal;
 import view.MenuInicial;
 
 public class SGE {
@@ -36,13 +30,8 @@ public class SGE {
 					// handle exception
 				}
 
-				// ITENS COMENTADOS PARA EDITAR A JANELA PRINCIPAL SEM PRECISAR PASSAR POR TUDO
-				// DESCOMENTE-OS E COMENTE O MENU INICIAL PARA FACILITAR A EDIÇÃO.
-//				Evento ev = new Evento("A", new Date(), 1, new Date(), 1, 1, new Date(), 1, 1,new Date(), 1, 1, 1, 1, null, null);
-//				new JanelaPrincipal(ev);
 				new MenuInicial();
 			}
-
 		});
 	}
 }

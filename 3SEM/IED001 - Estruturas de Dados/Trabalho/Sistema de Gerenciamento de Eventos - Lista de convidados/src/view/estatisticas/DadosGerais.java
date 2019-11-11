@@ -21,10 +21,10 @@ public class DadosGerais extends JPanel implements MetodosLista {
 
 	private static final long serialVersionUID = 1133228908361691330L;
 
-	private static final Color CINZA = new Color(75, 82, 103);
+//	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_CLARO = new Color(72, 172, 240);
 	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
-	private static final Color VIOLETA = new Color(134, 97, 193);
+//	private static final Color VIOLETA = new Color(134, 97, 193);
 	
 	private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
@@ -95,15 +95,6 @@ public class DadosGerais extends JPanel implements MetodosLista {
 				Double.MIN_VALUE };
 		painelConteudo.setLayout(gbl_painelConteudo);
 
-		JLabel lblMediaIdade = new JLabel("<html><p align=\"center\">Média de idade do público:</p><p align=\"center\">"
-				+ decimalFormat.format(MetodosLista.mediaIdadePublico(evento)) + " anos</p></html>");
-		lblMediaIdade.setForeground(AZUL_CLARO);
-		GridBagConstraints gbc_lblMediaIdade = new GridBagConstraints();
-		gbc_lblMediaIdade.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMediaIdade.gridx = 1;
-		gbc_lblMediaIdade.gridy = 0;
-		painelConteudo.add(lblMediaIdade, gbc_lblMediaIdade);
-
 		JLabel lblQtdlote = new JLabel("Lote 1: " + MetodosLista.qtdConvidadoLote(evento)[1]);
 		lblQtdlote.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblQtdlote = new GridBagConstraints();
@@ -122,7 +113,7 @@ public class DadosGerais extends JPanel implements MetodosLista {
 		gbc_lblArrecadacaolote.gridy = 2;
 		painelConteudo.add(lblArrecadacaolote, gbc_lblArrecadacaolote);
 
-		JLabel lblQtdVips = new JLabel("QtdVips");
+		JLabel lblQtdVips = new JLabel(MetodosLista.qtdVips(evento) + " VIPs");
 		lblQtdVips.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblQtdVips = new GridBagConstraints();
 		gbc_lblQtdVips.anchor = GridBagConstraints.EAST;
@@ -139,8 +130,17 @@ public class DadosGerais extends JPanel implements MetodosLista {
 		gbc_lblQtdlote_1.gridx = 0;
 		gbc_lblQtdlote_1.gridy = 3;
 		painelConteudo.add(lblQtdlote_1, gbc_lblQtdlote_1);
+		
+				JLabel lblMediaIdade = new JLabel("<html><p align=\"center\">Média de idade do público:</p><p align=\"center\">"
+						+ decimalFormat.format(MetodosLista.mediaIdadePublico(evento)) + " anos</p></html>");
+				lblMediaIdade.setForeground(AZUL_CLARO);
+				GridBagConstraints gbc_lblMediaIdade = new GridBagConstraints();
+				gbc_lblMediaIdade.insets = new Insets(0, 0, 5, 5);
+				gbc_lblMediaIdade.gridx = 1;
+				gbc_lblMediaIdade.gridy = 3;
+				painelConteudo.add(lblMediaIdade, gbc_lblMediaIdade);
 
-		JLabel lblPerdavips = new JLabel("PerdaVips");
+		JLabel lblPerdavips = new JLabel("R$ " + decimalFormat.format(MetodosLista.perdaVips(evento)));
 		lblPerdavips.setForeground(Color.RED);
 		GridBagConstraints gbc_lblPerdavips = new GridBagConstraints();
 		gbc_lblPerdavips.anchor = GridBagConstraints.EAST;
@@ -167,7 +167,7 @@ public class DadosGerais extends JPanel implements MetodosLista {
 		gbc_lblQtdlote_2.gridy = 5;
 		painelConteudo.add(lblQtdlote_2, gbc_lblQtdlote_2);
 
-		JLabel lblQtdaniversariantes = new JLabel("QtdAniversariantes");
+		JLabel lblQtdaniversariantes = new JLabel("Aniversariantes: " + MetodosLista.qtdAniversariantes(evento));
 		lblQtdaniversariantes.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblQtdaniversariantes = new GridBagConstraints();
 		gbc_lblQtdaniversariantes.anchor = GridBagConstraints.EAST;
@@ -185,7 +185,7 @@ public class DadosGerais extends JPanel implements MetodosLista {
 		gbc_lblArrecadacaolote_2.gridy = 6;
 		painelConteudo.add(lblArrecadacaolote_2, gbc_lblArrecadacaolote_2);
 
-		JLabel lblDescontoaniversariantes = new JLabel("DescontoAniversariantes");
+		JLabel lblDescontoaniversariantes = new JLabel("R$ " + decimalFormat.format(MetodosLista.perdaAniversariantes(evento)));
 		lblDescontoaniversariantes.setForeground(Color.RED);
 		GridBagConstraints gbc_lblDescontoaniversariantes = new GridBagConstraints();
 		gbc_lblDescontoaniversariantes.anchor = GridBagConstraints.EAST;

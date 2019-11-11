@@ -64,11 +64,8 @@ public class JanelaEstatisticas extends JFrame {
 				case 3:
 					clPainelGraficos.show(painelGraficos, "Arrecadacao");
 					break;
-				case 4:
-					
-					break;
-
 				default:
+					clPainelGraficos.show(painelGraficos, "Dados Gerais");
 					break;
 				}
 			}
