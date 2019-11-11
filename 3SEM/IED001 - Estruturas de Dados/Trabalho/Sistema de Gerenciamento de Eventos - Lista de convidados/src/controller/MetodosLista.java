@@ -59,7 +59,7 @@ public interface MetodosLista {
 			}
 		}
 	}
-	
+
 	public static void mergeSortNome(Convidado[] vetorConvidados) {
 
 		if (vetorConvidados.length == 1)
@@ -80,11 +80,6 @@ public interface MetodosLista {
 		mergeSortNome(esquerda);
 		mergeSortNome(direita);
 		intercalaNome(vetorConvidados, esquerda, direita);
-
-		for (int i = 0; i < vetorConvidados.length; i++) {
-			System.out.println(vetorConvidados.toString());
-		}
-
 	}
 
 	public static void intercalaNome(Convidado[] vetorConvidados, Convidado[] esquerda, Convidado[] direita) {
