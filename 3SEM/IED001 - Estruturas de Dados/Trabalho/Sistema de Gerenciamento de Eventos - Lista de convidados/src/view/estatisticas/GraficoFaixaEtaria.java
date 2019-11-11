@@ -46,7 +46,7 @@ public class GraficoFaixaEtaria extends JPanel {
 		this.qtdDatas = 0;
 
 		populaClassesEstatisticas();
-
+		criaGrafico();
 	}
 
 	private void populaClassesEstatisticas() {
@@ -82,7 +82,6 @@ public class GraficoFaixaEtaria extends JPanel {
 			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
 		}
 		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
-		criaGrafico();
 	}
 
 	public void criaGrafico() {

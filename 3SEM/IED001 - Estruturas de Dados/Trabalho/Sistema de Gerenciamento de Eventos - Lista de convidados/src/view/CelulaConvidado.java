@@ -13,6 +13,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import controller.MetodosLista;
 import model.Convidado;
 import model.Evento;
 
@@ -27,7 +28,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 
-public class CelulaConvidado extends JPanel implements ActionListener {
+public class CelulaConvidado extends JPanel implements ActionListener, MetodosLista {
 
 	private static final long serialVersionUID = 8005257527912286592L;
 
@@ -114,6 +115,10 @@ public class CelulaConvidado extends JPanel implements ActionListener {
 		JLabel lblDataDeNascimento = new JLabel(
 				"<html><p align=\"Left\">Data de Nascimento: " + dataFormatada + idade + "</p></html>");
 		lblDataDeNascimento.setForeground(Color.WHITE);
+		if (MetodosLista.isAniversariante(evento, convidado)) {
+			lblDataDeNascimento.setForeground(AZUL_CLARO);
+			lblDataDeNascimento.setText("<html><p align=\"Left\">Data de Nascimento: " + dataFormatada + idade + "</p></html>");
+		}
 		lblDataDeNascimento.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		painelDados.add(lblDataDeNascimento);
 
@@ -181,8 +186,10 @@ public class CelulaConvidado extends JPanel implements ActionListener {
 
 		JLabel lblVip = new JLabel(" ");
 		lblVip.setForeground(Color.WHITE);
-		if (convidado.isVip())
+		if (convidado.isVip()) {
+			lblVip.setIcon(new ImageIcon(CelulaConvidado.class.getResource("/assets/icone_vip.png")));
 			lblVip.setText("VIP");
+		}
 		lblVip.setForeground(VIOLETA);
 		lblVip.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblVip = new GridBagConstraints();

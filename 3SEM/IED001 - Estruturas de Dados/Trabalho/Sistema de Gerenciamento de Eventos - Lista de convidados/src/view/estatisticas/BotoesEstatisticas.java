@@ -61,7 +61,7 @@ public class BotoesEstatisticas extends JPanel {
 		btnVipsConcedidos.setForeground(Color.WHITE);
 		btnVipsConcedidos.setBackground(CINZA);
 		add(btnVipsConcedidos);
-				
+
 		btnConvidadoPorLote.addActionListener(new ActionListener() {
 
 			@Override
@@ -70,12 +70,21 @@ public class BotoesEstatisticas extends JPanel {
 				botoesEstatisticasListener.formEventOcurred(evConvidadoLote);
 			}
 		});
-		
+
 		btnFaixaEtaria.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BotoesEstatisticasEvent evConvidadoLote = new BotoesEstatisticasEvent(this, 2);
+				botoesEstatisticasListener.formEventOcurred(evConvidadoLote);
+			}
+		});
+
+		btnArrecadaoPorLote.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BotoesEstatisticasEvent evConvidadoLote = new BotoesEstatisticasEvent(this, 3);
 				botoesEstatisticasListener.formEventOcurred(evConvidadoLote);
 			}
 		});

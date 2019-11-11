@@ -1,6 +1,10 @@
 package controller;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import model.Convidado;
+import model.Evento;
 
 public interface MetodosLista {
 
@@ -101,6 +105,15 @@ public interface MetodosLista {
 				iDireita++;
 			}
 		}
+	}
+	
+	public static boolean isAniversariante(Evento evento, Convidado convidado) {
+		Calendar calEvento = Calendar.getInstance(TimeZone.getTimeZone("South America/Brazil"));
+		calEvento.setTime(evento.getDataEvento());
+		Calendar calConvidado = Calendar.getInstance(TimeZone.getTimeZone("South America/Brazil"));
+		calConvidado.setTime(convidado.getNascimento());
+		if(calEvento.get(Calendar.MONTH) == calConvidado.get(Calendar.MONTH)) return true;
+		return false;
 	}
 
 }
