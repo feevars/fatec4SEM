@@ -140,4 +140,24 @@ public interface MetodosLista {
 
 		return media;
 	}
+
+	public static int[] qtdConvidadoLote(Evento evento) {
+
+		int[] convidadoLote = new int[4];
+
+		while (evento.getListaConvidados().getContador() != null) {
+			if (evento.getListaConvidados().getContador().getConteudo().getLote() == 0) {
+				convidadoLote[0]++;
+			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 1) {
+				convidadoLote[1]++;
+			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 2) {
+				convidadoLote[2]++;
+			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 3) {
+				convidadoLote[3]++;
+			}
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		return convidadoLote;
+	}
 }
