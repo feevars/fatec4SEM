@@ -90,7 +90,7 @@ public interface MetodosLista {
 	public static void intercalaNome(Convidado[] vetorConvidados, Convidado[] esquerda, Convidado[] direita) {
 		int iEsquerda = 0, iDireita = 0;
 
-		for (int i = 0; i < vetorConvidados.length - 1; i++) {
+		for (int i = 0; i < vetorConvidados.length; i++) {
 			if (iEsquerda == esquerda.length) {
 				vetorConvidados[i] = direita[iDireita];
 				iDireita++;
