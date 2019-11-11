@@ -106,6 +106,11 @@ public interface MetodosLista {
 			}
 		}
 	}
+	
+	public static void buscarConvidado(Convidado[] vetorConvidados, String busca) {
+		//no proprio botao buscar coloca o JOptionPane mostrando o que ele deseja buscar
+		
+	}
 
 	public static boolean isAniversariante(Evento evento, Convidado convidado) {
 		if (convidado.getNascimento() == null) {

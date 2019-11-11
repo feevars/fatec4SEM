@@ -1,0 +1,10 @@
+Anotações para nao perder
+
+public Convidado[] buscarConvidado(Convidado[] vetorConvidados, String nome) {
+		//no proprio botao buscar coloca o JOptionPane mostrando o nome do convidado que ele deseja buscar
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (vetorConvidados[i].getNome().equalsIgnoreCase(nome)) return vetorConvidados[i];
+		}
+	}
+	
+	
