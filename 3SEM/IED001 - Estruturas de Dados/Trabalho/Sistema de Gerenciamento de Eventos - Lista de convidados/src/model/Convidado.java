@@ -150,6 +150,10 @@ public class Convidado {
 		return adicao;
 	}
 
+	public String getNomeSobrenome() {
+		return nome + " " + sobreNome;
+	}
+	
 	@Override
 	public String toString() {
 		return "convidado"
