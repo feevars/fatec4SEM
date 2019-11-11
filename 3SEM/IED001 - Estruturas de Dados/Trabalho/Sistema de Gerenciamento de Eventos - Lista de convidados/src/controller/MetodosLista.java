@@ -106,14 +106,38 @@ public interface MetodosLista {
 			}
 		}
 	}
-	
+
 	public static boolean isAniversariante(Evento evento, Convidado convidado) {
-		Calendar calEvento = Calendar.getInstance(TimeZone.getTimeZone("South America/Brazil"));
-		calEvento.setTime(evento.getDataEvento());
-		Calendar calConvidado = Calendar.getInstance(TimeZone.getTimeZone("South America/Brazil"));
-		calConvidado.setTime(convidado.getNascimento());
-		if(calEvento.get(Calendar.MONTH) == calConvidado.get(Calendar.MONTH)) return true;
-		return false;
+		if (convidado.getNascimento() == null) {
+			return false;
+		} else {
+			Calendar calEvento = Calendar.getInstance(TimeZone.getTimeZone("South America/Brazil"));
+			calEvento.setTime(evento.getDataEvento());
+			Calendar calConvidado = Calendar.getInstance(TimeZone.getTimeZone("South America/Brazil"));
+			calConvidado.setTime(convidado.getNascimento());
+			if (calEvento.get(Calendar.MONTH) == calConvidado.get(Calendar.MONTH))
+				return true;
+			else
+				return false;
+		}
 	}
 
+	public static double mediaIdadePublico(Evento evento) {
+
+		double media = 0;
+		int totalIdades = 0;
+
+		while (evento.getListaConvidados().getContador() != null) {
+			if (evento.getListaConvidados().getContador().getConteudo().getIdade() != -1) {
+				media += evento.getListaConvidados().getContador().getConteudo().getIdade();
+				totalIdades++;
+			}
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+
+		media = media / totalIdades;
+
+		return media;
+	}
 }

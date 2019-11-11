@@ -61,7 +61,16 @@ public class BotoesEstatisticas extends JPanel {
 		btnVipsConcedidos.setForeground(Color.WHITE);
 		btnVipsConcedidos.setBackground(CINZA);
 		add(btnVipsConcedidos);
+		
+		btnDadosGerais.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BotoesEstatisticasEvent evConvidadoLote = new BotoesEstatisticasEvent(this, 0);
+				botoesEstatisticasListener.formEventOcurred(evConvidadoLote);
+			}
+		});
+		
 		btnConvidadoPorLote.addActionListener(new ActionListener() {
 
 			@Override

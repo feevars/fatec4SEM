@@ -28,6 +28,8 @@ public class GraficoArrecadacao extends JPanel implements MetodosLista {
 	private double valor;
 	
 	private int aniversariantes;
+	
+	private int vips;
 
 	public GraficoArrecadacao(Evento evento) {
 
@@ -39,6 +41,8 @@ public class GraficoArrecadacao extends JPanel implements MetodosLista {
 		this.portaria = 0;
 		
 		this.valor = 1;
+		
+		this.vips = 0;
 		
 		this.aniversariantes = 0;
 
@@ -52,7 +56,7 @@ public class GraficoArrecadacao extends JPanel implements MetodosLista {
 		while (evento.getListaConvidados().getContador() != null) {
 			
 			if (MetodosLista.isAniversariante(evento, evento.getListaConvidados().getContador().getConteudo())) {
-				valor = evento.getDescontoAniversariante() * 0.01;
+				valor = (100 - evento.getDescontoAniversariante()) * 0.01;
 				aniversariantes++;
 			}
 			if(!evento.getListaConvidados().getContador().getConteudo().isVip()) {				
@@ -60,6 +64,8 @@ public class GraficoArrecadacao extends JPanel implements MetodosLista {
 				else if(evento.getListaConvidados().getContador().getConteudo().getLote() == 2) lote2 += evento.getValorLote2() * valor;
 				else if(evento.getListaConvidados().getContador().getConteudo().getLote() == 3) lote3 += evento.getValorLote2() * valor;
 				else if(evento.getListaConvidados().getContador().getConteudo().getLote() == 0) portaria += evento.getValorPortaria() * valor;
+			}else {
+				vips++;
 			}
 			valor = 1;
 			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
@@ -78,7 +84,7 @@ public class GraficoArrecadacao extends JPanel implements MetodosLista {
 
 		JFreeChart grafico = ChartFactory.createBarChart("Arrecadação por lote – Total: R$" + valor + "\n", "Lote",
 				"Arrecadação", dadosDoGrafico);
-		grafico.addSubtitle(new TextTitle(this.qtdDatas + "VIPs não pagam e foi considerado o desconto dado para " + aniversariantes + " aniversariantes."));
+		grafico.addSubtitle(new TextTitle(vips + " são VIP e não pagam.\nFoi considerado o desconto dado para " + aniversariantes + " aniversariantes."));
 
 		ChartPanel painelGrafico = new ChartPanel(grafico);
 		add(painelGrafico);
