@@ -20,6 +20,49 @@ public interface MetodosLista {
 
 		return vetorConvidados;
 	}
+	
+	public static void mergeSortID(Convidado[] vetorConvidados) {
+
+		if (vetorConvidados.length == 1)
+			return;
+		
+		int metade = vetorConvidados.length / 2;
+
+		Convidado[] esquerda = new Convidado[metade];
+		Convidado[] direita = new Convidado[vetorConvidados.length - metade];
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (i < metade)
+				esquerda[i] = vetorConvidados[i];
+			else
+				direita[i - metade] = vetorConvidados[i];
+		}
+
+		mergeSortIdade(esquerda);
+		mergeSortIdade(direita);
+		intercalaIdade(vetorConvidados, esquerda, direita);
+
+	}
+
+	public static void intercalaID(Convidado[] vetorConvidados, Convidado[] esquerda, Convidado[] direita) {
+		int iEsquerda = 0, iDireita = 0;
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (iEsquerda == esquerda.length) {
+				vetorConvidados[i] = direita[iDireita];
+				iDireita++;
+			} else if (iDireita == direita.length) {
+				vetorConvidados[i] = esquerda[iEsquerda];
+				iEsquerda++;
+			} else if (esquerda[iEsquerda].getAdicao().after(direita[iDireita].getAdicao())) {
+				vetorConvidados[i] = esquerda[iEsquerda];
+				iEsquerda++;
+			} else {
+				vetorConvidados[i] = direita[iDireita];
+				iDireita++;
+			}
+		}
+	}
 
 	public static void mergeSortIdade(Convidado[] vetorConvidados) {
 
@@ -106,11 +149,6 @@ public interface MetodosLista {
 			}
 		}
 	}
-	
-	public static void buscarConvidado(Convidado[] vetorConvidados, String busca) {
-		//no proprio botao buscar coloca o JOptionPane mostrando o que ele deseja buscar
-		
-	}
 
 	public static boolean isAniversariante(Evento evento, Convidado convidado) {
 		if (convidado.getNascimento() == null) {
@@ -144,25 +182,5 @@ public interface MetodosLista {
 		media = media / totalIdades;
 
 		return media;
-	}
-
-	public static int[] qtdConvidadoLote(Evento evento) {
-
-		int[] convidadoLote = new int[4];
-
-		while (evento.getListaConvidados().getContador() != null) {
-			if (evento.getListaConvidados().getContador().getConteudo().getLote() == 0) {
-				convidadoLote[0]++;
-			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 1) {
-				convidadoLote[1]++;
-			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 2) {
-				convidadoLote[2]++;
-			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 3) {
-				convidadoLote[3]++;
-			}
-			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
-		}
-		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
-		return convidadoLote;
 	}
 }

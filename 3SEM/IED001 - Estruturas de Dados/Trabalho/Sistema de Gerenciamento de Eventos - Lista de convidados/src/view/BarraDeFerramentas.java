@@ -21,8 +21,9 @@ import java.io.IOException;
 
 public class BarraDeFerramentas extends JPanel {
 
-	private static final long serialVersionUID = 8481528081497930411L;
 
+	private static final long serialVersionUID = 1L;
+	
 	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
 
@@ -32,10 +33,7 @@ public class BarraDeFerramentas extends JPanel {
 	private JButton btnAbrir;
 	private JButton btnSalvar;
 	private JButton btnSalvarComo;
-	private JButton btnRecarregar;
 	private JButton btnEstatisticas;
-	private JButton btnOrdenar;
-	private JButton btnBuscar;
 
 	public BarraDeFerramentas(Evento evento) {
 		setForeground(Color.WHITE);
@@ -74,14 +72,6 @@ public class BarraDeFerramentas extends JPanel {
 		btnSalvarComo.setBackground(CINZA);
 		add(btnSalvarComo);
 
-		btnRecarregar = new JButton("");
-		btnRecarregar
-				.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_recarregar_lista.png")));
-		btnRecarregar.setToolTipText("Recarregar lista de convidados");
-		btnRecarregar.setPreferredSize(new Dimension(40, 40));
-		btnRecarregar.setBackground(CINZA);
-		add(btnRecarregar);
-
 		btnEstatisticas = new JButton("");
 		btnEstatisticas.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_estatisticas.png")));
 		btnEstatisticas.setToolTipText("Estatísticas");
@@ -89,19 +79,9 @@ public class BarraDeFerramentas extends JPanel {
 		btnEstatisticas.setBackground(CINZA);
 		add(btnEstatisticas);
 
-		btnOrdenar = new JButton("");
-		btnOrdenar.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_ordenar.png")));
-		btnOrdenar.setToolTipText("Ordenar Lista");
-		btnOrdenar.setPreferredSize(new Dimension(40, 40));
-		btnOrdenar.setBackground(CINZA);
-		add(btnOrdenar);
+		
 
-		btnBuscar = new JButton("");
-		btnBuscar.setIcon(new ImageIcon(BarraDeFerramentas.class.getResource("/assets/icone_buscar.png")));
-		btnBuscar.setToolTipText("Buscar");
-		btnBuscar.setPreferredSize(new Dimension(40, 40));
-		btnBuscar.setBackground(CINZA);
-		add(btnBuscar);
+		
 
 		btnNovo.addActionListener(new ActionListener() {
 
@@ -167,47 +147,12 @@ public class BarraDeFerramentas extends JPanel {
 			}
 		});
 
-		btnRecarregar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
 
 		btnEstatisticas.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new JanelaEstatisticas(evento);
-
-			}
-		});
-
-		btnOrdenar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (evento.getListaConvidados().getQtdNo() < 2) {
-					JOptionPane.showMessageDialog(null, "Não há necessidade de ordenar menos de 2 convidados.");
-				} else {
-					BarraDeFerramentasEvent ordenarIdade = new BarraDeFerramentasEvent(this, "ordenarIdade");
-					barraDeFerramentasListener.formEventOcurred(ordenarIdade);
-				}
-			}
-		});
-
-		btnBuscar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (evento.getListaConvidados().getQtdNo() < 2) {
-					JOptionPane.showMessageDialog(null, "Não há necessidade de ordenar menos de 2 convidados.");
-				} else {
-					BarraDeFerramentasEvent ordenarNome = new BarraDeFerramentasEvent(this, "ordenarNome");
-					barraDeFerramentasListener.formEventOcurred(ordenarNome);
-				}
 
 			}
 		});

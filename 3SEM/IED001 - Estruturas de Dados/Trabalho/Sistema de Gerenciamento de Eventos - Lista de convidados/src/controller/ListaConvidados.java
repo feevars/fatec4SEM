@@ -223,6 +223,27 @@ public class ListaConvidados {
 		contador = contador.getProximo();
 		removeId(id);
 	}
+	
+	//método para buscar um convidado pelo nome
+	public Convidado[] buscarConvidado(Convidado[] vetorConvidados, String nome) {
+		int cont = 0, j = 0;
+		Convidado[] convidadosEncontrados = new Convidado[vetorConvidados.length];
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (vetorConvidados[i].getNome().equalsIgnoreCase(nome)) {
+				cont++;
+				convidadosEncontrados[j] = vetorConvidados[i];
+				j++;
+			}
+		}
+		if (cont == 0) {
+			JOptionPane.showMessageDialog(null, "O convidado buscado não foi encontrado na lista.");
+			return convidadosEncontrados;
+		} else {
+			System.out.println(convidadosEncontrados.toString());
+			return convidadosEncontrados;
+		}
+	}
+	
 
 	// MÃ©todo de impressÃ£o recursivo de String
 	public String listaString() {
