@@ -25,7 +25,7 @@ public interface MetodosLista {
 
 		if (vetorConvidados.length == 1)
 			return;
-
+		
 		int metade = vetorConvidados.length / 2;
 
 		Convidado[] esquerda = new Convidado[metade];
@@ -68,7 +68,7 @@ public interface MetodosLista {
 
 		if (vetorConvidados.length == 1)
 			return;
-
+		
 		int metade = vetorConvidados.length / 2;
 
 		Convidado[] esquerda = new Convidado[metade];
@@ -97,7 +97,7 @@ public interface MetodosLista {
 				vetorConvidados[i] = esquerda[iEsquerda];
 				iEsquerda++;
 
-			} else if (esquerda[iEsquerda].getNome().compareToIgnoreCase(direita[iDireita].getNome()) < 0) {
+			} else if (esquerda[iEsquerda].getNomeSobrenome().compareToIgnoreCase(direita[iDireita].getNomeSobrenome()) < 0) {
 				vetorConvidados[i] = esquerda[iEsquerda];
 				iEsquerda++;
 			} else {
