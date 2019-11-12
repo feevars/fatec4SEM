@@ -76,7 +76,8 @@ public class BarraDeOrdenacao extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				BarraDeOrdenacaoEvent recarregarLista = new BarraDeOrdenacaoEvent(this, "recarregarLista");
+				barraDeOrdenacaoListener.formEventOcurred(recarregarLista);
 
 			}
 		});

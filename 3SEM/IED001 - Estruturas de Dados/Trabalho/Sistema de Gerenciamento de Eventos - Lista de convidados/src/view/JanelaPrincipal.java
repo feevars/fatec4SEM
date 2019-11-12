@@ -58,10 +58,9 @@ public class JanelaPrincipal extends JFrame {
 				switch (e.getAcao()) {
 				case "recarregarLista":
 					painelVisualizacao.carregaListaDupla();
-					//Convidado[] listaRecarregada = MetodosLista.vetorLista(evento.getListaConvidados());
-					// evento.getListaConvidados().buscarConvidado(vetorConvidados, nome);
-					//MetodosLista.mergeSortID(listaRecarregada);
-					//painelVisualizacao.carregaVetorDaLista(listaRecarregada);
+					Convidado[] listaRecarregada = MetodosLista.vetorLista(evento.getListaConvidados());
+					MetodosLista.recarregaLista(listaRecarregada);
+					painelVisualizacao.carregaVetorDaLista(listaRecarregada);
 					break;
 				case "ordenarID":
 					Convidado[] vetorID = MetodosLista.vetorLista(evento.getListaConvidados());
