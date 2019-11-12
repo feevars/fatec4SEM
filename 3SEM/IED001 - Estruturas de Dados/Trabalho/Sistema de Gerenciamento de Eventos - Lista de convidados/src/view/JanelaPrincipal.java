@@ -27,6 +27,7 @@ public class JanelaPrincipal extends JFrame {
 		if (evento.getListaConvidados().getQtdNo() > 0) {
 			painelVisualizacao.carregaListaDupla();
 		}
+		barraDeOrdenacao = new BarraDeOrdenacao(evento);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
@@ -55,9 +56,15 @@ public class JanelaPrincipal extends JFrame {
 			@Override
 			public void formEventOcurred(BarraDeOrdenacaoEvent e) {
 				switch (e.getAcao()) {
+				case "recarregarLista":
+					painelVisualizacao.carregaListaDupla();
+					//Convidado[] listaRecarregada = MetodosLista.vetorLista(evento.getListaConvidados());
+					// evento.getListaConvidados().buscarConvidado(vetorConvidados, nome);
+					//MetodosLista.mergeSortID(listaRecarregada);
+					//painelVisualizacao.carregaVetorDaLista(listaRecarregada);
+					break;
 				case "ordenarID":
 					Convidado[] vetorID = MetodosLista.vetorLista(evento.getListaConvidados());
-					// evento.getListaConvidados().buscarConvidado(vetorConvidados, nome);
 					MetodosLista.mergeSortID(vetorID);
 					painelVisualizacao.carregaVetorDaLista(vetorID);
 					break;
@@ -75,7 +82,8 @@ public class JanelaPrincipal extends JFrame {
 					String nome = JOptionPane.showInputDialog("Digite o nome do convidado que deseja buscar: ");
 					Convidado[] vetorBusca = MetodosLista.vetorLista(evento.getListaConvidados());
 					// evento.getListaConvidados().buscarConvidado(vetorConvidados, nome);
-					MetodosLista.mergeSortNome(vetorBusca);
+					evento.getListaConvidados().buscarConvidado(vetorBusca, nome);
+					//MetodosLista.mergeSortNome(vetorBusca);
 					painelVisualizacao.carregaVetorDaLista(vetorBusca);
 					break;
 				default:

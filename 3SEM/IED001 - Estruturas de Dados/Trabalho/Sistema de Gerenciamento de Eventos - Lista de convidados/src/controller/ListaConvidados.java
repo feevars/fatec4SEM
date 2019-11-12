@@ -233,6 +233,7 @@ public class ListaConvidados {
 				cont++;
 				convidadosEncontrados[j] = vetorConvidados[i];
 				j++;
+				//precisa dar repaint no painel de visualização para que ele exiba os convidados
 			}
 		}
 		if (cont == 0) {

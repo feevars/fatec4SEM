@@ -38,9 +38,9 @@ public interface MetodosLista {
 				direita[i - metade] = vetorConvidados[i];
 		}
 
-		mergeSortIdade(esquerda);
-		mergeSortIdade(direita);
-		intercalaIdade(vetorConvidados, esquerda, direita);
+		mergeSortID(esquerda);
+		mergeSortID(direita);
+		intercalaID(vetorConvidados, esquerda, direita);
 
 	}
 
@@ -54,7 +54,7 @@ public interface MetodosLista {
 			} else if (iDireita == direita.length) {
 				vetorConvidados[i] = esquerda[iEsquerda];
 				iEsquerda++;
-			} else if (esquerda[iEsquerda].getAdicao().after(direita[iDireita].getAdicao())) {
+			} else if (esquerda[iEsquerda].getId() < direita[iDireita].getId()) {
 				vetorConvidados[i] = esquerda[iEsquerda];
 				iEsquerda++;
 			} else {
