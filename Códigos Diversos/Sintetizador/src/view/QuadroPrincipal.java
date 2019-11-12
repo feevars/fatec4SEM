@@ -48,8 +48,13 @@ public class QuadroPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(null);
 		setContentPane(contentPane);
+		
+		Oscilador oscilador = new Oscilador();
+		oscilador.setLocation(5, 0);
+		contentPane.add(oscilador);
+		
 		addKeyListener(new KeyAdapter() {
 			
 			@Override
