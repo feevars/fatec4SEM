@@ -20,6 +20,93 @@ public interface MetodosLista {
 
 		return vetorConvidados;
 	}
+	
+	public static void recarregaLista(Convidado[] vetorConvidados) {
+
+		if (vetorConvidados.length == 1)
+			return;
+		
+		int metade = vetorConvidados.length / 2;
+
+		Convidado[] esquerda = new Convidado[metade];
+		Convidado[] direita = new Convidado[vetorConvidados.length - metade];
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (i < metade)
+				esquerda[i] = vetorConvidados[i];
+			else
+				direita[i - metade] = vetorConvidados[i];
+		}
+
+		recarregaLista(esquerda);
+		recarregaLista(direita);
+		intercalaLista(vetorConvidados, esquerda, direita);
+
+	}
+
+	public static void intercalaLista(Convidado[] vetorConvidados, Convidado[] esquerda, Convidado[] direita) {
+		int iEsquerda = 0, iDireita = 0;
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (iEsquerda == esquerda.length) {
+				vetorConvidados[i] = direita[iDireita];
+				iDireita++;
+			} else if (iDireita == direita.length) {
+				vetorConvidados[i] = esquerda[iEsquerda];
+				iEsquerda++;
+			} else if (esquerda[iEsquerda].getId() > direita[iDireita].getId()) {
+				vetorConvidados[i] = esquerda[iEsquerda];
+				iEsquerda++;
+			} else {
+				vetorConvidados[i] = direita[iDireita];
+				iDireita++;
+			}
+		}
+	}
+
+	
+	public static void mergeSortID(Convidado[] vetorConvidados) {
+
+		if (vetorConvidados.length == 1)
+			return;
+		
+		int metade = vetorConvidados.length / 2;
+
+		Convidado[] esquerda = new Convidado[metade];
+		Convidado[] direita = new Convidado[vetorConvidados.length - metade];
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (i < metade)
+				esquerda[i] = vetorConvidados[i];
+			else
+				direita[i - metade] = vetorConvidados[i];
+		}
+
+		mergeSortID(esquerda);
+		mergeSortID(direita);
+		intercalaID(vetorConvidados, esquerda, direita);
+
+	}
+
+	public static void intercalaID(Convidado[] vetorConvidados, Convidado[] esquerda, Convidado[] direita) {
+		int iEsquerda = 0, iDireita = 0;
+
+		for (int i = 0; i < vetorConvidados.length; i++) {
+			if (iEsquerda == esquerda.length) {
+				vetorConvidados[i] = direita[iDireita];
+				iDireita++;
+			} else if (iDireita == direita.length) {
+				vetorConvidados[i] = esquerda[iEsquerda];
+				iEsquerda++;
+			} else if (esquerda[iEsquerda].getId() < direita[iDireita].getId()) {
+				vetorConvidados[i] = esquerda[iEsquerda];
+				iEsquerda++;
+			} else {
+				vetorConvidados[i] = direita[iDireita];
+				iDireita++;
+			}
+		}
+	}
 
 	public static void mergeSortIdade(Convidado[] vetorConvidados) {
 
@@ -108,11 +195,6 @@ public interface MetodosLista {
 		}
 	}
 
-	public static void buscarConvidado(Convidado[] vetorConvidados, String busca) {
-		// no proprio botao buscar coloca o JOptionPane mostrando o que ele deseja
-		// buscar
-
-	}
 
 	public static boolean isAniversariante(Evento evento, Convidado convidado) {
 		if (convidado.getNascimento() == null) {

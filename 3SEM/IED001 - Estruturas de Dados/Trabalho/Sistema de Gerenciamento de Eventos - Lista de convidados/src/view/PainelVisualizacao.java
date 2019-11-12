@@ -70,9 +70,9 @@ public class PainelVisualizacao extends JPanel {
 			conteudo.add(new CelulaConvidado(evento, vetorConvidados[i]));
 			
 		}
-		
 		repaint();
 		revalidate();	
 	}
+	
 	
 }
