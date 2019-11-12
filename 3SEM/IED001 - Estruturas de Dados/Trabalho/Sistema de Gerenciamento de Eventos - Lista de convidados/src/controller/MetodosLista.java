@@ -68,7 +68,7 @@ public interface MetodosLista {
 
 		if (vetorConvidados.length == 1)
 			return;
-		
+
 		int metade = vetorConvidados.length / 2;
 
 		Convidado[] esquerda = new Convidado[metade];
@@ -111,7 +111,7 @@ public interface MetodosLista {
 
 		if (vetorConvidados.length == 1)
 			return;
-		
+
 		int metade = vetorConvidados.length / 2;
 
 		Convidado[] esquerda = new Convidado[metade];
@@ -140,7 +140,8 @@ public interface MetodosLista {
 				vetorConvidados[i] = esquerda[iEsquerda];
 				iEsquerda++;
 
-			} else if (esquerda[iEsquerda].getNomeSobrenome().compareToIgnoreCase(direita[iDireita].getNomeSobrenome()) < 0) {
+			} else if (esquerda[iEsquerda].getNomeSobrenome()
+					.compareToIgnoreCase(direita[iDireita].getNomeSobrenome()) < 0) {
 				vetorConvidados[i] = esquerda[iEsquerda];
 				iEsquerda++;
 			} else {
@@ -149,6 +150,7 @@ public interface MetodosLista {
 			}
 		}
 	}
+
 
 	public static boolean isAniversariante(Evento evento, Convidado convidado) {
 		if (convidado.getNascimento() == null) {
@@ -182,5 +184,134 @@ public interface MetodosLista {
 		media = media / totalIdades;
 
 		return media;
+	}
+
+	public static int[] qtdConvidadoLote(Evento evento) {
+
+		int[] convidadoLote = new int[4];
+
+		while (evento.getListaConvidados().getContador() != null) {
+			if (evento.getListaConvidados().getContador().getConteudo().getLote() == 0) {
+				convidadoLote[0]++;
+			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 1) {
+				convidadoLote[1]++;
+			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 2) {
+				convidadoLote[2]++;
+			} else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 3) {
+				convidadoLote[3]++;
+			}
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		return convidadoLote;
+	}
+
+	public static double[] arrecadacaoLote(Evento evento) {
+
+		double[] arrecadacaoLote = new double[4];
+
+		double valor = 1;
+
+		while (evento.getListaConvidados().getContador() != null) {
+			if (!evento.getListaConvidados().getContador().getConteudo().isVip()) {
+
+				if (isAniversariante(evento, evento.getListaConvidados().getContador().getConteudo())) {
+					valor = (100 - evento.getDescontoAniversariante()) * 0.01;
+				}
+
+				if (evento.getListaConvidados().getContador().getConteudo().getLote() == 0)
+					arrecadacaoLote[0] += evento.getValorPortaria() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 1)
+					arrecadacaoLote[1] += evento.getValorLote1() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 2)
+					arrecadacaoLote[2] += evento.getValorLote2() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 3)
+					arrecadacaoLote[3] += evento.getValorLote3() * valor;
+			}
+			valor = 1;
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		return arrecadacaoLote;
+	}
+
+	public static int qtdVips(Evento evento) {
+		int vips = 0;
+		while (evento.getListaConvidados().getContador() != null) {
+			if (evento.getListaConvidados().getContador().getConteudo().isVip()) {
+				vips++;
+			}
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		return vips;
+	}
+
+	public static double perdaVips(Evento evento) {
+		double vips = 0;
+		double valor = 1;
+
+		while (evento.getListaConvidados().getContador() != null) {
+			if (evento.getListaConvidados().getContador().getConteudo().isVip()) {
+
+				if (isAniversariante(evento, evento.getListaConvidados().getContador().getConteudo())) {
+					valor = (100 - evento.getDescontoAniversariante()) * 0.01;
+				}
+
+				if (evento.getListaConvidados().getContador().getConteudo().getLote() == 0)
+					vips += evento.getValorPortaria() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 1)
+					vips += evento.getValorLote1() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 2)
+					vips += evento.getValorLote2() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 3)
+					vips += evento.getValorLote3() * valor;
+			}
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+			valor = 1;
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		return vips * (-1);
+	}
+
+	public static int qtdAniversariantes(Evento evento) {
+
+		int qtdAniversariantes = 0;
+
+		while (evento.getListaConvidados().getContador() != null) {
+
+			if (isAniversariante(evento, evento.getListaConvidados().getContador().getConteudo())) {
+				qtdAniversariantes++;
+			}
+
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		return qtdAniversariantes;
+	}
+
+	public static double perdaAniversariantes(Evento evento) {
+
+		double perda = 0;
+		double valor = evento.getDescontoAniversariante() * 0.01;
+
+		while (evento.getListaConvidados().getContador() != null) {
+
+			if (!evento.getListaConvidados().getContador().getConteudo().isVip()
+					&& isAniversariante(evento, evento.getListaConvidados().getContador().getConteudo())) {
+				if (evento.getListaConvidados().getContador().getConteudo().getLote() == 0)
+					perda += evento.getValorPortaria() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 1)
+					perda += evento.getValorLote1() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 2)
+					perda += evento.getValorLote2() * valor;
+				else if (evento.getListaConvidados().getContador().getConteudo().getLote() == 3)
+					perda += evento.getValorLote3() * valor;
+			}
+			evento.getListaConvidados().setContador(evento.getListaConvidados().getContador().getProximo());
+			valor = 1;
+		}
+		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
+		return perda * (-1);
 	}
 }

@@ -18,8 +18,6 @@ public class GraficoArrecadacao extends JPanel implements MetodosLista {
 
 	private Evento evento;
 
-	private int qtdDatas;
-
 	private double lote1;
 	private double lote2;
 	private double lote3;

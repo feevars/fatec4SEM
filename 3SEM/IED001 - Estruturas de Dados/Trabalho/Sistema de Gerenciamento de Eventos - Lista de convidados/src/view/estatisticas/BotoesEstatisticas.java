@@ -23,8 +23,6 @@ public class BotoesEstatisticas extends JPanel {
 	private JButton btnConvidadoPorLote;
 	private JButton btnFaixaEtaria;
 	private JButton btnArrecadaoPorLote;
-	private JButton btnDescontoParaAniversariantes;
-	private JButton btnVipsConcedidos;
 
 	public BotoesEstatisticas() {
 		setBackground(AZUL_ESCURO);
@@ -51,17 +49,6 @@ public class BotoesEstatisticas extends JPanel {
 		btnArrecadaoPorLote.setBackground(CINZA);
 		add(btnArrecadaoPorLote);
 
-		btnDescontoParaAniversariantes = new JButton(
-				"<html><p align=\"center\">Desconto para aniversariantes</p></html>");
-		btnDescontoParaAniversariantes.setForeground(Color.WHITE);
-		btnDescontoParaAniversariantes.setBackground(CINZA);
-		add(btnDescontoParaAniversariantes);
-
-		btnVipsConcedidos = new JButton("<html><p align=\"center\">VIPs concedidos</p></html>");
-		btnVipsConcedidos.setForeground(Color.WHITE);
-		btnVipsConcedidos.setBackground(CINZA);
-		add(btnVipsConcedidos);
-		
 		btnDadosGerais.addActionListener(new ActionListener() {
 
 			@Override
