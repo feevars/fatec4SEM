@@ -34,16 +34,16 @@ public class Oscilador extends JPanel {
 	}
 
 	public double proximoSample() {
-
+		
+		double tDiv = (posOnda++ / (double)QuadroPrincipal.AudioInfo.SAMPLE_RATE) / (1d / FREQUENCIA);
+		
 		switch (formaDaOnda) {
 		case Sine:
-			return Math.sin(Utils.Math.frequenciaParaFrequenciaAngular(FREQUENCIA) * posOnda / QuadroPrincipal.AudioInfo.SAMPLE_RATE);
-			break;
+			return Math.sin(Utils.Math.frequenciaParaFrequenciaAngular(FREQUENCIA) * (posOnda - 1) / QuadroPrincipal.AudioInfo.SAMPLE_RATE);
 		case Square:
-
-			break;
+			return Math.signum(Utils.Math.frequenciaParaFrequenciaAngular(FREQUENCIA) * (posOnda - 1) / QuadroPrincipal.AudioInfo.SAMPLE_RATE);
 		case Saw:
-
+			return 2d * ()
 			break;
 		case Triangle:
 
