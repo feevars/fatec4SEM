@@ -74,5 +74,16 @@ public class PainelVisualizacao extends JPanel {
 		revalidate();	
 	}
 	
-	
+	public void carregaVetorBusca(Convidado[] vetorBusca, String nome) {
+		conteudo.removeAll();
+		
+		for (int i = 0; i < vetorBusca.length; i++) {
+			if (vetorBusca[i].getNome().equalsIgnoreCase(nome) ||
+					vetorBusca[i].getNomeSobrenome().equalsIgnoreCase(nome)) {
+				conteudo.add(new CelulaConvidado(evento, vetorBusca[i]));
+			}
+		}
+		repaint();
+		revalidate();	
+	}
 }

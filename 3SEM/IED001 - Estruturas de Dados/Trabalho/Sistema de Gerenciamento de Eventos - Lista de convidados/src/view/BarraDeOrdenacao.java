@@ -122,17 +122,10 @@ public class BarraDeOrdenacao extends JPanel {
 		});
 
 		btnBuscar.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (evento.getListaConvidados().getQtdNo() < 2) {
-					JOptionPane.showMessageDialog(null, "Não há necessidade de ordenar menos de 2 convidados.");
-				} else {
-					String nome = JOptionPane.showInputDialog("Digite o nome do convidado que deseja buscar: ");
-					BarraDeOrdenacaoEvent buscarNome = new BarraDeOrdenacaoEvent(this, "ordenarNome");
+					BarraDeOrdenacaoEvent buscarNome = new BarraDeOrdenacaoEvent(this, "buscarNome");
 					barraDeOrdenacaoListener.formEventOcurred(buscarNome);
-				}
-
 			}
 		});
 

@@ -1,3 +1,4 @@
+
 package controller;
 
 import javax.swing.JOptionPane;
@@ -5,19 +6,18 @@ import javax.swing.JOptionPane;
 import model.Convidado;
 
 public class ListaConvidados {
-	
 	private No primeiro;
 	private No ultimo;
 	private int qtdNo;
 	// Conta id:
 	private int contaId;
-	// Contador auxiliar da recursÃ£o
+	// Contador auxiliar da recursao
 	private No contador;
 	// String de resultados
 	private String listaTexto = "";
 	// Contador auxiliar INTEIRO para vetores
 	private int contadorInt;
-
+	
 	public ListaConvidados() {
 		primeiro = null;
 		ultimo = null;
@@ -222,27 +222,6 @@ public class ListaConvidados {
 		}
 		contador = contador.getProximo();
 		removeId(id);
-	}
-	
-	//método para buscar um convidado pelo nome
-	public Convidado[] buscarConvidado(Convidado[] vetorConvidados, String nome) {
-		int cont = 0, j = 0;
-		Convidado[] convidadosEncontrados = new Convidado[vetorConvidados.length];
-		for (int i = 0; i < vetorConvidados.length; i++) {
-			if (vetorConvidados[i].getNome().equalsIgnoreCase(nome)) {
-				cont++;
-				convidadosEncontrados[j] = vetorConvidados[i];
-				j++;
-				//precisa dar repaint no painel de visualização para que ele exiba os convidados
-			}
-		}
-		if (cont == 0) {
-			JOptionPane.showMessageDialog(null, "O convidado buscado não foi encontrado na lista.");
-			return convidadosEncontrados;
-		} else {
-			System.out.println(convidadosEncontrados.toString());
-			return convidadosEncontrados;
-		}
 	}
 	
 

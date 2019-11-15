@@ -80,10 +80,7 @@ public class JanelaPrincipal extends JFrame {
 				case "buscarNome":
 					String nome = JOptionPane.showInputDialog("Digite o nome do convidado que deseja buscar: ");
 					Convidado[] vetorBusca = MetodosLista.vetorLista(evento.getListaConvidados());
-					// evento.getListaConvidados().buscarConvidado(vetorConvidados, nome);
-					evento.getListaConvidados().buscarConvidado(vetorBusca, nome);
-					//MetodosLista.mergeSortNome(vetorBusca);
-					painelVisualizacao.carregaVetorDaLista(vetorBusca);
+					painelVisualizacao.carregaVetorBusca(vetorBusca, nome);
 					break;
 				default:
 					break;

@@ -57,11 +57,11 @@ public class FormConvidado extends JPanel {
 	private JCheckBox chckbxAcessibilidade;
 	private Date dataAtual;
 	private int loteAtual;
-	
+
 	private Evento evento;
-	
+
 	private FormConvidadoListener formListener;
-	
+
 	public FormConvidado(Evento evento) throws ParseException {
 		setBorder(new CompoundBorder(new EmptyBorder(3, 3, 3, 3),
 				new TitledBorder(new EtchedBorder(EtchedBorder.RAISED, Color.WHITE, VIOLETA), "Adicionar Convidado",
@@ -69,21 +69,18 @@ public class FormConvidado extends JPanel {
 		setPreferredSize(new Dimension(320, 560));
 		setBackground(AZUL_ESCURO);
 		setForeground(Color.WHITE);
-		
-		dataAtual = new Date();
-		
-		this.evento = evento;
-		
-		defineLote();
-		
 
-		
+		dataAtual = new Date();
+
+		this.evento = evento;
+
+		defineLote();
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 100, 275, 0 };
 		gridBagLayout.rowHeights = new int[] { 40, 40, 40, 40, 40, 40, 50, 60, 181, 40, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-				Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JLabel lblNome = new JLabel("<html><p align=\"right\">Nome:</p></html>");
@@ -258,13 +255,12 @@ public class FormConvidado extends JPanel {
 		btnAdicionarConvidado.setMinimumSize(new Dimension(111, 60));
 		btnAdicionarConvidado.setPreferredSize(new Dimension(175, 60));
 		painelBotoes.add(btnAdicionarConvidado);
-		
-		
+
 		JLabel lblLote = new JLabel();
-		if(loteAtual == 0) {
+		if (loteAtual == 0) {
 			lblLote.setText("Portaria");
-		}else {
-			lblLote.setText(loteAtual + "º Lote");
+		} else {
+			lblLote.setText(loteAtual + "o Lote");
 		}
 		lblLote.setForeground(VIOLETA);
 		lblLote.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -274,6 +270,19 @@ public class FormConvidado extends JPanel {
 		gbc_lblLote.gridy = 9;
 		add(lblLote, gbc_lblLote);
 
+		JLabel lblconvitesRestantes = new JLabel();
+		lblconvitesRestantes.setText(evento.getQtdConvites() - evento.getListaConvidados().getQtdNo() 
+				+ " convites restantes");
+		
+		lblconvitesRestantes.setForeground(VIOLETA);
+		lblconvitesRestantes.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		GridBagConstraints gbc_convitesRestantes = new GridBagConstraints();
+		gbc_convitesRestantes.anchor = GridBagConstraints.WEST;
+		gbc_convitesRestantes.gridx = 1;
+		gbc_convitesRestantes.gridy = 10;
+		add(lblconvitesRestantes, gbc_convitesRestantes);
+		
+		
 		comboDocumento.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				switch ((String) comboDocumento.getSelectedItem()) {
@@ -323,38 +332,30 @@ public class FormConvidado extends JPanel {
 				}
 			}
 		});
-		
+
 		btnLimparCampos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limparCampos();
 			}
 		});
-		
+
 		btnAdicionarConvidado.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
-						
-				double porcentagemRestante = ((double)(evento.getQtdConvites() - evento.getListaConvidados().getQtdNo()) * 100) / (double) evento.getQtdConvites();
-				
-				if(evento.getQtdConvites() <= evento.getListaConvidados().getQtdNo()) {
-					JOptionPane.showMessageDialog(null, "Seu evento já está lotado.\n"
-							+ "Impossível adicionar novo convidado.");	
-				}else {
-					Convidado novoConvidado = new Convidado(evento.getListaConvidados().getContaId(),
-							txtNome.getText(),
-							txtSobrenome.getText(),
-							txtEmail.getText(),
-							txtTelefone.getText(),
-							escolhaDataNascimento.getDate(),
-							comboDocumento.getSelectedItem().toString(),
-							txtDocumento.getText(),
-							chckbxAcessibilidade.isSelected(),
-							checkVip.isSelected(),
+
+				if (evento.getQtdConvites() <= evento.getListaConvidados().getQtdNo()) {
+					JOptionPane.showMessageDialog(null,
+							"Seu evento ja esta lotado.\n" + "Impossivel adicionar novo convidado.");
+				} else {
+					Convidado novoConvidado = new Convidado(evento.getListaConvidados().getContaId(), txtNome.getText(),
+							txtSobrenome.getText(), txtEmail.getText(), txtTelefone.getText(),
+							escolhaDataNascimento.getDate(), comboDocumento.getSelectedItem().toString(),
+							txtDocumento.getText(), chckbxAcessibilidade.isSelected(), checkVip.isSelected(),
 							loteAtual);
 					evento.getListaConvidados().inserePrimeiro(novoConvidado);
 					switch (loteAtual) {
 					case 1:
-							evento.setQtdLote1(evento.getQtdLote1() - 1);
+						evento.setQtdLote1(evento.getQtdLote1() - 1);
 						break;
 					case 2:
 						evento.setQtdLote2(evento.getQtdLote2() - 1);
@@ -363,19 +364,29 @@ public class FormConvidado extends JPanel {
 						evento.setQtdLote3(evento.getQtdLote3() - 1);
 						break;
 					}
-					
-					FormConvidadoEvent ev = new FormConvidadoEvent(this, evento.getListaConvidados().getPrimeiro().getConteudo());
+
+					FormConvidadoEvent ev = new FormConvidadoEvent(this,
+							evento.getListaConvidados().getPrimeiro().getConteudo());
 					formListener.formEventOcurred(ev);
-					JOptionPane.showMessageDialog(null, "Convidado adicionado.\n"
-							+ "Restam " + porcentagemRestante + "% da lista.");
+					double porcentagemRestante = ((double) (evento.getQtdConvites()
+							- evento.getListaConvidados().getQtdNo()) * 100) / (double) evento.getQtdConvites();
+					JOptionPane.showMessageDialog(null,
+							"Convidado adicionado.\n" + "Restam " + porcentagemRestante + "% da lista.");
 					limparCampos();
 					defineLote();
-					lblLote.setText(loteAtual + "� Lote");
+					if (loteAtual == 0) {
+						lblLote.setText("Portaria");
+					} else {
+						lblLote.setText(loteAtual + "� Lote");
+					}
+					lblconvitesRestantes.setText(evento.getQtdConvites() - evento.getListaConvidados().getQtdNo() 
+							+ " convites restantes");
+
 				}
 			}
 		});
 	}
-	
+
 	public void defineLote() {
 		if (dataAtual.before(evento.getDataLote1()) && evento.getQtdLote1() > 0) {
 			loteAtual = 1;
@@ -388,6 +399,7 @@ public class FormConvidado extends JPanel {
 		}
 	}
 	
+
 	public void limparCampos() {
 		txtNome.setText("");
 		txtSobrenome.setText("");
@@ -397,9 +409,9 @@ public class FormConvidado extends JPanel {
 		comboDocumento.setSelectedIndex(0);
 		checkVip.setSelected(false);
 		chckbxAcessibilidade.setSelected(false);
-		txtDocumento.setText("");	
+		txtDocumento.setText("");
 	}
-	
+
 	public void setFormListener(FormConvidadoListener listener) {
 		this.formListener = listener;
 	}

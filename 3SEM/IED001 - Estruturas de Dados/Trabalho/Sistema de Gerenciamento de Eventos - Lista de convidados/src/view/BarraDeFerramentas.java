@@ -10,6 +10,7 @@ import view.estatisticas.JanelaEstatisticas;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -34,6 +35,7 @@ public class BarraDeFerramentas extends JPanel {
 	private JButton btnSalvar;
 	private JButton btnSalvarComo;
 	private JButton btnEstatisticas;
+
 
 	public BarraDeFerramentas(Evento evento) {
 		setForeground(Color.WHITE);
