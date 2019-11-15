@@ -1,0 +1,31 @@
+mysql> CREATE DATABASE EMPRESA;
+Query OK, 1 row affected (0.31 sec)
+
+mysql> USE EMPRESA;
+Database changed
+mysql> CREATE TABLE GERENTE (DEPTO INT, NOME VARCHAR(20));
+Query OK, 0 rows affected (2.46 sec)
+
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_empresa |
++-------------------+
+| gerente           |
++-------------------+
+1 row in set (0.04 sec)
+
+mysql> SHOW * FROM GERENTE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* FROM GERENTE' at line 1
+mysql> SELECT * FROM GERENTE;
+Empty set (0.02 sec)
+
+mysql> DESC GERENTE;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| DEPTO | int(11)     | YES  |     | NULL    |       |
+| NOME  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.08 sec)
+
+mysql> Terminal close -- exit!

@@ -358,4 +358,8 @@ public interface MetodosLista {
 		evento.getListaConvidados().setContador(evento.getListaConvidados().getPrimeiro());
 		return perda * (-1);
 	}
+	
+	public static void viraLote(Evento evento) {
+		//if (evento.getQtdLote1())
+	}
 }

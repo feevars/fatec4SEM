@@ -58,6 +58,8 @@ public class FormConvidado extends JPanel {
 	private Date dataAtual;
 	private int loteAtual;
 	
+	private Evento evento;
+	
 	private FormConvidadoListener formListener;
 	
 	public FormConvidado(Evento evento) throws ParseException {
@@ -70,18 +72,9 @@ public class FormConvidado extends JPanel {
 		
 		dataAtual = new Date();
 		
-		if (dataAtual.before(evento.getDataLote1())
-				&& evento.getQtdLote1() > 0) {
-			loteAtual = 1;
-		} else if (dataAtual.after(evento.getDataLote1()) && dataAtual.before(evento.getDataLote2())
-				&& evento.getQtdLote2() > 0) {
-			loteAtual = 2;
-		} else if (dataAtual.after(evento.getDataLote2()) && dataAtual.before(evento.getDataLote3())
-				&& evento.getQtdLote3() > 0) {
-			loteAtual = 3;
-		} else {
-			loteAtual = 0; // Portaria
-		}
+		this.evento = evento;
+		
+		defineLote();
 		
 
 		
@@ -361,7 +354,7 @@ public class FormConvidado extends JPanel {
 					evento.getListaConvidados().inserePrimeiro(novoConvidado);
 					switch (loteAtual) {
 					case 1:
-						evento.setQtdLote1(evento.getQtdLote1() - 1);
+							evento.setQtdLote1(evento.getQtdLote1() - 1);
 						break;
 					case 2:
 						evento.setQtdLote2(evento.getQtdLote2() - 1);
@@ -369,18 +362,30 @@ public class FormConvidado extends JPanel {
 					case 3:
 						evento.setQtdLote3(evento.getQtdLote3() - 1);
 						break;
-					default:
-						break;
 					}
 					
-					JOptionPane.showMessageDialog(null, "Convidado adicionado.\n"
-							+ "Restam " + porcentagemRestante + "% da lista.");
 					FormConvidadoEvent ev = new FormConvidadoEvent(this, evento.getListaConvidados().getPrimeiro().getConteudo());
 					formListener.formEventOcurred(ev);
+					JOptionPane.showMessageDialog(null, "Convidado adicionado.\n"
+							+ "Restam " + porcentagemRestante + "% da lista.");
 					limparCampos();
+					defineLote();
+					lblLote.setText(loteAtual + "° Lote");
 				}
 			}
 		});
+	}
+	
+	public void defineLote() {
+		if (dataAtual.before(evento.getDataLote1()) && evento.getQtdLote1() > 0) {
+			loteAtual = 1;
+		} else if (dataAtual.before(evento.getDataLote2()) && evento.getQtdLote2() > 0) {
+			loteAtual = 2;
+		} else if (dataAtual.before(evento.getDataLote3()) && evento.getQtdLote3() > 0) {
+			loteAtual = 3;
+		} else {
+			loteAtual = 0; // Portaria
+		}
 	}
 	
 	public void limparCampos() {

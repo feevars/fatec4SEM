@@ -395,7 +395,6 @@ public class WizardNovoEvento extends JFrame {
 							sliderAniversariante.getValue(),
 							listaConvidados,
 							null);
-					// BufferedWriter bw = new BufferedWriter(novoEvento);
 					dispose();
 					try {
 						new JanelaPrincipal(novoEvento);
