@@ -311,14 +311,17 @@ public class FormEditarConvidado extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 
-				if (evento.getQtdConvites() <= evento.getListaConvidados().getQtdNo()) {
-					JOptionPane.showMessageDialog(null,
-							"Seu evento ja esta lotado.\n" + "Impossivel adicionar novo convidado.");
-				} else {
-					Convidado novoConvidado = new Convidado(evento.getListaConvidados().getContaId(), txtNome.getText(),
-							txtSobrenome.getText(), txtEmail.getText(), txtTelefone.getText(),
-							escolhaDataNascimento.getDate(), comboDocumento.getSelectedItem().toString(),
-							txtDocumento.getText(), chckbxAcessibilidade.isSelected(), checkVip.isSelected(),
+						Convidado novoConvidado = new Convidado(
+								evento.getListaConvidados().getContaId(), 
+								txtNome.getText(),
+							txtSobrenome.getText(), 
+							txtEmail.getText(), 
+							txtTelefone.getText(),
+							escolhaDataNascimento.getDate(), 
+							comboDocumento.getSelectedItem().toString(),
+							txtDocumento.getText(), 
+							chckbxAcessibilidade.isSelected(), 
+							checkVip.isSelected(),
 							loteAtual);
 					evento.getListaConvidados().inserePrimeiro(novoConvidado);
 					switch (loteAtual) {
@@ -336,15 +339,12 @@ public class FormEditarConvidado extends JPanel {
 					FormConvidadoEvent ev = new FormConvidadoEvent(this,
 							evento.getListaConvidados().getPrimeiro().getConteudo());
 					formListener.formEventOcurred(ev);
-					double porcentagemRestante = ((double) (evento.getQtdConvites()
-							- evento.getListaConvidados().getQtdNo()) * 100) / (double) evento.getQtdConvites();
+				
 					JOptionPane.showMessageDialog(null,
 							"Convidado alterado com sucesso.");
 					setVisible(false);
-				}
 			}
 		});
-	}
 
 	public void setFormListener(FormConvidadoListener listener) {
 		this.formListener = listener;

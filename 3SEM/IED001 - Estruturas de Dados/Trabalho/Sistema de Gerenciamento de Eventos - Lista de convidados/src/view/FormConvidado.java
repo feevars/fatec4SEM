@@ -377,7 +377,7 @@ public class FormConvidado extends JPanel {
 					if (loteAtual == 0) {
 						lblLote.setText("Portaria");
 					} else {
-						lblLote.setText(loteAtual + "° Lote");
+						lblLote.setText(loteAtual + "º Lote");
 					}
 					lblconvitesRestantes.setText(evento.getQtdConvites() - evento.getListaConvidados().getQtdNo() 
 							+ " convites restantes");

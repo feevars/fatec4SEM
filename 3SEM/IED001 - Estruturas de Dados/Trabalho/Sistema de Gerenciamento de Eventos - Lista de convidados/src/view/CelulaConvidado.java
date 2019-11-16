@@ -217,7 +217,10 @@ public class CelulaConvidado extends JPanel implements ActionListener, MetodosLi
 			evento.getListaConvidados().removeId(convidado.getId());
 		}
 		if (e.getSource() == btnEditar) {
-			editarConvidado();
+			FormEditarConvidado.setVisible(true);
+			
+			
+			
 			removeAll();
 			revalidate();
 			repaint();
