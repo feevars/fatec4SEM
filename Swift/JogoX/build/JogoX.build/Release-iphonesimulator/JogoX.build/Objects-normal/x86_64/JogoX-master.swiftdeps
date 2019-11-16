@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+options: "178138595636348e49e9b3ba3518af0a"
+build_time: [1573751696, 350563000]
+inputs:
+  "/Users/bruno/Desktop/Fatec/Swift/JogoX/JogoX/GameScene.swift": [9223372036, 854775807]
+  "/Users/bruno/Desktop/Fatec/Swift/JogoX/JogoX/GameViewController.swift": [9223372036, 854775807]
+  "/Users/bruno/Desktop/Fatec/Swift/JogoX/JogoX/AppDelegate.swift": [9223372036, 854775807]
