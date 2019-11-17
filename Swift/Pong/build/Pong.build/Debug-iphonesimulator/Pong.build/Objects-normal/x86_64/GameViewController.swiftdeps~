@@ -1,5 +1,6 @@
 ### Swift dependencies file v0 ###
 provides-top-level:
+- "tipoJogoAtual"
 - "GameViewController"
 provides-nominal:
 - "4Pong18GameViewControllerC"
@@ -23,6 +24,8 @@ depends-top-level:
 - !private "UIDevice"
 - "UIInterfaceOrientationMask"
 - "UIViewController"
+- "tipoJogo"
+- "tipoJogoAtual"
 depends-member:
 - !private ["So15CALayerDelegateP", "bounds"]
 - !private ["So15CALayerDelegateP", "ignoresSiblingOrder"]
@@ -88,6 +91,7 @@ depends-member:
 - !private ["SQ", "current"]
 - !private ["SQ", "ignoresSiblingOrder"]
 - !private ["SQ", "init"]
+- ["SQ", "medio"]
 - !private ["SQ", "phone"]
 - !private ["SQ", "presentScene"]
 - !private ["SQ", "scaleMode"]
@@ -122,6 +126,7 @@ depends-member:
 - !private ["SH", "current"]
 - !private ["SH", "ignoresSiblingOrder"]
 - !private ["SH", "init"]
+- ["SH", "medio"]
 - !private ["SH", "phone"]
 - !private ["SH", "presentScene"]
 - !private ["SH", "scaleMode"]
@@ -418,6 +423,7 @@ depends-member:
 - !private ["s38__DefaultCustomPlaygroundQuickLookableP", "presentScene"]
 - !private ["s38__DefaultCustomPlaygroundQuickLookableP", "showsFPS"]
 - !private ["s38__DefaultCustomPlaygroundQuickLookableP", "showsNodeCount"]
+- ["4Pong8tipoJogoO", "medio"]
 depends-nominal:
 - !private "So15CALayerDelegateP"
 - !private "So6CGRectV"
@@ -473,6 +479,7 @@ depends-nominal:
 - "10Foundation37_KeyValueCodingAndObservingPublishingP"
 - !private "s21_ObjectiveCBridgeableP"
 - !private "s38__DefaultCustomPlaygroundQuickLookableP"
+- "4Pong8tipoJogoO"
 depends-dynamic-lookup:
 depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator13.2.sdk/usr/lib/swift/ObjectiveC.swiftmodule/x86_64.swiftinterface"
@@ -1890,4 +1897,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator13.2.sdk/System/Library/Frameworks/GameplayKit.framework/Headers/GameplayKit.apinotes"
 - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator13.2.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
 - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator13.2.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
-interface-hash: "4cbb5a21dfe12027cf513abb920d6058"
+interface-hash: "27f6324f365840317a587618dd288d90"

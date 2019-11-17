@@ -14,6 +14,7 @@ depends-top-level:
 - !private "+"
 - !private "+="
 - !private "-"
+- !private "..."
 - !private "/"
 - !private "<"
 - !private "<="
@@ -41,10 +42,12 @@ depends-top-level:
 - "UITouch"
 - !private "tipoJogoAtual"
 depends-member:
+- !private ["s18AdditiveArithmeticP", "random"]
 - ["Sa", "init"]
 - !private ["Sa", "subscript"]
 - ["SK", "init"]
 - !private ["SK", "subscript"]
+- !private ["Sz", "random"]
 - !private ["So7CGPointV", "init"]
 - !private ["So7CGPointV", "x"]
 - !private ["So7CGPointV", "y"]
@@ -75,6 +78,7 @@ depends-member:
 - !private ["s7CVarArgP", "physicsBody"]
 - !private ["s7CVarArgP", "placar"]
 - !private ["s7CVarArgP", "position"]
+- !private ["s7CVarArgP", "random"]
 - !private ["s7CVarArgP", "restitution"]
 - !private ["s7CVarArgP", "run"]
 - !private ["s7CVarArgP", "subscript"]
@@ -83,6 +87,7 @@ depends-member:
 - !private ["s7CVarArgP", "velocity"]
 - ["Sl", "init"]
 - !private ["Sl", "subscript"]
+- !private ["SL", "random"]
 - ["10Foundation15ContiguousBytesP", "init"]
 - !private ["10Foundation15ContiguousBytesP", "subscript"]
 - !private ["s28CustomDebugStringConvertibleP", "CGPoint"]
@@ -121,6 +126,7 @@ depends-member:
 - !private ["s28CustomDebugStringConvertibleP", "y"]
 - !private ["s17CustomReflectableP", "height"]
 - ["s17CustomReflectableP", "init"]
+- !private ["s17CustomReflectableP", "random"]
 - !private ["s17CustomReflectableP", "subscript"]
 - !private ["s17CustomReflectableP", "x"]
 - !private ["s17CustomReflectableP", "y"]
@@ -151,6 +157,7 @@ depends-member:
 - !private ["s23CustomStringConvertibleP", "physicsBody"]
 - !private ["s23CustomStringConvertibleP", "placar"]
 - !private ["s23CustomStringConvertibleP", "position"]
+- !private ["s23CustomStringConvertibleP", "random"]
 - !private ["s23CustomStringConvertibleP", "restitution"]
 - !private ["s23CustomStringConvertibleP", "run"]
 - !private ["s23CustomStringConvertibleP", "subscript"]
@@ -161,6 +168,7 @@ depends-member:
 - !private ["10Foundation12DataProtocolP", "subscript"]
 - !private ["Se", "height"]
 - ["Se", "init"]
+- !private ["Se", "random"]
 - !private ["Se", "subscript"]
 - !private ["Se", "x"]
 - !private ["Se", "y"]
@@ -168,6 +176,7 @@ depends-member:
 - !private ["s26DefaultStringInterpolationV", "appendLiteral"]
 - !private ["SE", "height"]
 - ["SE", "init"]
+- !private ["SE", "random"]
 - !private ["SE", "subscript"]
 - !private ["SE", "x"]
 - !private ["SE", "y"]
@@ -201,6 +210,7 @@ depends-member:
 - !private ["SQ", "physicsBody"]
 - !private ["SQ", "placar"]
 - !private ["SQ", "position"]
+- !private ["SQ", "random"]
 - !private ["SQ", "restitution"]
 - !private ["SQ", "run"]
 - !private ["SQ", "subscript"]
@@ -211,6 +221,8 @@ depends-member:
 - !private ["SQ", "y"]
 - ["s25ExpressibleByArrayLiteralP", "init"]
 - !private ["s25ExpressibleByArrayLiteralP", "subscript"]
+- !private ["s27ExpressibleByIntegerLiteralP", "random"]
+- !private ["s17FixedWidthIntegerP", "random"]
 - !private ["So19GKSceneRootNodeTypeP", "CGPoint"]
 - !private ["So19GKSceneRootNodeTypeP", "CGVector"]
 - ["So19GKSceneRootNodeTypeP", "Int"]
@@ -291,12 +303,16 @@ depends-member:
 - !private ["SH", "physicsBody"]
 - !private ["SH", "placar"]
 - !private ["SH", "position"]
+- !private ["SH", "random"]
 - !private ["SH", "restitution"]
 - !private ["SH", "run"]
 - !private ["SH", "subscript"]
 - !private ["SH", "text"]
 - !private ["SH", "tipoJogoAtual"]
 - !private ["SH", "velocity"]
+- !private ["Si", "random"]
+- !private ["s25LosslessStringConvertibleP", "random"]
+- !private ["s10MirrorPathP", "random"]
 - ["SM", "init"]
 - !private ["SM", "subscript"]
 - ["10Foundation19MutableDataProtocolP", "init"]
@@ -456,10 +472,12 @@ depends-member:
 - !private ["So14NSSecureCodingP", "text"]
 - !private ["So14NSSecureCodingP", "tipoJogoAtual"]
 - !private ["So14NSSecureCodingP", "velocity"]
+- !private ["Sj", "random"]
 - ["Sk", "init"]
 - !private ["Sk", "subscript"]
 - ["Sm", "init"]
 - !private ["Sm", "subscript"]
+- !private ["s10SIMDScalarP", "random"]
 - !private ["So8SKActionC", "moveTo"]
 - !private ["So12SKEffectNodeC", "CGPoint"]
 - !private ["So12SKEffectNodeC", "CGVector"]
@@ -588,6 +606,9 @@ depends-member:
 - !private ["So10SKWarpableP", "tipoJogoAtual"]
 - ["ST", "init"]
 - !private ["ST", "subscript"]
+- !private ["SZ", "random"]
+- !private ["s13SignedNumericP", "random"]
+- !private ["Sx", "random"]
 - !private ["s27StringInterpolationProtocolP", "appendInterpolation"]
 - !private ["s27StringInterpolationProtocolP", "appendLiteral"]
 - !private ["s16TextOutputStreamP", "appendInterpolation"]
@@ -751,14 +772,17 @@ depends-member:
 - ["s30_CustomPlaygroundQuickLookableP", "init"]
 - !private ["s30_CustomPlaygroundQuickLookableP", "physicsBody"]
 - !private ["s30_CustomPlaygroundQuickLookableP", "position"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "random"]
 - !private ["s30_CustomPlaygroundQuickLookableP", "run"]
 - !private ["s30_CustomPlaygroundQuickLookableP", "x"]
 - !private ["s30_CustomPlaygroundQuickLookableP", "y"]
 - ["s24_DestructorSafeContainerP", "init"]
 - !private ["s24_DestructorSafeContainerP", "subscript"]
+- !private ["s35_ExpressibleByBuiltinIntegerLiteralP", "random"]
 - ["s19_HasContiguousBytesP", "init"]
 - !private ["s19_HasContiguousBytesP", "subscript"]
 - ["s35_HasCustomAnyHashableRepresentationP", "init"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "random"]
 - !private ["s35_HasCustomAnyHashableRepresentationP", "subscript"]
 - !private ["10Foundation27_KeyValueCodingAndObservingP", "CGPoint"]
 - !private ["10Foundation27_KeyValueCodingAndObservingP", "CGVector"]
@@ -822,6 +846,7 @@ depends-member:
 - !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "velocity"]
 - !private ["s21_ObjectiveCBridgeableP", "height"]
 - ["s21_ObjectiveCBridgeableP", "init"]
+- !private ["s21_ObjectiveCBridgeableP", "random"]
 - !private ["s21_ObjectiveCBridgeableP", "subscript"]
 - !private ["s21_ObjectiveCBridgeableP", "x"]
 - !private ["s21_ObjectiveCBridgeableP", "y"]
@@ -831,13 +856,16 @@ depends-member:
 - ["4Pong8tipoJogoO", "jogadores2"]
 - ["4Pong8tipoJogoO", "medio"]
 depends-nominal:
+- !private "s18AdditiveArithmeticP"
 - "Sa"
 - "SK"
+- !private "Sz"
 - !private "So7CGPointV"
 - !private "So6CGRectV"
 - !private "So8CGVectorV"
 - "s7CVarArgP"
 - "Sl"
+- !private "SL"
 - "10Foundation15ContiguousBytesP"
 - "s28CustomDebugStringConvertibleP"
 - "s17CustomReflectableP"
@@ -848,9 +876,14 @@ depends-nominal:
 - "SE"
 - "SQ"
 - "s25ExpressibleByArrayLiteralP"
+- !private "s27ExpressibleByIntegerLiteralP"
+- !private "s17FixedWidthIntegerP"
 - "So19GKSceneRootNodeTypeP"
 - "4Pong9GameSceneC"
 - "SH"
+- !private "Si"
+- !private "s25LosslessStringConvertibleP"
+- !private "s10MirrorPathP"
 - "SM"
 - "10Foundation19MutableDataProtocolP"
 - "So8NSCodingP"
@@ -858,8 +891,10 @@ depends-nominal:
 - "So8NSObjectC"
 - "So8NSObjectP"
 - "So14NSSecureCodingP"
+- !private "Sj"
 - "Sk"
 - "Sm"
+- !private "s10SIMDScalarP"
 - !private "So8SKActionC"
 - "So12SKEffectNodeC"
 - "So11SKLabelNodeC"
@@ -869,6 +904,9 @@ depends-nominal:
 - "So12SKSpriteNodeC"
 - "So10SKWarpableP"
 - "ST"
+- !private "SZ"
+- !private "s13SignedNumericP"
+- !private "Sx"
 - !private "s27StringInterpolationProtocolP"
 - !private "s16TextOutputStreamP"
 - "So18UIFocusEnvironmentP"
@@ -881,6 +919,7 @@ depends-nominal:
 - "s14_ArrayProtocolP"
 - "s30_CustomPlaygroundQuickLookableP"
 - "s24_DestructorSafeContainerP"
+- !private "s35_ExpressibleByBuiltinIntegerLiteralP"
 - "s19_HasContiguousBytesP"
 - "s35_HasCustomAnyHashableRepresentationP"
 - "10Foundation27_KeyValueCodingAndObservingP"

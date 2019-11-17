@@ -1,9 +1,12 @@
 ### Swift dependencies file v0 ###
 provides-top-level:
+- "tipoJogo"
 - "MenuViewController"
 provides-nominal:
+- "4Pong8tipoJogoO"
 - "4Pong18MenuViewControllerC"
 provides-member:
+- ["4Pong8tipoJogoO", ""]
 - ["4Pong18MenuViewControllerC", ""]
 provides-dynamic-lookup:
 - "Dificil"
@@ -11,73 +14,239 @@ provides-dynamic-lookup:
 - "Jogadores2"
 - "Medio"
 depends-top-level:
+- "=="
+- "AssignmentPrecedence"
+- !private "BooleanLiteralType"
+- "CastingPrecedence"
+- !private "FloatLiteralType"
+- !private "GameViewController"
+- !private "IntegerLiteralType"
 - "MenuViewController"
+- !private "StringLiteralType"
 - "UIViewController"
+- "tipoJogo"
+- !private "tipoJogoAtual"
 depends-member:
 - ["s7CVarArgP", ""]
 - !private ["s7CVarArgP", "init"]
+- !private ["s7CVarArgP", "instantiateViewController"]
+- !private ["s7CVarArgP", "irAoJogo"]
+- !private ["s7CVarArgP", "navigationController"]
+- !private ["s7CVarArgP", "pushViewController"]
+- !private ["s7CVarArgP", "storyboard"]
+- !private ["s7CVarArgP", "tipoJogoAtual"]
 - ["s28CustomDebugStringConvertibleP", ""]
 - !private ["s28CustomDebugStringConvertibleP", "init"]
+- !private ["s28CustomDebugStringConvertibleP", "instantiateViewController"]
+- !private ["s28CustomDebugStringConvertibleP", "irAoJogo"]
+- !private ["s28CustomDebugStringConvertibleP", "navigationController"]
+- !private ["s28CustomDebugStringConvertibleP", "pushViewController"]
+- !private ["s28CustomDebugStringConvertibleP", "storyboard"]
+- !private ["s28CustomDebugStringConvertibleP", "tipoJogoAtual"]
 - ["s23CustomStringConvertibleP", ""]
 - !private ["s23CustomStringConvertibleP", "init"]
+- !private ["s23CustomStringConvertibleP", "instantiateViewController"]
+- !private ["s23CustomStringConvertibleP", "irAoJogo"]
+- !private ["s23CustomStringConvertibleP", "navigationController"]
+- !private ["s23CustomStringConvertibleP", "pushViewController"]
+- !private ["s23CustomStringConvertibleP", "storyboard"]
+- !private ["s23CustomStringConvertibleP", "tipoJogoAtual"]
+- ["SQ", "=="]
 - ["SQ", ""]
+- ["SQ", "_rawHashValue"]
+- !private ["SQ", "dificil"]
+- !private ["SQ", "facil"]
+- ["SQ", "hash"]
+- ["SQ", "hashValue"]
 - !private ["SQ", "init"]
+- !private ["SQ", "instantiateViewController"]
+- !private ["SQ", "irAoJogo"]
+- !private ["SQ", "jogadores2"]
+- !private ["SQ", "medio"]
+- !private ["SQ", "navigationController"]
+- !private ["SQ", "pushViewController"]
+- !private ["SQ", "storyboard"]
+- !private ["SQ", "tipoJogoAtual"]
+- ["SH", "=="]
 - ["SH", ""]
+- ["SH", "_rawHashValue"]
+- !private ["SH", "dificil"]
+- !private ["SH", "facil"]
+- ["SH", "hash"]
+- ["SH", "hashValue"]
 - !private ["SH", "init"]
+- !private ["SH", "instantiateViewController"]
+- !private ["SH", "irAoJogo"]
+- !private ["SH", "jogadores2"]
+- !private ["SH", "medio"]
+- !private ["SH", "navigationController"]
+- !private ["SH", "pushViewController"]
+- !private ["SH", "storyboard"]
+- !private ["SH", "tipoJogoAtual"]
+- !private ["s6HasherV", "combine"]
 - ["4Pong18MenuViewControllerC", "Dificil"]
 - ["4Pong18MenuViewControllerC", "Facil"]
+- !private ["4Pong18MenuViewControllerC", "GameViewController"]
 - ["4Pong18MenuViewControllerC", "Jogadores2"]
 - ["4Pong18MenuViewControllerC", "Medio"]
 - ["4Pong18MenuViewControllerC", "deinit"]
 - ["4Pong18MenuViewControllerC", "init"]
+- ["4Pong18MenuViewControllerC", "irAoJogo"]
+- !private ["4Pong18MenuViewControllerC", "navigationController"]
+- !private ["4Pong18MenuViewControllerC", "storyboard"]
+- ["4Pong18MenuViewControllerC", "tipoJogo"]
+- !private ["4Pong18MenuViewControllerC", "tipoJogoAtual"]
 - ["So8NSCodingP", ""]
 - !private ["So8NSCodingP", "init"]
+- !private ["So8NSCodingP", "irAoJogo"]
+- !private ["So8NSCodingP", "navigationController"]
+- !private ["So8NSCodingP", "pushViewController"]
+- !private ["So8NSCodingP", "storyboard"]
+- !private ["So8NSCodingP", "tipoJogoAtual"]
 - ["So26NSExtensionRequestHandlingP", ""]
 - !private ["So26NSExtensionRequestHandlingP", "init"]
+- !private ["So26NSExtensionRequestHandlingP", "irAoJogo"]
+- !private ["So26NSExtensionRequestHandlingP", "navigationController"]
+- !private ["So26NSExtensionRequestHandlingP", "pushViewController"]
+- !private ["So26NSExtensionRequestHandlingP", "storyboard"]
+- !private ["So26NSExtensionRequestHandlingP", "tipoJogoAtual"]
 - ["So8NSObjectC", "Dificil"]
 - ["So8NSObjectC", "Facil"]
+- !private ["So8NSObjectC", "GameViewController"]
 - ["So8NSObjectC", "Jogadores2"]
 - ["So8NSObjectC", "Medio"]
 - ["So8NSObjectC", "init"]
+- !private ["So8NSObjectC", "instantiateViewController"]
+- ["So8NSObjectC", "irAoJogo"]
+- !private ["So8NSObjectC", "navigationController"]
+- !private ["So8NSObjectC", "pushViewController"]
+- !private ["So8NSObjectC", "storyboard"]
+- ["So8NSObjectC", "tipoJogo"]
+- !private ["So8NSObjectC", "tipoJogoAtual"]
 - ["So8NSObjectP", ""]
 - !private ["So8NSObjectP", "init"]
+- !private ["So8NSObjectP", "instantiateViewController"]
+- !private ["So8NSObjectP", "irAoJogo"]
+- !private ["So8NSObjectP", "navigationController"]
+- !private ["So8NSObjectP", "pushViewController"]
+- !private ["So8NSObjectP", "storyboard"]
+- !private ["So8NSObjectP", "tipoJogoAtual"]
 - ["So21UIAppearanceContainerP", ""]
 - !private ["So21UIAppearanceContainerP", "init"]
+- !private ["So21UIAppearanceContainerP", "irAoJogo"]
+- !private ["So21UIAppearanceContainerP", "navigationController"]
+- !private ["So21UIAppearanceContainerP", "pushViewController"]
+- !private ["So21UIAppearanceContainerP", "storyboard"]
+- !private ["So21UIAppearanceContainerP", "tipoJogoAtual"]
 - ["So18UIContentContainerP", ""]
 - !private ["So18UIContentContainerP", "init"]
+- !private ["So18UIContentContainerP", "irAoJogo"]
+- !private ["So18UIContentContainerP", "navigationController"]
+- !private ["So18UIContentContainerP", "pushViewController"]
+- !private ["So18UIContentContainerP", "storyboard"]
+- !private ["So18UIContentContainerP", "tipoJogoAtual"]
 - ["So18UIFocusEnvironmentP", ""]
 - !private ["So18UIFocusEnvironmentP", "init"]
+- !private ["So18UIFocusEnvironmentP", "irAoJogo"]
+- !private ["So18UIFocusEnvironmentP", "navigationController"]
+- !private ["So18UIFocusEnvironmentP", "pushViewController"]
+- !private ["So18UIFocusEnvironmentP", "storyboard"]
+- !private ["So18UIFocusEnvironmentP", "tipoJogoAtual"]
+- !private ["So22UINavigationControllerC", "pushViewController"]
 - ["So30UIPasteConfigurationSupportingP", ""]
 - !private ["So30UIPasteConfigurationSupportingP", "init"]
+- !private ["So30UIPasteConfigurationSupportingP", "irAoJogo"]
+- !private ["So30UIPasteConfigurationSupportingP", "navigationController"]
+- !private ["So30UIPasteConfigurationSupportingP", "pushViewController"]
+- !private ["So30UIPasteConfigurationSupportingP", "storyboard"]
+- !private ["So30UIPasteConfigurationSupportingP", "tipoJogoAtual"]
 - ["So11UIResponderC", "Dificil"]
 - ["So11UIResponderC", "Facil"]
+- !private ["So11UIResponderC", "GameViewController"]
 - ["So11UIResponderC", "Jogadores2"]
 - ["So11UIResponderC", "Medio"]
 - ["So11UIResponderC", "init"]
+- ["So11UIResponderC", "irAoJogo"]
+- !private ["So11UIResponderC", "navigationController"]
+- !private ["So11UIResponderC", "pushViewController"]
+- !private ["So11UIResponderC", "storyboard"]
+- ["So11UIResponderC", "tipoJogo"]
+- !private ["So11UIResponderC", "tipoJogoAtual"]
 - ["So30UIResponderStandardEditActionsP", ""]
 - !private ["So30UIResponderStandardEditActionsP", "init"]
+- !private ["So30UIResponderStandardEditActionsP", "irAoJogo"]
+- !private ["So30UIResponderStandardEditActionsP", "navigationController"]
+- !private ["So30UIResponderStandardEditActionsP", "pushViewController"]
+- !private ["So30UIResponderStandardEditActionsP", "storyboard"]
+- !private ["So30UIResponderStandardEditActionsP", "tipoJogoAtual"]
 - ["So16UIStateRestoringP", ""]
 - !private ["So16UIStateRestoringP", "init"]
+- !private ["So16UIStateRestoringP", "irAoJogo"]
+- !private ["So16UIStateRestoringP", "navigationController"]
+- !private ["So16UIStateRestoringP", "pushViewController"]
+- !private ["So16UIStateRestoringP", "storyboard"]
+- !private ["So16UIStateRestoringP", "tipoJogoAtual"]
+- !private ["So12UIStoryboardC", "instantiateViewController"]
 - ["So18UITraitEnvironmentP", ""]
 - !private ["So18UITraitEnvironmentP", "init"]
+- !private ["So18UITraitEnvironmentP", "irAoJogo"]
+- !private ["So18UITraitEnvironmentP", "navigationController"]
+- !private ["So18UITraitEnvironmentP", "pushViewController"]
+- !private ["So18UITraitEnvironmentP", "storyboard"]
+- !private ["So18UITraitEnvironmentP", "tipoJogoAtual"]
 - ["So23UIUserActivityRestoringP", ""]
 - !private ["So23UIUserActivityRestoringP", "init"]
+- !private ["So23UIUserActivityRestoringP", "irAoJogo"]
+- !private ["So23UIUserActivityRestoringP", "navigationController"]
+- !private ["So23UIUserActivityRestoringP", "pushViewController"]
+- !private ["So23UIUserActivityRestoringP", "storyboard"]
+- !private ["So23UIUserActivityRestoringP", "tipoJogoAtual"]
 - ["So16UIViewControllerC", "Dificil"]
 - ["So16UIViewControllerC", "Facil"]
+- !private ["So16UIViewControllerC", "GameViewController"]
 - ["So16UIViewControllerC", "Jogadores2"]
 - ["So16UIViewControllerC", "Medio"]
 - ["So16UIViewControllerC", ""]
 - ["So16UIViewControllerC", "init"]
+- ["So16UIViewControllerC", "irAoJogo"]
+- !private ["So16UIViewControllerC", "navigationController"]
+- !private ["So16UIViewControllerC", "pushViewController"]
+- !private ["So16UIViewControllerC", "storyboard"]
+- ["So16UIViewControllerC", "tipoJogo"]
+- !private ["So16UIViewControllerC", "tipoJogoAtual"]
 - ["10Foundation27_KeyValueCodingAndObservingP", ""]
 - !private ["10Foundation27_KeyValueCodingAndObservingP", "init"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "instantiateViewController"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "irAoJogo"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "navigationController"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "pushViewController"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "storyboard"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "tipoJogoAtual"]
 - ["10Foundation37_KeyValueCodingAndObservingPublishingP", ""]
 - !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "init"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "instantiateViewController"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "irAoJogo"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "navigationController"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "pushViewController"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "storyboard"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "tipoJogoAtual"]
+- ["4Pong8tipoJogoO", "=="]
+- ["4Pong8tipoJogoO", "__derived_enum_equals"]
+- ["4Pong8tipoJogoO", "_rawHashValue"]
+- ["4Pong8tipoJogoO", "deinit"]
+- ["4Pong8tipoJogoO", "dificil"]
+- ["4Pong8tipoJogoO", "facil"]
+- ["4Pong8tipoJogoO", "hash"]
+- ["4Pong8tipoJogoO", "hashValue"]
+- ["4Pong8tipoJogoO", "jogadores2"]
+- ["4Pong8tipoJogoO", "medio"]
 depends-nominal:
 - "s7CVarArgP"
 - "s28CustomDebugStringConvertibleP"
 - "s23CustomStringConvertibleP"
 - "SQ"
 - "SH"
+- !private "s6HasherV"
 - "4Pong18MenuViewControllerC"
 - "So8NSCodingP"
 - "So26NSExtensionRequestHandlingP"
@@ -86,15 +255,18 @@ depends-nominal:
 - "So21UIAppearanceContainerP"
 - "So18UIContentContainerP"
 - "So18UIFocusEnvironmentP"
+- !private "So22UINavigationControllerC"
 - "So30UIPasteConfigurationSupportingP"
 - "So11UIResponderC"
 - "So30UIResponderStandardEditActionsP"
 - "So16UIStateRestoringP"
+- !private "So12UIStoryboardC"
 - "So18UITraitEnvironmentP"
 - "So23UIUserActivityRestoringP"
 - "So16UIViewControllerC"
 - "10Foundation27_KeyValueCodingAndObservingP"
 - "10Foundation37_KeyValueCodingAndObservingPublishingP"
+- "4Pong8tipoJogoO"
 depends-dynamic-lookup:
 depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/usr/lib/swift/ObjectiveC.swiftmodule/arm64.swiftinterface"
@@ -1510,4 +1682,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/GameplayKit.framework/Headers/GameplayKit.apinotes"
 - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
 - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
-interface-hash: "2cf959e75dad8cb19ac98831a4dc8608"
+interface-hash: "514757ecb6b1bd2a680fab2469a287f0"

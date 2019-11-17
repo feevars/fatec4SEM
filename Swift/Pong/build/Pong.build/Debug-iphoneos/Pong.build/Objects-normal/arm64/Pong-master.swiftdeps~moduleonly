@@ -1,8 +1,8 @@
 version: "Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
 options: "52835eb0d84cdaeeffd4ee4d994ca66d"
-build_time: [1574015445, 499428000]
+build_time: [1574023445, 847104000]
 inputs:
-  "/Users/bruno/Desktop/Fatec/Swift/Pong/Pong/GameScene.swift": [1574015409, 922863323]
-  "/Users/bruno/Desktop/Fatec/Swift/Pong/Pong/GameViewController.swift": [1574015409, 923003432]
+  "/Users/bruno/Desktop/Fatec/Swift/Pong/Pong/GameScene.swift": [1574023442, 401996708]
+  "/Users/bruno/Desktop/Fatec/Swift/Pong/Pong/GameViewController.swift": [1574018609, 439117595]
   "/Users/bruno/Desktop/Fatec/Swift/Pong/Pong/AppDelegate.swift": [1574015409, 920791109]
-  "/Users/bruno/Desktop/Fatec/Swift/Pong/Pong/MenuViewController.swift": [1574015409, 923315660]
+  "/Users/bruno/Desktop/Fatec/Swift/Pong/Pong/MenuViewController.swift": [1574016754, 393232255]

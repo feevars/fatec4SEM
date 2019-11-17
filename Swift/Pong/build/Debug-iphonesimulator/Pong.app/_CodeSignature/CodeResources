@@ -10,11 +10,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		2dT12I4IgL4s5bXYlOG3QplY1S0=
+		gMPU7lkZnO8OHus1juZ8j1rTXps=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		5GJeoYWBvpvnbTQ0VZ8bVVHzwPk=
+		3uga9U3qXWq808us3eqyxGFK768=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -22,11 +22,11 @@
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		/a9WJBhQUPNuIAAc3X+wk8pzUJw=
+		gI/2vsUBl+BSxItVy/VhChKMv98=
 		</data>
 		<key>Base.lproj/Main.storyboardc/BV1-FR-VrT-view-3se-qz-xqx.nib</key>
 		<data>
-		eyaGHkBLW6Dbl9j2eaJ2V1sAhFg=
+		G+wkh8tbINw6Vx5eplgULrCIWjU=
 		</data>
 		<key>Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
@@ -34,19 +34,19 @@
 		</data>
 		<key>Base.lproj/Main.storyboardc/UINavigationController-S1P-jY-jIK.nib</key>
 		<data>
-		kF6Vmd/+NEdPI3ff5af1QMbIH+M=
+		0BLlkhQVirWby4+LO79yMqfdgJU=
 		</data>
 		<key>Base.lproj/Main.storyboardc/dn8-jX-5mP-view-Ojm-6G-eOs.nib</key>
 		<data>
-		2TPuV93ocLUkJGbmqsBmJfDLPgc=
+		dpNwfXrg0efE0KuzP6jWwC5JSao=
 		</data>
 		<key>Base.lproj/Main.storyboardc/jogoVC.nib</key>
 		<data>
-		OAvA9aWSmNBGxbHuSzZJlH4TBZE=
+		TpaZ6QP+EPBW6G2q2vCS/jT+fao=
 		</data>
 		<key>GameScene.sks</key>
 		<data>
-		wkZowhgrGQe3ulX2tY8LOzERyo4=
+		wVETxsGTaFavSFitnvsurMgLdZ0=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -70,14 +70,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FhTOP8qOysJ2EeYtIXbgFvqSx4Hcsf/Skn2qDNZXd9M=
+			45GxXgP3j9Her+YOFlwt3Q7iMkoziDluj0ihgWqUY0I=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cRQjQe0IpelRU8S+KYXbHk0W0wXs+wG32MsDBHvUHw4=
+			qV0b3EnuWkBreRMU6ZgEwWVf+Tyok2iq5TupBqqyYDA=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
@@ -91,14 +91,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VuzlK59fI2VkNl6GPdOwbsiqMCcOHWjzd2J7txyAg/M=
+			truoxHSudWveGvY/HJJaQ1ikzyDDlLAxWn5cJC+J6PE=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/BV1-FR-VrT-view-3se-qz-xqx.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			g50peDN52Vs/ymUsgs4ItAELIdN1HTtcLG0zlJbmhJU=
+			b1QPm6mVfxOsHsGOjwQ7xemk0K4vAjUq7x/YznPeLAM=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/Info.plist</key>
@@ -112,28 +112,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			wEmtUrhAFsYp9GV7Glp2dNP8LcE5QnxkSi/a5qq0Xdo=
+			H7wOYyvlFy2KjET2smw4E+x4hw6z+Vb4RHAU2PV7/k8=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/dn8-jX-5mP-view-Ojm-6G-eOs.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6Gdl+QyLw7WJCvzU+mJQ0cv7t6rPhPQfTf2WrM+v1Q0=
+			oRGUgHh/F1DxAvNET8EwEpn7c+/J67sip5kpGkfbfG8=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/jogoVC.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jfiHEofuctYf5sleFvU3FRhzGM0LNUnEa4+yOGKFRlU=
+			b+sKNQweVQindnrkifmm0D7b9l3bKI5VndJS2hXdmQs=
 			</data>
 		</dict>
 		<key>GameScene.sks</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			m4aupc/FmlA9Vy9gl84hQN3TDmsodcnIM8G0K6FSiy4=
+			2dBtMYG34IjXSVmpunn27ywL5ZIpt3sUme9keZPiJj8=
 			</data>
 		</dict>
 	</dict>

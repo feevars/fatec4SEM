@@ -38,6 +38,7 @@ class GameScene: SKScene {
         borda.friction = 0
         borda.restitution = 1
         
+        
         self.physicsBody = borda
         
         iniciaJogo()
@@ -48,7 +49,7 @@ class GameScene: SKScene {
         placar = [0,0]
         lblInimigo.text = "\(placar[1])"
         lblJogador.text = "\(placar[0])"
-        bola.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
+        bola.physicsBody?.applyImpulse(CGVector(dx: Int.random(in: 5 ... 15), dy: Int.random(in: 5 ... 15)))
     }
     
     func adicionaPonto(jogadorQueGanhou : SKSpriteNode){
@@ -58,10 +59,10 @@ class GameScene: SKScene {
         
         if jogadorQueGanhou == jogador {
             placar[0] += 1
-            bola.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
+            bola.physicsBody?.applyImpulse(CGVector(dx: Int.random(in: 5 ... 15), dy: Int.random(in: 5 ... 15)))
         }else if jogadorQueGanhou == inimigo {
             placar[1] += 1
-            bola.physicsBody?.applyImpulse(CGVector(dx: -10, dy: -10))
+            bola.physicsBody?.applyImpulse(CGVector(dx: Int.random(in: -15 ... -5), dy: Int.random(in: -15 ... -5)))
         }
         
         lblInimigo.text = "\(placar[1])"
@@ -75,15 +76,15 @@ class GameScene: SKScene {
             
             if tipoJogoAtual == .jogadores2 {
                 if local.y > 0 {
-                    inimigo.run(SKAction.moveTo(x: local.x, duration: 0.2))
+                    inimigo.run(SKAction.moveTo(x: local.x, duration: 0.1))
 
                 }
                 if local.y < 0 {
-                    jogador.run(SKAction.moveTo(x: local.x, duration: 0.2))
+                    jogador.run(SKAction.moveTo(x: local.x, duration: 0.1))
                 }
                 
             }else{
-                jogador.run(SKAction.moveTo(x: local.x, duration: 0.2))
+                jogador.run(SKAction.moveTo(x: local.x, duration: 0.1))
             }
             
         }
@@ -96,15 +97,15 @@ class GameScene: SKScene {
             
             if tipoJogoAtual == .jogadores2 {
                 if local.y > 0 {
-                    inimigo.run(SKAction.moveTo(x: local.x, duration: 0.2))
+                    inimigo.run(SKAction.moveTo(x: local.x, duration: 0.1))
 
                 }
                 if local.y < 0 {
-                    jogador.run(SKAction.moveTo(x: local.x, duration: 0.2))
+                    jogador.run(SKAction.moveTo(x: local.x, duration: 0.1))
                 }
                 
             }else{
-                jogador.run(SKAction.moveTo(x: local.x, duration: 0.2))
+                jogador.run(SKAction.moveTo(x: local.x, duration: 0.1))
             }
         }
     }
@@ -114,10 +115,10 @@ class GameScene: SKScene {
         
         switch tipoJogoAtual {
         case .facil:
-            inimigo.run(SKAction.moveTo(x: bola.position.x, duration: 0.8))
+            inimigo.run(SKAction.moveTo(x: bola.position.x, duration: 0.4))
             break
         case .medio:
-            inimigo.run(SKAction.moveTo(x: bola.position.x, duration: 0.4))
+            inimigo.run(SKAction.moveTo(x: bola.position.x, duration: 0.2))
             break
         case .dificil:
             inimigo.run(SKAction.moveTo(x: bola.position.x, duration: 0.05))
@@ -126,13 +127,6 @@ class GameScene: SKScene {
             
             break
         }
-        
-        
-        
-        
-        
-        
-        
         
         if bola.position.y <= jogador.position.y - 20{
             adicionaPonto(jogadorQueGanhou: inimigo)
