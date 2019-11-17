@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dn8-jX-5mP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S1P-jY-jIK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -7,50 +7,84 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Phf-ag-RF0">
+            <objects>
+                <navigationController interfaceStyle="dark" navigationBarHidden="YES" id="S1P-jY-jIK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JTG-hZ-Vje">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dn8-jX-5mP" kind="relationship" relationship="rootViewController" id="pkj-91-6QO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XG4-qa-NUj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1674" y="108"/>
+        </scene>
         <!--Menu View Controller-->
         <scene sceneID="MJ4-5C-GBh">
             <objects>
-                <viewController id="dn8-jX-5mP" customClass="MenuViewController" customModule="Pong" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="dark" id="dn8-jX-5mP" customClass="MenuViewController" customModule="Pong" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ojm-6G-eOs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9X0-C3-pDl">
-                                <rect key="frame" x="164" y="150" width="86" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="2 Jogadores"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9X0-C3-pDl">
+                                <rect key="frame" x="156.5" y="231" width="101" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="2 Jogadores">
+                                    <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="Jogadores2:" destination="dn8-jX-5mP" eventType="touchUpInside" id="X7c-0Y-csb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xkr-ry-RrV">
-                                <rect key="frame" x="153" y="289" width="108" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Ridículo de fácil"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xkr-ry-RrV">
+                                <rect key="frame" x="143.5" y="381" width="127" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Ridículo de fácil">
+                                    <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="Facil:" destination="dn8-jX-5mP" eventType="touchUpInside" id="MRU-bT-bSE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40v-f9-W6x">
-                                <rect key="frame" x="186" y="361" width="43" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Médio"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40v-f9-W6x">
+                                <rect key="frame" x="182" y="481" width="50" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Médio">
+                                    <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="Medio:" destination="dn8-jX-5mP" eventType="touchUpInside" id="VuU-5R-FY9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAP-RW-iPP">
-                                <rect key="frame" x="100" y="433" width="216" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Quero ver ganhar da máquina..."/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAP-RW-iPP">
+                                <rect key="frame" x="80" y="581" width="254" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Quero ver ganhar da máquina...">
+                                    <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="Dificil:" destination="dn8-jX-5mP" eventType="touchUpInside" id="i65-Cn-WWQ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9X0-C3-pDl" firstAttribute="centerX" secondItem="Ojm-6G-eOs" secondAttribute="centerX" id="1MQ-EJ-JhY"/>
+                            <constraint firstItem="Xkr-ry-RrV" firstAttribute="centerX" secondItem="Ojm-6G-eOs" secondAttribute="centerX" id="4KP-6J-9Q2"/>
+                            <constraint firstItem="kAP-RW-iPP" firstAttribute="centerX" secondItem="Ojm-6G-eOs" secondAttribute="centerX" id="H73-ro-pZh"/>
+                            <constraint firstItem="40v-f9-W6x" firstAttribute="centerY" secondItem="Ojm-6G-eOs" secondAttribute="centerY" constant="50" id="Q3S-60-5du"/>
+                            <constraint firstItem="kAP-RW-iPP" firstAttribute="centerY" secondItem="Ojm-6G-eOs" secondAttribute="centerY" constant="150" id="VKv-nQ-YTr"/>
+                            <constraint firstItem="40v-f9-W6x" firstAttribute="centerX" secondItem="Ojm-6G-eOs" secondAttribute="centerX" id="XB1-Zo-bWq"/>
+                            <constraint firstItem="9X0-C3-pDl" firstAttribute="centerY" secondItem="Ojm-6G-eOs" secondAttribute="centerY" constant="-200" id="lPg-UP-rKZ"/>
+                            <constraint firstItem="Xkr-ry-RrV" firstAttribute="centerY" secondItem="Ojm-6G-eOs" secondAttribute="centerY" constant="-50" id="nVj-SE-yVO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GeY-9c-uSf"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Br1-XY-W3J"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQA-Iv-CpT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -59,7 +93,7 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Pong" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="jogoVC" interfaceStyle="dark" id="BV1-FR-VrT" customClass="GameViewController" customModule="Pong" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -14,6 +14,7 @@ depends-top-level:
 - !private "+"
 - !private "+="
 - !private "-"
+- !private "/"
 - !private "<="
 - !private "=="
 - !private ">="
@@ -44,6 +45,7 @@ depends-member:
 - !private ["So7CGPointV", "init"]
 - !private ["So7CGPointV", "x"]
 - !private ["So7CGPointV", "y"]
+- !private ["So6CGRectV", "height"]
 - !private ["So8CGVectorV", "init"]
 - !private ["s7CVarArgP", "CGPoint"]
 - !private ["s7CVarArgP", "CGVector"]
@@ -93,6 +95,7 @@ depends-member:
 - !private ["s28CustomDebugStringConvertibleP", "childNode"]
 - !private ["s28CustomDebugStringConvertibleP", "frame"]
 - !private ["s28CustomDebugStringConvertibleP", "friction"]
+- !private ["s28CustomDebugStringConvertibleP", "height"]
 - !private ["s28CustomDebugStringConvertibleP", "iniciaJogo"]
 - !private ["s28CustomDebugStringConvertibleP", "inimigo"]
 - ["s28CustomDebugStringConvertibleP", "init"]
@@ -111,6 +114,7 @@ depends-member:
 - !private ["s28CustomDebugStringConvertibleP", "velocity"]
 - !private ["s28CustomDebugStringConvertibleP", "x"]
 - !private ["s28CustomDebugStringConvertibleP", "y"]
+- !private ["s17CustomReflectableP", "height"]
 - ["s17CustomReflectableP", "init"]
 - !private ["s17CustomReflectableP", "subscript"]
 - !private ["s17CustomReflectableP", "x"]
@@ -149,12 +153,14 @@ depends-member:
 - !private ["s23CustomStringConvertibleP", "velocity"]
 - ["10Foundation12DataProtocolP", "init"]
 - !private ["10Foundation12DataProtocolP", "subscript"]
+- !private ["Se", "height"]
 - ["Se", "init"]
 - !private ["Se", "subscript"]
 - !private ["Se", "x"]
 - !private ["Se", "y"]
 - !private ["s26DefaultStringInterpolationV", "appendInterpolation"]
 - !private ["s26DefaultStringInterpolationV", "appendLiteral"]
+- !private ["SE", "height"]
 - ["SE", "init"]
 - !private ["SE", "subscript"]
 - !private ["SE", "x"]
@@ -173,6 +179,7 @@ depends-member:
 - !private ["SQ", "childNode"]
 - !private ["SQ", "frame"]
 - !private ["SQ", "friction"]
+- !private ["SQ", "height"]
 - !private ["SQ", "iniciaJogo"]
 - !private ["SQ", "inimigo"]
 - ["SQ", "init"]
@@ -707,6 +714,7 @@ depends-member:
 - !private ["So23UIUserActivityRestoringP", "text"]
 - ["s14_ArrayProtocolP", "init"]
 - !private ["s14_ArrayProtocolP", "subscript"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "height"]
 - ["s30_CustomPlaygroundQuickLookableP", "init"]
 - !private ["s30_CustomPlaygroundQuickLookableP", "physicsBody"]
 - !private ["s30_CustomPlaygroundQuickLookableP", "position"]
@@ -777,6 +785,7 @@ depends-member:
 - !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "run"]
 - !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "text"]
 - !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "velocity"]
+- !private ["s21_ObjectiveCBridgeableP", "height"]
 - ["s21_ObjectiveCBridgeableP", "init"]
 - !private ["s21_ObjectiveCBridgeableP", "subscript"]
 - !private ["s21_ObjectiveCBridgeableP", "x"]
@@ -785,6 +794,7 @@ depends-nominal:
 - "Sa"
 - "SK"
 - !private "So7CGPointV"
+- !private "So6CGRectV"
 - !private "So8CGVectorV"
 - "s7CVarArgP"
 - "Sl"

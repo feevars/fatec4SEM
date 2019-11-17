@@ -10,11 +10,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		Sd5XEoXydapuNUhWS5RcW26TQS0=
+		2dT12I4IgL4s5bXYlOG3QplY1S0=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		A3lbyKtLyWO6kIRSz+Qs1Q0xu7k=
+		5GJeoYWBvpvnbTQ0VZ8bVVHzwPk=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -22,23 +22,31 @@
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		run8fARW4GU3Kizi9WZ5TTrubNo=
+		/a9WJBhQUPNuIAAc3X+wk8pzUJw=
 		</data>
 		<key>Base.lproj/Main.storyboardc/BV1-FR-VrT-view-3se-qz-xqx.nib</key>
 		<data>
-		n/RuY/VnAQ/NiTKuAF8GxpK+aCw=
+		eyaGHkBLW6Dbl9j2eaJ2V1sAhFg=
 		</data>
 		<key>Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
-		p+k+nurmvwMbUWmNRS/zp9fBJGc=
+		brpElj8E3Cl7yzSGqpXIZbVtjzo=
 		</data>
-		<key>Base.lproj/Main.storyboardc/UIViewController-BV1-FR-VrT.nib</key>
+		<key>Base.lproj/Main.storyboardc/UINavigationController-S1P-jY-jIK.nib</key>
 		<data>
-		/mFuoh6DSjulnhC1R2n4XawzK8c=
+		kF6Vmd/+NEdPI3ff5af1QMbIH+M=
+		</data>
+		<key>Base.lproj/Main.storyboardc/dn8-jX-5mP-view-Ojm-6G-eOs.nib</key>
+		<data>
+		2TPuV93ocLUkJGbmqsBmJfDLPgc=
+		</data>
+		<key>Base.lproj/Main.storyboardc/jogoVC.nib</key>
+		<data>
+		OAvA9aWSmNBGxbHuSzZJlH4TBZE=
 		</data>
 		<key>GameScene.sks</key>
 		<data>
-		iBscwyvn6+6v4dumJfc9eHH/fkA=
+		wkZowhgrGQe3ulX2tY8LOzERyo4=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -62,14 +70,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tsPC4iV1/TzG7SVIkCujZ5d/neaxe9x25ilpfrnD6v0=
+			FhTOP8qOysJ2EeYtIXbgFvqSx4Hcsf/Skn2qDNZXd9M=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Pzj0SC+7xnbyFkTVTYBKfURLORTPHWJHSGvDpxnxCe4=
+			cRQjQe0IpelRU8S+KYXbHk0W0wXs+wG32MsDBHvUHw4=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
@@ -83,35 +91,49 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gBjiZw5qCUHgeCc90dEY2kjvGEB67cSbsHm3g+Zwfrs=
+			VuzlK59fI2VkNl6GPdOwbsiqMCcOHWjzd2J7txyAg/M=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/BV1-FR-VrT-view-3se-qz-xqx.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pu0N2d1Vya8GcBec/WK9rwmK7KAfVIKwRYa+JQNiRPM=
+			g50peDN52Vs/ymUsgs4ItAELIdN1HTtcLG0zlJbmhJU=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hyM7E3MXhLV08tADxifvIoZ3e+F4NbmLVtE3U01a4e8=
+			BwMFUgFTBDRKt2lK8iDzzS6cmc69M89qANC4t4hUHtA=
 			</data>
 		</dict>
-		<key>Base.lproj/Main.storyboardc/UIViewController-BV1-FR-VrT.nib</key>
+		<key>Base.lproj/Main.storyboardc/UINavigationController-S1P-jY-jIK.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lPlSd1c1ke99rHdiPukXWhfwcBaYFsjV3MAXrZjAzBc=
+			wEmtUrhAFsYp9GV7Glp2dNP8LcE5QnxkSi/a5qq0Xdo=
+			</data>
+		</dict>
+		<key>Base.lproj/Main.storyboardc/dn8-jX-5mP-view-Ojm-6G-eOs.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6Gdl+QyLw7WJCvzU+mJQ0cv7t6rPhPQfTf2WrM+v1Q0=
+			</data>
+		</dict>
+		<key>Base.lproj/Main.storyboardc/jogoVC.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			jfiHEofuctYf5sleFvU3FRhzGM0LNUnEa4+yOGKFRlU=
 			</data>
 		</dict>
 		<key>GameScene.sks</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/+4dOKqHQyvvaMt+RTqbfuV1WkPo3o2T+ZB+tPHwmZc=
+			m4aupc/FmlA9Vy9gl84hQN3TDmsodcnIM8G0K6FSiy4=
 			</data>
 		</dict>
 	</dict>

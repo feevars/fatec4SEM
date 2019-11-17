@@ -244,6 +244,17 @@ SWIFT_CLASS("_TtC4Pong18GameViewController")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
+
+SWIFT_CLASS("_TtC4Pong18MenuViewController")
+@interface MenuViewController : UIViewController
+- (IBAction)Jogadores2:(id _Nonnull)sender;
+- (IBAction)Facil:(id _Nonnull)sender;
+- (IBAction)Medio:(id _Nonnull)sender;
+- (IBAction)Dificil:(id _Nonnull)sender;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
 #if __has_attribute(external_source_symbol)
 # pragma clang attribute pop
 #endif
