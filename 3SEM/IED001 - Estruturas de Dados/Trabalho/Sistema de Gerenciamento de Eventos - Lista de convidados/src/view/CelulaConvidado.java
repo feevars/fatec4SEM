@@ -216,8 +216,8 @@ public class CelulaConvidado extends JPanel implements ActionListener, MetodosLi
 			}
 			evento.getListaConvidados().removeId(convidado.getId());
 		}
-		if (e.getSource() == btnEditar) {
-			FormEditarConvidado.setVisible(true);
+	//	if (e.getSource() == btnEditar) {
+//			FormEditarConvidado.setVisible(true);
 			
 			
 			
@@ -227,5 +227,3 @@ public class CelulaConvidado extends JPanel implements ActionListener, MetodosLi
 		}
 
 	}
-
-}
