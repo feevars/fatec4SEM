@@ -163,8 +163,45 @@ public class BarraDeFerramentas extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
+				if (evento.getCaminhoDoArquivo() == null) {
+					JFileChooser escolhedorDeArquivos = new JFileChooser();
+					FileNameExtensionFilter filtro = new FileNameExtensionFilter("Somente documentos de texto (.txt)",
+							"txt");
+					String caminho;
 
+					escolhedorDeArquivos.setCurrentDirectory(
+							new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
+					escolhedorDeArquivos.setDialogTitle("Salvar evento...");
+					escolhedorDeArquivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+					escolhedorDeArquivos.setFileFilter(filtro);
+					escolhedorDeArquivos.setApproveButtonText("Salvar");
+					escolhedorDeArquivos.setAcceptAllFileFilterUsed(false);
+
+					if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
+
+						caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
+						if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt"))
+							caminho += ".txt";
+
+						BuffersArquivo ba = new BuffersArquivo();
+						try {
+							ba.escreveArquivo(evento, caminho);
+							evento.setCaminhoDoArquivo(caminho);
+						} catch (IOException e1) {
+							JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
+					}
+				}else {
+					BuffersArquivo ba = new BuffersArquivo();
+					try {
+						ba.escreveArquivo(evento, evento.getCaminhoDoArquivo());
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+					}
+				}
 			}
 		});
 
