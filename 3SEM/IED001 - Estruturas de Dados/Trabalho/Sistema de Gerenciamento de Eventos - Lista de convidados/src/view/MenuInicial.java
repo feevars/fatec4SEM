@@ -109,7 +109,7 @@ public class MenuInicial extends JFrame {
 						e1.printStackTrace();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
+					JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado.");
 				}
 			}
 		}); 

@@ -85,7 +85,9 @@ public class BarraDeFerramentas extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Deseja salvar o evento atual?", "Salvar?",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					// yes option
+					
+					boolean salvou = false;
+					
 					if (evento.getCaminhoDoArquivo() == null) {
 						JFileChooser escolhedorDeArquivos = new JFileChooser();
 						FileNameExtensionFilter filtro = new FileNameExtensionFilter(
@@ -112,32 +114,31 @@ public class BarraDeFerramentas extends JPanel {
 								evento.setCaminhoDoArquivo(caminho);
 							} catch (IOException e1) {
 								JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+							}finally {
+								salvou = true;
 							}
 						} else {
 							JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
 						}
 					}else {
-						
 						BuffersArquivo ba = new BuffersArquivo();
 						try {
 							ba.escreveArquivo(evento, evento.getCaminhoDoArquivo());
 						} catch (IOException e1) {
 							JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+						}finally {
+							salvou = true;
 						}
-						
-						
 					}
 					
-					if (evento.getCaminhoDoArquivo() != null) {
+					if (salvou) {
 						BarraDeFerramentasEvent be = new BarraDeFerramentasEvent(this, "Novo");
 						barraDeFerramentasListener.formEventOcurred(be);
 					}
 
 				} else {
-
 					BarraDeFerramentasEvent be = new BarraDeFerramentasEvent(this, "Novo");
 					barraDeFerramentasListener.formEventOcurred(be);
-
 				}
 
 			}
@@ -149,11 +150,60 @@ public class BarraDeFerramentas extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Deseja salvar o evento atual?", "Salvar?",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					// yes option
+					
+					boolean salvou = false;
+					
+					if (evento.getCaminhoDoArquivo() == null) {
+						JFileChooser escolhedorDeArquivos = new JFileChooser();
+						FileNameExtensionFilter filtro = new FileNameExtensionFilter(
+								"Somente documentos de texto (.txt)", "txt");
+						String caminho;
+
+						escolhedorDeArquivos.setCurrentDirectory(new File(
+								System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
+						escolhedorDeArquivos.setDialogTitle("Salvar evento...");
+						escolhedorDeArquivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+						escolhedorDeArquivos.setFileFilter(filtro);
+						escolhedorDeArquivos.setApproveButtonText("Salvar");
+						escolhedorDeArquivos.setAcceptAllFileFilterUsed(false);
+
+						if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
+
+							caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
+							if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt"))
+								caminho += ".txt";
+
+							BuffersArquivo ba = new BuffersArquivo();
+							try {
+								ba.escreveArquivo(evento, caminho);
+								evento.setCaminhoDoArquivo(caminho);
+							} catch (IOException e1) {
+								JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+							}finally {
+								salvou = true;
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
+						}
+					}else {
+						BuffersArquivo ba = new BuffersArquivo();
+						try {
+							ba.escreveArquivo(evento, evento.getCaminhoDoArquivo());
+						} catch (IOException e1) {
+							JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+						}finally {
+							salvou = true;
+						}
+					}
+					
+					if (salvou) {
+						BarraDeFerramentasEvent be = new BarraDeFerramentasEvent(this, "Abrir");
+						barraDeFerramentasListener.formEventOcurred(be);
+					}
 
 				} else {
-					// no option
-
+					BarraDeFerramentasEvent be = new BarraDeFerramentasEvent(this, "Abrir");
+					barraDeFerramentasListener.formEventOcurred(be);
 				}
 
 			}

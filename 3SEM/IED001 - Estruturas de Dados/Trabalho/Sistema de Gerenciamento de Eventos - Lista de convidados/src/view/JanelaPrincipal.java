@@ -1,11 +1,18 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
+
+import controller.BuffersArquivo;
 import controller.MetodosLista;
+
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.Convidado;
 import model.Evento;
@@ -53,6 +60,39 @@ public class JanelaPrincipal extends JFrame {
 					dispose();
 					break;
 				case "Abrir":
+					JFileChooser escolhedorDeArquivos = new JFileChooser();
+					FileNameExtensionFilter filtro = new FileNameExtensionFilter("Somente documentos de texto (.txt)",
+							"txt");
+					String caminho;
+
+					escolhedorDeArquivos.setCurrentDirectory(
+							new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
+					escolhedorDeArquivos.setDialogTitle("Abrir evento...");
+					escolhedorDeArquivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+					escolhedorDeArquivos.setFileFilter(filtro);
+					escolhedorDeArquivos.setApproveButtonText("Abrir");
+					escolhedorDeArquivos.setAcceptAllFileFilterUsed(false);
+
+					if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
+
+						caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
+						if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt")) caminho += ".txt";
+
+						BuffersArquivo ba = new BuffersArquivo();
+						try {
+							Evento eventoCarregado = ba.abreArquivo(caminho);
+							new JanelaPrincipal(eventoCarregado);
+							dispose();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado.");
+					}
 					
 					break;
 				default:
