@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -36,7 +38,71 @@ public class JanelaPrincipal extends JFrame {
 		}
 		barraDeOrdenacao = new BarraDeOrdenacao(evento);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+
+				if (JOptionPane.showConfirmDialog(null, "Deseja salvar o evento atual antes de sair?", "Salvar?",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+					boolean salvou = false;
+
+					if (evento.getCaminhoDoArquivo() == null) {
+						JFileChooser escolhedorDeArquivos = new JFileChooser();
+						FileNameExtensionFilter filtro = new FileNameExtensionFilter(
+								"Somente documentos de texto (.txt)", "txt");
+						String caminho;
+
+						escolhedorDeArquivos.setCurrentDirectory(new File(
+								System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
+						escolhedorDeArquivos.setDialogTitle("Salvar evento...");
+						escolhedorDeArquivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+						escolhedorDeArquivos.setFileFilter(filtro);
+						escolhedorDeArquivos.setApproveButtonText("Salvar");
+						escolhedorDeArquivos.setAcceptAllFileFilterUsed(false);
+
+						if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
+
+							caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
+							if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt"))
+								caminho += ".txt";
+
+							BuffersArquivo ba = new BuffersArquivo();
+							try {
+								ba.escreveArquivo(evento, caminho);
+								evento.setCaminhoDoArquivo(caminho);
+							} catch (IOException e1) {
+								JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+							} finally {
+								salvou = true;
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
+						}
+					} else {
+						BuffersArquivo ba = new BuffersArquivo();
+						try {
+							ba.escreveArquivo(evento, evento.getCaminhoDoArquivo());
+						} catch (IOException e1) {
+							JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+						} finally {
+							salvou = true;
+						}
+					}
+
+					if (salvou) {
+						e.getWindow().dispose();
+						System.exit(0);
+					}
+
+				} else {
+					e.getWindow().dispose();
+					System.exit(0);
+				}
+			}
+		});
+
 		setSize(800, 600);
 		setMinimumSize(getSize());
 		setResizable(false);
@@ -65,8 +131,8 @@ public class JanelaPrincipal extends JFrame {
 							"txt");
 					String caminho;
 
-					escolhedorDeArquivos.setCurrentDirectory(
-							new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
+					escolhedorDeArquivos.setCurrentDirectory(new File(
+							System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
 					escolhedorDeArquivos.setDialogTitle("Abrir evento...");
 					escolhedorDeArquivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
 					escolhedorDeArquivos.setFileFilter(filtro);
@@ -76,7 +142,8 @@ public class JanelaPrincipal extends JFrame {
 					if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
 
 						caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
-						if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt")) caminho += ".txt";
+						if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt"))
+							caminho += ".txt";
 
 						BuffersArquivo ba = new BuffersArquivo();
 						try {
@@ -93,9 +160,7 @@ public class JanelaPrincipal extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado.");
 					}
-					
-					break;
-				default:
+
 					break;
 				}
 			}
@@ -131,8 +196,6 @@ public class JanelaPrincipal extends JFrame {
 					String nome = JOptionPane.showInputDialog("Digite o nome do convidado que deseja buscar: ");
 					Convidado[] vetorBusca = MetodosLista.vetorLista(evento.getListaConvidados());
 					painelVisualizacao.carregaVetorBusca(vetorBusca, nome);
-					break;
-				default:
 					break;
 				}
 			}
