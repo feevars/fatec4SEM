@@ -22,9 +22,8 @@ import java.io.IOException;
 
 public class BarraDeFerramentas extends JPanel {
 
-
 	private static final long serialVersionUID = 1L;
-	
+
 	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
 
@@ -35,7 +34,6 @@ public class BarraDeFerramentas extends JPanel {
 	private JButton btnSalvar;
 	private JButton btnSalvarComo;
 	private JButton btnEstatisticas;
-
 
 	public BarraDeFerramentas(Evento evento) {
 		setForeground(Color.WHITE);
@@ -81,15 +79,66 @@ public class BarraDeFerramentas extends JPanel {
 		btnEstatisticas.setBackground(CINZA);
 		add(btnEstatisticas);
 
-		
-
-		
-
 		btnNovo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				if (JOptionPane.showConfirmDialog(null, "Deseja salvar o evento atual?", "Salvar?",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					// yes option
+					if (evento.getCaminhoDoArquivo() == null) {
+						JFileChooser escolhedorDeArquivos = new JFileChooser();
+						FileNameExtensionFilter filtro = new FileNameExtensionFilter(
+								"Somente documentos de texto (.txt)", "txt");
+						String caminho;
+
+						escolhedorDeArquivos.setCurrentDirectory(new File(
+								System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
+						escolhedorDeArquivos.setDialogTitle("Salvar evento...");
+						escolhedorDeArquivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+						escolhedorDeArquivos.setFileFilter(filtro);
+						escolhedorDeArquivos.setApproveButtonText("Salvar");
+						escolhedorDeArquivos.setAcceptAllFileFilterUsed(false);
+
+						if (escolhedorDeArquivos.showOpenDialog(escolhedorDeArquivos) == JFileChooser.APPROVE_OPTION) {
+
+							caminho = escolhedorDeArquivos.getSelectedFile().getAbsolutePath();
+							if (!caminho.substring(caminho.lastIndexOf(".") + 1).equals("txt"))
+								caminho += ".txt";
+
+							BuffersArquivo ba = new BuffersArquivo();
+							try {
+								ba.escreveArquivo(evento, caminho);
+								evento.setCaminhoDoArquivo(caminho);
+							} catch (IOException e1) {
+								JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado para a gravação.");
+						}
+					}else {
+						
+						BuffersArquivo ba = new BuffersArquivo();
+						try {
+							ba.escreveArquivo(evento, evento.getCaminhoDoArquivo());
+						} catch (IOException e1) {
+							JOptionPane.showMessageDialog(null, "Erro de gravação:\n" + e1.getLocalizedMessage());
+						}
+						
+						
+					}
+					
+					if (evento.getCaminhoDoArquivo() != null) {
+						BarraDeFerramentasEvent be = new BarraDeFerramentasEvent(this, "Novo");
+						barraDeFerramentasListener.formEventOcurred(be);
+					}
+
+				} else {
+
+					BarraDeFerramentasEvent be = new BarraDeFerramentasEvent(this, "Novo");
+					barraDeFerramentasListener.formEventOcurred(be);
+
+				}
 
 			}
 		});
@@ -98,7 +147,14 @@ public class BarraDeFerramentas extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				if (JOptionPane.showConfirmDialog(null, "Deseja salvar o evento atual?", "Salvar?",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					// yes option
+
+				} else {
+					// no option
+
+				}
 
 			}
 		});
@@ -148,7 +204,6 @@ public class BarraDeFerramentas extends JPanel {
 				}
 			}
 		});
-
 
 		btnEstatisticas.addActionListener(new ActionListener() {
 

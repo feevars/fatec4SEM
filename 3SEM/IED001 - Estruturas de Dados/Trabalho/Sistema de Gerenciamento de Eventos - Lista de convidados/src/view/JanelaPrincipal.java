@@ -47,7 +47,17 @@ public class JanelaPrincipal extends JFrame {
 
 			@Override
 			public void formEventOcurred(BarraDeFerramentasEvent e) {
-
+				switch (e.getAcao()) {
+				case "Novo":
+					new WizardNovoEvento();
+					dispose();
+					break;
+				case "Abrir":
+					
+					break;
+				default:
+					break;
+				}
 			}
 		});
 
