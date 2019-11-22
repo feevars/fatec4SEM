@@ -28,24 +28,17 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 
-public class CelulaConvidado extends JPanel implements ActionListener, MetodosLista {
+public class CelulaConvidado extends JPanel implements MetodosLista {
 
 	private static final long serialVersionUID = 8005257527912286592L;
 
-	private JButton btnEditar;
 	private JButton btnExcluir;
-
-	private Convidado convidado;
-	private Evento evento;
 
 	private static final Color CINZA = new Color(75, 82, 103);
 	private static final Color AZUL_CLARO = new Color(72, 172, 240);
-//	private static final Color AZUL_ESCURO = new Color(46, 41, 78);
 	private static final Color VIOLETA = new Color(134, 97, 193);
 
 	public CelulaConvidado(Evento evento, Convidado convidado) {
-		this.convidado = convidado;
-		this.evento = evento;
 		setPreferredSize(new Dimension(460, 140));
 		setMaximumSize(getPreferredSize());
 		setBorder(
@@ -139,17 +132,6 @@ public class CelulaConvidado extends JPanel implements ActionListener, MetodosLi
 		add(painelBotoes, gbc_painelBotoes);
 		painelBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 
-		btnEditar = new JButton("");
-		btnEditar.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnEditar.setIconTextGap(0);
-		btnEditar.setPreferredSize(new Dimension(25, 25));
-		btnEditar.setMaximumSize(btnEditar.getPreferredSize());
-		btnEditar.setMinimumSize(btnEditar.getPreferredSize());
-		btnEditar.setBackground(CINZA);
-		btnEditar.setToolTipText("Editar convidado");
-		btnEditar.setIcon(new ImageIcon(CelulaConvidado.class.getResource("/assets/icone_editar_convidado.png")));
-		painelBotoes.add(btnEditar);
-
 		btnExcluir = new JButton("");
 		btnExcluir.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnExcluir.setIconTextGap(0);
@@ -197,33 +179,28 @@ public class CelulaConvidado extends JPanel implements ActionListener, MetodosLi
 		gbc_lblVip.gridy = 1;
 		add(lblVip, gbc_lblVip);
 
-		btnExcluir.addActionListener(this);
+		btnExcluir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				if (convidado.getLote() == 1) {
+					evento.setQtdLote1(evento.getQtdLote1() + 1);
+				} else if (convidado.getLote() == 2) {
+					evento.setQtdLote2(evento.getQtdLote2() + 1);
+				} else if (convidado.getLote() == 3) {
+					evento.setQtdLote3(evento.getQtdLote3() + 1);
+				}
+				evento.getListaConvidados().removeId(convidado.getId());
+				
+				removeAll();
+				revalidate();
+				repaint();
+				
+			}
+		});
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnExcluir) {
-			removeAll();
-			revalidate();
-			repaint();
-			setVisible(false);
-			if (convidado.getLote() == 1) {
-				evento.setQtdLote1(evento.getQtdLote1() + 1);
-			} else if (convidado.getLote() == 2) {
-				evento.setQtdLote2(evento.getQtdLote2() + 1);
-			} else if (convidado.getLote() == 3) {
-				evento.setQtdLote3(evento.getQtdLote3() + 1);
-			}
-			evento.getListaConvidados().removeId(convidado.getId());
-		}
-	//	if (e.getSource() == btnEditar) {
-//			FormEditarConvidado.setVisible(true);
-			
-			
-			
-			removeAll();
-			revalidate();
-			repaint();
-		}
+
 
 	}
