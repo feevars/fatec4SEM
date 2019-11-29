@@ -1,0 +1,159 @@
+arquivodosge
+Encontro dos Estudantes de ADS de 1973
+Wed Nov 20 22:11:07 BRST 2019
+500
+60
+100,00
+30,00
+158
+Tue Nov 12 22:11:12 BRST 2019
+50,00
+166
+Fri Nov 15 22:11:21 BRST 2019
+80,00
+166
+Mon Nov 18 22:11:24 BRST 2019
+convidado
+5
+Luiz
+Fernando Geraldo dos Santos
+luiz-fee@hotmail.com
+(11) 88888-8888
+Mon Sep 09 00:00:00 BRT 1996
+RG
+99.999.999-9
+false
+false
+1
+2019-11-10 22:15:31.376
+convidado
+4
+Jaime
+Kataiama
+jaimekat@gmail.com
+(11) 77777-7777
+Sun Aug 05 00:00:00 BRT 1990
+RG
+22.222.222-4
+true
+false
+1
+2019-11-10 22:14:44.562
+convidado
+3
+Robson
+Henrique Ferreira
+robssauro@gmail.com
+(11) 77777-7777
+Wed Sep 14 00:00:00 BRT 1994
+RG
+44.444.444-4
+false
+false
+1
+2019-11-10 22:13:46.233
+convidado
+2
+Bruno
+Bega Harnik
+brunoharnik@gmail.com
+(11) 98787-9197
+Fri Mar 06 00:00:00 BRT 1987
+CPF
+333.333.333-33
+false
+false
+1
+2019-11-10 22:12:58.057
+convidado
+1
+Fernanda
+Pinheiro Reis
+fp.reis@live.com
+(11) 95969-8567
+Wed Jun 24 00:00:00 BRT 1998
+RG
+22.222.222-2
+false
+true
+1
+2019-11-10 22:12:11.587
+convidado
+10
+Alfredo
+Cunha
+alfcuna@gmail.com
+(21) 31313-1212
+Sun Nov 12 00:00:00 BRST 1967
+RG
+42.323.442-3
+true
+false
+1
+2019-11-11 02:34:00.928
+convidado
+11
+Roberta
+Silva
+robertasil@ig.com.br
+(21) 84384-3888
+Sun Dec 23 18:50:29 BRT 1973
+CPF
+234.234.234-24
+false
+false
+1
+2019-11-11 18:51:00.085
+convidado
+12
+Cipriano
+Solon de Sousa
+ioio@aol.com.br
+(11) 93489-8349
+Wed Oct 12 00:00:00 BRST 1932
+RG
+11.233.232-2
+false
+true
+1
+2019-11-11 18:52:48.707
+convidado
+14
+Rodimir
+Harnik
+rodharnik@gmail.com
+(11) 83428-8348
+Sun Apr 25 00:00:00 BRT 1954
+RG
+23.482.834-8
+false
+true
+1
+2019-11-11 18:55:27.614
+convidado
+15
+Sandra
+Bega Harnik
+sandrabega@yahoo.com.br
+(11) 83843-8323
+Fri May 25 00:00:00 BRT 1956
+RG
+82.832.383-4
+false
+true
+1
+2019-11-11 18:56:22.211
+convidado
+16
+Wilma
+Silva
+wilsil@bol.com.br
+(11) 98784-2211
+Fri May 11 00:00:00 BRT 1922
+RG
+82.832.383-4
+true
+false
+2
+2019-11-13 18:56:22.211
+
