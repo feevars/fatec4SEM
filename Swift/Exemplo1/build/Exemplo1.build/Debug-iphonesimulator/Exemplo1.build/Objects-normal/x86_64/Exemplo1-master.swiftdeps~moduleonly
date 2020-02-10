@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
-options: "833a2a94729694b11332fb513582e7c9"
-build_time: [1573745387, 741802000]
-inputs:
-  "/Users/bruno/Desktop/Fatec/Swift/Exemplo1/Exemplo1/AppDelegate.swift": [1573737651, 87015109]
-  "/Users/bruno/Desktop/Fatec/Swift/Exemplo1/Exemplo1/SceneDelegate.swift": [1573737651, 90424222]
-  "/Users/bruno/Desktop/Fatec/Swift/Exemplo1/Exemplo1/ContentView.swift": [1573738523, 871189862]

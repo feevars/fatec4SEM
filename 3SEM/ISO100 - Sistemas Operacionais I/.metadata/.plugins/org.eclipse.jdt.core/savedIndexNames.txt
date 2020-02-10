@@ -1,1 +1,0 @@
-INDEX VERSION 1.131+/home/cachaca/Área de Trabalho/Fatec/3SEM/ISO100 - Sistemas Operacionais I/.metadata/.plugins/org.eclipse.jdt.core

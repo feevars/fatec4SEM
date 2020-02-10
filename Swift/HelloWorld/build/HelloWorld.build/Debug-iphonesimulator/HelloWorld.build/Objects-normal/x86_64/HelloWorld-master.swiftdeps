@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
-options: "2c04979e10bc61512e0bf1851148e697"
-build_time: [1573746389, 285178000]
-inputs:
-  "/Users/bruno/Desktop/Fatec/Swift/HelloWorld/HelloWorld/AppDelegate.swift": [1573746385, 564726874]
-  "/Users/bruno/Desktop/Fatec/Swift/HelloWorld/HelloWorld/SceneDelegate.swift": [1573746385, 568979738]
-  "/Users/bruno/Desktop/Fatec/Swift/HelloWorld/HelloWorld/ContentView.swift": [1573746385, 573406880]

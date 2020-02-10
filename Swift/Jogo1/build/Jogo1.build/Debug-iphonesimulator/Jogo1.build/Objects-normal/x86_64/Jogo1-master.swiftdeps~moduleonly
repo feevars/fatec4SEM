@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
-options: "6b08086e3c2145dfac8db72b2be598fa"
-build_time: [1573750046, 322944000]
-inputs:
-  "/Users/bruno/Desktop/Fatec/Swift/Jogo1/Jogo1/AppDelegate.swift": [1573747657, 359790976]
-  "/Users/bruno/Desktop/Fatec/Swift/Jogo1/Jogo1/JogoViewController.swift": [1573750046, 199182601]
