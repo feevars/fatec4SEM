@@ -1,0 +1,69 @@
+Mainframe 
+
+01 DATAMASC.
+	03 DIAM 	PIC $9.
+	03 FILLER 	PIC X(1) VALUE "/".
+	03 MESM		PIC Z9.
+	03 FILLER	PIC X(1) VALUE "/".
+	03 ANOM		PIC ZZ99.
+
+01 REGELI.
+	03 CPF		PIC 9(11).
+	03 NOME 	PIC X(30).
+	03 EMAIL 	PIC X(35).
+	03 DATAMASC.
+		05	DIANASC		PIC 9(2).
+		05	MESNASC		PIC 9(2).
+		05	ANONASC		PIC 9(4).
+
+DISPLAY (LL,CC) = visualizar em tela
+
+impressora é identificada como um arquivo texto, não como "display"
+
+ACCEPT = liberar o teclado para digitação (armazenar em uma variável)
+
+ACCEPT (LL, CC) NOME.
+ACCEPT NOME AT LLCC. 
+(linha x coluna)
+
+MOVE DATANASC TO DATAMASC.
+
+PROCEDURE DIVISION - SEMPRE COLOCA PONTO FINAL NO FINAL DA ROTINA
+
+DISPLAY (05, 30) "NOME"
+ACCEPT (05, 20) NOME
+ACCEPT VAR FROM ESCAPE KEY. (Escape key, ENTER, ESC, F1 ~ F12)
+
+ENTER - 00
+ESC - 01
+
+IF VAR = 13
+	CLOSE ARQCLI
+	STOP RUN.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+MOUNT C <<PASTA>> - USA A PASTA COMO DIRETORIO
+
+COBOL CEP001.COB <- ABRE O ARQUIVO COBOL CEP001.COB
+
+.INT --> INTERPRETAR O ARQUIVO (deixa vazio)
+
+NULL.LST --> NÃO GERA RELATÓRIO (LISTAGEM)
+
+CEP001.LST --> NÃO FICA MAIS NULO
+
+COBOL CEP001,,, --> Compilar
+ISAM --> Ver a imagem
+RUNCOB CEP001 -- Executar
+
+
+----EXERCICIO PARA HOUSE----
+
+CADASTRO DE AMIGOS
+APELIDO, NOME, EMAIL
+X12, X30, X30
+NOME DO ARQUIVO: CADAMIGO
+REGISTRO: REGAMIGO
+
+
