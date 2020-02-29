@@ -1,0 +1,121 @@
+mysql> create database consultorio;
+Query OK, 1 row affected (0.13 sec)
+
+mysql> use consultorio;
+Database changed
+mysql> CREATE TABLE CONVENIO(
+    ->    CODCONV INT AUTO_INCREMENT PRIMARY KEY,
+    ->    NOMECONVenio VARCHAR(30) NOT NULL,
+    ->    FONECON CHAR(12)
+    -> );
+Query OK, 0 rows affected (0.62 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_consultorio |
++-----------------------+
+| convenio              |
++-----------------------+
+1 row in set (0.34 sec)
+
+mysql> CREATE TABLE PACIENTE(
+    ->    IDPACIENTE INT PRIMARY KEY AUTO_INCREMENT,
+    ->    NOMEPAC VARCHAR(40) NOT NULL,
+    ->    SEXO CHAR(1) DEFAULT 'F',
+    ->    DATANASC DATE,
+    ->    FONE CHAR(12),
+    ->    CODCONV INT,
+    ->    FOREIGN KEY(CODCONV) REFERENCES
+    ->            CONVENIO(CODCONV)
+    -> );
+Query OK, 0 rows affected (1.40 sec)
+
+mysql>    
+mysql> CREATE TABLE ESPECIALIDADE(
+    ->   CODESPEC INT AUTO_INCREMENT PRIMARY KEY,
+    ->   NOMEESPEC VARCHAR(20) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.96 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_consultorio |
++-----------------------+
+| convenio              |
+| especialidade         |
+| paciente              |
++-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE MEDICO(
+    ->    IDMEDICO INT PRIMARY KEY AUTO_INCREMENT,
+    ->    NOMEMED VARCHAR(40) NOT NULL,
+    ->    sexo char(1) default 'm',
+    ->    CRM NUMERIC(8) NOT NULL,
+    ->    CODESPEC INT,
+    ->    FOREIGN KEY (CODESPEC) REFERENCES
+    ->      ESPECIALIDADE(CODESPEC)
+    -> );
+Query OK, 0 rows affected (1.33 sec)
+
+mysql> 
+mysql> CREATE TABLE CONSULTA(
+    ->     IDPACIENTE INT,
+    ->     IDMEDICO INT,
+    ->     DATACONS DATE,
+    ->     QUEIXA VARCHAR(100),
+    ->     PRESCRICAO VARCHAR(100),
+    ->     PRIMARY KEY(IDPACIENTE,IDMEDICO,DATACONS),
+    ->     FOREIGN KEY (IDPACIENTE) REFERENCES
+    ->              PACIENTE(IDPACIENTE),
+    ->     FOREIGN KEY (IDMEDICO) REFERENCES
+    ->              MEDICO(IDMEDICO)
+    -> );  
+Query OK, 0 rows affected (1.34 sec)
+
+mysql> INSERT INTO CONVENIO VALUES
+    -> (NULL, 'SUL AMERICA', 6012378),
+    -> (NULL,'SAUDE TOTAL',999098),
+    -> (NULL,'GOOD HEALTH',776544);
+Query OK, 3 rows affected (0.41 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO PACIENTE VALUES
+    -> (NULL, 'JOAO DA SILVA','M', '1998-10-10',5566667,1),
+    -> (NULL,'VERA RODRIGUES','F', '1992-08-10',5543211,2),
+    -> (NULL,'PAULO RANGEL','M','1990-04-12', 8874662, 3);
+Query OK, 3 rows affected (0.18 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO ESPECIALIDADE (NOMEESPEC)
+    ->  VALUES('CLINICA GERAL'), ('ORTOPEDIA');
+Query OK, 2 rows affected (0.14 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> INSERT INTO MEDICO VALUES
+    -> (NULL,'PAULO','M',50345,1),
+    -> (NULL,'MARINA','F',12345,2);
+Query OK, 2 rows affected (0.43 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO CONSULTA VALUES
+    -> (1,1,CURDATE(),'DOR DE CABECA','ANALGESICO'),
+    -> (1,2,CURDATE(),'DOR NAS COSTAS','RAIO X'),
+    -> (2,1,CURDATE(),'AZIA','OMEPRAZOL');
+Query OK, 3 rows affected (0.13 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++-----------------------+
+| Tables_in_consultorio |
++-----------------------+
+| consulta              |
+| convenio              |
+| especialidade         |
+| medico                |
+| paciente              |
++-----------------------+
+5 rows in set (0.01 sec)
+
+mysql> exit
