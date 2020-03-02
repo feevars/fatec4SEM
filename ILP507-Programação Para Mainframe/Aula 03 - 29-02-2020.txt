@@ -67,3 +67,7 @@ NOME DO ARQUIVO: CADAMIGO
 REGISTRO: REGAMIGO
 
 
+-------------------------------------
+MOUNT -U C
+
+
