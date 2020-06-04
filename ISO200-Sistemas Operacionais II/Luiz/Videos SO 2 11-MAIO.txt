@@ -1,0 +1,35 @@
+
+  *	*	    *	    *	    *		comando
+MINUTO hora    dia do mes  mes  dia da semana   
+
+crontab -e
+
+/etc/init.d/cron start - stop
+clamscan -r /home/luiz/Downloads/ | tee /home/luiz/Documentos/logAntivirus.txt
+__________________________________________________________________________________
+adicionar disco no virtual box
+
+abrir a vm e ir ate: cd /dev
+
+listar disco com: fdisk -l
+
+acessar novo hd: fdisk /dev/sdb
+
+criar nova partição: opção n e depois p para primary
+
+comando w: escrever modificações
+
+formatação logica: mkfs.ext3 /dev/sdb1
+
+montagem no sistema de arquivos: mkdir /hd2
+
+mount -t ext3 /dev/sdb1 /hd2
+
+df -h
+
+UUID: blkid
+
+nano /etc/fstab
+
+
+
