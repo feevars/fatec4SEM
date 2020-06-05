@@ -1,0 +1,37 @@
+Siga os passos:
+a - Criar uma pasta com seu RA
+b - Pra cada exercício criar uma subpasta dentro da pasta do seu RA
+c - Colocar na pasta do exercício todos os artefatos construídos.
+
+Obs.: 	Cola é zero
+	Emprestar material é zero para ambos envolvidos
+	Conversa paralela é zero
+
+Questões:
+
+1) Fazer um script que leia do termina o nome de um usuário e escreva na tela quais são os grupos que este pertence.
+
+2) Criar um script que auxilie o usuário final a usar o linux, a idéia e que ele não tenha que decorar comandos, logo devemos exibir um menu simples que permita criar diretórios dentro da pasta home, fazer backups dos arquivos pessoais, limpar a pasta temporária, exemplo abaixo:
+
+Assistente de Usuário
+1 - Criar um novo diretório
+2 - Excluir um diretório
+3 - Permitir acesso de escrita e leitura a um arquivo ou diretório
+4 - Fazer backups dos arquivos pessoais
+5 - Limpar meus arquivos temporários
+6 - Sair
+
+Opção:
+
+Data a opção o sistema pede alguns dados de forma humana e executa o comando.
+Toda alteração deve ser a partir da pasta do usuário corrente
+
+3) Fazer um script que pergunta o nome de um grupo e faça um backup de todos os usuários deste grupo (lembrese que o backup deve ter o nome: backup-usuario-DD-MM-YYYY.tar.gz onde usuário é o login do usuário, DD é o dia da backup, MM é o mês da backup e YYYY é o ano da backup)
+
+4) Fazer um script para criar uma pasta temporária em ~ e atribuir a permissão que somente o usuário dono do arquivo pode excluir o mesmo.
+
+
+
+
+
+
