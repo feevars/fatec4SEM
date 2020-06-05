@@ -1,11 +1,11 @@
-#funcoes com parametros
+#!/bin/bash
+#FUNCOES COM PARAMETROS
 
 segundaFuncao(){
-	echo "VALORES: $1 e $2 RECEBIDOS!"
+	echo "VALORES: $1 e  $2 RECEBIDOS!"
 	res=$(($1 / $2))
 
-	echo "RESULTADO DA DIVISAO DE $1 por $2: $res" 
+	echo "RESULTADO DA DIVISAO DE $1 por $2: $res"
 }
 
-echo "SEGUNDA FUNCAO(`segundaFuncao 10 2`)"
-
+echo "SEGUNDA FUNCAO (`segundaFuncao 10 2`)"

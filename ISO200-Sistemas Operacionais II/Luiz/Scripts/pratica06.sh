@@ -1,33 +1,47 @@
-#OPERADORES
+#!/bin/bash
 
-echo "-------------------------------"
+echo "------ OPERADORES ------"
+
 valorA=10
-echo "valor atual: $valorA"
+echo "VALOR ATUAL: $valorA"
 
 let valorA++
-echo "VALOR APOS INCREMENTO: $valorA"
+echo "VALOR COM INCREMENTO: $valorA"
 
 let valorA--
-echo "VALOR APOS DECREMENTO: $valorA"
-echo "------------------------------"
+echo "VALOR COM DECREMENTO: $valorA"
 
 base=5
 exp=3
+echo " ------ ------ ------"
+echo
+
 
 pot=$((base**exp))
 echo "VALOR DE $base elevado a $exp: $pot"
-echo "------------------------------"
+echo " ------ ------ ------"
+echo
 
-adic=$((50+10))
-echo "O VALOR DA ADICAO É: $adic"
 
-subt=$((50-10))
-echo "O VALOR DA ADICAO É: $subt"
+nA=50
+nB=10
 
-mult=$((50*10))
-echo "O VALOR DA ADICAO É: $mult"
+adic=$(($nA+$nB))
+echo "A SOMA DE $nA por $nB e: $adic"
 
-divi=$((50/10))
-echo "O VALOR DA ADICAO É: $divi"
-echo "------------------------------"
+sub=$(($nA-$nB))
+echo "A SUBTRACAO DE $nA por $nB e: $sub"
+
+mul=$(($nA*$nB))
+echo "A MULTIPLICACAO DE $nA por $nB e: $sub"
+
+sub=$(($nA/$nB))
+echo "A DIVISAO DE $nA por $nB e: $sub"
+
+echo " ------ ------ ------"
+echo
+
+
+
+
 

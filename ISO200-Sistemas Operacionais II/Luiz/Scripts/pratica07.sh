@@ -1,13 +1,17 @@
-#CONDICIONAIS
+#!/bin/bash
+
+echo "------ CONDICIONAIS ------"
 
 ra=1110481823051
 
-res=$(( $ra % 2 ))
+res=$(($ra % 2))
 
 if [ $res -eq '0' ]
 
-then 
-	echo "MEU RA $ra : é PAR"
+then
+	echo "RA: $ra : é PAR"
+	echo "------ ------"
 else
-	echo "MEU RA $ra : é IMPAR"
+	echo "RA: $ra : é IMPAR"
+	echo "------ ------"
 fi

@@ -1,12 +1,8 @@
 #!/bin/bash
 
+for x in `ls`
 
-array=(LUIZ FERNANDO)
+do
+	echo "$x"	
 
-aLeng=${#array[@]}
-
-for((i=0; i<${aLeng}; i ++));
-
-do 
-	echo "Parte: ${array[i]}
-
+done

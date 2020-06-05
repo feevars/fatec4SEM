@@ -1,10 +1,10 @@
-#VARIAVEIS
+#!/bin/bash
 
-nome="LUIZ FERNANDO"
-semestre=4
-idade=25
+nome="ALUNO NOVO"
+semestre="4"
+idade="25"
 
+echo "ALUNO:$nome"
+echo "SEMESTRE:$semestre"
+echo "IDADE:$idade"
 
-echo "ALUNO: $nome" 
-echo "SEMESTRE: $semestre"
-echo "IDADE: $idade"
