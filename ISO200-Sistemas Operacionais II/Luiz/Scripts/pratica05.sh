@@ -1,0 +1,14 @@
+#!/bin/bash
+
+VALOR="TRABALHANDO COM ARRAYS"
+echo $VALOR
+
+ALUNO[0]=ALUNO
+ALUNO[1]=NOTA
+ALUNO[2]=10
+
+echo ${ALUNO[0]}
+echo ${ALUNO[1]}
+echo ${ALUNO[2]}
+
+
