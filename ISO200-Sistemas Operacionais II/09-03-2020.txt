@@ -1,0 +1,60 @@
+09-03-2020
+
+1 - Entrar no aied.com.br
+2 - baixar o desktop (menu lateral)
+3 - informar ip do servidor no programa: 10.68.76.48
+
+
+1 - pegar prova2.ova em \\10.68.76.4\wellington\sistemas operacionais II
+
+PARA FAZER FUNÇÕES NO TERMINAL:
+
+- nano meuscript.sh (cria arquivo script).
+aqui nele vc vai escrever a prática e chamá-la. Ao término, aperte CTRL+O para salver e CTRL+X para voltar ao terminal.
+
+- chmod +X meuscript.sh (linka com o arquivo)
+
+- ./meuscript.sh (executa o arquivo e mostra o output).
+
+ou direto no terminal:
+#!/bin/bash
+minhaFuncao(){
+	echo "Apenas uma função Teste"
+}
+
+Para chamar:
+minhaFuncao
+
+
+Como fazer operações aritméticas:
+
+$(( 1 + 2 ));
+
+tem espaço: 
+$((_1_=_2_));
+
+para igual, o recomendado não é usar o = as sim -eq
+
+if e case fecham em invertidos:
+
+fi e esac
+
+for ( inicial; condição; incremento)
+do
+
+done
+
+
+==============
+for pessoa in `users`
+do
+   echo $pessoa
+done
+===============
+
+
+FAZER 2 PROGRAMAS (A E B) 
+O PROGRAMA A DEVE LER O OUTPUT DO PROGRAMA B EM EXECUÇÃO.
+
+
+
