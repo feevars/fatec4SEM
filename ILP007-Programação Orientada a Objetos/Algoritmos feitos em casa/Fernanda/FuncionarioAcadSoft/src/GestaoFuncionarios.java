@@ -10,15 +10,13 @@ public class GestaoFuncionarios {
 	Scanner sc = new Scanner (System.in);
 	
 	public void criar() {
-		Funcionario func = new Funcionario();
-	}
-	
-	public void atualizar() {
-		
+		funcionarios.add(func);
+		System.out.println("Funcionário cadastrado no sistema.");
 	}
 	
 	public void excluir() {
-		
+		funcionarios.remove(func); 
+		System.out.println("funcionário removido com sucesso.");
 	}
 	
 	public void exibir() {
@@ -29,9 +27,5 @@ public class GestaoFuncionarios {
 				System.out.println(func.toString());
 			}
 		}
-	}
-	
-	public void menu() {
-		
 	}
 }

@@ -1,0 +1,7 @@
+17-02
+
+\\10.68.76.4\
+oracle VM virtualBox -> novo -> colocar a imagem do repositório do wellington
+
+instalamos o debian 9
+- no teste de proficiencia terá mensagens de erros
