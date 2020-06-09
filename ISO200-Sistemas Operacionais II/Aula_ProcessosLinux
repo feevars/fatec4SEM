@@ -1,0 +1,46 @@
+TIpos de processos:
+
+Tempo Real:
+
+Interativos:
+
+Batch: lotes de requisições | 1 operação executa em um monte de arquivos
+
+Política do Escalonador
+executar lotes para a entrega mais rápida, maximizando as saídas. políticas de sistemas operacionais que executam aplicações menores. ruim para dados complexos como banco de dado
+
+dois tipos de prioridades: estática e dinâmica 
+
+faixa de prioridades - de 0-99
+
+comando: top
+
+um único núcleo com pseudo paralelismos
+
+Política SCHED_FIFO: Válido para processos de tempo real
+descritor do processo é inserido no fim da fila
+
+
+SCHED_RR: 
+
+[9:32 PM] WELLINGTON PINTO DE OLIVEIRA
+    tail -f /var/log/syslog
+
+cat /var/log/syslog
+
+Principais sinais
+sighup: recarrega parâmetros utilizados em sua inicialização
+gitint: interromper processo de forma espontânea pelo terminal
+sigkill: força a interrupção ignorando atividades de fechamento
+sigterm: interrompe o processo e ele deve finalizar suas atividades antes
+
+kill: permite o envio de sinais para processos (kill, pause, start)
+
+grep node: pega tudo o q tiver node
+
+
+PRÁTICA
+1) Instalar o Clamav (antivirus)
+2) Criar muitos arquivos no /home/usuario/
+3) Rodar o clamav com nice 10
+4) renice 5 
