@@ -26,9 +26,12 @@ Opção:
 Data a opção o sistema pede alguns dados de forma humana e executa o comando.
 Toda alteração deve ser a partir da pasta do usuário corrente
 
-3) Fazer um script que pergunta o nome de um grupo e faça um backup de todos os usuários deste grupo (lembrese que o backup deve ter o nome: backup-usuario-DD-MM-YYYY.tar.gz onde usuário é o login do usuário, DD é o dia da backup, MM é o mês da backup e YYYY é o ano da backup)
+3) Fazer um scrique pergunta o nome de um grupo e faça um backup de todos os usuários deste grupo (lembrese que o backup deve ter o nome: backup-usuario-DD-MM-YYYY.tar.gz onde usuário é o login do usuário, DD é o dia da backup, MM é o mês da backup e YYYY é o ano da backup)
 
 4) Fazer um script para criar uma pasta temporária em ~ e atribuir a permissão que somente o usuário dono do arquivo pode excluir o mesmo.
+
+grep "nome_do_grupo" /etc/group
+
 
 
 
