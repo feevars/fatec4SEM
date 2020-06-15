@@ -6,28 +6,37 @@ echo "=========BACKUP DE USUARIOS========="
 echo "===================================="
 echo "INFORME O NOME DO GRUPO:            "
 echo "===================================="
-
 read grupo
 echo "===================================="
 echo "VOCE ESCOLHEU O GRUPO $grupo"
 echo "===================================="
 
 
-getent group $grupo | awk -F: '{pp=$4}'
-echo $pp
+dia=`date +´%d´`
+mes=`date +´%m´`
+ano=`date +´%Y´`
 
 
 
-#usuarios=`egrep $grupo /etc/group | awk -F: '{ print $4 }' `
+lista=$( egrep "$grupo" /etc/group | awk -F':' '{ print $4 '} )
 
-#for user in $usuarios | `awk -F,`
-#do
-#	echo "USUARIO: $user"
-#done
 
-#	echo "USUARIOS: $x"
-#	cp -r /home/$x BACKUP
-#	echo "BACKUP DE $x REALIZADO!"
+IFS=',' read -r -a usuarios <<< "$lista"
+
+for x in "${usuarios[@]}"
+do
+	echo "===================================="
+	echo "FAZENDO BACKUP DO USUARIO: $x"
+	echo "DIRETORIO /home/$x "
+	echo "DATA $dia $mes $ano "	
+	echo "===================================="
+	sleep 3
+
+	tar -czvf Backup-$x-$dia-$mes-$ano /home/$x
+
+done 
+
+echo "===================================="
 
 
 
