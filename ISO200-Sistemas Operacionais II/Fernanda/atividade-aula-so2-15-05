@@ -1,0 +1,156 @@
+Exercicio 1 - listar da pasta do usuario
+
+fernanda@feevars:~$ ls
+ 1110481823022              Music
+ 1110481823022.zip          Pictures
+'BRAIN WORKOUT'             Postman
+ Broadcom                   programaria
+ cinnamon-20200506-1.webm   Public
+ COBOL                      snap
+ CURSOS                     stremio.appimage
+ Desktop                    Templates
+ Documents                  vboxdrv.der
+ Downloads                  vboxdrv.priv
+ eclipse                    Videos
+ eclipse-workspace          virtualbox.run
+ FATEC                     'VirtualBox VMs'
+ GPUCache                   Visual_Paradigm_CE_16_1_20200501_Linux64.sh
+ java-libs                  workshop
+fernanda@feevars:~$ 
+
+
+Exercicio 2.1 - ls -c 
+fernanda@feevars:~$ ls -c
+ Downloads           Desktop
+ FATEC               Visual_Paradigm_CE_16_1_20200501_Linux64.sh
+ 1110481823022.zip   workshop
+ Documents           Broadcom
+ Pictures            programaria
+ Videos              cinnamon-20200506-1.webm
+ snap                Postman
+ 1110481823022       vboxdrv.der
+'VirtualBox VMs'     vboxdrv.priv
+ COBOL               virtualbox.run
+'BRAIN WORKOUT'      stremio.appimage
+ java-libs           GPUCache
+ eclipse-workspace   Music
+ eclipse             Public
+ CURSOS              Templates
+fernanda@feevars:~$ 
+
+Exercicio 2.2 - ls -b
+fernanda@feevars:~$ ls -b
+1110481823022             Music
+1110481823022.zip         Pictures
+BRAIN\ WORKOUT            Postman
+Broadcom                  programaria
+cinnamon-20200506-1.webm  Public
+COBOL                     snap
+CURSOS                    stremio.appimage
+Desktop                   Templates
+Documents                 vboxdrv.der
+Downloads                 vboxdrv.priv
+eclipse                   Videos
+eclipse-workspace         virtualbox.run
+FATEC                     VirtualBox\ VMs
+GPUCache                  Visual_Paradigm_CE_16_1_20200501_Linux64.sh
+java-libs                 workshop
+
+
+Exercicio 3 - Criar um link de um arquivo da /home/ para a /tmp/ e modificar sua permissão para leitura para todos e escrita somente para você
+
+fernanda@feevars:~$ nano teste_da_aula_de_so2.txt
+fernanda@feevars:~$ ls -l
+-rw-r--r--  1 fernanda fernanda        21 Jun 15 21:41  teste_da_aula_de_so2.txt
+fernanda@feevars:~$ chmod o+w teste_da_aula_de_so2.txt 
+fernanda@feevars:~$ ls -l
+total 795100
+-rw-r--rw-  1 fernanda fernanda        21 Jun 15 21:41  teste_da_aula_de_so2.txt
+Obs: permissao de write foi adicionada
+---criando link do arquivo criado na pasta /tmp/
+fernanda@feevars:~$ ln -s /home/fernanda/teste_da_aula_de_so2.txt /tmp/ 
+fernanda@feevars:~$ cd ../..
+fernanda@feevars:/$ cd tmp/
+fernanda@feevars:/tmp$ ls -l
+lrwxrwxrwx 1 fernanda fernanda     39 Jun 15 21:52  teste_da_aula_de_so2.txt -> /home/fernanda/teste_da_aula_de_so2.txt
+
+----verifica como está a permissao na pasta original
+fernanda@feevars:~$ ls -l
+-r--r--rw-  1 fernanda fernanda        21 Jun 15 21:41  teste_da_aula_de_so2.txt
+----dar uma permissao para remover depois
+fernanda@feevars:~$ chmod u+w teste_da_aula_de_so2.txt 
+fernanda@feevars:~$ ls -l
+-rw-r--rw-  1 fernanda fernanda        21 Jun 15 21:41  teste_da_aula_de_so2.txt
+----remover a permissao
+fernanda@feevars:~$ chmod u-w teste_da_aula_de_so2.txt 
+fernanda@feevars:~$ ls -l
+-r--r--rw-  1 fernanda fernanda        21 Jun 15 21:41  teste_da_aula_de_so2.txt
+
+
+Exercicio 4 - criar um hard link para o arquivo da atividade passada, só que para outro lugar
+
+fernanda@feevars:~/CURSOS$ ln -v /home/fernanda/teste_da_aula_de_so2.txt /home/fernanda/Documents/
+'/home/fernanda/Documents/teste_da_aula_de_so2.txt' => '/home/fernanda/teste_da_aula_de_so2.txt'
+fernanda@feevars:~/CURSOS$ cd
+fernanda@feevars:~$ stat teste_da_aula_de_so2.txt | grep Inode
+Device: 802h/2050d	Inode: 25967436    Links: 4
+
+
+Exercicio 5 - Criar diretorio em ~, chmod ativar sticky, ls -l, criar um arquivo de teste nesse diretorio, logar com outra conta de usuario, tentar removeer o arquivo.
+
+fernanda@feevars:~$ mkdir teste_so2_15_jun
+fernanda@feevars:~$ chmod 1757 teste_so2_15_jun/ 
+fernanda@feevars:~$ ls -la
+drwxr-xrwt  2 fernanda fernanda      4096 Jun 15 23:06  teste_so2_15_jun
+
+
+
+Exercicio 6 - criar diretorio, alterar o GUID, alterar o grupo da nova pasta
+
+fernanda@debian:~$ mkdir dir-exercicios-permissao-de-acesso
+fernanda@debian:~$ ls
+Desktop                             Documents  Music     Public     Videos
+dir-exercicios-permissao-de-acesso  Downloads  Pictures  Templates
+fernanda@debian:~$ chmod g+s dir-exercicios-permissao-de-acesso/
+fernanda@debian:~$ ls
+Desktop                             Documents  Music     Public     Videos
+dir-exercicios-permissao-de-acesso  Downloads  Pictures  Templates
+fernanda@debian:~$ ls -l
+total 36
+drwxr-xr-x 2 fernanda fernanda 4096 May 19 13:13 Desktop
+drwxr-sr-x 2 fernanda fernanda 4096 Jun 16 00:30 dir-exercicios-permissao-de-acesso
+drwxr-xr-x 2 fernanda fernanda 4096 May 19 13:13 Documents
+drwxr-xr-x 2 fernanda fernanda 4096 May 19 13:13 Downloads
+drwxr-xr-x 2 fernanda fernanda 4096 May 19 13:13 Music
+
+sudo chgrp -R alunos /home/fernanda/dir-exercicios-permissao-de-acesso/
+[sudo] password for fernanda:
+fernanda@debian:~$
+
+
+Exercicio 7 - qualquer pessoa pode alterar a senha do sistema com a permissao do root
+root@debian:~# adduser fernanda alunos
+Adding user `fernanda' to group `alunos' ...
+Adding user fernanda to group alunos
+Done.
+root@debian:~# chown root:alunos /sbin/shadowconfig
+
+root@debian:~# exit
+logout
+fernanda@debian:~$
+fernanda@debian:/$ cd sbin
+fernanda@debian:/sbin$ ls -l
+-rwxr-xr-x 1 root alunos     885 Jul 27  2018 shadowconfig
+
+
+
+Exercicio 8 - Com o nano entrar em vários arquivos e explorar /etc/passwd  /etc/groups
+
+fernanda@debian:/etc$ nano passwd
+fernanda@debian:/etc$ nano group
+
+/etc/groups:
+Debian-gdm:x:125:
+fernanda:x:1000:
+systemd-coredump:x:999:
+alunos:x:1001:fernanda
