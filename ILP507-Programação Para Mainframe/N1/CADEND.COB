@@ -13,13 +13,14 @@
            ORGANIZATION            IS INDEXED
            ACCESS MODE             IS DYNAMIC
            RECORD KEY              IS ID-ENDERECO
-           FILE STATUS             IS WS-STATUS-ARQUIVO.
+           FILE STATUS             IS WS-STATUS-ARQUIVO
+           ALTERNATE RECORD KEY    IS CEP.
 
        DATA DIVISION.
        FILE SECTION.
        FD  ARQUIVOENDERECO
            LABEL RECORDS ARE STANDARD
-           VALUE OF FILE-ID IS "ARQUIVOENDERECO.DAT".
+           VALUE OF FILE-ID IS "CADEND.DAT".
        
        01 ENDERECO.
            05 ID-ENDERECO      PIC X(04).
@@ -57,12 +58,15 @@
                FOREGROUND-COLOR 14 LINE 01 COLUMN 30.
            05 VALUE "C - CADASTRAR ENDERECOS" FOREGROUND-COLOR 14 
                LINE 05 COLUMN 10.
-           05 VALUE "S - SAIR" FOREGROUND-COLOR 14 LINE 06 COLUMN 10.
-           05 OPCAO PIC X USING WS-OPCAO LINE 08 COLUMN 10.
+           05 VALUE "L - LISTAR ENDERECOS" FOREGROUND-COLOR 14 
+               LINE 06 COLUMN 10.
+           05 VALUE "S - SAIR" FOREGROUND-COLOR 14 LINE 07 COLUMN 10.
+           05 OPCAO PIC X USING WS-OPCAO LINE 09 COLUMN 10.
        
        01 TELA-MENSAGEM.
-           05 BACKGROUND-COLOR 02 FOREGROUND-COLOR 15.
+           05 BLANK SCREEN BACKGROUND-COLOR 02 FOREGROUND-COLOR 15.
            05 PIC X(60) FROM WS-MSG              LINE 15 COLUMN 10.
+           05 PIC X(02) FROM WS-STATUS-ARQUIVO   LINE 17 COLUMN 10.
        
        01 TELA-CADASTRO.
            05 BLANK SCREEN BACKGROUND-COLOR 02 FOREGROUND-COLOR 15.
@@ -88,6 +92,18 @@
       *--------------------- BLOCOS DE EXECUÇÃO ------------------------
        PROCEDURE DIVISION.
 
+       P-ABERTURA-ARQUIVO.
+           OPEN I-O ARQUIVOENDERECO
+           IF WS-STATUS-ARQUIVO NOT = "00"
+               IF WS-STATUS-ARQUIVO = "30"
+                   OPEN OUTPUT ARQUIVOENDERECO
+                   MOVE "CRIANDO ARQUIVO DE MARGEM..." TO WS-MSG
+                   CLOSE ARQUIVOENDERECO
+                   PERFORM P-MSG-FINAL THRU P-FIM   
+                   GO TO P-ABERTURA-ARQUIVO
+               ELSE
+                   GO TO P-MSG-FINAL.
+
        P-INICIAL.
 
            MOVE ZEROS TO ID-ENDERECO CEP
@@ -98,6 +114,8 @@
 
            IF WS-OPCAO = "C"
               GO TO P-NOVO-ID
+           ELSE IF WS-OPCAO = "L"
+              GO TO P-LISTAR
            ELSE IF WS-OPCAO = "S"
                GO TO P-FIM
            ELSE 
@@ -134,27 +152,50 @@
            DISPLAY TELA-CADASTRO
            ACCEPT NOVA-UF
            MOVE "CADASTRO REALIZADO" TO WS-MSG
-           PERFORM P-MSG-FINAL THRU P-FIM.
+           GO TO P-GRAVA-ARQUIVO.
 
       * ----- GRAVACAO EM ARQUIVO --------------------------------------
        
-      *P-ABERTURA-ARQUIVO.
-      *    OPEN I-O ARQUIVOENDERECO
-      *    IF WS-STATUS-ARQUIVO NOT = "00"
-      *        IF WS-STATUS-ARQUIVO = "30"
-      *            OPEN OUTPUT ARQUIVOENDERECO
-      *            MOVE "Arquivo de enderecos sendo criado..."
-      *                TO WS-MSG
-      *            DISPLAY TELA-MENSAGEM
-      *            CLOSE ARQUIVOENDERECO
-      *            GO TO P-NOVO-ID
-      *        ELSE
-      *            GO TO P-FIM.
+       P-GRAVA-ARQUIVO.
+
+           WRITE ENDERECO
+               IF WS-STATUS-ARQUIVO = "00" OR "02"
+                   MOVE "DADOS GRAVADOS" TO WS-MSG
+                   DISPLAY TELA-MENSAGEM
+                   DISPLAY TELA-MENU
+               IF WS-STATUS-ARQUIVO = "22"
+                   MOVE "ENDERECO JA EXISTE!" TO WS-MSG
+                   PERFORM P-MSG-FINAL THRU P-FIM
+               ELSE
+                   MOVE "ERRO NA GRAVACAO DO ARQUIVO " TO WS-MSG
+                   DISPLAY TELA-MENSAGEM
+                   GO TO P-FIM.          
 
 
+       P-LISTAR.
+
+           READ ARQUIVOENDERECO
+                IF WS-STATUS-ARQUIVO NOT = "23"
+                   IF WS-STATUS-ARQUIVO = "00"
+
+                   MOVE SPACES TO ID-ENDERECO CEP LOGRA BAIRRO
+                       CIDADE UF
+                   DISPLAY (01, 01) ERASE
+                   DISPLAY (12, 01) "ID    : "
+                   DISPLAY (14, 01) "CEP   : "
+                   DISPLAY (16, 01) "LOGRA : "
+                   DISPLAY (18, 01) "BAIRRO: "
+                   DISPLAY (20, 01) "CIDADE: "
+                   DISPLAY (22, 01) "ESTADO: "
+                ELSE
+                   MOVE "ERRO AO LER ARQUIVO" TO WS-MSG
+                   GO TO P-MSG-FINAL.
+      
       * ----- ENCERRAMENTO DO PROGRAMA ---------------------------------
+       
        P-MSG-FINAL.
            DISPLAY TELA-MENSAGEM.
-      
+       
        P-FIM.
+           CLOSE ARQUIVOENDERECO
            EXIT PROGRAM.
