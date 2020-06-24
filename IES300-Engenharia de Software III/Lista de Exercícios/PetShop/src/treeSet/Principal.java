@@ -3,6 +3,9 @@ package treeSet;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import entities.Consulta;
+import entities.Exame;
+
 public class Principal {
 
 	public static void main(String[] args) {
@@ -26,6 +29,10 @@ public class Principal {
 		Iterator<String> rev = ts.descendingIterator();
 		while(rev.hasNext()) {
 			System.out.println(rev.next());
+			
+			
+			Consulta c1 = new Exame();
+			Consulta c2= new Consulta();
 		}
 	}
 }

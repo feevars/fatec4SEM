@@ -2,7 +2,7 @@ package entities;
 
 import java.util.Date;
 
-public class Exame {
+public class Exame extends Consulta{
 
 	private Date data;
 
