@@ -20,7 +20,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.web.WebView;
 
-public class HomeScreen extends Group{
+public class Home extends Group{
 
 	private Button buttonAluno;
 	private Button buttonAdministrador;
@@ -49,7 +49,7 @@ public class HomeScreen extends Group{
 	private VBox vbox;
 	
 	
-	public HomeScreen() {
+	public Home() {
 		
 		try {
 			logo = new Image(new FileInputStream("src/images/logo.png"));
