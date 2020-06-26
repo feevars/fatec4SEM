@@ -1,4 +1,4 @@
-package view;
+package boundaries;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
