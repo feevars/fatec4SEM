@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
@@ -24,26 +25,28 @@ public class AdminCurso extends Application implements EventHandler<ActionEvent>
 	private Button btnExcluirCurso = new Button("EXCLUIR");
 	private Button btnNovoCurso = new Button("NOVO");
 	
+	private TableView<Curso> tableView = new TableView<>(cursoController.getLista());
+	
 	
 	public void generateTable() {
 		
-		TableColumn<Curso, String> colNome = new TableColumn<>("ID:");
-		colNome.setCellValueFactory(new PropertyValueFactory<Curso, String>("id"));
+		TableColumn<Curso, String> colID = new TableColumn<>("ID:");
+		colID.setCellValueFactory(new PropertyValueFactory<Curso, String>("id"));
 		
 		TableColumn<Curso, String> colNome = new TableColumn<>("NOME:");
 		colNome.setCellValueFactory(new PropertyValueFactory<Curso, String>("nome"));
 		
-		TableColumn<Curso, String> colNome = new TableColumn<>("DESCRICAO:");
-		colNome.setCellValueFactory(new PropertyValueFactory<Curso, String>("descricao"));
+		TableColumn<Curso, String> colDescricao = new TableColumn<>("DESCRICAO:");
+		colDescricao.setCellValueFactory(new PropertyValueFactory<Curso, String>("descricao"));
 		
-		TableColumn<Curso, String> colNome = new TableColumn<>("HORAS:");
-		colNome.setCellValueFactory(new PropertyValueFactory<Curso, String>("horas"));
+		TableColumn<Curso, String> colHoras = new TableColumn<>("HORAS:");
+		colHoras.setCellValueFactory(new PropertyValueFactory<Curso, String>("horas"));
 		
-		TableColumn<Curso, String> colNome = new TableColumn<>("CRIACAO:");
-		colNome.setCellValueFactory(new PropertyValueFactory<Curso, String>("criacao"));
+		TableColumn<Curso, String> colCriacao = new TableColumn<>("CRIACAO:");
+		colCriacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("criacao"));
 		
-		TableColumn<Curso, String> colNome = new TableColumn<>("ATULIZAO:");
-		colNome.setCellValueFactory(new PropertyValueFactory<Curso, String>("atualizacao"));
+		TableColumn<Curso, String> colAtualizacao = new TableColumn<>("ATUALIZACAO:");
+		colAtualizacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("atualizacao"));
 	}
 	
 

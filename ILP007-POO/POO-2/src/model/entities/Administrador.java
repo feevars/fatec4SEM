@@ -1,18 +1,53 @@
 package model.entities;
 
-import java.util.Date;
 import java.util.Set;
 
-public class Administrador extends Usuario {
+import org.hibernate.validator.constraints.NotBlank;
+
+
+
+public class Administrador {
 	
-	public Administrador(Integer id, String nome, String sobrenome, String email, String telefone, Date dataNascimento,
-			String cpf, String sexo) {
-		super(id, nome, sobrenome, email, telefone, dataNascimento, cpf, sexo);
-		// TODO Auto-generated constructor stub
+	private Integer id;
+	private String username;
+	private String password;	
+	
+	public Administrador() {
+		
+	}
+	
+	public Administrador(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+	
+	@NotBlank
+    public String getUsername() {
+		return username;
 	}
 
 	
-    public boolean adicionarNovoCurso(Curso curso, Set<Curso> cursos) {
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@NotBlank
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public boolean adicionarNovoCurso(Curso curso, Set<Curso> cursos) {
     	for (Curso c : cursos) {
 			if (c == curso){
 				//fazer uma classe de alerts pra só puxar os alerts de lá

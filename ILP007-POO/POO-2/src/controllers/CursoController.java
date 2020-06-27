@@ -1,7 +1,15 @@
 package controllers;
 
+import javafx.collections.ObservableList;
+import model.entities.Curso;
+
 public class CursoController {
 
 	
-	//Pode ser que precisemos de controllers diferentes para admin e para estudantes.
+	
+	
+	public ObservableList<Curso> getLista(){
+		return null;
+	}
+	
 }
