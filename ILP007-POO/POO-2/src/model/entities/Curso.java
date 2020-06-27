@@ -1,43 +1,36 @@
 package model.entities;
 
-import java.util.Date;
 import java.util.Set;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 public class Curso {
 
 	private Integer id;
-	private String nome;
+	private String titulo;
 	private String descricao;
-	private int totalHoras;
+	Set<Instrutor> instrutores;
 	Set<Aula> aulas;
-	private Date dataCriacao;
-	private Date dataAtualizacao;
-
+	
 	public Curso() {
+		
+	}
+	
+	public Curso(Integer id, String titulo, String descricao, Set<Instrutor> instrutores, Set<Aula> aulas) {
 		super();
-	}
-
-	@NotBlank
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
 		this.id = id;
-	}
-	
-	@NotBlank
-	public String getNome() {
-		return nome;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.instrutores = instrutores;
+		this.aulas = aulas;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String getTitulo() {
+		return titulo;
 	}
-	
-	@NotBlank
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -46,31 +39,24 @@ public class Curso {
 		this.descricao = descricao;
 	}
 
-	@NotBlank
-	public int getTotalHoras() {
-		return totalHoras;
+	public Set<Instrutor> getInstrutores() {
+		return instrutores;
 	}
 
-	public void setTotalHoras(int totalHoras) {
-		this.totalHoras = totalHoras;
+	public void setInstrutores(Set<Instrutor> instrutores) {
+		this.instrutores = instrutores;
 	}
 
-	@NotBlank
-	public Date getDataCriacao() {
-		return dataCriacao;
+	public Set<Aula> getAulas() {
+		return aulas;
 	}
 
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
+	public void setAulas(Set<Aula> aulas) {
+		this.aulas = aulas;
 	}
 
-	public Date getDataAtualizacao() {
-		return dataAtualizacao;
+	public Integer getId() {
+		return id;
 	}
-
-	public void setDataAtualizacao(Date dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
-	
 	
 }

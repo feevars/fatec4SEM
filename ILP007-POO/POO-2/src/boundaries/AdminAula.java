@@ -28,8 +28,11 @@ public class AdminAula extends Group {
 	private Label lblLinkVideo = new Label("Link do vídeo");
 	private TextField txtLinkVideo = new TextField();
 	
-	private Label lblTranscricaroVideo = new Label("Transcrição do vídeo:");
+	private Label lblTranscricaoVideo = new Label("Transcrição do vídeo:");
 	private TextArea txtTranscricaoVideo = new TextArea();
+	
+	private Label lblTempoVideo = new Label("Tempo do vídeo (em segundos):");
+	private TextField txtTempoVideo = new TextField();
 	
 	private Button btnAdicionarExercicio = new Button("Adicionar exercício...");
 	private Label lblExercicios = new Label("Exercícios");;
@@ -47,7 +50,7 @@ public class AdminAula extends Group {
 		this.gerarTabela();
 		
 		this.vboxAula.setPadding(new Insets(20));
-		this.vboxAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula, lblLinkVideo, txtLinkVideo, lblTranscricaroVideo, txtTranscricaoVideo, lblExercicios, btnAdicionarExercicio, tableExercicios);
+		this.vboxAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula, lblLinkVideo, txtLinkVideo, lblTranscricaoVideo, txtTranscricaoVideo, lblTempoVideo, txtTempoVideo, lblExercicios, btnAdicionarExercicio, tableExercicios);
 		
 		
 		this.getChildren().add(vboxAula);

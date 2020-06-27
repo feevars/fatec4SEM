@@ -5,37 +5,11 @@ import java.util.Set;
 
 public class Estudante extends Usuario {
 
-//	private String matricula;
-	private Integer pontos;
-	private Set<Curso> inscricoes;
-
-	public Estudante(Integer id, String nome, String sobrenome, String email, String telefone, Date dataNascimento, String cpf,
-			String sexo, String matricula, Integer pontos) {
-		super(id, nome, sobrenome, email, telefone, dataNascimento, cpf, sexo);
-		
-//		this.matricula = matricula;
-		this.pontos = pontos;
-		
-	}
-	
-//	public String getMatricula() {
-//		return matricula;
-//	}
-
-	public void setMatricula(String matricula) {
-//		this.matricula = matricula;
+	public Estudante(Integer id, String username, String nome, String sobrenome, String email, String telefone,
+			Date dataNascimento, Integer pontos, Set<Curso> cursosConcluidos) {
+		super(id, username, nome, sobrenome, email, telefone, dataNascimento, pontos, cursosConcluidos);
+		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getPontos() {
-		return pontos;
-	}
-
-	public void setPontos(Integer pontos) {
-		this.pontos = pontos;
-	}
-
-	public void inscreverEmCurso() {
-		System.out.println("me inscrevi em mais um curso.");
-	}
 
 }
