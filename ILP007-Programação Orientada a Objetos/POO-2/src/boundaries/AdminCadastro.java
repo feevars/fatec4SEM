@@ -21,6 +21,11 @@ public class AdminCadastro extends Group {
 	private Label lblPassword;
 	private PasswordField txtPassword;
 	
+	private HBox hbox;
+	
+	private Button btnCadastro;
+	private Button btnLogin;
+	
 	public AdminCadastro () {
 		vbox = new VBox();
 		
@@ -32,7 +37,13 @@ public class AdminCadastro extends Group {
 		txtPassword = new PasswordField();
 		txtPassword.setPromptText("Digite a senha");
 		
-		vbox.getChildren().addAll(lblUsername, txtUsername, lblPassword, txtPassword);
+		btnCadastro = new Button("Cadastrar");
+		btnLogin = new Button("Login");
+		
+		hbox = new HBox();
+		hbox.getChildren().addAll(btnCadastro, btnLogin);
+		
+		vbox.getChildren().addAll(lblUsername, txtUsername, lblPassword, txtPassword, hbox);
 		
 		this.getChildren().add(vbox);
 	}
