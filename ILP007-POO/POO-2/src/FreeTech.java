@@ -16,16 +16,6 @@ public class FreeTech extends Application{
 
 
 		
-<<<<<<< Updated upstream
-	homeScreen = new Home();
-
-	final Scene scene = new Scene(homeScreen, 1366, 768);
-	
-		stage.setScene(scene);
-		stage.setTitle("FreeTech Learning");
-		stage.show();
-//		
-=======
 				homeScreen = new Home();
 		
 		final Scene scene = new Scene(homeScreen, 1366, 768);
@@ -35,6 +25,5 @@ public class FreeTech extends Application{
 		stage.setTitle("FreeTech Learning");
 		stage.show();
 		
->>>>>>> Stashed changes
 	}
 }
