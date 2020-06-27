@@ -16,11 +16,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.entities.Curso;
 
-public class AdminCurso extends Application implements EventHandler<ActionEvent>{
+public class AdminCurso implements EventHandler<ActionEvent>{
 
 	private CursoController cursoController = new CursoController();
 	private TextField txtBuscaCurso = new TextField();
-	private Button btnBuscaCurso = new Button("PESQUISAR");
 	private Button btnEditarCurso = new Button("EDITAR");
 	private Button btnExcluirCurso = new Button("EXCLUIR");
 	private Button btnNovoCurso = new Button("NOVO");

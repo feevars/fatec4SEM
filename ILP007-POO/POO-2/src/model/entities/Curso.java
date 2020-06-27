@@ -64,7 +64,6 @@ public class Curso {
 		this.dataCriacao = dataCriacao;
 	}
 
-	@NotBlank
 	public Date getDataAtualizacao() {
 		return dataAtualizacao;
 	}
