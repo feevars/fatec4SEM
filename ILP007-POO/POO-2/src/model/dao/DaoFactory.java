@@ -20,7 +20,7 @@ public class DaoFactory {
 	
 	public Connection getConnection() {
 		try {
-			System.out.println("Conectado!");
+			System.out.println("Conectado ao banco de dados!");
 			return DriverManager.getConnection(URL , USER , PASS);
 		}catch (SQLException s) {
 			throw new RuntimeException(s);

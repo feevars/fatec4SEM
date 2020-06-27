@@ -42,14 +42,19 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 		try {
 		Connection con = daoFactory.getConnection();
 		ResultSet rs;
-		String sql = "SELECT username, password FROM Administrador WHERE username = '?'";
+		String sql = "SELECT username, password FROM Administrador WHERE username=?";
 		
 			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setString(1, username);
 			rs = stm.executeQuery();
 			
-			if(password.equals(rs.getString("password"))) {
-				System.out.println("LOGADO!");
-				return true;
+			while(rs.next()){
+				if(password.equals(rs.getString("password"))){
+					System.out.println("Senha correta!");
+					return true;
+				}else{
+					System.out.println("Senha incorreta");
+				}
 			}
 			
 		} catch (SQLException e) {

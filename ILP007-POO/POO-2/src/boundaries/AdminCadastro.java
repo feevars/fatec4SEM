@@ -64,12 +64,21 @@ public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
+		boolean logado;
+		
 		if(event.getTarget() == btnCadastro){
 			adminController.cadastrar(boundaryToEntity());
 
 		}
 		else if(event.getTarget() == btnLogin){
-			adminController.logar(txtUsername.getText(), txtPassword.getText());
+			logado = adminController.logar(txtUsername.getText(), txtPassword.getText());
+			
+			if(logado){
+				System.out.println("Sucesso no login");
+			}
+			else{
+				System.out.println("Erro no login!");
+			}
 		}
 		
 		
