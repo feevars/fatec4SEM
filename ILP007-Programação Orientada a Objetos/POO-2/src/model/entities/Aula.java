@@ -6,7 +6,6 @@ public class Aula {
 	private String nome;
 	private String descricao;
 	private String linkVideo;
-	private Integer numeroDeAulas;
 	
 	private Aula(Integer id, String nome, String descricao, String linkVideo) {
 		super();
@@ -47,13 +46,4 @@ public class Aula {
 	public void setLinkVideo(String linkVideo) {
 		this.linkVideo = linkVideo;
 	}
-
-	public Integer getNumeroDeAulas() {
-		return numeroDeAulas;
-	}
-
-	public void setNumeroDeAulas(Integer numeroDeAulas) {
-		this.numeroDeAulas = numeroDeAulas;
-	}
-
 }
