@@ -15,58 +15,36 @@ import model.entities.Exercicio;
 
 public class AdminAula extends Group {
 
-	private AulaController aulaController;
+	private AulaController aulaController = new AulaController();
 	
-	private VBox vboxAula;
+	private VBox vboxAula = new VBox();
 	
-	private Label lblTituloAula;
-	private TextField txtTituloAula;
+	private Label lblTituloAula = new Label("Título da aula:");
+	private TextField txtTituloAula = new TextField();
 	
-	private Label lblDescricaoAula;
-	private TextArea txtDescricaoAula;
+	private Label lblDescricaoAula = new Label("Descrição da aula:");
+	private TextArea txtDescricaoAula = new TextArea();
 	
-	private Label lblLinkVideo;
-	private TextField txtLinkVideo;
+	private Label lblLinkVideo = new Label("Link do vídeo");
+	private TextField txtLinkVideo = new TextField();
 	
-	private Label lblTranscricaroVideo;
-	private TextArea txtTranscricaoVideo;
+	private Label lblTranscricaroVideo = new Label("Transcrição do vídeo:");
+	private TextArea txtTranscricaoVideo = new TextArea();
 	
-	private Button btnAdicionarExercicio;
-	private Label lblExercicios;
-	private TableView<Exercicio> tableExercicios;
+	private Button btnAdicionarExercicio = new Button("Adicionar exercício...");
+	private Label lblExercicios = new Label("Exercícios");;
+	private TableView<Exercicio> tableExercicios = new TableView<>(); //Precisa adicionar o GET LISTA do controller aqui...;
 	
-	private Button btnCancelar;
-	private Button btnExcluir;
-	private Button btnSalvarAula;
+	private Button btnCancelar = new Button("Cancelar");
+	private Button btnExcluir = new Button("Excluir");
+	private Button btnSalvarAula = new Button("Salvar");
 	
 	public AdminAula() {
 		
 		super();
-		
-		this.aulaController = new AulaController();
-		
-		this.vboxAula = new VBox();
-		
-		this.lblTituloAula = new Label("Título da aula:");
-		this.txtTituloAula = new TextField();
-		this.txtTituloAula.setPromptText("Digite o título da aula...");
-		
-		this.lblDescricaoAula = new Label("Descrição da aula:");
-		this.txtDescricaoAula = new TextArea();
-		this.txtDescricaoAula.setPromptText("Digite a descrição do conteúdo desta aula");
-		
-		this.lblLinkVideo = new Label("Link do vídeo");
-		this.txtLinkVideo = new TextField();
-		this.txtLinkVideo.setPromptText("Digite o link de embed do vídeo fornecido pelo YouTube...");
-		
-		this.lblTranscricaroVideo = new Label("Transcrição do vídeo:");
-		this.txtTranscricaoVideo = new TextArea();
-		
-		this.btnAdicionarExercicio = new Button("Adicionar exercício...");
-		this.lblExercicios = new Label("Exercícios");
-		this.tableExercicios = new TableView<>(); //Precisa adicionar o GET LISTA do controller aqui...
+
+		this.setPromtTexts();
 		this.gerarTabela();
-		
 		
 		this.vboxAula.setPadding(new Insets(20));
 		this.vboxAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula, lblLinkVideo, txtLinkVideo, lblTranscricaroVideo, txtTranscricaoVideo, lblExercicios, btnAdicionarExercicio, tableExercicios);
@@ -83,5 +61,11 @@ public class AdminAula extends Group {
 		
 		tableExercicios.getColumns().addAll(colTituloExercicio);
 		
+	}
+	
+	private void setPromtTexts() {
+		this.txtTituloAula.setPromptText("Digite o título da aula...");
+		this.txtDescricaoAula.setPromptText("Digite a descrição do conteúdo desta aula");
+		this.txtLinkVideo.setPromptText("Digite o link de embed do vídeo fornecido pelo YouTube...");
 	}
 }

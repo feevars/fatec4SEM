@@ -1,89 +1,92 @@
 package boundaries;
 
+import controllers.AulaController;
 import controllers.CursoController;
-import javafx.application.Application;
+import controllers.InstrutorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import model.entities.Curso;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import model.entities.Aula;
+import model.entities.Instrutor;
 
-public class AdminCurso implements EventHandler<ActionEvent>{
+public class AdminCurso extends Group implements EventHandler<ActionEvent> {
 
 	private CursoController cursoController = new CursoController();
-	private TextField txtBuscaCurso = new TextField();
-	private Button btnEditarCurso = new Button("EDITAR");
-	private Button btnExcluirCurso = new Button("EXCLUIR");
-	private Button btnNovoCurso = new Button("NOVO");
-	
-	private TableView<Curso> tableView = new TableView<>(cursoController.getLista());
-	
-	
-	public void generateTable() {
-		
-		TableColumn<Curso, String> colID = new TableColumn<>("ID:");
-		colID.setCellValueFactory(new PropertyValueFactory<Curso, String>("id"));
-		
-		TableColumn<Curso, String> colNome = new TableColumn<>("NOME:");
-		colNome.setCellValueFactory(new PropertyValueFactory<Curso, String>("nome"));
-		
-		TableColumn<Curso, String> colDescricao = new TableColumn<>("DESCRICAO:");
-		colDescricao.setCellValueFactory(new PropertyValueFactory<Curso, String>("descricao"));
-		
-		TableColumn<Curso, String> colHoras = new TableColumn<>("HORAS:");
-		colHoras.setCellValueFactory(new PropertyValueFactory<Curso, String>("horas"));
-		
-		TableColumn<Curso, String> colCriacao = new TableColumn<>("CRIACAO:");
-		colCriacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("criacao"));
-		
-		TableColumn<Curso, String> colAtualizacao = new TableColumn<>("ATUALIZACAO:");
-		colAtualizacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("atualizacao"));
-	}
-	
+	private AulaController aulaController = new AulaController();
+	private InstrutorController instrutorController = new InstrutorController();
 
-	@Override
-	public void start(Stage adminCrusoStage) throws Exception {
-		BorderPane panPrincipal = new BorderPane();
-		Scene cena = new Scene(panPrincipal, 1024, 768);
-		
-		GridPane panBusca = new GridPane();
-		GridPane panGerencia = new GridPane();
-		
-		panBusca.add(new Label("NOME: "), 0, 0); //col - lin
-		panBusca.add(txtBuscaCurso,1 , 0);
-		panBusca.add(btnBuscaCurso,  2, 0);
-		
-		panGerencia.add(btnNovoCurso, 0, 0);
-		panGerencia.add(btnEditarCurso, 1, 0);
-		panGerencia.add(btnExcluirCurso, 2, 0);
-		
-		
-		btnBuscaCurso.setOnAction(this);
-		
-		panPrincipal.setTop(panBusca);
-		panPrincipal.setCenter(panGerencia);
-		
-		adminCrusoStage.setScene(cena);
-		adminCrusoStage.setTitle("ADMIN CURSOS");
-		adminCrusoStage.show();
-	}
+	private VBox vboxCurso = new VBox();
+
+	private Label lblTituloCurso = new Label("Título do curso:");
+	private TextField txtTituloCurso = new TextField();
+
+	private Label lblDescricaoCurso = new Label("Descrição do curso:");
+	private TextArea txtDescricaoCurso = new TextArea();
+
+	private Label lblInstrutores = new Label("Instrutor(es):");
+	private TableView<Instrutor> tableInstrutores = new TableView<>(); // Precisa adicionar o GET LISTA do controller
+																		// aqui...;;
+
+	private Label lblAulas = new Label("Aulas:");
+	private Button btnAdicionarAula = new Button("Adicionar aula...");
+	private TableView<Aula> tableAulas = new TableView<>(); // Precisa adicionar o GET LISTA do controller aqui...;;
+
+	private HBox hboxBotesAcoes = new HBox();
 	
-	public static void main(String args[]) {
-		Application.launch(AdminCurso.class, args);
+	private Button btnExcluirCurso = new Button("Excluir");
+	private Button btnCancelar = new Button("Cancelar");
+	private Button btnSalvarCurso = new Button("Salvar");
+
+	public AdminCurso() {
+
+		this.setPromtTexts();
+		this.gerarTabelaInstrutores();
+		this.gerarTabelaAulas();
+
+		this.hboxBotesAcoes.getChildren().addAll(btnExcluirCurso, btnCancelar, btnSalvarCurso);
+		this.vboxCurso.setPadding(new Insets(20));
+		
+		this.vboxCurso.getChildren().addAll(lblTituloCurso, txtTituloCurso, lblDescricaoCurso, txtDescricaoCurso,
+				lblInstrutores, tableInstrutores, lblAulas, btnAdicionarAula, tableAulas, hboxBotesAcoes);
+		
+		this.getChildren().add(vboxCurso);
+
+	}
+
+	public void gerarTabelaInstrutores() {
+		TableColumn<Instrutor, String> colNomeInstrutor = new TableColumn<>("Instrutor(a)");
+		colNomeInstrutor.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("nomeInstrutor")); // Precisa
+																											// conferir
+		tableInstrutores.setMaxHeight(200);
+		tableInstrutores.getColumns().addAll(colNomeInstrutor);
+	}
+
+	public void gerarTabelaAulas() {
+		TableColumn<Aula, String> colTituloAula = new TableColumn<>("Título da Aula");
+		colTituloAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("tituloAula")); // Precisa conferir
+		
+		tableAulas.setMaxHeight(200);
+		tableAulas.getColumns().addAll(colTituloAula);
+	}
+
+	private void setPromtTexts() {
+		txtTituloCurso.setPromptText("Digite o título do curso...");
 	}
 
 	@Override
 	public void handle(ActionEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
