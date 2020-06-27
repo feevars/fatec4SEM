@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/javafx"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Luiz/Desktop/fatec/fatec4SEM/ILP007-Programação Orientada a Objetos/POO-2/lib/mariadb-java-client-2.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/mariadb-java-client-2.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

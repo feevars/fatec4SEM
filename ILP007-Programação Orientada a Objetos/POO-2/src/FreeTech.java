@@ -16,14 +16,13 @@ public class FreeTech extends Application{
 
 
 		
-		//		homeScreen = new HomeScreen();
-//		
-//		final Scene scene = new Scene(homeScreen, 1366, 768);
-//		//scene. 
-//		
-//		stage.setScene(scene);
-//		stage.setTitle("FreeTech Learning");
-//		stage.show();
+	homeScreen = new Home();
+
+	final Scene scene = new Scene(homeScreen, 1366, 768);
+	
+		stage.setScene(scene);
+		stage.setTitle("FreeTech Learning");
+		stage.show();
 //		
 	}
 }
