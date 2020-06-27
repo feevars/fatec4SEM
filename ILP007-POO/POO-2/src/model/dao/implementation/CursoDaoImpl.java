@@ -33,7 +33,7 @@ public class CursoDaoImpl implements CursoDao {
 			
 			while(rs.next()){
 				Curso curso = new Curso();
-				curso.setId(rs.getInt("Id"));
+				curso.setId(rs.getInt("id"));
 				curso.setNome(rs.getString("nome"));
 				curso.setDescricao(rs.getString("descricao"));
 				curso.setTotalHoras(rs.getInt("totalHoras"));
