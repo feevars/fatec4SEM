@@ -5,11 +5,11 @@ import model.entities.Curso;
 
 public interface CursoDao {
 
-	void adicionarCurso(Curso c);
+	void cadastrar(Curso c);
 	
-	void excluirCurso(Curso c);
+	void excluir(Integer id);
 	
-	void editarCurso(Curso c);
+	boolean editar(Curso c);
 	
 	List<Curso> pesquisarPorNome(String nome);
 }
