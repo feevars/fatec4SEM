@@ -1,3 +1,4 @@
+import boundaries.AdminCadastro;
 import boundaries.AdminExercicio;
 import boundaries.EstudanteExercicio;
 import javafx.application.Application;
@@ -13,7 +14,7 @@ public class TesteExercicio extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminExercicio exercicio = new AdminExercicio();
+		AdminCadastro exercicio = new AdminCadastro();
 
 //		EstudanteExercicio exercicio = new EstudanteExercicio("Titulo do exercício",
 //				"sadfygff igfg asuidfdgs aiugfgiuf dsaiu syadfuagy fdsuagisu gfiasdgsy asdfugsu ", "Alternativa A",
