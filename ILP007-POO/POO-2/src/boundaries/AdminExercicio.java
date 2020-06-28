@@ -152,7 +152,11 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent event) {
-		// TODO Auto-generated method stub
+		if(event.getTarget() == btnSalvar){
+			exercicioController.cadastrarExercicio(boundaryToEntity());
+		}
+		else if(event.getTarget() == btnCancelar){			
+		}
 		
 	}
 	
