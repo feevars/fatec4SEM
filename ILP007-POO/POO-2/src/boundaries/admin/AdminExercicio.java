@@ -1,4 +1,4 @@
-package boundaries;
+package boundaries.admin;
 
 import controllers.ExercicioController;
 import javafx.event.ActionEvent;

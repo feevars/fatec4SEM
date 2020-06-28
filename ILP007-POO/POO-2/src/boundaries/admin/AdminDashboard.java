@@ -1,4 +1,4 @@
-package boundaries;
+package boundaries.admin;
 
 public class AdminDashboard {
 

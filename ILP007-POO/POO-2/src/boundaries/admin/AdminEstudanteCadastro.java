@@ -1,4 +1,4 @@
-package boundaries;
+package boundaries.admin;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

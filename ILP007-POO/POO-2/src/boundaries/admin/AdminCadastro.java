@@ -1,4 +1,4 @@
-package boundaries;
+package boundaries.admin;
 
 import controllers.AdministradorController;
 import javafx.event.ActionEvent;

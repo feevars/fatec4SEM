@@ -1,6 +1,6 @@
 package tests;
 
-import boundaries.AdminExercicio;
+import boundaries.admin.AdminExercicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
