@@ -143,6 +143,8 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 			exercicio.setExplicacao(txtExplicacao.getText());
 			exercicio.setTempoResposta(Integer.parseInt(txtTempoResposta.getText()));
 			exercicio.setPontos(Integer.parseInt(txtPontos.getText()));
+			exercicio.setAulaId((Integer.parseInt(txtPontos.getText())));
+			
 			
 		}catch (Exception e) {
 			System.out.println("Erro ao receber dados.");

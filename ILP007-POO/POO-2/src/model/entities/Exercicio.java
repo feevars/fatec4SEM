@@ -18,10 +18,11 @@ public class Exercicio {
 	private String explicacao;
 	private Integer tempoResposta;
 	private Integer pontos;
+	private Integer aulaId;
 	
 	public Exercicio(Integer id, String tituloExercicio, String questaoExercico, String alternativaCorreta,
 			String alternativaIncorreta1, String alternativaIncorreta2, String alternativaIncorreta3,
-			String alternativaIncorreta4, String explicacao, Integer tempoResposta, Integer pontos) {
+			String alternativaIncorreta4, String explicacao, Integer tempoResposta, Integer pontos, Integer aulaId) {
 		super();
 		this.id = id;
 		this.tituloExercicio = tituloExercicio;
@@ -34,6 +35,7 @@ public class Exercicio {
 		this.explicacao = explicacao;
 		this.tempoResposta = tempoResposta;
 		this.pontos = pontos;
+		this.aulaId = aulaId;
 	}
 
 	public String getTituloExercicio() {
@@ -114,6 +116,14 @@ public class Exercicio {
 
 	public void setPontos(Integer pontos) {
 		this.pontos = pontos;
+	}
+	
+	public Integer getAulaId() {
+		return aulaId;
+	}
+
+	public void setAulaId(Integer aulaId) {
+		this.aulaId = aulaId;
 	}
 
 	public Integer getId() {

@@ -23,7 +23,7 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 		Connection con = daoFactory.getConnection();
 		String sql = "INSERT INTO exercicio (titulo, questao, alternativaCorreta, alternativaIncorreta1, "
 				+ "alternativaIncorreta2, alternativaIncorreta3, alternativaIncorreta4, "
-				+ "explicacao, tempoResposta, pontos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "explicacao, tempoResposta, pontos, aulaId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 			PreparedStatement stm;
 			try {
@@ -38,6 +38,7 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 				stm.setString(8, exercicio.getExplicacao());
 				stm.setInt(9, exercicio.getTempoResposta());
 				stm.setInt(10, exercicio.getPontos());
+				stm.setInt(11, exercicio.getAulaId());
 				stm.executeUpdate();
 				con.close();
 			} catch (SQLException e) {
