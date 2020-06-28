@@ -4,18 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class Login extends Group implements EventHandler<ActionEvent>{
 	
+
 	
 	private VBox vboxLogin = new VBox();
 	
@@ -28,6 +26,8 @@ public class Login extends Group implements EventHandler<ActionEvent>{
 	private Button btnCadastrar = new Button("Cadastrar");
 	
 	public Login() {
+		
+		
 		
 		this.txtUsername.setPromptText("Digite o nome de usuário ou e-mail...");
 		this.txtPassword.setPromptText("Digite a senha...");
@@ -44,11 +44,12 @@ public class Login extends Group implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent event) {
+		
+		Scene cena = this.getScene();
+		
 		if(event.getTarget() == btnCadastrar){
 			System.out.println("Cadastrar");
-			Node source = (Node) event.getSource();
-		    Scene theStage = source.getScene();
-		    theStage.setRoot(new EstudanteCadastro(txtUsername.getText(), txtPassword.getText()));
+		    cena.setRoot(new EstudanteCadastro(txtUsername.getText(), txtPassword.getText()));
 		    
 		}
 		else if(event.getTarget() == btnLogin){
