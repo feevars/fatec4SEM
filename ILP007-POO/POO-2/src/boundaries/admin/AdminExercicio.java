@@ -68,7 +68,7 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 
 		lblQuestao = new Label("Texto da questão:");
 		txtQuestao = new TextArea();
-		txtQuestao.setMaxHeight(100);
+		txtQuestao.setMaxHeight(30);
 		txtQuestao.setPromptText("Digite a questão copleta que deverá ser respondida por meio das alternativas.");
 
 		lblAlternativaCorreta = new Label("Alternativa correta:");
@@ -87,7 +87,7 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 
 		lblExplicacao = new Label("Explicação:");
 		txtExplicacao = new TextArea();
-		txtExplicacao.setMaxHeight(100);
+		txtExplicacao.setMaxHeight(30);
 		txtExplicacao.setPromptText("Digite a justificativa da resposta completa, explicando a questão do exercício.");
 
 		hboxDetalhes = new HBox();
