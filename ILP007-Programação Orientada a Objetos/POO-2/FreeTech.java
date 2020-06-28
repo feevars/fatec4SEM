@@ -30,6 +30,9 @@ public class FreeTech extends Application{
 //		
 //=======
 				//homeScreen = new Home();
+<<<<<<< HEAD
+>>>>>>> 16615cee59dc0f6f9a1747dd6ea266e7a95fe19f
+=======
 >>>>>>> 16615cee59dc0f6f9a1747dd6ea266e7a95fe19f
 		
 		//final Scene scene = new Scene(homeScreen, 1366, 768);
@@ -38,11 +41,15 @@ public class FreeTech extends Application{
 		//stage.setScene(scene);
 		//stage.setTitle("FreeTech Learning");
 		//stage.show();
+<<<<<<< HEAD
 		
 <<<<<<< HEAD
 		
 	}		
 =======
+=======
+		
+>>>>>>> 16615cee59dc0f6f9a1747dd6ea266e7a95fe19f
 //>>>>>>> Stashed changes
 	}
 >>>>>>> 16615cee59dc0f6f9a1747dd6ea266e7a95fe19f
