@@ -1,0 +1,7 @@
+- Model:Aula
+- Controller:AulaController - editar e listar
+- Boundaries: AulaCadastro
+- DAO:AulaDAO e AulaDAOImpl
+
+Aula tem exercício 
+Aula tem link

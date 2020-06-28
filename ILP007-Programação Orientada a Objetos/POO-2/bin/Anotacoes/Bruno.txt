@@ -1,0 +1,6 @@
+- Model:Exercicio
+- Controller:ExercicioController - editar e listar 
+- Boundaries: ExercicioCadastro
+- DAO:ExercicioDAO e ExercicioDAOImpl
+
+Exercicios: 4 erradas, 1 certa

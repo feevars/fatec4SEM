@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="550"/>
+		<item key="DIALOG_Y_ORIGIN" value="175"/>
+	</section>
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.e4.ui.importer.wizard"/>
+		<item key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID" value="org.eclipse.ui.wizards.export.ZipFile"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.equinox.p2.category"/>
+			<item value="org.eclipse.jdt.ui.Java"/>
+			<item value="org.eclipse.team.ui.exportWizards"/>
+		</list>
+	</section>
+	<section name="FileSystemExportWizard">
+		<item key="WizardFileSystemResourceExportPage1.STORE_OVERWRITE_EXISTING_FILES_ID" value="false"/>
+		<item key="WizardFileSystemResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="false"/>
+		<item key="WizardFileSystemResourceExportPage1.STORE_RESOLVE_LINKED_RESOURCES_ID" value="false"/>
+		<list key="WizardFileSystemResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="/home/fernanda/FATEC"/>
+		</list>
+	</section>
+	<section name="ZipFileExportWizard">
+		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
+		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
+		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="/home/fernanda/FATEC/fatec4SEM/ILP007-Programação Orientada a Objetos/Algoritmos feitos em casa/Fernanda/CaixaPagto.zip"/>
+			<item value="/home/fernanda/FATEC/fatec4SEM/ILP007-Programação Orientada a Objetos/Algoritmos feitos em casa/Fernanda/CriaTela.zip"/>
+			<item value="/home/fernanda/FATEC/fatec4SEM/ILP007-Programação Orientada a Objetos/Algoritmos feitos em casa/Fernanda/DesenharFormas.zip"/>
+			<item value="/home/fernanda/FATEC/fatec4SEM/ILP007-Programação Orientada a Objetos/Algoritmos feitos em casa/Fernanda/GestaoAluno.zip"/>
+			<item value="/home/fernanda/FATEC/fatec4SEM/ILP007-Programação Orientada a Objetos/Algoritmos feitos em casa/Fernanda/Aluno.zip"/>
+			<item value="/home/fernanda/FATEC/fatec4SEM/ILP007-Programação Orientada a Objetos/Algoritmos feitos em casa/Fernanda/Untitled.zip"/>
+			<item value="/home/fernanda/FATEC/calculadora.zip"/>
+		</list>
+	</section>
+</section>
