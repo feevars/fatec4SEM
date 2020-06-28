@@ -1,0 +1,36 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class TesteDatabase {
+
+	public static void main(String[] args) {
+		private static final String URL = "jdbc:mariadb://localhost:3306/petshop";
+		private static final String USER = "root";
+		private static final String PASS = "";
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			System.out.println("Classe carregada com sucesso.");
+			Connection con = DriverManager.getConnection(URL, USER, PASS);
+			System.out.println("Conexão criada com sucesso.");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Problema para carregar a classe.");
+		}
+
+	}
+
+}
+
+/*
+ * create database escola;
+ * use database escola;
+ * 
+ * create table aluno (
+ * id int auto_increment,
+ * nome char(50),
+ * raca char (20),
+ * peso decimal (4,1),
+ * nascimento date,
+ * primary key(id)
+ * );
+ * */
