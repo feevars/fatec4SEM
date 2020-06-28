@@ -1,12 +1,15 @@
 package model.dao;
 
+import java.util.List;
 import model.entities.Aula;
 
 public interface AdminAulaDao {
 
-	void adicionarAula(Aula a);
+	void cadastrarAula(Aula aula);
 	
-	void removerAula(Aula a);
+	void excluirAula(Integer id);
 	
-	void editarAula(Aula a);
+	boolean editarAula(Aula aula);
+	
+	List<Aula> listarAula(Aula aula);
 }

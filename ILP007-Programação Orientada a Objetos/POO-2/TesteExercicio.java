@@ -1,6 +1,4 @@
 import boundaries.AdminCadastro;
-import boundaries.AdminExercicio;
-import boundaries.EstudanteExercicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,7 +8,7 @@ public class TesteExercicio extends Application {
 	public static void main(String[] args) {
 		Application.launch(TesteExercicio.class, args);
 	}
-
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		

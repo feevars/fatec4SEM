@@ -6,9 +6,13 @@ import java.sql.SQLException;
 
 public class DaoFactory {
 
-	private static final String URL = "jdbc:mariadb://localhost/FreeTech?allowMultiQueries=true";
+	private static final String URL = "jdbc:mariadb://localhost:3307/FreeTech?allowMultiQueries=true";
 	private static final String USER = "root";
-	private static final String PASS = "root";
+<<<<<<< HEAD
+	private static final String PASS = "F3rnanda!";
+=======
+	private static final String PASS = "blackout";
+>>>>>>> 16615cee59dc0f6f9a1747dd6ea266e7a95fe19f
 	
 	public DaoFactory() {
 		try {
