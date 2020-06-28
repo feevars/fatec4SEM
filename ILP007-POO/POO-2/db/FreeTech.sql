@@ -33,29 +33,30 @@ CREATE TABLE `Administrador` (
     `tempoResposta` INT unsigned NOT NULL,
     `pontos` TINYINT unsigned NOT NULL DEFAULT '1',
     PRIMARY KEY (`id`)
-); CREATE TABLE `Usuario` (
+); CREATE TABLE `Estudante` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `password` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `nome` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `sobrenome` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `email` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `telefone` VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `dataNascimento` DATE NOT NULL,
-    `pontos` SMALLINT unsigned NOT NULL,
+    `pontos` SMALLINT unsigned NOT NULL DEFAULT '0',
     `instrutor` BOOLEAN NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`)
 ); CREATE TABLE `CursoInstrutor` (
     `idCurso` INT NOT NULL,
-    `idUsuario` INT NOT NULL,
-    PRIMARY KEY (`idCurso`, `idUsuario`),
-    CONSTRAINT `fk_idCurso` FOREIGN KEY (`idCurso`) REFERENCES `Curso`(`id`),
-    CONSTRAINT `fk_idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario`(`id`)
-); CREATE TABLE `UsuarioCurso` (
-    `idUsuario` INT NOT NULL,
+    `idInstrutor` INT NOT NULL,
+    PRIMARY KEY (`idCurso`, `idInstrutor`),
+    CONSTRAINT `fk_idCursoCriado` FOREIGN KEY (`idCurso`) REFERENCES `Curso`(`id`),
+    CONSTRAINT `fk_idInstrutor` FOREIGN KEY (`idInstrutor`) REFERENCES `Estudante`(`id`)
+); CREATE TABLE `EstudanteCurso` (
+    `idEstudante` INT NOT NULL,
     `idCurso` INT NOT NULL,
     `pontos` SMALLINT UNSIGNED NOT NULL,
     `concluido` BOOLEAN NOT NULL DEFAULT '0',
-    PRIMARY KEY (`idUsuario`, `idCurso`),
-    CONSTRAINT `fk_idUsuarioInscrito` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario`(`id`),
+    PRIMARY KEY (`idEstudante`, `idCurso`),
+    CONSTRAINT `fk_idEstudanteInscrito` FOREIGN KEY (`idEstudante`) REFERENCES `Estudante`(`id`),
     CONSTRAINT `fk_idCursoInscrito` FOREIGN KEY (`idCurso`) REFERENCES `Curso`(`id`)
 );
