@@ -33,7 +33,7 @@ public class EstudanteController {
 	public void cadastrar(Estudante usuario){
 		Set<ConstraintViolation<Estudante>> erros = validator.validate(usuario);
 		if(erros.isEmpty()){
-			usuarioDao.cadastrar(usuario);
+			usuarioDao.estudanteCadastro(usuario);;
 			alert(AlertType.INFORMATION, " FreeTech ", null, " Usuario " + usuario.getUsername() + " Cadastrado com sucesso!");
 		}
 		else {
