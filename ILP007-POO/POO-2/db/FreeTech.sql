@@ -59,4 +59,21 @@ CREATE TABLE `Administrador` (
     PRIMARY KEY (`idEstudante`, `idCurso`),
     CONSTRAINT `fk_idEstudanteInscrito` FOREIGN KEY (`idEstudante`) REFERENCES `Estudante`(`id`),
     CONSTRAINT `fk_idCursoInscrito` FOREIGN KEY (`idCurso`) REFERENCES `Curso`(`id`)
+); CREATE TABLE `AulaCurso` (
+    `aulaId` INT NOT NULL,
+    `cursoId` INT NOT NULL,
+    `numeroAula` INT NOT NULL,
+    CONSTRAINT `fk_aulaId_cursoId` FOREIGN KEY (`aulaId`) REFERENCES `Aula` (`id`),
+    CONSTRAINT `fk_cursoId_aulaId` FOREIGN KEY (`cursoId`) REFERENCES `Curso` (`id`)
+); CREATE TABLE `ExercicioAula`(
+    `exercicioId` INT NOT NULL,
+    `aulaId` INT NOT NULL,
+    CONSTRAINT `fk_aulaId_exercicioId` FOREIGN KEY (`aulaId`) REFERENCES `Aula` (`id`),
+    CONSTRAINT `fk_exercicioId_aulaId` FOREIGN KEY (`exercicioId`) REFERENCES `Exercicio` (`id`)
+); CREATE TABLE `EstudanteExercicio`(
+    `estudanteId` INT NOT NULL,
+    `exercicioId` INT NOT NULL,
+    `acertou` BOOLEAN NOT NULL DEFAULT '0',
+    CONSTRAINT `fk_estudanteId_exercicioId` FOREIGN KEY (`estudanteId`) REFERENCES `Estudante` (`id`),
+    CONSTRAINT `fk_exercicioId_estudanteId` FOREIGN KEY (`exercicioId`) REFERENCES `Exercicio` (`id`)
 );
