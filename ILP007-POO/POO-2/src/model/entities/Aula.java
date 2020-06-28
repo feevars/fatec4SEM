@@ -10,6 +10,7 @@ public class Aula {
 	private String linkVideo;
 	private String transcricaoVideo;
 	private Integer tempoVideo;
+	private Integer numAula;
 	private Set<Exercicio> exercicios;
 
 	public Aula(Integer id, String titulo, String descricao, String linkVideo, String transcricaoVideo,
@@ -81,4 +82,13 @@ public class Aula {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public Integer getNumAula() {
+		return numAula;
+	}
+
+	public void setNumAula(Integer numAula) {
+		this.numAula = numAula;
+	}
+	
 }

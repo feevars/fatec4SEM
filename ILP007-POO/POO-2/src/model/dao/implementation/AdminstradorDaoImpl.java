@@ -54,6 +54,7 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 					System.out.println("Senha incorreta");
 				}
 			}
+			con.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
