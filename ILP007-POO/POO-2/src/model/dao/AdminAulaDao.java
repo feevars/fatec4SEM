@@ -2,7 +2,7 @@ package model.dao;
 
 import model.entities.Aula;
 
-public interface AulaDao {
+public interface AdminAulaDao {
 
 	void adicionarAula(Aula a);
 	

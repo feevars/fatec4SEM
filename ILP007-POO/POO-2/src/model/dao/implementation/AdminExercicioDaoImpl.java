@@ -1,5 +1,5 @@
 package model.dao.implementation;
 
-public class InstrutorDaoImpl {
+public class AdminExercicioDaoImpl {
 
 }

@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
-import model.dao.CursoDao;
+import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
 import model.entities.Curso;
 
-public class CursoDaoImpl implements CursoDao {
+public class AdminCursoDaoImpl implements AdminCursoDao {
 	
 	private DaoFactory daoFactory;
 	
-	public CursoDaoImpl() {
+	public AdminCursoDaoImpl() {
 		daoFactory = new DaoFactory();
 	}
 	

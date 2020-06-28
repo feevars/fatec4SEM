@@ -3,7 +3,7 @@ package model.dao;
 import java.util.List;
 import model.entities.Curso;
 
-public interface CursoDao {
+public interface AdminCursoDao {
 
 	void cadastrar(Curso c);
 	

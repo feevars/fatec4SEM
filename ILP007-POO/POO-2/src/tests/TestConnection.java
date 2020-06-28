@@ -1,5 +1,6 @@
-package model.dao;
+package tests;
 
+import model.dao.DaoFactory;
 
 public class TestConnection {
 
