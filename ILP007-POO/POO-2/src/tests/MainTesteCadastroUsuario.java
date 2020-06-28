@@ -1,6 +1,6 @@
 package tests;
 
-import boundaries.EstudanteCadastro;
+import boundaries.AdminEstudanteCadastro;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,7 +15,7 @@ public class MainTesteCadastroUsuario extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		EstudanteCadastro uc = new EstudanteCadastro();
+		AdminEstudanteCadastro uc = new AdminEstudanteCadastro();
 		
 		Scene cena = new Scene(uc, 600, 800);
 		stage.setScene(cena);

@@ -1,6 +1,8 @@
 package model.dao;
 
-import java.util.List;
+import java.util.Set;
+
+import model.entities.Aula;
 import model.entities.Curso;
 
 public interface AdminCursoDao {
@@ -11,5 +13,7 @@ public interface AdminCursoDao {
 	
 	boolean editar(Curso c);
 	
-	List<Curso> pesquisarPorNome(String nome);
+	Curso pesquisarPorNome(String titulo);
+	
+	Set<Aula> listarAulasCurso(Integer id);
 }

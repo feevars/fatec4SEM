@@ -3,7 +3,6 @@ package boundaries;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
 import controllers.EstudanteController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,7 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Estudante;
 
-public class EstudanteCadastro extends Group implements EventHandler<ActionEvent>{
+public class AdminEstudanteCadastro extends Group implements EventHandler<ActionEvent>{
 
 	EstudanteController estudanteController = new EstudanteController();
 	
@@ -48,7 +47,7 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnCadastrar = new Button("Cadastrar");
 
-	public EstudanteCadastro(String username, String password) {
+	public AdminEstudanteCadastro() {
 		
 		btnCadastrar.setOnAction(this);
 		btnCancelar.setOnAction(this);

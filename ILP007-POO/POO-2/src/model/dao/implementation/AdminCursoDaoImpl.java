@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.DateTimeException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
+import model.entities.Aula;
 import model.entities.Curso;
 
 public class AdminCursoDaoImpl implements AdminCursoDao {
@@ -20,25 +22,27 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 	
 	@Override
-	public List<Curso> pesquisarPorNome(String nome) {
-		List<Curso> lista = new ArrayList<Curso>(); 
+	public Curso pesquisarPorNome(String titulo) {
 		try {	
 			Connection con = daoFactory.getConnection();
 			ResultSet rs;
-			String sql = "SELECT * FROM Curso";
+			String sql = "SELECT * FROM Curso WHERE titulo = ? ";
 			PreparedStatement stm = con.prepareStatement(sql);
-			rs = stm.executeQuery();	
-			
+			stm.setString(1, titulo);
+			rs = stm.executeQuery();
 			while(rs.next()){
-				Curso curso = new Curso();
-				curso.setId(rs.getInt("id"));
-				curso.setTitulo(rs.getString("nome"));
-				curso.setDescricao(rs.getString("titulo"));
-				System.out.println("Curso: " + curso.getTitulo() + " encontrado!");
-				lista.add(curso);
+				if(titulo.equals(rs.getString("titulo"))){
+					Curso curso = new Curso();
+					curso.setId(rs.getInt("id"));
+					curso.setDescricao(rs.getString("titulo"));
+					curso.setTitulo(rs.getString("descricao"));
+					con.close();
+					return curso;
+				}else{
+					con.close();
+					System.out.println("Curso nao encontrado");
 				}
-			return lista;
-				
+			}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -85,7 +89,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	public boolean editar(Curso curso) {
 		try {				
 			Connection con = daoFactory.getConnection();
-			String sql = "UPDATE Curso SET titulo = ?, descricao = ? WHERE id = ?)";
+			String sql = "UPDATE Curso SET titulo = ?, descricao = ? WHERE id = ?";
 				PreparedStatement stm = con.prepareStatement(sql);
 				stm.setString(1, curso.getTitulo());
 				stm.setString(2, curso.getDescricao());
@@ -102,5 +106,35 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 				de.printStackTrace();
 			}
 		return false;
+	}
+
+	@Override
+	public Set<Aula> listarAulasCurso(Integer id) {
+		Set<Aula> lista = new HashSet<Aula>();
+		try {	
+			Connection con = daoFactory.getConnection();
+			ResultSet rs;
+			String sql = "SELECT * FROM Aula WHERE cursoId = ? ";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1, id);
+			rs = stm.executeQuery();	
+			while(rs.next()){
+				Aula aula = new Aula();
+				aula.setId(rs.getInt("id"));
+				aula.setDescricao(rs.getString("titulo"));
+				aula.setTitulo(rs.getString("descricao"));
+				aula.setLinkVideo(rs.getString("linkVideo"));
+				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
+				aula.setTempoVideo(rs.getInt("tempoVideo"));
+				aula.setNumAula(rs.getInt("numeroAula"));
+				System.out.println("Curso: " + aula.getTitulo() + " encontrado!");
+				lista.add(aula);
+				}
+			return lista;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return null;
 	}
 }
