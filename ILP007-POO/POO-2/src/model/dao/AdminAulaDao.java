@@ -14,7 +14,5 @@ public interface AdminAulaDao {
 	
 	boolean editarAula(Aula aula);
 	
-	boolean exibirAula(Integer id);
-	
-	List<Exercicio> listarExercicios(Set<Exercicio> exercicios);
+	List<Exercicio> listarExercicios(Integer idAula);
 }

@@ -22,8 +22,9 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 	}
 	
 	@Override
-	public List<Exercicio> listarExercicios(Set<Exercicio> exercicios) {
-		List<Exercicio> exerciciosList = new ArrayList<Exercicio>(exercicios);
+	public List<Exercicio> listarExercicios(Integer idAula) {
+		//List<Exercicio> exerciciosList = new ArrayList<Exercicio>(exercicios);
+		List<Exercicio> exerciciosDaAula = new ArrayList<Exercicio>();
 		try {
 			Connection conn = daoFactory.getConnection();
 			ResultSet rs;
@@ -32,15 +33,22 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			rs = stm.executeQuery();
 			
 			while (rs.next()) {
-				Aula aula1 = new Aula();
-				aula1.setId(rs.getInt("id"));
-				aula1.setTitulo(rs.getString("titulo"));
-				aula1.setDescricao(rs.getString("descricao"));
-				aula1.setLinkVideo(rs.getString("linkVideo"));
-				aula1.setTranscricaoVideo(rs.getString("transcricaoVideo"));
-				aula1.setTempoVideo(rs.getInt("tempoVideo"));
+				Exercicio exercicio = new Exercicio();
+				//exercicio.setId(rs.getInt("id"));
+				exercicio.setQuestaoExercicio(rs.getString("questao"));
+				exercicio.setAlternativaCorreta(rs.getString("alternativaCorreta"));
+				exercicio.setAlternativaIncorreta1(rs.getString("alternativaIncorreta1"));
+				exercicio.setAlternativaIncorreta2(rs.getString("alternativaIncorreta2"));
+				exercicio.setAlternativaIncorreta3(rs.getString("alternativaIncorreta3"));
+				exercicio.setAlternativaIncorreta4(rs.getString("alternativaIncorreta4"));
+				exercicio.setExplicacao(rs.getString("explicacao"));
+				exercicio.setTempoResposta(rs.getInt("tempoResposta"));
+				exercicio.setPontos(rs.getInt("pontos"));
+				exerciciosDaAula.add(exercicio);
+				//aulaId nao precisa puxar pq ja tem aula ID
 			}
-			return exerciciosList;
+			conn.close();
+			return exerciciosDaAula;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -104,13 +112,4 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		}
 		return false;
 	}
-
-	@Override
-	public boolean exibirAula(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-
 }
