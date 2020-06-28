@@ -29,7 +29,7 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 			try {
 				stm = con.prepareStatement(sql);
 				stm.setString(1, exercicio.getTituloExercicio());
-				stm.setString(2, exercicio.getQuestaoExercico());
+				stm.setString(2, exercicio.getQuestaoExercicio());
 				stm.setString(3, exercicio.getAlternativaCorreta());
 				stm.setString(4, exercicio.getAlternativaIncorreta1());
 				stm.setString(5, exercicio.getAlternativaIncorreta2());

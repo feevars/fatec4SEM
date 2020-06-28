@@ -46,6 +46,11 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 	private Label lblPontos;
 	private TextField txtPontos;
 
+	//
+	private Label lblAula;
+	private TextField txtAula;
+	//
+	
 	private HBox hboxButtons;
 
 	private Button btnExcluir;
@@ -92,18 +97,25 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 
 		lblPontos = new Label("Quantos pontos, de 1 a 10, vale este exercício?");
 		txtPontos = new TextField();
+		
+		//
+		lblAula = new Label("A qual aula esse exercicio pertence");
+		txtAula = new TextField();
+		//
 
-		estilizaLabels(lblTitulo, lblQuestao, lblAlternativaCorreta, lblAlternativasIncorretas, lblExplicacao, lblTempoResposta, lblPontos);
+		estilizaLabels(lblTitulo, lblQuestao, lblAlternativaCorreta, lblAlternativasIncorretas, lblExplicacao, lblTempoResposta, lblPontos, lblAula);
 		
 		hboxDetalhes.setSpacing(10);
-		hboxDetalhes.getChildren().addAll(lblTempoResposta, txtTempoResposta, lblPontos, txtPontos);
+		hboxDetalhes.getChildren().addAll(lblTempoResposta, txtTempoResposta, lblPontos, txtPontos, lblAula, txtAula);
 
 		hboxButtons = new HBox();
 
 		btnExcluir = new Button("Excluir");
 		btnCancelar = new Button("Cancelar");
 		btnSalvar = new Button("Salvar");
-
+		
+		btnSalvar.setOnAction(this);
+		btnCancelar.setOnAction(this);
 		
 		hboxButtons.setSpacing(10);
 		hboxButtons.getChildren().addAll(btnExcluir, btnCancelar, btnSalvar);
@@ -117,6 +129,7 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 		this.getChildren().add(vbox);
 
 	}
+	
 
 	private void estilizaLabels(Label ... labels) {
 		
@@ -134,7 +147,7 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 		Exercicio exercicio = new Exercicio();
 		try{
 			exercicio.setTituloExercicio(txtTitulo.getText());
-			exercicio.setQuestaoExercico(txtQuestao.getText());
+			exercicio.setQuestaoExercicio(txtQuestao.getText());
 			exercicio.setAlternativaCorreta(txtAlternativaCorreta.getText());
 			exercicio.setAlternativaIncorreta1(txtAlternativaIncorreta1.getText());
 			exercicio.setAlternativaIncorreta2(txtAlternativaIncorreta2.getText());
@@ -143,7 +156,7 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 			exercicio.setExplicacao(txtExplicacao.getText());
 			exercicio.setTempoResposta(Integer.parseInt(txtTempoResposta.getText()));
 			exercicio.setPontos(Integer.parseInt(txtPontos.getText()));
-			exercicio.setAulaId((Integer.parseInt(txtPontos.getText())));
+			exercicio.setAulaId((Integer.parseInt(txtAula.getText())));
 			
 			
 		}catch (Exception e) {

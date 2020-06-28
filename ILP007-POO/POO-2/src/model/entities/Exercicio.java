@@ -9,7 +9,7 @@ public class Exercicio {
 
 	private Integer id;
 	private String tituloExercicio;
-	private String questaoExercico;
+	private String questaoExercicio;
 	private String alternativaCorreta;
 	private String alternativaIncorreta1;
 	private String alternativaIncorreta2;
@@ -20,13 +20,13 @@ public class Exercicio {
 	private Integer pontos;
 	private Integer aulaId;
 	
-	public Exercicio(Integer id, String tituloExercicio, String questaoExercico, String alternativaCorreta,
+	public Exercicio(Integer id, String tituloExercicio, String questaoExercicio, String alternativaCorreta,
 			String alternativaIncorreta1, String alternativaIncorreta2, String alternativaIncorreta3,
 			String alternativaIncorreta4, String explicacao, Integer tempoResposta, Integer pontos, Integer aulaId) {
 		super();
 		this.id = id;
 		this.tituloExercicio = tituloExercicio;
-		this.questaoExercico = questaoExercico;
+		this.questaoExercicio = questaoExercicio;
 		this.alternativaCorreta = alternativaCorreta;
 		this.alternativaIncorreta1 = alternativaIncorreta1;
 		this.alternativaIncorreta2 = alternativaIncorreta2;
@@ -46,12 +46,12 @@ public class Exercicio {
 		this.tituloExercicio = tituloExercicio;
 	}
 
-	public String getQuestaoExercico() {
-		return questaoExercico;
+	public String getQuestaoExercicio() {
+		return questaoExercicio;
 	}
 
-	public void setQuestaoExercico(String questaoExercico) {
-		this.questaoExercico = questaoExercico;
+	public void setQuestaoExercicio(String questaoExercicio) {
+		this.questaoExercicio = questaoExercicio;
 	}
 
 	public String getAlternativaCorreta() {
