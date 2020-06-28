@@ -12,8 +12,7 @@ public class Administrador {
 	private String username;
 	private String password;	
 	
-	public Administrador() {
-		
+	public Administrador() {	
 	}
 	
 	public Administrador(String username, String password) {

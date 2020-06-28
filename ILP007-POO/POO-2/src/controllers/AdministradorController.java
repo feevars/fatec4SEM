@@ -4,12 +4,9 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
 import java.util.Set;
-
 import model.dao.AdministradorDao;
 import model.dao.implementation.AdminstradorDaoImpl;
 import model.entities.Administrador;
@@ -22,7 +19,6 @@ public class AdministradorController  {
 	public AdministradorController(){
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		validator = factory.getValidator();
-	
 	}
 	
 	private void alert(AlertType tipo, String title, String header, String content) {

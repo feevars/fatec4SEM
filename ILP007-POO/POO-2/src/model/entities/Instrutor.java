@@ -1,9 +1,9 @@
 package model.entities;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
-public class Instrutor extends Usuario {
+public class Instrutor extends Estudante {
 
 	private Set<Curso> cursosCriados;
 	

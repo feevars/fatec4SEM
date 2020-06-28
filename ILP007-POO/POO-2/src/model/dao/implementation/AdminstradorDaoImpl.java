@@ -15,16 +15,14 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 	
 	public AdminstradorDaoImpl() {
 		daoFactory = new DaoFactory();
-		//daoFactory.getConnection();
 	}
-	
 	
 	@Override
 	public void cadastrar(Administrador administrador) {
+		try {
 		Connection con = daoFactory.getConnection();
 		String sql = "INSERT INTO Administrador (username, password)"
-				+ " VALUES (?, ?)";
-		try {
+				   + " VALUES (?, ?)";
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setString(1, administrador.getUsername());
 			stm.setString(2, administrador.getPassword());
