@@ -25,7 +25,7 @@ public class Aula {
 	}
 
 	public Aula() {}
-
+	
 	public String getTitulo() {
 		return titulo;
 	}

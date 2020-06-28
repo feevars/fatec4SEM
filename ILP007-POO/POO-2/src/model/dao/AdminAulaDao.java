@@ -1,7 +1,10 @@
 package model.dao;
 
 import java.util.List;
+import java.util.Set;
+
 import model.entities.Aula;
+import model.entities.Exercicio;
 
 public interface AdminAulaDao {
 
@@ -11,5 +14,7 @@ public interface AdminAulaDao {
 	
 	boolean editarAula(Aula aula);
 	
-	List<Aula> listarAula(Aula aula);
+	boolean exibirAula(Integer id);
+	
+	List<Exercicio> listarExercicios(Set<Exercicio> exercicios);
 }

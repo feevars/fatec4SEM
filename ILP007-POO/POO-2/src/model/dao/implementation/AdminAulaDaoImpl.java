@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import model.dao.AdminAulaDao;
 import model.dao.DaoFactory;
 import model.entities.Aula;
+import model.entities.Exercicio;
 
 public class AdminAulaDaoImpl implements AdminAulaDao {
 
@@ -20,12 +22,12 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 	}
 	
 	@Override
-	public List<Aula> listarAula(Aula aula) {
-		List<Aula> listaAulas = new ArrayList<Aula>();
+	public List<Exercicio> listarExercicios(Set<Exercicio> exercicios) {
+		List<Exercicio> exerciciosList = new ArrayList<Exercicio>(exercicios);
 		try {
 			Connection conn = daoFactory.getConnection();
 			ResultSet rs;
-			String sql = "SELECT * FROM Aula";
+			String sql = "SELECT Exercicio.* FROM Exercicio WHERE Exercicio.aulaId = ?";
 			PreparedStatement stm = conn.prepareStatement(sql);
 			rs = stm.executeQuery();
 			
@@ -38,7 +40,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 				aula1.setTranscricaoVideo(rs.getString("transcricaoVideo"));
 				aula1.setTempoVideo(rs.getInt("tempoVideo"));
 			}
-			return listaAulas;
+			return exerciciosList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -100,6 +102,12 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		} catch (SQLException e) {
 			System.out.println("Aula " + aula.getTitulo() + " não pode ser atualizada.");
 		}
+		return false;
+	}
+
+	@Override
+	public boolean exibirAula(Integer id) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
