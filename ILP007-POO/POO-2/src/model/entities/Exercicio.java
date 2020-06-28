@@ -1,6 +1,11 @@
 package model.entities;
 
 public class Exercicio {
+	
+	public Exercicio() {
+		
+	};
+	
 
 	private Integer id;
 	private String tituloExercicio;

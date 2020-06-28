@@ -1,5 +1,11 @@
 package model.dao;
 
-public interface AdminExercicioDao {
+import model.entities.Exercicio;
 
+public interface AdminExercicioDao {
+	void cadastrarExercicio(Exercicio exercicio);
+	
+	void excluirExercicio(Integer id);
+	
+	boolean editarExercicio(Exercicio exercicio);
 }

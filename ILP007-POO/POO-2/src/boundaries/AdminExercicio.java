@@ -1,5 +1,8 @@
 package boundaries;
 
+import controllers.ExercicioController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
@@ -9,8 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import model.entities.Exercicio;
 
-public class AdminExercicio extends Group {
+public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
+	
+	ExercicioController exercicioController = new ExercicioController();
 
 	private VBox vbox;
 
@@ -57,6 +63,7 @@ public class AdminExercicio extends Group {
 
 		lblQuestao = new Label("Texto da questão:");
 		txtQuestao = new TextArea();
+		txtQuestao.setMaxHeight(100);
 		txtQuestao.setPromptText("Digite a questão copleta que deverá ser respondida por meio das alternativas.");
 
 		lblAlternativaCorreta = new Label("Alternativa correta:");
@@ -75,6 +82,7 @@ public class AdminExercicio extends Group {
 
 		lblExplicacao = new Label("Explicação:");
 		txtExplicacao = new TextArea();
+		txtExplicacao.setMaxHeight(100);
 		txtExplicacao.setPromptText("Digite a justificativa da resposta completa, explicando a questão do exercício.");
 
 		hboxDetalhes = new HBox();
@@ -119,6 +127,32 @@ public class AdminExercicio extends Group {
 			label.setFont(new Font(16));
 
 		}
+		
+	}
+	
+	public Exercicio boundaryToEntity(){
+		Exercicio exercicio = new Exercicio();
+		try{
+			exercicio.setTituloExercicio(txtTitulo.getText());
+			exercicio.setQuestaoExercico(txtQuestao.getText());
+			exercicio.setAlternativaCorreta(txtAlternativaCorreta.getText());
+			exercicio.setAlternativaIncorreta1(txtAlternativaIncorreta1.getText());
+			exercicio.setAlternativaIncorreta2(txtAlternativaIncorreta2.getText());
+			exercicio.setAlternativaIncorreta3(txtAlternativaIncorreta3.getText());
+			exercicio.setAlternativaIncorreta4(txtAlternativaIncorreta4.getText());
+			exercicio.setExplicacao(txtExplicacao.getText());
+			exercicio.setTempoResposta(Integer.parseInt(txtTempoResposta.getText()));
+			exercicio.setPontos(Integer.parseInt(txtPontos.getText()));
+			
+		}catch (Exception e) {
+			System.out.println("Erro ao receber dados.");
+		}
+		return exercicio;
+	}
+
+	@Override
+	public void handle(ActionEvent event) {
+		// TODO Auto-generated method stub
 		
 	}
 	
