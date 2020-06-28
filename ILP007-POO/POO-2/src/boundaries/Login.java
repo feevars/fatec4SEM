@@ -1,19 +1,21 @@
 package boundaries;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
-public class Login extends Scene {
+public class Login extends Group implements EventHandler<ActionEvent>{
 	
-	private Group groupLogin = new Group();
 	
 	private VBox vboxLogin = new VBox();
 	
@@ -25,28 +27,32 @@ public class Login extends Scene {
 	private Button btnLogin = new Button("Login");
 	private Button btnCadastrar = new Button("Cadastrar");
 	
-	
-
-
-
-	public Login(Parent root) {
+	public Login() {
 		
+		this.txtUsername.setPromptText("Digite o nome de usuário ou e-mail...");
+		this.txtPassword.setPromptText("Digite a senha...");
 		
+		this.btnLogin.setOnAction(this);
+		this.btnCadastrar.setOnAction(this);
 		
-		super(root);
+		this.hboxBotoesAcoes.getChildren().addAll(btnLogin, btnCadastrar);
+		this.vboxLogin.getChildren().addAll(txtUsername, txtPassword, hboxBotoesAcoes);
+		
+		this.getChildren().add(vboxLogin);
+		
 	}
 
-
-//
-//	public Login() {
-//		
-//		this.txtUsername.setPromptText("Digite o nome de usuário ou e-mail...");
-//		this.txtPassword.setPromptText("Digite a senha...");
-//		
-//		this.hboxBotoesAcoes.getChildren().addAll(btnLogin, btnCadastrar);
-//		
-//		this.vboxLogin.getChildren().addAll(txtUsername, txtPassword, hboxBotoesAcoes);
-//		
-//		super(groupLogin);
-//	}
+	@Override
+	public void handle(ActionEvent event) {
+		if(event.getTarget() == btnCadastrar){
+			System.out.println("Cadastrar");
+			Node source = (Node) event.getSource();
+		    Scene theStage = source.getScene();
+		    theStage.setRoot(new EstudanteCadastro(txtUsername.getText(), txtPassword.getText()));
+		    
+		}
+		else if(event.getTarget() == btnLogin){
+			System.out.println("Login");
+		}
+	}
 }
