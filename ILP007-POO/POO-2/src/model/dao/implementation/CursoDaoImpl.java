@@ -19,7 +19,6 @@ public class CursoDaoImpl implements CursoDao {
 		daoFactory = new DaoFactory();
 	}
 	
-
 	@Override
 	public List<Curso> pesquisarPorNome(String nome) {
 		List<Curso> lista = new ArrayList<Curso>(); 
@@ -28,18 +27,14 @@ public class CursoDaoImpl implements CursoDao {
 			ResultSet rs;
 			String sql = "SELECT * FROM Curso";
 			PreparedStatement stm = con.prepareStatement(sql);
-			//stm.setString(1, nome);
 			rs = stm.executeQuery();	
 			
 			while(rs.next()){
 				Curso curso = new Curso();
 				curso.setId(rs.getInt("id"));
-				curso.setNome(rs.getString("nome"));
-				curso.setDescricao(rs.getString("descricao"));
-				curso.setTotalHoras(rs.getInt("totalHoras"));
-				curso.setDataCriacao(rs.getDate("dataCriacao"));
-				curso.setDataAtualizacao(rs.getDate("dataAtualizacao"));
-				System.out.println("Curso: " + curso.getNome() + " encontrado!");
+				curso.setTitulo(rs.getString("nome"));
+				curso.setDescricao(rs.getString("titulo"));
+				System.out.println("Curso: " + curso.getTitulo() + " encontrado!");
 				lista.add(curso);
 				}
 			return lista;
@@ -52,27 +47,22 @@ public class CursoDaoImpl implements CursoDao {
 	
 	
 	@Override
-	public void cadastrar(Curso c) {
+	public void cadastrar(Curso curso) {
 		Connection con = daoFactory.getConnection();
-		String sql = "INSERT INTO Curso (nome, descricao, totalHoras, dataCriacao)"
-				+ " VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?)";
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
-			stm.setString(1, c.getNome());
-			stm.setString(2, c.getDescricao());
-			stm.setLong(3, c.getTotalHoras());
-			stm.setDate(4, (java.sql.Date) c.getDataCriacao());
+			stm.setString(1, curso.getTitulo());
+			stm.setString(2, curso.getDescricao());
 			stm.executeUpdate();
 			con.close();
 		}catch ( SQLException e ){
 			e.printStackTrace();
 		}catch (DateTimeException de) {
-			System.out.println("Erro na conversao de data do curso: " + c.getNome());
+			System.out.println("Erro na conversao de data do curso: " + curso.getDescricao());
 			de.printStackTrace();
 		}
-		
 	}
-
 
 	@Override
 	public void excluir(Integer id) {
@@ -95,27 +85,22 @@ public class CursoDaoImpl implements CursoDao {
 	public boolean editar(Curso curso) {
 		try {				
 			Connection con = daoFactory.getConnection();
-			String sql = "UPDATE Curso SET nome = ?, descricao = ? totalHoras = ? dataAtualizao = ? WHERE id = ?)";
+			String sql = "UPDATE Curso SET titulo = ?, descricao = ? WHERE id = ?)";
 				PreparedStatement stm = con.prepareStatement(sql);
-				stm.setString(1, curso.getNome());
+				stm.setString(1, curso.getTitulo());
 				stm.setString(2, curso.getDescricao());
-				stm.setInt(3, curso.getTotalHoras());
-				stm.setDate(4, (java.sql.Date) curso.getDataAtualizacao());
-				stm.setInt(5, curso.getId());
+				stm.setInt(3, curso.getId());
 				stm.executeUpdate();
 				con.close();
-				System.out.println("Curso: " + curso.getNome() + " Alterado com sucesso!");
+				System.out.println("Curso: " + curso.getTitulo() + " Alterado com sucesso!");
 				return true;	
 			} catch (SQLException e) {
-				System.out.println("Curso: " + curso.getNome() + "Não pode ser alterado");
+				System.out.println("Curso: " + curso.getTitulo() + "Não pode ser alterado");
 				e.printStackTrace();
 			}catch (DateTimeException de) {
-				System.out.println("Erro na conversao de data do curso: " + curso.getNome());
+				System.out.println("Erro na conversao de data do curso: " + curso.getTitulo());
 				de.printStackTrace();
 			}
 		return false;
 	}
-
-
-
 }
