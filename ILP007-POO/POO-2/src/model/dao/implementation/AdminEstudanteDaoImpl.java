@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-
 import model.dao.AdminEstudanteDao;
 import model.dao.DaoFactory;
-import model.dao.EstudanteDao;
 import model.entities.Estudante;
 
 public class AdminEstudanteDaoImpl implements AdminEstudanteDao {
