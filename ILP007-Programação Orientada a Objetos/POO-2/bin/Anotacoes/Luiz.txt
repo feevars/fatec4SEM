@@ -1,0 +1,7 @@
+- Model:DAO, Curso
+- Controller:CursoController - editar e listar
+- Boundaries: CursoCadastro
+- DAO:CursoDAO e CursoDAOImpl
+
+Set<Aula> (Ordered list), algo assim
+1 instrutor

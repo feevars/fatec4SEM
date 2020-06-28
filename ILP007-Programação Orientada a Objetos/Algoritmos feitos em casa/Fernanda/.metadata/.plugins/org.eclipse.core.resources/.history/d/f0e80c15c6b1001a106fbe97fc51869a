@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+
+public class PetControl {
+	//private List<Pet> lista = new ArrayList<>();
+	
+	public PetControl() {
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+		}
+	}
+}

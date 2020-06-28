@@ -24,6 +24,8 @@ public class Aula {
 		this.exercicios = exercicios;
 	}
 
+	public Aula() {}
+
 	public String getTitulo() {
 		return titulo;
 	}
@@ -76,4 +78,7 @@ public class Aula {
 		return id;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 }
