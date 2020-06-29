@@ -25,7 +25,7 @@ public class AulaController {
 	public void adicionarAula(Aula a) {
 		a.setNumAula(curso.getAulas().size()+1);
 		adminAulaDao.cadastrarAula(a);
-		curso.getAulas().add(a);
+		//curso.getAulas().add(a);
 	}
 	
 	public void removerAula(Integer id) {}
