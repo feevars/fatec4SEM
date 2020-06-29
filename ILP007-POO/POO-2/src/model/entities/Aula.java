@@ -14,7 +14,7 @@ public class Aula {
 	private Set<Exercicio> exercicios;
 
 	public Aula(Integer id, String titulo, String descricao, String linkVideo, String transcricaoVideo,
-			Integer tempoVideo, Set<Exercicio> exercicios) {
+			Integer tempoVideo, Integer numAula, Set<Exercicio> exercicios) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -22,6 +22,7 @@ public class Aula {
 		this.linkVideo = linkVideo;
 		this.transcricaoVideo = transcricaoVideo;
 		this.tempoVideo = tempoVideo;
+		this.numAula = numAula;
 		this.exercicios = exercicios;
 	}
 
@@ -90,5 +91,4 @@ public class Aula {
 	public void setNumAula(Integer numAula) {
 		this.numAula = numAula;
 	}
-	
 }

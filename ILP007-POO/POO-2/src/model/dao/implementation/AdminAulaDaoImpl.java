@@ -1,12 +1,12 @@
 package model.dao.implementation;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import model.dao.AdminAulaDao;
 import model.dao.DaoFactory;
@@ -31,7 +31,6 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			String sql = "SELECT Exercicio.* FROM Exercicio WHERE Exercicio.aulaId = ?";
 			PreparedStatement stm = conn.prepareStatement(sql);
 			rs = stm.executeQuery();
-			
 			while (rs.next()) {
 				Exercicio exercicio = new Exercicio();
 				//exercicio.setId(rs.getInt("id"));
@@ -60,7 +59,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		
 		try {
 			Connection conn = daoFactory.getConnection();
-			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo)"
+			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo, numAula)"
 					+ "VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement stm = conn.prepareStatement(sql);
 			stm.setString(1, aula.getTitulo());
@@ -68,6 +67,8 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			stm.setString(3, aula.getLinkVideo());
 			stm.setString(4, aula.getTranscricaoVideo());
 			stm.setInt(5, aula.getTempoVideo());
+			stm.setInt(6, aula.getNumAula());
+			//ta faltando aqui o id do curso
 			stm.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {

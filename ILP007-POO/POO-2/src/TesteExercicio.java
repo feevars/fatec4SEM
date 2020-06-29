@@ -1,6 +1,4 @@
-import boundaries.EstudanteExercicio;
 import boundaries.admin.AdminCadastro;
-import boundaries.admin.AdminExercicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
