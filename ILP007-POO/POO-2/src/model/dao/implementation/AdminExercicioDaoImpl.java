@@ -64,7 +64,31 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 
 	@Override
 	public boolean editarExercicio(Exercicio exercicio) {
-		// TODO Auto-generated method stub
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "UPDATE Aula SET titulo = ?, questao = ?, alternativaCorreta = ?, alternativaIncorreta1 = ?, "
+					+ "alternativaIncorreta2 = ?, alternativaIncorreta3 = ?, alternativaIncorreta4 = ?,"
+					+ "explicacao = ?, tempoResposta = ?, pontos = ?, aulaId = ? WHERE id = ?";
+			PreparedStatement stm;
+			stm = con.prepareStatement(sql);
+			stm.setString(1, exercicio.getTituloExercicio());
+			stm.setString(2, exercicio.getQuestaoExercicio());
+			stm.setString(3, exercicio.getAlternativaCorreta());
+			stm.setString(4, exercicio.getAlternativaIncorreta1());
+			stm.setString(5, exercicio.getAlternativaIncorreta2());
+			stm.setString(6, exercicio.getAlternativaIncorreta3());
+			stm.setString(7, exercicio.getAlternativaIncorreta4());
+			stm.setString(8, exercicio.getExplicacao());
+			stm.setInt(9, exercicio.getTempoResposta());
+			stm.setInt(10, exercicio.getPontos());
+			stm.setInt(11, exercicio.getAulaId());
+			stm.setInt(12, exercicio.getId());
+			stm.executeUpdate();
+			con.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println(" Exercico não pode ser atualizada.");
+		}
 		return false;
 	}
 
