@@ -22,10 +22,11 @@ public class EstudanteExercicio extends Group {
 	private RadioButton radioAlternativaD;
 	private RadioButton radioAlternativaE;
 
-	private Button btnResponder;
+	private Button btnResponder = new Button("Responder");;
+	private Button btnProsseguir = new Button("Prosseguir");;
 
-	private Label lblResultado;
-	private Label lblExplicacao;
+	private Label lblResultado = new Label();;
+	private Label lblExplicacao = new Label();;
 
 	public EstudanteExercicio(String titulo, String questao, String alternativaA, String alternativaB,
 			String alternativaC, String alternativaD, String alternativaE, String Explicacao) {
@@ -48,10 +49,6 @@ public class EstudanteExercicio extends Group {
 		this.radioAlternativaD.setToggleGroup(alternativas);
 		this.radioAlternativaE.setToggleGroup(alternativas);
 
-		this.lblResultado = new Label();
-		this.lblExplicacao = new Label();
-		
-		this.btnResponder = new Button("Responder");
 
 		vbox.getChildren().addAll(lblTituloExercicio, lblQuestaoExercicio, radioAlternativaA, radioAlternativaB,
 				radioAlternativaC, radioAlternativaD, radioAlternativaE, lblResultado, lblExplicacao, btnResponder);

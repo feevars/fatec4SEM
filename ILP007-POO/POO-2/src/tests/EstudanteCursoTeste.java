@@ -1,6 +1,7 @@
 package tests;
 
 
+import boundaries.EstudanteAula;
 import boundaries.EstudanteCurso;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,7 +16,7 @@ public class EstudanteCursoTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		EstudanteCurso tela = new EstudanteCurso(1, 1, 0, false, false);
+		EstudanteAula tela = new EstudanteAula(1, 1);
 		
 		Scene cena = new Scene(tela);
 		
