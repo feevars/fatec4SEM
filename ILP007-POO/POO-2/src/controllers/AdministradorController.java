@@ -24,6 +24,7 @@ public class AdministradorController  {
 	public AdministradorController(){
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		validator = factory.getValidator();
+		carregaListaUsuarios();
 	}
 	
 	private void alert(AlertType tipo, String title, String header, String content) {
@@ -66,7 +67,6 @@ public class AdministradorController  {
 	}
 	
 	public ObservableList<Estudante> listarTodosEstudantes(){
-		carregaListaUsuarios();
 		return listaUsuarios;	
 	}
 	

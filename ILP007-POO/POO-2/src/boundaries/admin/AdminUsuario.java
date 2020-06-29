@@ -70,8 +70,7 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 		txtSobrenome.setText(sobrenomeUsuario);
 		txtTelefone.setText(telefoneUsuario);
 
-		LocalDate localDateNasc = dataNascimentoUsuario.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		dtNascimento.setValue(localDateNasc);
+		dtNascimento.setValue(null);
 		
 		checkInstrutor.setSelected(eInstrutor);
 
