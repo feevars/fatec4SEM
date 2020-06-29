@@ -1,15 +1,19 @@
 package boundaries.admin;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.sql.Date;
+import java.util.Optional;
 
 import controllers.AdministradorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -102,8 +106,14 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 
 		} else if (event.getTarget() == btnCancelar) {
 			cena.setRoot(new AdminDashboard(this.idAdmin));
+		} 
+		  else if (event.getTarget() == btnExcluir) {
+			Alert alertExcluir = new Alert(AlertType.CONFIRMATION, "Tem certeza que deseja excluir usuário?");
+			Optional<ButtonType> result = alertExcluir.showAndWait();
+			if (result.get().equals(ButtonType.OK)) {
+				adminController.excluirEstudante(this.idUsuario);
+				cena.setRoot(new AdminDashboard(this.idAdmin));
+			}
 		}
-
 	}
-
 }
