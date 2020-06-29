@@ -2,14 +2,18 @@ package boundaries.admin;
 
 import boundaries.Login;
 import controllers.AdministradorController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
@@ -19,6 +23,7 @@ import javafx.scene.layout.VBox;
 import model.entities.Administrador;
 import model.entities.Curso;
 import model.entities.Estudante;
+import model.entities.Instrutor;
 
 public class AdminDashboard extends BorderPane implements EventHandler<ActionEvent>{
 
@@ -26,7 +31,6 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 	AdministradorController adminController = new AdministradorController();
 	
 	private Label lblAdmin = new Label(); 
-	private GridPane dashboardAdmin = new GridPane();
 	private VBox vboxCursos = new VBox();
 	private VBox vboxUsuarios = new VBox();
 	private HBox hboxHeader = new HBox();
@@ -59,10 +63,8 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 		this.setPadding(new Insets(40));
 		
 		this.lblAdmin.setAlignment(Pos.CENTER_RIGHT);
-		this.dashboardAdmin.add(vboxCursos, 0, 0);
-		this.dashboardAdmin.add(vboxUsuarios, 1, 0);
-		this.dashboardAdmin.setAlignment(Pos.CENTER);
-		this.setCenter(dashboardAdmin);
+		this.setLeft(vboxCursos);
+		this.setCenter(vboxUsuarios);
 		this.setTop(hboxHeader);
 	}
 	
@@ -75,19 +77,34 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 	}
 	
 	private void gerarTabelaUsuarios() {
+		
+		
 		TableColumn<Estudante, String> colUserEstudante = new TableColumn<>("Username");
 		colUserEstudante.setCellValueFactory(new PropertyValueFactory<Estudante, String>("username"));
 		
 		TableColumn<Estudante, String> colNomeEstudante = new TableColumn<>("Nome");
-		colUserEstudante.setCellValueFactory(new PropertyValueFactory<Estudante, String>("nome"));
+		colNomeEstudante.setCellValueFactory(new PropertyValueFactory<Estudante, String>("nome"));
 		
 		TableColumn<Estudante, String> colSobrenomeEstudante = new TableColumn<>("Sobrenome");
-		colUserEstudante.setCellValueFactory(new PropertyValueFactory<Estudante, String>("sobrenome"));
+		colSobrenomeEstudante.setCellValueFactory(new PropertyValueFactory<Estudante, String>("sobrenome"));
 		
 		TableColumn<Estudante, String> colEmailEstudante = new TableColumn<>("Email");
-		colUserEstudante.setCellValueFactory(new PropertyValueFactory<Estudante, String>("email"));
+		colEmailEstudante.setCellValueFactory(new PropertyValueFactory<Estudante, String>("email"));
 	
 		tableUsuarios.getColumns().addAll(colUserEstudante, colNomeEstudante, colSobrenomeEstudante, colEmailEstudante);
+		
+		tableUsuarios.setRowFactory(tv -> {
+			
+			TableRow<Estudante> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				Estudante user = row.getItem();
+				Scene cena = this.getScene();
+				cena.setRoot(new AdminUsuario(idAdmin, user.getNome(), user.getSobrenome(), user.getTelefone(), user.getDataNascimento(), (user instanceof Instrutor)));
+			});
+			
+			return row;
+		});
+		
 		
 		
 	}

@@ -15,7 +15,7 @@ public class AdminDashboardTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminDashboard telaAdminDashboard = new AdminDashboard(2);
+		AdminDashboard telaAdminDashboard = new AdminDashboard(1);
 		
 		Scene cena = new Scene(telaAdminDashboard);
 		
