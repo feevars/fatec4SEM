@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 public class TesteMainPrincipal extends Application {
 
 	
-	
-	
 	public static void main(String[] args) {
 		Application.launch(TesteMainPrincipal.class, args);
 	}
@@ -19,8 +17,12 @@ public class TesteMainPrincipal extends Application {
 		
 		Login telaLogin = new Login();
 		
-		Scene cena = new Scene(telaLogin, 800, 600);
+		Scene cena = new Scene(telaLogin);
 		
+		stage.setMinWidth(800);
+		stage.setMinHeight(600);
+		stage.setMaximized(true);
+		stage.setFullScreen(true);
 		
 		stage.setScene(cena);
 		stage.show();

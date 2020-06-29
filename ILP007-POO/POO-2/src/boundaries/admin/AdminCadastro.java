@@ -1,9 +1,11 @@
 package boundaries.admin;
 
+import boundaries.Login;
 import controllers.AdministradorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -16,42 +18,33 @@ public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
 	
 	private AdministradorController adminController;
 	
-	private VBox vbox;
+	private VBox vbox = new VBox();
 	
-	private Label lblUsername;
-	private TextField txtUsername;
+	private Label lblUsername = new Label("Nome de usuário do administrador");
+	private TextField txtUsername = new TextField();;
 	
-	private Label lblPassword;
-	private PasswordField txtPassword;
+	private Label lblPassword = new Label("Digite a senha");
+	private PasswordField txtPassword = new PasswordField();
 	
-	private HBox hbox;
+	private HBox hbox = new HBox();;
 	
-	private Button btnCadastro;
-	private Button btnLogin;
+	private Button btnCancelar = new Button("Cadastrar");;
+	private Button btnCadastro = new Button("Cadastrar");;
+	private Button btnLogin = new Button("Login");;
 	
 	
-	public AdminCadastro () {
+	public AdminCadastro (String username, String password) {
 		
 		adminController = new AdministradorController();
-		
-		vbox = new VBox();
-		
-		lblUsername = new Label("Nome de usuário do administrador");
-		txtUsername = new TextField();
+	
 		txtUsername.setPromptText("Digite o nome do usuário admin");
-		
-		lblPassword = new Label("Digite a senha");
-		txtPassword = new PasswordField();
 		txtPassword.setPromptText("Digite a senha");
 		
-		btnCadastro = new Button("Cadastrar");
-		btnLogin = new Button("Login");
-		
+		btnCancelar.setOnAction(this);
 		btnCadastro.setOnAction(this);
 		btnLogin.setOnAction(this);
 		
-		hbox = new HBox();
-		hbox.getChildren().addAll(btnCadastro, btnLogin);
+		hbox.getChildren().addAll(btnCancelar, btnCadastro, btnLogin);
 		
 		vbox.getChildren().addAll(lblUsername, txtUsername, lblPassword, txtPassword, hbox);
 		
@@ -61,10 +54,10 @@ public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent event) {
 		boolean logado;
-		
+		Scene cena = this.getScene();
+
 		if(event.getTarget() == btnCadastro){
 			adminController.cadastrar(boundaryToEntity());
-
 		}
 		else if(event.getTarget() == btnLogin){
 			logado = adminController.logar(txtUsername.getText(), txtPassword.getText());
@@ -75,6 +68,9 @@ public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
 			else{
 				System.out.println("Erro no login!");
 			}
+		}
+		else if(event.getTarget().equals(btnCancelar)) {
+			cena.setRoot(new Login());
 		}
 		
 		

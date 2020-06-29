@@ -8,6 +8,7 @@ import controllers.EstudanteController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -66,6 +67,7 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 				lblSobrenome, txtSobrenome, lblEmail, txtEmail, lblTelefone, txtTelefone, lblDataNascimento,
 				dtNascimento, hboxBotoesAcoes);
 		this.getChildren().add(vboxCadastroUsuario);
+		
 	}
 	
 	
@@ -91,6 +93,9 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 
 	@Override
 	public void handle(ActionEvent event) {
+		
+		Scene cena = this.getScene();
+		
 		if(event.getTarget() == btnCadastrar){
 			if (!txtPassword.getText().equals(txtPasswordCheck.getText())) {
 				Alert alertSenhasDiferentes = new Alert(AlertType.ERROR, "As senhas informadas são diferentes.");
@@ -114,9 +119,8 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 				alertErroValidacaoFormulario.show();
 			}
 		}
-		else if(event.getTarget() == btnCancelar){			
+		else if(event.getTarget() == btnCancelar){
+			cena.setRoot(new Login());
 		}
-		
 	}
-
 }
