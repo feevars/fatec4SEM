@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import boundaries.admin.AdminCadastro;
+import boundaries.admin.AdminDashboard;
+import controllers.AdministradorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -11,12 +13,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -47,6 +51,8 @@ public class Login extends BorderPane implements EventHandler<ActionEvent> {
 
 	private Button btnLogin = new Button("Login");
 	private Button btnCadastrar = new Button("Cadastrar");
+	
+	private AdministradorController adminController = new AdministradorController(); 
 
 	public Login() {
 
@@ -85,6 +91,14 @@ public class Login extends BorderPane implements EventHandler<ActionEvent> {
 		this.setCenter(vboxLogin);
 
 	}
+	
+	private void alert(AlertType tipo, String title, String header, String content) {
+		Alert alert = new Alert(tipo);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+		alert.showAndWait();
+	}
 
 	@Override
 	public void handle(ActionEvent event) {
@@ -103,7 +117,12 @@ public class Login extends BorderPane implements EventHandler<ActionEvent> {
 				cena.setRoot(new AdminCadastro(txtUsername.getText(), txtPassword.getText()));
 
 			} else if (event.getTarget() == btnLogin) {
-				System.out.println("Login");
+				if(adminController.logarAdmin(txtUsername.getText(), txtPassword.getText())){
+					cena.setRoot(new AdminDashboard(adminController.idAdmin(txtUsername.getText())));
+				}else{
+					Alert alertaErro = new Alert(AlertType.ERROR, "Usuário ou senha inválidos.");
+					alertaErro.show();
+				}
 			}
 		}
 	}

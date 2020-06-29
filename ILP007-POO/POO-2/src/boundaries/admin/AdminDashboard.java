@@ -1,6 +1,5 @@
 package boundaries.admin;
 
-import boundaries.EstudanteCadastro;
 import boundaries.Login;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,6 +21,8 @@ import model.entities.Estudante;
 
 public class AdminDashboard extends BorderPane implements EventHandler<ActionEvent>{
 
+	private Integer idAdmin;
+	
 	private Label lblAdmin = new Label(); 
 	private GridPane dashboardAdmin = new GridPane();
 	private VBox vboxCursos = new VBox();
@@ -30,15 +31,18 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 	private Button btnSair = new Button("Sair");
 	
 	private Label lblCursos = new Label("Cursos");
+	private Button btnNovoCurso = new Button("Novo curso...");
 	private TableView<Curso> tableCursos = new TableView<>();//(control.getLista
 
 	private Label lblUsuarios = new Label("Usuários");
 	private TableView<Estudante> tableUsuarios = new TableView<>();//control.getLista
 	
-	public AdminDashboard (Integer id) {
+	public AdminDashboard (Integer idAdmin) {
+		this.idAdmin = idAdmin;
 		this.lblAdmin.setText("Logado como: "); // Colocar a chamada de getUsername by ID
 		
 		btnSair.setOnAction(this);
+		btnNovoCurso.setOnAction(this);
 		
 		gerarTabelaCursos();
 		gerarTabelaUsuarios();
@@ -46,7 +50,7 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 		hboxHeader.getChildren().addAll(lblAdmin, btnSair);
 		this.hboxHeader.setAlignment(Pos.TOP_RIGHT);
 		
-		vboxCursos.getChildren().addAll(lblCursos, tableCursos);
+		vboxCursos.getChildren().addAll(lblCursos, tableCursos, btnNovoCurso);
 		this.setPadding(new Insets(40));
 		
 		vboxUsuarios.getChildren().addAll(lblUsuarios, tableUsuarios);
@@ -94,11 +98,11 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 	
 	@Override
 	public void handle(ActionEvent event) {
-		
 		Scene cena = this.getScene();
-
 			if (event.getTarget().equals(btnSair)) {
 				cena.setRoot(new Login());
+			}else if(event.getTarget().equals(btnNovoCurso)){
+				cena.setRoot(new AdminCurso(this.idAdmin));
 			}
 	}
 }

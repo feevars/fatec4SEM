@@ -47,7 +47,7 @@ public class AdminCurso extends Group implements EventHandler<ActionEvent> {
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnSalvarCurso = new Button("Salvar");
 
-	public AdminCurso() {
+	public AdminCurso(Integer idAdmin) {
 
 		this.setPromtTexts();
 		this.gerarTabelaInstrutores();

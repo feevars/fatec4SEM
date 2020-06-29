@@ -1,9 +1,7 @@
 package model.entities;
 
 import java.util.Set;
-
 import org.hibernate.validator.constraints.NotBlank;
-
 
 
 public class Administrador {
@@ -20,6 +18,12 @@ public class Administrador {
 		this.password = password;
 	}
 	
+	public Administrador(Integer id, String username) {
+		super();
+		this.id = id;
+		this.username = username;
+	}
+
 	@NotBlank
     public String getUsername() {
 		return username;

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import model.dao.AdminEstudanteDao;
 import model.dao.DaoFactory;
 import model.entities.Estudante;
@@ -65,20 +64,16 @@ public class AdminEstudanteDaoImpl implements AdminEstudanteDao {
 	@Override
 	public Boolean excluirEstudante(Integer id) {
 		Connection con = daoFactory.getConnection();
-		String sql = "";
+		String sql = "DELETE FROM Estudante WHERE id = ?";
 		try{
 			PreparedStatement stm = con.prepareStatement(sql);
-
+			stm.setInt(1, id);
+			stm.executeUpdate();
+			con.close();
 		}catch (SQLException se) {
 			se.printStackTrace();
 		}
 		return false;
-	}
-
-	@Override
-	public List<Estudante> listarEstudante() {
-	
-		return null;
 	}
 
 	@Override

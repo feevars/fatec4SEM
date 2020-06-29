@@ -32,7 +32,7 @@ public class AdministradorController  {
 	public void cadastrar(Administrador administrador){
 		Set<ConstraintViolation<Administrador>> erros = validator.validate(administrador);
 		if(erros.isEmpty()){
-			administradorDao.cadastrar(administrador);
+			administradorDao.cadastrarAdmin(administrador);
 			alert(AlertType.INFORMATION, " FreeTech ", null, " Administrador " + administrador.getUsername() + " Cadastrado com sucesso!");
 		}
 		else {
@@ -44,11 +44,16 @@ public class AdministradorController  {
 		}
 	}
 	
-	public boolean logar(String username, String password){
-		if(administradorDao.logar(username, password)) {
+	public boolean logarAdmin(String username, String password){
+		if(administradorDao.logarAdmin(username, password)) {
 			return true;
 		}
 		return false;
+	}
+	
+	public Integer idAdmin(String username){
+		Administrador admin = administradorDao.getAdministradorPorUsername(username);
+		return admin.getId();
 	}
 	
 }

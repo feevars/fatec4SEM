@@ -16,4 +16,5 @@ public interface AdminCursoDao {
 	Curso pesquisarPorNome(String titulo);
 	
 	Set<Aula> listarAulasCurso(Integer id);
+	Set<Aula> listarAulas();
 }

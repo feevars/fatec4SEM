@@ -20,10 +20,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Estudante;
 
-public class EstudanteCadastro extends Group implements EventHandler<ActionEvent>{
+public class EstudanteCadastro extends Group implements EventHandler<ActionEvent> {
 
 	EstudanteController estudanteController = new EstudanteController();
-	
+
 	private VBox vboxCadastroUsuario = new VBox();
 
 	private Label lblUsername = new Label("Nome de usuário: ");
@@ -47,34 +47,32 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 
 	private Label lblDataNascimento = new Label("Data de nascimento:");
 	private DatePicker dtNascimento = new DatePicker();
-	
+
 	private HBox hboxBotoesAcoes = new HBox();
-	
+
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnCadastrar = new Button("Cadastrar");
 
 	public EstudanteCadastro(String username, String password) {
-		
+
 		txtUsername.setText(username);
 		txtPassword.setText(password);
-		
+
 		btnCadastrar.setOnAction(this);
 		btnCancelar.setOnAction(this);
-		
+
 		hboxBotoesAcoes.getChildren().addAll(btnCancelar, btnCadastrar);
-		
-		this.vboxCadastroUsuario.getChildren().addAll(lblUsername, txtUsername, lblPassword, txtPassword, lblPasswordCheck, txtPasswordCheck, lblNome, txtNome,
-				lblSobrenome, txtSobrenome, lblEmail, txtEmail, lblTelefone, txtTelefone, lblDataNascimento,
-				dtNascimento, hboxBotoesAcoes);
+
+		this.vboxCadastroUsuario.getChildren().addAll(lblUsername, txtUsername, lblPassword, txtPassword,
+				lblPasswordCheck, txtPasswordCheck, lblNome, txtNome, lblSobrenome, txtSobrenome, lblEmail, txtEmail,
+				lblTelefone, txtTelefone, lblDataNascimento, dtNascimento, hboxBotoesAcoes);
 		this.getChildren().add(vboxCadastroUsuario);
-		
+
 	}
-	
-	
-	
-	public Estudante boundaryToEntity(){
+
+	public Estudante boundaryToEntity() {
 		Estudante estudante = new Estudante();
-		try{
+		try {
 			estudante.setUsername(txtUsername.getText());
 			estudante.setPassword(txtPassword.getText());
 			estudante.setNome(txtNome.getText());
@@ -85,7 +83,7 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 			java.util.Date dataUtil = Date.from(dataLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
 			java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 			estudante.setDataNascimento(dataSql);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Erro ao receber dados.");
 		}
 		return estudante;
@@ -93,33 +91,35 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 
 	@Override
 	public void handle(ActionEvent event) {
-		
+
 		Scene cena = this.getScene();
-		
-		if(event.getTarget() == btnCadastrar){
+
+		if (event.getTarget() == btnCadastrar) {
 			if (!txtPassword.getText().equals(txtPasswordCheck.getText())) {
 				Alert alertSenhasDiferentes = new Alert(AlertType.ERROR, "As senhas informadas são diferentes.");
 				alertSenhasDiferentes.show();
 			}
 			Integer cadastro = estudanteController.cadastrarEstudante(boundaryToEntity());
-			if(cadastro == 0){
+			if (cadastro == 0) {
 				Alert alertCadastradoComSucesso = new Alert(AlertType.INFORMATION, "Cadastrado com sucesso!");
 				alertCadastradoComSucesso.show();
-			}else if(cadastro == 1){
-				Alert alertusuarioJaExiste = new Alert(AlertType.ERROR, "O nome de usuario " + txtUsername.getText() + " já existe!");
+			} else if (cadastro == 1) {
+				Alert alertusuarioJaExiste = new Alert(AlertType.ERROR,
+						"O nome de usuario " + txtUsername.getText() + " já existe!");
 				alertusuarioJaExiste.show();
-			}else if(cadastro == 2){
-				Alert alertEmailJaExiste = new Alert(AlertType.ERROR, "O email " + txtEmail.getText() + " já cadastrado!");
+			} else if (cadastro == 2) {
+				Alert alertEmailJaExiste = new Alert(AlertType.ERROR,
+						"O email " + txtEmail.getText() + " já cadastrado!");
 				alertEmailJaExiste.show();
-			}else if(cadastro == 3){
+			} else if (cadastro == 3) {
 				Alert alertErroBanco = new Alert(AlertType.ERROR, "Ocorreu um erro de banco de dados.");
 				alertErroBanco.show();
-			}else if(cadastro == 4){
-				Alert alertErroValidacaoFormulario = new Alert(AlertType.ERROR, "Ocorreu um erro de validação no formulário.");
+			} else if (cadastro == 4) {
+				Alert alertErroValidacaoFormulario = new Alert(AlertType.ERROR,
+						"Ocorreu um erro de validação no formulário.");
 				alertErroValidacaoFormulario.show();
 			}
-		}
-		else if(event.getTarget() == btnCancelar){
+		} else if (event.getTarget() == btnCancelar) {
 			cena.setRoot(new Login());
 		}
 	}

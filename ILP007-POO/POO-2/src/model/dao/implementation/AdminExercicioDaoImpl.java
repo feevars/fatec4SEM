@@ -3,8 +3,6 @@ package model.dao.implementation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.DateTimeException;
-
 import model.dao.AdminExercicioDao;
 import model.dao.DaoFactory;
 import model.entities.Exercicio;
@@ -47,7 +45,6 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 			}
 	
 	}
-
 	@Override
 	public void excluirExercicio(Integer id) {
 		try {

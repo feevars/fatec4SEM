@@ -60,7 +60,7 @@ public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
 			adminController.cadastrar(boundaryToEntity());
 		}
 		else if(event.getTarget() == btnLogin){
-			logado = adminController.logar(txtUsername.getText(), txtPassword.getText());
+			logado = adminController.logarAdmin(txtUsername.getText(), txtPassword.getText());
 			
 			if(logado){
 				System.out.println("Sucesso no login");

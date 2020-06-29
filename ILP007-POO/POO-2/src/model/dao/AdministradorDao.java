@@ -1,9 +1,16 @@
 package model.dao;
 
+import java.util.Set;
 import model.entities.Administrador;
+import model.entities.Curso;
+import model.entities.Estudante;
 
 public interface AdministradorDao {
 
-	void cadastrar(Administrador administrador);
-	boolean logar(String username, String password);
+	void cadastrarAdmin(Administrador administrador);
+	boolean logarAdmin(String username, String password);
+	public Set<Estudante> listarEstudantes();
+	Set<Curso> listarCursos();
+	Administrador getAdministradorPorId(Integer id);
+	Administrador getAdministradorPorUsername(String username);
 }

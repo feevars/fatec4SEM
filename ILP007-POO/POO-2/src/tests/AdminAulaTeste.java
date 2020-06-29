@@ -14,7 +14,7 @@ public class AdminAulaTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminCurso adminCurso = new AdminCurso();
+		AdminCurso adminCurso = new AdminCurso(1);
 
 		Scene scene = new Scene(adminCurso, 640, 800);
 
