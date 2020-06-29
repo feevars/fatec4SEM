@@ -84,7 +84,7 @@ public class AdminEstudanteCadastro extends Group implements EventHandler<Action
 	@Override
 	public void handle(ActionEvent event) {
 		if(event.getTarget() == btnCadastrar){
-			estudanteController.cadastrar(boundaryToEntity());
+	//		estudanteController.cadastrar(boundaryToEntity());
 		}
 		else if(event.getTarget() == btnCancelar){			
 		}

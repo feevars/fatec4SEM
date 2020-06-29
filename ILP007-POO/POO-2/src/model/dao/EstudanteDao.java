@@ -18,4 +18,6 @@ public interface EstudanteDao {
 	
 	public void estudanteConcluirCurso(Integer idEstudante, Integer idCurso);
 	
+	public Integer validaCadastroEstudante(Estudante usuario);
+	
 }

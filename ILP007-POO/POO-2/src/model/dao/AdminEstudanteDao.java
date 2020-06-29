@@ -10,4 +10,5 @@ public interface AdminEstudanteDao {
 	public Boolean editarEstudante(Estudante usuario);
 	public Boolean excluirEstudante(Integer id);
 	public List<Estudante> listarEstudante();
+	public Integer validaCadastroEstudante(Estudante usuario);
 }

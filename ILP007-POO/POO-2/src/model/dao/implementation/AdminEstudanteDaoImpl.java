@@ -2,6 +2,7 @@ package model.dao.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import model.dao.AdminEstudanteDao;
@@ -20,8 +21,8 @@ public class AdminEstudanteDaoImpl implements AdminEstudanteDao {
 	public void cadastrarEstudante(Estudante usuario) {	
 		try{
 		Connection con = daoFactory.getConnection();
-		String sql = "INSERT INTO Estudante (username, password, nome, sobrenome, email, telefone, dataNascimento)"
-				   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Estudante (username, password, nome, sobrenome, email, telefone, dataNascimento, pontos)"
+				   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement stm = con.prepareStatement(sql);
 		stm.setString(1, usuario.getUsername());
 		stm.setString(2, usuario.getPassword());
@@ -30,6 +31,7 @@ public class AdminEstudanteDaoImpl implements AdminEstudanteDao {
 		stm.setString(5, usuario.getEmail());
 		stm.setString(6, usuario.getTelefone());
 		stm.setDate(7, usuario.getDataNascimento());
+		stm.setInt(8, usuario.getPontos());
 		stm.executeUpdate();
 		con.close();
 		System.out.println("Usuario " + usuario.getNome() + " cadastrado!");
@@ -38,22 +40,68 @@ public class AdminEstudanteDaoImpl implements AdminEstudanteDao {
 			System.out.println("Erro ao cadastrar usuário");
 		}
 	}
-
+	
 	@Override
 	public Boolean editarEstudante(Estudante usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = daoFactory.getConnection();
+		String sql = "UPDATE Estudante SET nome = ?, sobrenome = ?, email = ?, telefone = ?"
+				   + "WHERE id = ?";
+		try{
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setString(1, usuario.getNome());
+			stm.setString(2, usuario.getSobrenome());
+			stm.setString(3, usuario.getEmail());
+			stm.setString(4, usuario.getTelefone());
+			stm.setInt(5, usuario.getId());
+			stm.executeUpdate();
+			con.close();
+			return true;
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
 	public Boolean excluirEstudante(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = daoFactory.getConnection();
+		String sql = "";
+		try{
+			PreparedStatement stm = con.prepareStatement(sql);
+
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
 	public List<Estudante> listarEstudante() {
-		// TODO Auto-generated method stub
+	
 		return null;
+	}
+
+	@Override
+	public Integer validaCadastroEstudante(Estudante usuario) {
+		Connection con = daoFactory.getConnection();
+		ResultSet rs;
+		try {	
+			String sql = "SELECT * FROM Estudante";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setString(1, usuario.getEmail());
+			rs = stm.executeQuery();	
+			while(rs.next()){
+				if(usuario.getUsername().equals(rs.getString("username"))){
+					return 1;
+				}
+				if(usuario.getEmail().equals(rs.getString("email"))){
+					return 2;
+				}
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 3;
+			}
+		return 0;
 	}
 }

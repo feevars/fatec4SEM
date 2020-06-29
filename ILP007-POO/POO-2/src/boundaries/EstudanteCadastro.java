@@ -71,33 +71,47 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 	
 	
 	public Estudante boundaryToEntity(){
-		Estudante usuario = new Estudante();
+		Estudante estudante = new Estudante();
 		try{
-			usuario.setUsername(txtUsername.getText());
-			usuario.setPassword(txtPassword.getText());
-			usuario.setNome(txtNome.getText());
-			usuario.setSobrenome(txtSobrenome.getText());
-			usuario.setEmail(txtEmail.getText());
-			usuario.setTelefone(txtTelefone.getText());
+			estudante.setUsername(txtUsername.getText());
+			estudante.setPassword(txtPassword.getText());
+			estudante.setNome(txtNome.getText());
+			estudante.setSobrenome(txtSobrenome.getText());
+			estudante.setEmail(txtEmail.getText());
+			estudante.setTelefone(txtTelefone.getText());
 			LocalDate dataLocal = dtNascimento.getValue();
 			java.util.Date dataUtil = Date.from(dataLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
 			java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
-			usuario.setDataNascimento(dataSql);
+			estudante.setDataNascimento(dataSql);
 		}catch (Exception e) {
 			System.out.println("Erro ao receber dados.");
 		}
-		return usuario;
+		return estudante;
 	}
 
 	@Override
 	public void handle(ActionEvent event) {
 		if(event.getTarget() == btnCadastrar){
-//			estudanteController.cadastrar(boundaryToEntity());
+		Integer cadastro = estudanteController.cadastrarEstudante(boundaryToEntity());
 			if (!txtPassword.getText().equals(txtPasswordCheck.getText())) {
 				Alert alertSenhasDiferentes = new Alert(AlertType.ERROR, "As senhas informadas são diferentes.");
 				alertSenhasDiferentes.show();
+			}else if(cadastro == 0){
+				Alert alertCadastradoComSucesso = new Alert(AlertType.INFORMATION, "Cadastrado com sucesso!");
+				alertCadastradoComSucesso.show();
+			}else if(cadastro == 1){
+				Alert alertusuarioJaExiste = new Alert(AlertType.INFORMATION, "O nome de usuario " + txtUsername.getText() + " já existe!");
+				alertusuarioJaExiste.show();
+			}else if(cadastro == 2){
+				Alert alertEmailJaExiste = new Alert(AlertType.INFORMATION, "O email " + txtEmail.getText() + " já cadastrado!");
+				alertEmailJaExiste.show();
+			}else if(cadastro == 3){
+				Alert alertErroBanco = new Alert(AlertType.INFORMATION, "Ocorreu um erro de banco de dados.");
+				alertErroBanco.show();
+			}else if(cadastro == 4){
+				Alert alertErroValidacaoFormulario = new Alert(AlertType.INFORMATION, "Ocorreu um erro de validação no formulário.");
+				alertErroValidacaoFormulario.show();
 			}
-			
 		}
 		else if(event.getTarget() == btnCancelar){			
 		}

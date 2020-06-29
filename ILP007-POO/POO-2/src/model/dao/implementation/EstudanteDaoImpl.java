@@ -2,6 +2,7 @@ package model.dao.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.dao.DaoFactory;
@@ -28,7 +29,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			stm.setDate(7, estudante.getDataNascimento());
 			stm.executeUpdate();
 			con.close();
-			System.out.println("Usuario " + estudante.getNome() + " cadastrado!");
+			System.out.println("Estudante " + estudante.getNome() + " cadastrado!");
 			}catch(SQLException se) {
 				se.printStackTrace();
 				System.out.println("Erro ao cadastrar usuário");
@@ -69,6 +70,30 @@ public class EstudanteDaoImpl implements EstudanteDao {
 	public void estudanteConcluirCurso(Integer idEstudante, Integer idCurso) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public Integer validaCadastroEstudante(Estudante usuario) {
+		Connection con = daoFactory.getConnection();
+		ResultSet rs;
+		try {	
+			String sql = "SELECT * FROM Estudante";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setString(1, usuario.getEmail());
+			rs = stm.executeQuery();	
+			while(rs.next()){
+				if(usuario.getUsername().equals(rs.getString("username"))){
+					return 1;
+				}
+				if(usuario.getEmail().equals(rs.getString("email"))){
+					return 2;
+				}
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 3;
+			}
+		return 0;
 	}
 
 }
