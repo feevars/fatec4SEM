@@ -27,6 +27,7 @@ public class AdministradorController  {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		validator = factory.getValidator();
 		carregaListaUsuarios();
+		carregaListaCursos();
 	}
 	
 	private void alert(AlertType tipo, String title, String header, String content) {
@@ -51,6 +52,12 @@ public class AdministradorController  {
 			alert(AlertType.ERROR,"FreeTech", "Não foi possivel cadastrar Administrador", msgErros);
 		}
 	}
+	
+	public Boolean editarEstudante(Estudante estudante){
+		
+		return null;
+	}
+	
 	
 	public boolean logarAdmin(String username, String password){
 		if(administradorDao.logarAdmin(username, password)) {
@@ -77,7 +84,6 @@ public class AdministradorController  {
 	}
 	
 	public ObservableList<Curso> listarTodosCursos(){
-		carregaListaCursos();
 		return listaCursos;	
 	}
 	

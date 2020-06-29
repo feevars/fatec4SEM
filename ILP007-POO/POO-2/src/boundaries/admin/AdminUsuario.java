@@ -2,20 +2,17 @@ package boundaries.admin;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.sql.Date;
 
-import javax.swing.text.DateFormatter;
-
-import controllers.EstudanteController;
+import controllers.AdministradorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,8 +20,10 @@ import model.entities.Estudante;
 
 public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 
-	EstudanteController estudanteController = new EstudanteController();
+	AdministradorController adminController = new AdministradorController();
 
+	private Integer idAdmin;
+	
 	private VBox vboxCadastroUsuario = new VBox();
 
 	private Label lblNome = new Label("Primeiro nome:");
@@ -46,22 +45,12 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 	private Button btnExcluir = new Button("Excluir usuário");
 	private Button btnSalvar = new Button("Salvar edições");
 
-	public AdminUsuario() {
 
-		btnSalvar.setOnAction(this);
-		btnExcluir.setOnAction(this);
-		btnCancelar.setOnAction(this);
-
-		hboxBotoesAcoes.getChildren().addAll(btnCancelar, btnExcluir, btnSalvar);
-
-		this.vboxCadastroUsuario.getChildren().addAll(lblNome, txtNome, lblSobrenome, txtSobrenome, lblTelefone,
-				txtTelefone, lblDataNascimento, dtNascimento, hboxBotoesAcoes);
-		this.getChildren().add(vboxCadastroUsuario);
-	}
-
-	public AdminUsuario(Integer adminId, String nomeUsuario, String sobrenomeUsuario, String telefoneUsuario,
+	public AdminUsuario(Integer idAdmin, String nomeUsuario, String sobrenomeUsuario, String telefoneUsuario,
 			Date dataNascimentoUsuario, Boolean eInstrutor) {
 
+		this.idAdmin = idAdmin;
+		
 		btnSalvar.setOnAction(this);
 		btnExcluir.setOnAction(this);
 		btnCancelar.setOnAction(this);
@@ -70,7 +59,7 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 		txtSobrenome.setText(sobrenomeUsuario);
 		txtTelefone.setText(telefoneUsuario);
 
-		dtNascimento.setValue(null);
+		dtNascimento.setValue(dataNascimentoUsuario.toLocalDate());
 		
 		checkInstrutor.setSelected(eInstrutor);
 
@@ -99,9 +88,11 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
+		Scene cena = this.getScene();
 		if (event.getTarget() == btnSalvar) {
-			// estudanteController.cadastrar(boundaryToEntity());
+			adminController.editarEstudante(boundaryToEntity());
 		} else if (event.getTarget() == btnCancelar) {
+			cena.setRoot(new AdminCurso(this.idAdmin));
 		}
 
 	}

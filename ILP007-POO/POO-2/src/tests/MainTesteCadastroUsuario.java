@@ -17,11 +17,11 @@ public class MainTesteCadastroUsuario extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminUsuario uc = new AdminUsuario(1, "Felizberto", "Fonseca", "2345678", new Date(), true);
+		//AdminUsuario uc = new AdminUsuario(1, "Felizberto", "Fonseca", "2345678", new Date(), true);
 		
-		Scene cena = new Scene(uc, 600, 800);
-		stage.setScene(cena);
-		stage.show();
+		//Scene cena = new Scene(uc, 600, 800);
+		//stage.setScene(cena);
+		//stage.show();
 	}
 
 }
