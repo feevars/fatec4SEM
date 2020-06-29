@@ -1,6 +1,7 @@
 package model.dao.implementation;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +36,7 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public boolean logarAdmin(String username, String password) {
 		try {
@@ -61,7 +62,7 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public List<Curso> listarCursos() {
 		List<Curso> lista = new ArrayList<Curso>();
@@ -72,8 +73,8 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 			PreparedStatement stm = con.prepareStatement(sql);
 			rs = stm.executeQuery();
 			while (rs.next()) {
-				Curso curso = new Curso();
-				curso.setId(rs.getInt("id"));
+				Curso curso = new Curso(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao"), null, null,
+						Date.valueOf(rs.getString("dataCriacao")), Date.valueOf(rs.getString("dataAtuualizacao")));
 				curso.setDescricao(rs.getString("titulo"));
 				curso.setTitulo(rs.getString("descricao"));
 				lista.add(curso);
@@ -85,7 +86,7 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public List<Estudante> listarEstudantes() {
 		List<Estudante> lista = new ArrayList<Estudante>();
@@ -95,18 +96,16 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
 			rs = stm.executeQuery();
-			while (rs.next()) {	
-				if(!rs.getBoolean("instrutor")) {
-				Estudante estudante = new Estudante(rs.getInt("id")
-					, rs.getString("username"), rs.getString("nome"), rs.getString("sobrenome")
-					, rs.getString("email"), rs.getString("telefone"), rs.getDate("dataNascimento")
-					,rs.getInt("pontos"));
+			while (rs.next()) {
+				if (!rs.getBoolean("instrutor")) {
+					Estudante estudante = new Estudante(rs.getInt("id"), rs.getString("username"), rs.getString("nome"),
+							rs.getString("sobrenome"), rs.getString("email"), rs.getString("telefone"),
+							rs.getDate("dataNascimento"), rs.getInt("pontos"));
 					lista.add(estudante);
-				}else{
-					Estudante instrutor = new Instrutor(rs.getInt("id")
-					, rs.getString("username"), rs.getString("nome"), rs.getString("sobrenome")
-					, rs.getString("email"), rs.getString("telefone"), rs.getDate("dataNascimento"),
-					rs.getInt("pontos"));
+				} else {
+					Estudante instrutor = new Instrutor(rs.getInt("id"), rs.getString("username"), rs.getString("nome"),
+							rs.getString("sobrenome"), rs.getString("email"), rs.getString("telefone"),
+							rs.getDate("dataNascimento"), rs.getInt("pontos"));
 					lista.add(instrutor);
 				}
 			}
@@ -127,8 +126,8 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setInt(1, id);
 			rs = stm.executeQuery();
-			while(rs.next()){
-				if(id == (rs.getInt("id"))){
+			while (rs.next()) {
+				if (id == (rs.getInt("id"))) {
 					Administrador admin = new Administrador(rs.getInt("id"), rs.getString("username"));
 					con.close();
 					return admin;
@@ -150,8 +149,8 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setString(1, username);
 			rs = stm.executeQuery();
-			while(rs.next()){
-				if(username.equals(rs.getString("username"))){
+			while (rs.next()) {
+				if (username.equals(rs.getString("username"))) {
 					Administrador admin = new Administrador(rs.getInt("id"), rs.getString("username"));
 					con.close();
 					return admin;
@@ -160,7 +159,7 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch(NullPointerException ne) {
+		} catch (NullPointerException ne) {
 			ne.printStackTrace();
 		}
 		return null;
