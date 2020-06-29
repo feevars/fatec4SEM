@@ -28,7 +28,7 @@ public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
 	
 	private HBox hbox = new HBox();;
 	
-	private Button btnCancelar = new Button("Cadastrar");;
+	private Button btnCancelar = new Button("Cancelar");;
 	private Button btnCadastro = new Button("Cadastrar");;
 	private Button btnLogin = new Button("Login");;
 	
