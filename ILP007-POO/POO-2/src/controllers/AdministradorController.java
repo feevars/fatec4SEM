@@ -13,12 +13,14 @@ import java.util.Set;
 import model.dao.AdministradorDao;
 import model.dao.implementation.AdminstradorDaoImpl;
 import model.entities.Administrador;
+import model.entities.Curso;
 import model.entities.Estudante;
 
 public class AdministradorController  {
 
 	private AdministradorDao administradorDao = new AdminstradorDaoImpl();
 	private ObservableList<Estudante> listaUsuarios = FXCollections.observableArrayList();
+	private ObservableList<Curso> listaCursos = FXCollections.observableArrayList();
 	private Validator validator;
 	
 	public AdministradorController(){
@@ -68,6 +70,15 @@ public class AdministradorController  {
 	public ObservableList<Estudante> listarTodosEstudantes(){
 		carregaListaUsuarios();
 		return listaUsuarios;	
+	}
+	
+	public void carregaListaCursos(){
+		this.listaCursos.addAll(administradorDao.listarCursos());
+	}
+	
+	public ObservableList<Curso> listarTodosCursos(){
+		carregaListaCursos();
+		return listaCursos;	
 	}
 	
 
