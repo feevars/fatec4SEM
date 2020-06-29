@@ -31,6 +31,19 @@ public class Estudante {
 		this.cursosConcluidos = cursosConcluidos;
 	}
 	
+	public Estudante(Integer id, String username, String nome, String sobrenome, String email, String telefone,
+			Date dataNascimento, Integer pontos) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.telefone = telefone;
+		this.dataNascimento = dataNascimento;
+		this.pontos = pontos;
+	}
+	
 	public Estudante(){
 	}
 

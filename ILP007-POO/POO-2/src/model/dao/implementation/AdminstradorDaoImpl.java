@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import model.dao.AdministradorDao;
 import model.dao.DaoFactory;
 import model.entities.Administrador;
 import model.entities.Curso;
 import model.entities.Estudante;
+import model.entities.Instrutor;
 
 public class AdminstradorDaoImpl implements AdministradorDao {
 
@@ -62,8 +63,8 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 	}
 	
 	@Override
-	public Set<Curso> listarCursos() {
-		Set<Curso> lista = new HashSet<Curso>();
+	public List<Curso> listarCursos() {
+		List<Curso> lista = new ArrayList<Curso>();
 		Connection con = daoFactory.getConnection();
 		ResultSet rs;
 		String sql = "SELECT * FROM Curso";
@@ -86,7 +87,34 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 	}
 	
 	@Override
-	public Set<Estudante> listarEstudantes() {
+	public List<Estudante> listarEstudantes() {
+		List<Estudante> lista = new ArrayList<Estudante>();
+		Connection con = daoFactory.getConnection();
+		ResultSet rs;
+		String sql = "SELECT * FROM Estudante";
+		try {
+			PreparedStatement stm = con.prepareStatement(sql);
+			rs = stm.executeQuery();
+			while (rs.next()) {	
+				if(!rs.getBoolean("instrutor")) {
+				Estudante estudante = new Estudante(rs.getInt("id")
+					, rs.getString("username"), rs.getString("nome"), rs.getString("sobrenome")
+					, rs.getString("email"), rs.getString("telefone"), rs.getDate("dataNascimento")
+					,rs.getInt("pontos"));
+					lista.add(estudante);
+				}else{
+					Estudante instrutor = new Instrutor(rs.getInt("id")
+					, rs.getString("username"), rs.getString("nome"), rs.getString("sobrenome")
+					, rs.getString("email"), rs.getString("telefone"), rs.getDate("dataNascimento"),
+					rs.getInt("pontos"));
+					lista.add(instrutor);
+				}
+			}
+			con.close();
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

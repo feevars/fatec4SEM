@@ -12,6 +12,12 @@ public class Instrutor extends Estudante {
 		super(id, username, password, nome, sobrenome, email, telefone, dataNascimento, pontos, cursosConcluidos);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Instrutor(Integer id, String username, String nome, String sobrenome, String email, String telefone,
+			Date dataNascimento, Integer pontos) {
+		super(id, username, nome, sobrenome, email, telefone, dataNascimento, pontos);
+
+	}
 
 	public Set<Curso> getCursosCriados() {
 		return cursosCriados;

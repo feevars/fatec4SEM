@@ -1,6 +1,7 @@
 package boundaries.admin;
 
 import boundaries.Login;
+import controllers.AdministradorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,6 +23,7 @@ import model.entities.Estudante;
 public class AdminDashboard extends BorderPane implements EventHandler<ActionEvent>{
 
 	private Integer idAdmin;
+	AdministradorController adminController = new AdministradorController();
 	
 	private Label lblAdmin = new Label(); 
 	private GridPane dashboardAdmin = new GridPane();
@@ -35,7 +37,7 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 	private TableView<Curso> tableCursos = new TableView<>();//(control.getLista
 
 	private Label lblUsuarios = new Label("Usuários");
-	private TableView<Estudante> tableUsuarios = new TableView<>();//control.getLista
+	private TableView<Estudante> tableUsuarios = new TableView<>(adminController.listarTodosEstudantes());//control.getLista
 	
 	public AdminDashboard (Integer idAdmin) {
 		this.idAdmin = idAdmin;
