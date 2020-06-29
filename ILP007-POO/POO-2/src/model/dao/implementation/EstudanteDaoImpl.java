@@ -4,14 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import model.dao.DaoFactory;
 import model.dao.EstudanteDao;
 import model.entities.Estudante;
 
 public class EstudanteDaoImpl implements EstudanteDao {
 	
-	private DaoFactory daoFactory;
+	private DaoFactory daoFactory = new DaoFactory();
 
 	@Override
 	public void estudanteCadastro(Estudante estudante) {
@@ -29,7 +28,6 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			stm.setDate(7, estudante.getDataNascimento());
 			stm.executeUpdate();
 			con.close();
-			System.out.println("Estudante " + estudante.getNome() + " cadastrado!");
 			}catch(SQLException se) {
 				se.printStackTrace();
 				System.out.println("Erro ao cadastrar usuário");
@@ -79,16 +77,18 @@ public class EstudanteDaoImpl implements EstudanteDao {
 		try {	
 			String sql = "SELECT * FROM Estudante";
 			PreparedStatement stm = con.prepareStatement(sql);
-			stm.setString(1, usuario.getEmail());
 			rs = stm.executeQuery();	
 			while(rs.next()){
 				if(usuario.getUsername().equals(rs.getString("username"))){
+					con.close();
 					return 1;
 				}
 				if(usuario.getEmail().equals(rs.getString("email"))){
+					con.close();
 					return 2;
 				}
 			}
+			con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return 3;

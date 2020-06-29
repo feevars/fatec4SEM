@@ -92,24 +92,25 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 	@Override
 	public void handle(ActionEvent event) {
 		if(event.getTarget() == btnCadastrar){
-		Integer cadastro = estudanteController.cadastrarEstudante(boundaryToEntity());
 			if (!txtPassword.getText().equals(txtPasswordCheck.getText())) {
 				Alert alertSenhasDiferentes = new Alert(AlertType.ERROR, "As senhas informadas são diferentes.");
 				alertSenhasDiferentes.show();
-			}else if(cadastro == 0){
+			}
+			Integer cadastro = estudanteController.cadastrarEstudante(boundaryToEntity());
+			if(cadastro == 0){
 				Alert alertCadastradoComSucesso = new Alert(AlertType.INFORMATION, "Cadastrado com sucesso!");
 				alertCadastradoComSucesso.show();
 			}else if(cadastro == 1){
-				Alert alertusuarioJaExiste = new Alert(AlertType.INFORMATION, "O nome de usuario " + txtUsername.getText() + " já existe!");
+				Alert alertusuarioJaExiste = new Alert(AlertType.ERROR, "O nome de usuario " + txtUsername.getText() + " já existe!");
 				alertusuarioJaExiste.show();
 			}else if(cadastro == 2){
-				Alert alertEmailJaExiste = new Alert(AlertType.INFORMATION, "O email " + txtEmail.getText() + " já cadastrado!");
+				Alert alertEmailJaExiste = new Alert(AlertType.ERROR, "O email " + txtEmail.getText() + " já cadastrado!");
 				alertEmailJaExiste.show();
 			}else if(cadastro == 3){
-				Alert alertErroBanco = new Alert(AlertType.INFORMATION, "Ocorreu um erro de banco de dados.");
+				Alert alertErroBanco = new Alert(AlertType.ERROR, "Ocorreu um erro de banco de dados.");
 				alertErroBanco.show();
 			}else if(cadastro == 4){
-				Alert alertErroValidacaoFormulario = new Alert(AlertType.INFORMATION, "Ocorreu um erro de validação no formulário.");
+				Alert alertErroValidacaoFormulario = new Alert(AlertType.ERROR, "Ocorreu um erro de validação no formulário.");
 				alertErroValidacaoFormulario.show();
 			}
 		}

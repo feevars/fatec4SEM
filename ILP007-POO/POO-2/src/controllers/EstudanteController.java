@@ -21,7 +21,7 @@ public class EstudanteController {
 	}
 		
 	public Integer cadastrarEstudante(Estudante estudante){
-		int valida = -1;
+		Integer valida;
 		Set<ConstraintViolation<Estudante>> erros = validator.validate(estudante);
 		if(erros.isEmpty()){
 			valida = usuarioDao.validaCadastroEstudante(estudante);
