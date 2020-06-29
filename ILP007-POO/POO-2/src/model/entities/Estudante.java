@@ -44,8 +44,11 @@ public class Estudante {
 		this.pontos = pontos;
 	}
 	
-	public Estudante(){
+	public Estudante(Integer id){
+		this.id = id;
 	}
+	
+	public Estudante() {}
 
 	public String getUsername() {
 		return username;
@@ -121,5 +124,9 @@ public class Estudante {
 
 	public void setCursosConcluidos(Set<Curso> cursosConcluidos) {
 		this.cursosConcluidos = cursosConcluidos;
+	}
+	
+	public String getNomeDoObjeto() {
+		return "Estudante";
 	}
 }

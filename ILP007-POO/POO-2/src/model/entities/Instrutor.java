@@ -18,6 +18,10 @@ public class Instrutor extends Estudante {
 		super(id, username, nome, sobrenome, email, telefone, dataNascimento, pontos);
 
 	}
+	
+	public Instrutor(Integer id) {
+		super(id);
+	};
 
 	public Set<Curso> getCursosCriados() {
 		return cursosCriados;
@@ -25,6 +29,10 @@ public class Instrutor extends Estudante {
 
 	public void setCursosCriados(Set<Curso> cursosCriados) {
 		this.cursosCriados = cursosCriados;
+	}
+	
+	public String getNomeDoObjeto() {
+		return "Instrutor";
 	}
 	
 }

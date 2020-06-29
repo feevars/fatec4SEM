@@ -21,8 +21,8 @@ public class TesteMainPrincipal extends Application {
 		
 		stage.setMinWidth(800);
 		stage.setMinHeight(600);
-		stage.setMaximized(true);
-		stage.setFullScreen(true);
+//		stage.setMaximized(true);
+//		stage.setFullScreen(true);
 		
 		stage.setScene(cena);
 		stage.show();

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import model.dao.AdminEstudanteDao;
 import model.dao.DaoFactory;
 import model.entities.Estudante;
+import model.entities.Instrutor;
 
 public class AdminEstudanteDaoImpl implements AdminEstudanteDao {
 
@@ -43,15 +44,17 @@ public class AdminEstudanteDaoImpl implements AdminEstudanteDao {
 	@Override
 	public Boolean editarEstudante(Estudante usuario) {
 		Connection con = daoFactory.getConnection();
-		String sql = "UPDATE Estudante SET nome = ?, sobrenome = ?, email = ?, telefone = ?"
+		String sql = "UPDATE Estudante SET nome = ?, sobrenome = ?, telefone = ?, dataNascimento = ?, instrutor = ? "
 				   + "WHERE id = ?";
 		try{
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setString(1, usuario.getNome());
 			stm.setString(2, usuario.getSobrenome());
-			stm.setString(3, usuario.getEmail());
-			stm.setString(4, usuario.getTelefone());
-			stm.setInt(5, usuario.getId());
+			stm.setString(3, usuario.getTelefone());
+			stm.setDate(4, usuario.getDataNascimento());
+			if (usuario instanceof Instrutor) stm.setBoolean(5, true);
+			else stm.setBoolean(5, false);
+			stm.setInt(6, usuario.getId());
 			stm.executeUpdate();
 			con.close();
 			return true;

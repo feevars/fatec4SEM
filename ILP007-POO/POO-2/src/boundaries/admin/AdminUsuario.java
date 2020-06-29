@@ -17,12 +17,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Estudante;
+import model.entities.Instrutor;
 
 public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 
 	AdministradorController adminController = new AdministradorController();
 
 	private Integer idAdmin;
+	private Integer idUsuario;
 	
 	private VBox vboxCadastroUsuario = new VBox();
 
@@ -46,10 +48,11 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 	private Button btnSalvar = new Button("Salvar edições");
 
 
-	public AdminUsuario(Integer idAdmin, String nomeUsuario, String sobrenomeUsuario, String telefoneUsuario,
+	public AdminUsuario(Integer idAdmin, Integer idUsuario, String nomeUsuario, String sobrenomeUsuario, String telefoneUsuario,
 			Date dataNascimentoUsuario, Boolean eInstrutor) {
 
 		this.idAdmin = idAdmin;
+		this.idUsuario = idUsuario;
 		
 		btnSalvar.setOnAction(this);
 		btnExcluir.setOnAction(this);
@@ -71,7 +74,10 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 	}
 
 	public Estudante boundaryToEntity() {
-		Estudante usuario = new Estudante();
+		
+		Estudante usuario;
+		if(checkInstrutor.isSelected()) usuario = new Instrutor(this.idUsuario);
+		else usuario = new Estudante(this.idUsuario);
 		try {
 			usuario.setNome(txtNome.getText());
 			usuario.setSobrenome(txtSobrenome.getText());
@@ -91,8 +97,11 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 		Scene cena = this.getScene();
 		if (event.getTarget() == btnSalvar) {
 			adminController.editarEstudante(boundaryToEntity());
+			System.out.println("Usuário editado com sucesso!");
+			cena.setRoot(new AdminDashboard(this.idAdmin));
+
 		} else if (event.getTarget() == btnCancelar) {
-			cena.setRoot(new AdminCurso(this.idAdmin));
+			cena.setRoot(new AdminDashboard(this.idAdmin));
 		}
 
 	}

@@ -10,7 +10,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.util.Set;
+
+import model.dao.AdminEstudanteDao;
 import model.dao.AdministradorDao;
+import model.dao.implementation.AdminEstudanteDaoImpl;
 import model.dao.implementation.AdminstradorDaoImpl;
 import model.entities.Administrador;
 import model.entities.Curso;
@@ -19,6 +22,7 @@ import model.entities.Estudante;
 public class AdministradorController  {
 
 	private AdministradorDao administradorDao = new AdminstradorDaoImpl();
+	private AdminEstudanteDao adminEstudanteDao = new AdminEstudanteDaoImpl();
 	private ObservableList<Estudante> listaUsuarios = FXCollections.observableArrayList();
 	private ObservableList<Curso> listaCursos = FXCollections.observableArrayList();
 	private Validator validator;
@@ -54,7 +58,7 @@ public class AdministradorController  {
 	}
 	
 	public Boolean editarEstudante(Estudante estudante){
-		
+		adminEstudanteDao.editarEstudante(estudante);
 		return null;
 	}
 	
