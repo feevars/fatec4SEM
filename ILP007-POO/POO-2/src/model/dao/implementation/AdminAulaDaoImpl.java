@@ -27,7 +27,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		try {
 			Connection conn = daoFactory.getConnection();
 			ResultSet rs;
-			String sql = "SELECT Exercicio.* FROM Exercicio WHERE Exercicio.aulaId = ?";
+			String sql = "SELECT * FROM Exercicio WHERE aulaId = ?";
 			PreparedStatement stm = conn.prepareStatement(sql);
 			rs = stm.executeQuery();
 			while (rs.next()) {

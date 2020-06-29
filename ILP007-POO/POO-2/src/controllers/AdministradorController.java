@@ -62,6 +62,9 @@ public class AdministradorController  {
 		return null;
 	}
 	
+	public void excluirEstudante (Integer id) {
+		adminEstudanteDao.excluirEstudante(id);
+	}
 	
 	public boolean logarAdmin(String username, String password){
 		if(administradorDao.logarAdmin(username, password)) {
@@ -90,6 +93,7 @@ public class AdministradorController  {
 	public ObservableList<Curso> listarTodosCursos(){
 		return listaCursos;	
 	}
+	
 	
 
 	
