@@ -14,9 +14,9 @@ public interface EstudanteDao {
 	
 	public void estudanteRealizarExercicios(Integer idAula);
 	
-	public void estudanteIniciarCurso(Integer idEstudante, Integer idCurso);
+	public Boolean estudanteIniciarCurso(Integer idEstudante, Integer idCurso);
 	
-	public void estudanteConcluirCurso(Integer idEstudante, Integer idCurso);
+	public Boolean estudanteConcluirCurso(Integer idEstudante, Integer idCurso);
 	
 	public Integer validaCadastroEstudante(Estudante usuario);
 	
