@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.List;
 import java.util.Set;
 
 import model.entities.Aula;
@@ -12,6 +13,8 @@ public interface AdminCursoDao {
 	Boolean excluirCurso(Integer id);
 	Boolean editarCurso(Curso c);
 	Set<Aula> listarAulasCurso(Integer id);
-	Set<Instrutor> listarInstrutores();
-	Set<Instrutor> listarInstrutoresCurso(Integer cursoId);
+	List<Instrutor> listarInstrutores();
+	Set<Instrutor> listarInstrutoresPorCurso(Integer cursoId);
+	Set<Curso> listarCursosPorInstrutor(Integer instrutorId);
+	Boolean verificaAutoria(Integer instrutorId, Integer cursoId);
 }

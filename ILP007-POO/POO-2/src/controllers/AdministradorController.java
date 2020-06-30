@@ -4,6 +4,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -28,6 +30,7 @@ public class AdministradorController {
 	private ObservableList<Estudante> listaUsuarios = FXCollections.observableArrayList();
 	private ObservableList<Instrutor> listaTodosInstrutores = FXCollections.observableArrayList();
 	private ObservableList<Curso> listaCursos = FXCollections.observableArrayList();
+	private ObservableValue<Boolean> valorAutoria;
 	private Validator validator;
 
 	public AdministradorController() {
@@ -97,7 +100,7 @@ public class AdministradorController {
 	public ObservableList<Curso> listarTodosCursos() {
 		return listaCursos;
 	}
-	
+
 	public void carregaListaInstrutores() {
 		this.listaTodosInstrutores.addAll(adminCursoDao.listarInstrutores());
 	}
@@ -105,4 +108,11 @@ public class AdministradorController {
 	public ObservableList<Instrutor> listarTodosInstrutores() {
 		return listaTodosInstrutores;
 	}
+
+	public Boolean autorDoCurso(Integer instrutorId, Integer cursoId) {
+
+		return adminCursoDao.verificaAutoria(instrutorId, cursoId);
+
+	}
+
 }

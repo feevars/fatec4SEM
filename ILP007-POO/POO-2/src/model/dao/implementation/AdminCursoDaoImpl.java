@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.DateTimeException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
@@ -139,50 +141,87 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public Set<Instrutor> listarInstrutores() {
+	public List<Instrutor> listarInstrutores() {
 
 		try {
 			Connection con = daoFactory.getConnection();
 			String sql = "Select * FROM Estudante WHERE instrutor = 1 ORDER BY nome";
-
 			PreparedStatement stm = con.prepareStatement(sql);
-
-			Set<Instrutor> instrutores = new HashSet<Instrutor>();
-
 			ResultSet rs = stm.executeQuery();
 
+			List<Instrutor> instrutores = new ArrayList<Instrutor>();
 			while (rs.next()) {
 				instrutores.add(new Instrutor(rs.getInt("id"), rs.getString("username"), rs.getString("nome"),
-						rs.getString("sobrenome")));
+						rs.getString("sobrenome"), listarCursosPorInstrutor(rs.getInt("id"))));
 			}
 			con.close();
 			return instrutores;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
-
-	}
-
-	@Override
-	public Set<Instrutor> listarInstrutoresCurso(Integer cursoId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/*
-	 * @Override public Set<Aula> listarAulas() { Set<Aula> lista = new
-	 * HashSet<Aula>(); Connection con = daoFactory.getConnection(); ResultSet rs;
-	 * String sql = "SELECT * FROM Aula"; try { PreparedStatement stm =
-	 * con.prepareStatement(sql); rs = stm.executeQuery(); while (rs.next()) { Aula
-	 * aula = new Aula(); aula.setId(rs.getInt("id"));
-	 * aula.setDescricao(rs.getString("titulo"));
-	 * aula.setTitulo(rs.getString("descricao"));
-	 * aula.setLinkVideo(rs.getString("linkVideo"));
-	 * aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
-	 * aula.setTempoVideo(rs.getInt("tempoVideo"));
-	 * aula.setNumAula(rs.getInt("numeroAula")); lista.add(aula); } con.close();
-	 * return lista; } catch (SQLException e) { e.printStackTrace(); } return null;
-	 * }
-	 */
+	@Override
+	public Set<Instrutor> listarInstrutoresPorCurso(Integer cursoId) {
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "Select id, usernmae, nome, sobrenome FROM Estudante LEFT JOIN CursoInstrutor ON Estudante.id=CursoInstrutor.instrutorId WHERE CursoInstrutor.cursoId = "
+					+ cursoId.toString();
+			PreparedStatement stm = con.prepareStatement(sql);
+			ResultSet rs = stm.executeQuery();
+			Set<Instrutor> cursosPorInstrutor = new HashSet<Instrutor>();
+			while (rs.next()) {
+				cursosPorInstrutor.add(new Instrutor(rs.getInt("id"), rs.getNString("username"), rs.getString("nome"), rs.getString("sobrenome")));
+			}
+			con.close();
+			return cursosPorInstrutor;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Set<Curso> listarCursosPorInstrutor(Integer instrutorId) {
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "SELECT id, titulo, descricao FROM Curso LEFT JOIN CursoInstrutor ON Curso.id=CursoInstrutor.cursoId WHERE CursoInstrutor.instrutorId = "
+					+ instrutorId.toString();
+			PreparedStatement stm = con.prepareStatement(sql);
+			ResultSet rs = stm.executeQuery();
+			Set<Curso> cursosPorInstrutor = new HashSet<Curso>();
+			while (rs.next()) {
+				cursosPorInstrutor.add(new Curso(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao")));
+			}
+			con.close();
+			return cursosPorInstrutor;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean verificaAutoria(Integer instrutorId, Integer cursoId) {
+		
+			try {
+				Connection con = daoFactory.getConnection();
+				String sql = "SELECT * FROM CursoInstrutor WHERE instrutorId = ? AND cursoId = ?";
+				PreparedStatement stm = con.prepareStatement(sql);
+				stm.setInt(1, instrutorId);
+				stm.setInt(2, cursoId);
+				ResultSet rs = stm.executeQuery();
+				while(rs.next()) {
+					if(rs.getInt("instrutorId") == instrutorId.intValue() && rs.getInt("cursoId") == cursoId.intValue()) {
+						return true;
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		return false;
+	}
 }
