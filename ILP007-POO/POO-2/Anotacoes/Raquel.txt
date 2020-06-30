@@ -2,3 +2,12 @@
 - Controller:EstudanteController - editar e listar 
 - Boundaries: EstudanteCadastro
 - DAO:EstudanteDAO e EstudanteDAOImpl
+
+
+	
+    ---------------- Editar perfil do próprio Estudante 
+						-estudante controller
+    					-estudante dashboard
+		 
+		 
+    ----------------Estudante logar no dashboard

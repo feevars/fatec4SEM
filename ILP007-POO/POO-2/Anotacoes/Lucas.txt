@@ -2,3 +2,12 @@
 - Controller:AdministradorController - editar e listar 
 - Boundaries: AdminCadastro
 - DAO:AdministradoDAO e AdministradoDAOImpl
+
+
+---------------- Cadastrar exercicio (Set de exercícios por aula)
+Estrutura para ir e voltar 
+						
+Exercício - editar ou cadastrar exercício é a mesma coisa de edtar perfil de estudante (EstudanteCadastro, por exemplo)
+		
+		
+AdminExercicioView

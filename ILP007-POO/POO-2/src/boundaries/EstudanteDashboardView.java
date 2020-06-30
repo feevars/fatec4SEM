@@ -16,7 +16,9 @@ import javafx.scene.layout.VBox;
 import model.entities.Curso;
 import model.entities.Estudante;
 
-public class EstudanteDashboard extends BorderPane implements EventHandler<ActionEvent> {
+public class EstudanteDashboardView extends BorderPane implements EventHandler<ActionEvent> {
+	
+	private Integer estudanteId;
 
 	private HBox hboxHeader = new HBox();
 	private Label lblUsuario = new Label();
@@ -32,7 +34,9 @@ public class EstudanteDashboard extends BorderPane implements EventHandler<Actio
 	private Button btnEditarPerfil = new Button("Editar perfil");
 	
 	
-	public EstudanteDashboard(Integer id) {
+	public EstudanteDashboardView(Integer estudanteId) {
+		
+		this.estudanteId = estudanteId;
 		
 		this.lblUsuario.setText("Logado como: "); //Aqui precisa colocar uma chamada de get nome por id
 		
@@ -40,6 +44,7 @@ public class EstudanteDashboard extends BorderPane implements EventHandler<Actio
 		gerarTabelaCursos();
 		
 		btnSair.setOnAction(this);
+		btnEditarPerfil.setOnAction(this);
 		
 		hboxHeader.getChildren().addAll(lblUsuario, btnSair);
 		hboxHeader.setAlignment(Pos.TOP_RIGHT);
@@ -63,7 +68,7 @@ public class EstudanteDashboard extends BorderPane implements EventHandler<Actio
 		TableColumn<Curso, String> colTituloCurso = new TableColumn<>("Título do Curso");
 		colTituloCurso.setCellValueFactory(new PropertyValueFactory<Curso, String>("titulo"));
 		
-		tableCursos.getColumns().addAll(colTituloCurso);
+		tableCursos.getColumns().add(colTituloCurso);
 		tableCursos.setMaxWidth(600);
 	}
 	
@@ -82,7 +87,10 @@ public class EstudanteDashboard extends BorderPane implements EventHandler<Actio
 		Scene cena = this.getScene();
 
 		if (event.getTarget().equals(btnSair)) {
-			cena.setRoot(new Login());
+			cena.setRoot(new LoginView());
+		} 
+		else if (event.getTarget().equals(btnEditarPerfil)) {
+			cena.setRoot(new EstudanteCadastroView(estudanteId));
 		} 
 	}
 }

@@ -4,3 +4,6 @@
 - DAO:ExercicioDAO e ExercicioDAOImpl
 
 Exercicios: 4 erradas, 1 certa
+
+
+- Banco deve ser ajustado: campos NOT NULL 

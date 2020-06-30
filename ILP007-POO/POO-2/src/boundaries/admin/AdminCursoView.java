@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 import model.entities.Aula;
 import model.entities.Instrutor;
 
-public class AdminCurso extends Group implements EventHandler<ActionEvent> {
+public class AdminCursoView extends Group implements EventHandler<ActionEvent> {
 
 	private CursoController cursoController = new CursoController();
 	private AulaController aulaController = new AulaController();
@@ -47,7 +47,7 @@ public class AdminCurso extends Group implements EventHandler<ActionEvent> {
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnSalvarCurso = new Button("Salvar");
 
-	public AdminCurso(Integer idAdmin) {
+	public AdminCursoView(Integer idAdmin) {
 
 		this.setPromtTexts();
 		this.gerarTabelaInstrutores();

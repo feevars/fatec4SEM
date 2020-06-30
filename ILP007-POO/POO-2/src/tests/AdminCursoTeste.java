@@ -1,7 +1,6 @@
 package tests;
 
-import boundaries.admin.AdminAula;
-import boundaries.admin.AdminCurso;
+import boundaries.admin.AdminCursoView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,12 +14,12 @@ public class AdminCursoTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminAula adminAula = new AdminAula();
+		AdminCursoView adminCurso = new AdminCursoView(1);
 
-		Scene scene = new Scene(adminAula, 640, 800);
+		Scene scene = new Scene(adminCurso, 640, 800);
 
 		stage.setScene(scene);
-		stage.setTitle("Aula");
+		stage.setTitle("Curso");
 		stage.show();
 	}
 }

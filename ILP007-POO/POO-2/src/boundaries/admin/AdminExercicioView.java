@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import model.entities.Exercicio;
 
-public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
+public class AdminExercicioView extends Group implements EventHandler<ActionEvent>{
 	
 	ExercicioController exercicioController = new ExercicioController();
 
@@ -57,7 +57,7 @@ public class AdminExercicio extends Group implements EventHandler<ActionEvent>{
 	private Button btnCancelar;
 	private Button btnSalvar;
 
-	public AdminExercicio() {
+	public AdminExercicioView() {
 
 		vbox = new VBox();
 		vbox.setSpacing(5);

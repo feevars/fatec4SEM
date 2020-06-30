@@ -1,6 +1,6 @@
 package boundaries.admin;
 
-import boundaries.Login;
+import boundaries.LoginView;
 import controllers.AdministradorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,7 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Administrador;
 
-public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
+public class AdminCadastroView extends Group implements EventHandler<ActionEvent> {
 	
 	private AdministradorController adminController;
 	
@@ -33,7 +33,7 @@ public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
 	private Button btnLogin = new Button("Login");;
 	
 	
-	public AdminCadastro (String username, String password) {
+	public AdminCadastroView (String username, String password) {
 		
 		adminController = new AdministradorController();
 	
@@ -70,7 +70,7 @@ public class AdminCadastro extends Group implements EventHandler<ActionEvent> {
 			}
 		}
 		else if(event.getTarget().equals(btnCancelar)) {
-			cena.setRoot(new Login());
+			cena.setRoot(new LoginView());
 		}
 		
 		

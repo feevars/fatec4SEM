@@ -10,14 +10,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Exercicio;
 
-public class AdminAula extends Group {
+public class AdminAulaView extends Group {
 
 	private AulaController aulaController = new AulaController();
 	
 	private VBox vboxAula = new VBox();
+	private HBox hboxAula = new HBox();
 	
 	private Label lblTituloAula = new Label("Título da aula:");
 	private TextField txtTituloAula = new TextField();
@@ -42,16 +44,20 @@ public class AdminAula extends Group {
 	private Button btnExcluir = new Button("Excluir");
 	private Button btnSalvarAula = new Button("Salvar");
 	
-	public AdminAula() {
+	public AdminAulaView() {
 		
 		super();
 
 		this.setPromtTexts();
 		this.gerarTabela();
 		
-		this.vboxAula.setPadding(new Insets(20));
-		this.vboxAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula, lblLinkVideo, txtLinkVideo, lblTranscricaoVideo, txtTranscricaoVideo, lblTempoVideo, txtTempoVideo, lblExercicios, btnAdicionarExercicio, tableExercicios);
+		this.txtDescricaoAula.setMaxHeight(100);
 		
+		this.hboxAula.getChildren().addAll(btnCancelar, btnExcluir, btnSalvarAula);
+		
+		this.vboxAula.setPadding(new Insets(20));
+		this.vboxAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula, lblLinkVideo, txtLinkVideo, lblTranscricaoVideo, 
+				txtTranscricaoVideo, lblTempoVideo, txtTempoVideo, lblExercicios, btnAdicionarExercicio, tableExercicios, hboxAula);
 		
 		this.getChildren().add(vboxAula);
 		
@@ -62,7 +68,8 @@ public class AdminAula extends Group {
 		TableColumn<Exercicio, String> colTituloExercicio = new TableColumn<>("Título do Exercício");
 		colTituloExercicio.setCellValueFactory(new PropertyValueFactory<Exercicio, String>("tituloExercicio"));
 		
-		tableExercicios.getColumns().addAll(colTituloExercicio);
+		tableExercicios.getColumns().add(colTituloExercicio);
+		tableExercicios.setMaxHeight(120);
 		
 	}
 	

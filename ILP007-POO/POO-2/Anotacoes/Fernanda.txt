@@ -5,3 +5,21 @@
 
 Aula tem exercício 
 Aula tem link
+
+
+Validações:
+	
+
+	- Cadastrar aula
+		- Depende do ID do curso 
+		- Pode não ter nenhum exercício 
+		- Só a transcrição pode não ser feita
+		
+		
+	----------------Checar todas as validações de Hibernate
+	
+
+	
+	
+		
+		

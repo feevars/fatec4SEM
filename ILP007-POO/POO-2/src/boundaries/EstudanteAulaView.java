@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
-public class EstudanteAula extends BorderPane implements EventHandler<ActionEvent> {
+public class EstudanteAulaView extends BorderPane implements EventHandler<ActionEvent> {
 
 	private Integer idEstudante, idAula;
 
@@ -32,7 +32,7 @@ public class EstudanteAula extends BorderPane implements EventHandler<ActionEven
 	private WebView video = new WebView();
 	private Label lblTranscricaoVideo = new Label("Transcrição do vídeo");
 
-	public EstudanteAula(Integer idEstudante, Integer idAula) {
+	public EstudanteAulaView(Integer idEstudante, Integer idAula) {
 
 		this.idEstudante = idEstudante;
 		this.idAula = idAula;

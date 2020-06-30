@@ -1,6 +1,6 @@
 package tests;
 
-import boundaries.admin.AdminCurso;
+import boundaries.admin.AdminAulaView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,12 +14,17 @@ public class AdminAulaTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminCurso adminCurso = new AdminCurso(1);
+		AdminAulaView adminAula = new AdminAulaView();
 
-		Scene scene = new Scene(adminCurso, 640, 800);
+		Scene scene = new Scene(adminAula);
+		
+		stage.setMinWidth(800);
+		stage.setMinHeight(600);
+		stage.setMaximized(true);
+		stage.setFullScreen(false);
 
 		stage.setScene(scene);
-		stage.setTitle("Curso");
+		stage.setTitle("Cadastrar Aula");
 		stage.show();
 	}
 }

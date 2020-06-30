@@ -3,8 +3,8 @@ package boundaries;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import boundaries.admin.AdminCadastro;
-import boundaries.admin.AdminDashboard;
+import boundaries.admin.AdminCadastroView;
+import boundaries.admin.AdminDashboardView;
 import controllers.AdministradorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +27,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class Login extends BorderPane implements EventHandler<ActionEvent> {
+public class LoginView extends BorderPane implements EventHandler<ActionEvent> {
 
 	private Image logotipo;
 	private ImageView logotipoView;
@@ -54,7 +54,7 @@ public class Login extends BorderPane implements EventHandler<ActionEvent> {
 	
 	private AdministradorController adminController = new AdministradorController(); 
 
-	public Login() {
+	public LoginView() {
 
 		try {
 			this.logotipo = new Image(new FileInputStream("src/assets/images/logotipo-freetech-vertical.png"));
@@ -107,18 +107,18 @@ public class Login extends BorderPane implements EventHandler<ActionEvent> {
 
 		if (opcoesLogin.getSelectedToggle().equals(radioUser)) {
 			if (event.getTarget() == btnCadastrar) {
-				cena.setRoot(new EstudanteCadastro(txtUsername.getText(), txtPassword.getText()));
+				cena.setRoot(new EstudanteCadastroView(txtUsername.getText(), txtPassword.getText()));
 				
 			} else if (event.getTarget() == btnLogin) {
 				System.out.println("Login");
 			}
 		} else {
 			if (event.getTarget() == btnCadastrar) {
-				cena.setRoot(new AdminCadastro(txtUsername.getText(), txtPassword.getText()));
+				cena.setRoot(new AdminCadastroView(txtUsername.getText(), txtPassword.getText()));
 
 			} else if (event.getTarget() == btnLogin) {
 				if(adminController.logarAdmin(txtUsername.getText(), txtPassword.getText())){
-					cena.setRoot(new AdminDashboard(adminController.idAdmin(txtUsername.getText())));
+					cena.setRoot(new AdminDashboardView(adminController.idAdmin(txtUsername.getText())));
 				}else{
 					Alert alertaErro = new Alert(AlertType.ERROR, "Usuário ou senha inválidos.");
 					alertaErro.show();

@@ -45,5 +45,4 @@ public class ExercicioController {
 			alert(AlertType.ERROR,"FreeTech", "Não foi possivel cadastrar Administrador", msgErros);
 		}
 	}
-	
 }

@@ -5,3 +5,16 @@
 
 Set<Aula> (Ordered list), algo assim
 1 instrutor
+
+---------------- Curso obriga a cadastrar automaticamente uma aula
+
+
+
+	---------------- Painel de curso : salvar curso inclui salvar todas as aulas daquele curso
+		
+						-Atualizar curso = atualizar set de aulas 
+						-Select Aula where idCurso = idCurso
+
+						
+	- Curso não pode ser cadastrado sem um instrutor na plataforma (lista de instrutores)
+	- Cadastrar curso

@@ -20,7 +20,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Estudante;
 
-public class EstudanteCadastro extends Group implements EventHandler<ActionEvent> {
+public class EstudanteCadastroView extends Group implements EventHandler<ActionEvent> {
+
+	Integer estudanteId;
 
 	EstudanteController estudanteController = new EstudanteController();
 
@@ -51,9 +53,11 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 	private HBox hboxBotoesAcoes = new HBox();
 
 	private Button btnCancelar = new Button("Cancelar");
+	private Button btnVoltar = new Button("Voltar");
+	private Button btnExcluir = new Button("Excluir o meu perfil");
 	private Button btnCadastrar = new Button("Cadastrar");
 
-	public EstudanteCadastro(String username, String password) {
+	public EstudanteCadastroView(String username, String password) {
 
 		txtUsername.setText(username);
 		txtPassword.setText(password);
@@ -62,6 +66,29 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 		btnCancelar.setOnAction(this);
 
 		hboxBotoesAcoes.getChildren().addAll(btnCancelar, btnCadastrar);
+
+		this.vboxCadastroUsuario.getChildren().addAll(lblUsername, txtUsername, lblPassword, txtPassword,
+				lblPasswordCheck, txtPasswordCheck, lblNome, txtNome, lblSobrenome, txtSobrenome, lblEmail, txtEmail,
+				lblTelefone, txtTelefone, lblDataNascimento, dtNascimento, hboxBotoesAcoes);
+		this.getChildren().add(vboxCadastroUsuario);
+
+	}
+
+	// Construtor para editar
+	public EstudanteCadastroView(Integer estudanteId) {
+
+		this.estudanteId = estudanteId;
+//		txtUsername.setText();  setar os textos de cada campo conforme vier do banco
+//		txtPassword.setText();
+
+		this.txtUsername.setDisable(true);
+		this.txtEmail.setDisable(true);
+
+		this.btnCadastrar.setOnAction(this);
+		this.btnExcluir.setOnAction(this);
+		this.btnVoltar.setOnAction(this);
+
+		hboxBotoesAcoes.getChildren().addAll(btnVoltar, btnExcluir, btnCadastrar);
 
 		this.vboxCadastroUsuario.getChildren().addAll(lblUsername, txtUsername, lblPassword, txtPassword,
 				lblPasswordCheck, txtPasswordCheck, lblNome, txtNome, lblSobrenome, txtSobrenome, lblEmail, txtEmail,
@@ -103,6 +130,7 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 			if (cadastro == 0) {
 				Alert alertCadastradoComSucesso = new Alert(AlertType.INFORMATION, "Cadastrado com sucesso!");
 				alertCadastradoComSucesso.show();
+				cena.setRoot(new LoginView());
 			} else if (cadastro == 1) {
 				Alert alertusuarioJaExiste = new Alert(AlertType.ERROR,
 						"O nome de usuario " + txtUsername.getText() + " já existe!");
@@ -120,7 +148,12 @@ public class EstudanteCadastro extends Group implements EventHandler<ActionEvent
 				alertErroValidacaoFormulario.show();
 			}
 		} else if (event.getTarget() == btnCancelar) {
-			cena.setRoot(new Login());
+			cena.setRoot(new LoginView());
+		} else if (event.getTarget() == btnVoltar) {
+			cena.setRoot(new EstudanteDashboardView(estudanteId));
+		} else if (event.getTarget() == btnExcluir) {
+			// chamar o método de excluir
+			cena.setRoot(new EstudanteDashboardView(estudanteId));
 		}
 	}
 }

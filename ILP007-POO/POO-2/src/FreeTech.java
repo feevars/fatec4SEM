@@ -1,29 +1,27 @@
-import boundaries.Home;
+import boundaries.LoginView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class FreeTech extends Application{
 	
-	public Home homeScreen;
-	
 	public static void main(String[] args) {
-		Application.launch(FreeTech.class);
+		Application.launch(FreeTech.class, args);
 	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
-
-
 		
-				homeScreen = new Home();
+		LoginView telaLogin = new LoginView();
 		
-		final Scene scene = new Scene(homeScreen, 1366, 768);
-//		//scene. 
-//		
-		stage.setScene(scene);
-		stage.setTitle("FreeTech Learning");
+		Scene cena = new Scene(telaLogin);
+		
+		stage.setMinWidth(800);
+		stage.setMinHeight(600);
+		stage.setMaximized(true);
+		stage.setFullScreen(true);
+		
+		stage.setScene(cena);
 		stage.show();
-		
 	}
 }
