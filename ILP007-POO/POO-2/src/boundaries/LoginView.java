@@ -110,6 +110,7 @@ public class LoginView extends BorderPane implements EventHandler<ActionEvent> {
 				cena.setRoot(new EstudanteCadastroView(txtUsername.getText(), txtPassword.getText()));
 				
 			} else if (event.getTarget() == btnLogin) {
+				cena.setRoot(new EstudanteDashboardView(null));
 				System.out.println("Login");
 			}
 		} else {

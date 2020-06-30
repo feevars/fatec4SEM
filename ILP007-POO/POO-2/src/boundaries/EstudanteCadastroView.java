@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import controllers.EstudanteController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -152,8 +154,11 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 		} else if (event.getTarget() == btnVoltar) {
 			cena.setRoot(new EstudanteDashboardView(estudanteId));
 		} else if (event.getTarget() == btnExcluir) {
-			// chamar o método de excluir
-			cena.setRoot(new EstudanteDashboardView(estudanteId));
+			String senha = JOptionPane.showInputDialog("Informe a senha para deletar o seu perfil");
+			// envia a senha para o controller deletar efetivamente depois chama a cena nova 
+			if (!senha.isEmpty()){
+				cena.setRoot(new EstudanteDashboardView(estudanteId));
+			}
 		}
 	}
 }
