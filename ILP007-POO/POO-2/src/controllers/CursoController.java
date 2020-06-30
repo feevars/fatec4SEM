@@ -2,22 +2,21 @@ package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.dao.AdminAulaDao;
 import model.dao.AdminCursoDao;
-import model.dao.EstudanteDao;
+import model.dao.implementation.AdminAulaDaoImpl;
 import model.dao.implementation.AdminCursoDaoImpl;
-import model.dao.implementation.EstudanteDaoImpl;
 import model.entities.Aula;
 import model.entities.Curso;
+import model.entities.Instrutor;
 
 public class CursoController {
 
 	private AdminCursoDao adminCursoDao = new AdminCursoDaoImpl();
-	private EstudanteDao estudanteDao = new EstudanteDaoImpl();
+	private AdminAulaDao adminAulaDao = new AdminAulaDaoImpl();
 	private ObservableList<Aula> listaAulas = FXCollections.observableArrayList();
 	
-			//adminCursoDao e estudanteCursoDao têm o mesmo método, mas 
-			//de maneira diferente: ao clicar, o adm consegue editar a aula
-			//ao clicar, o estudante consegue assistir a aula
+		
 	
 	public ObservableList<Aula> carregarListaAulasAdmin() {
 		//this.listaAulas.addAll(adminCursoDao.listarAulasCurso(id));
@@ -34,6 +33,20 @@ public class CursoController {
 		return null;
 	}
 	
+	public Boolean cadastrarCurso(Curso curso, Integer[] idsInstrutores){
+		Integer idNovoCurso = adminCursoDao.cadastrarCurso(curso);
+			if(idNovoCurso != 0){
+				for (Integer idInstrutor : idsInstrutores) {
+					adminCursoDao.cadastrarInstrutorCurso(idNovoCurso, idInstrutor);
+				}
+				
+			}
+		
+		
+		return false;
+	}
+	
+	
 	public Boolean excluirCurso(Integer idCurso){
 		if(adminCursoDao.excluirCurso(idCurso)) { 
 			return true;
@@ -45,6 +58,21 @@ public class CursoController {
 		if(adminCursoDao.editarCurso(curso)) { 
 			return true;
 		}
+		return false;
+	}
+	
+	public Boolean cadastrarCursoEPrimeiraAula(Curso curso, Aula aula) {
+		
+		
+		Integer cursoId = adminCursoDao.cadastrarCurso(curso);
+		
+		for (Instrutor instrutor : curso.getInstrutores()) {
+			adminCursoDao.cadastrarInstrutorCurso(instrutor.getId(), cursoId);
+		}
+		
+		aula.setCursoId(cursoId);
+		adminAulaDao.cadastrarAula(aula);
+	
 		return false;
 	}
 	

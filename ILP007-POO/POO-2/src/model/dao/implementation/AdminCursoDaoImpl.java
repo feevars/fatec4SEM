@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
 import model.entities.Aula;
@@ -24,35 +26,17 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public Boolean cadastrarCurso(Curso curso, Integer... idsInstrutores) {
-		Integer novoId = 0;
+	public Integer cadastrarCurso(Curso curso) {
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql1 = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?)";
-			PreparedStatement stm = con.prepareStatement(sql1);
+			String sql = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?) OUTPUT Inserted.id";
+			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setString(1, curso.getTitulo());
 			stm.setString(2, curso.getDescricao());
-			stm.executeUpdate();
-			System.out.println("Gravou o curso!");
-
-			String sql2 = "SELECT * FROM Curso WHERE id = LAST_INSERT_ID()";
-			stm = con.prepareStatement(sql2);
-			ResultSet rs = stm.executeQuery();
-			while (rs.next()) {
-				novoId = rs.getInt("id");
-			}
-			System.out.println("Pegou o id: " + novoId);
-
-			for (Integer idInstrutor : idsInstrutores) {
-				String sql3 = "INSERT INTO CursoInstrutor (cursoId, instrutorId) VALUES (?, ?)";
-				stm = con.prepareStatement(sql3);
-				stm.setInt(1, novoId);
-				stm.setInt(2, idInstrutor);
-				stm.executeUpdate();
-				System.out.println("Gravou o cursoId: " + novoId + " e o instrutorId: " + idInstrutor);
-			}
-			con.close();
-			return true;
+			Integer id = 0; 
+			id = stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+			stm.close();
+			return id;
 		} catch (SQLException e) {
 			System.out.println("Erro no cadastro do curso: " + curso.getTitulo());
 			e.printStackTrace();
@@ -60,8 +44,72 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			System.out.println("Erro na conversao de data do curso: " + curso.getTitulo());
 			de.printStackTrace();
 		}
+		return null;
+	}
+
+	@Override
+	public Boolean cadastrarInstrutorCurso(Integer instrutorId, Integer cursoId) {
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql1 = "INSERT INTO CursoInstrutor (instrutorId, cursoId) VALUES (?, ?)";
+			PreparedStatement stm = con.prepareStatement(sql1);
+			stm.setInt(1, instrutorId);
+			stm.setInt(2, cursoId);
+			stm.executeUpdate();
+			System.out.println("Gravou curso " + cursoId + "na tabela CursoInstrutor!");
+			System.out.println("Gravou instrutor " + instrutorId + "na tabela CursoInstrutor!");
+			stm.close();
+			return true;
+
+		} catch (SQLException e) {
+			System.out.println("Erro no cadastro.");
+			e.printStackTrace();
+		} catch (DateTimeException de) {
+			System.out.println("Erro na conversao de data do curso.");
+			de.printStackTrace();
+		}
 		return false;
 	}
+
+//	@Override
+//	public Boolean cadastrarCurso(Curso curso) {
+//		Integer novoId = 0;
+//		try {
+//			Connection con = daoFactory.getConnection();
+//			String sql1 = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?)";
+//			PreparedStatement stm = con.prepareStatement(sql1);
+//			stm.setString(1, curso.getTitulo());
+//			stm.setString(2, curso.getDescricao());
+//			stm.executeUpdate();
+//			System.out.println("Gravou o curso!");
+//			
+//			String sql2 = "SELECT * FROM Curso WHERE id = LAST_INSERT_ID()";
+//			stm = con.prepareStatement(sql2);
+//			ResultSet rs = stm.executeQuery();
+//			while (rs.next()) {
+//				novoId = rs.getInt("id");
+//			}
+//			System.out.println("Pegou o id: " + novoId);
+//			
+//			for (Integer idInstrutor : idsInstrutores) {
+//				String sql3 = "INSERT INTO CursoInstrutor (cursoId, instrutorId) VALUES (?, ?)";
+//				stm = con.prepareStatement(sql3);
+//				stm.setInt(1, novoId);
+//				stm.setInt(2, idInstrutor);
+//				stm.executeUpdate();
+//				System.out.println("Gravou o cursoId: " + novoId + " e o instrutorId: " + idInstrutor);
+//			}
+//			con.close();
+//			return true;
+//		} catch (SQLException e) {
+//			System.out.println("Erro no cadastro do curso: " + curso.getTitulo());
+//			e.printStackTrace();
+//		} catch (DateTimeException de) {
+//			System.out.println("Erro na conversao de data do curso: " + curso.getTitulo());
+//			de.printStackTrace();
+//		}
+//		return false;
+//	}
 
 	@Override
 	public Boolean excluirCurso(Integer idCurso) {
@@ -172,7 +220,8 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			ResultSet rs = stm.executeQuery();
 			Set<Instrutor> cursosPorInstrutor = new HashSet<Instrutor>();
 			while (rs.next()) {
-				cursosPorInstrutor.add(new Instrutor(rs.getInt("id"), rs.getNString("username"), rs.getString("nome"), rs.getString("sobrenome")));
+				cursosPorInstrutor.add(new Instrutor(rs.getInt("id"), rs.getNString("username"), rs.getString("nome"),
+						rs.getString("sobrenome")));
 			}
 			con.close();
 			return cursosPorInstrutor;
@@ -204,24 +253,25 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 
 	@Override
 	public Boolean verificaAutoria(Integer instrutorId, Integer cursoId) {
-		
-			try {
-				Connection con = daoFactory.getConnection();
-				String sql = "SELECT * FROM CursoInstrutor WHERE instrutorId = ? AND cursoId = ?";
-				PreparedStatement stm = con.prepareStatement(sql);
-				stm.setInt(1, instrutorId);
-				stm.setInt(2, cursoId);
-				ResultSet rs = stm.executeQuery();
-				while(rs.next()) {
-					if(rs.getInt("instrutorId") == instrutorId.intValue() && rs.getInt("cursoId") == cursoId.intValue()) {
-						return true;
-					}
+
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "SELECT * FROM CursoInstrutor WHERE instrutorId = ? AND cursoId = ?";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1, instrutorId);
+			stm.setInt(2, cursoId);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				if (rs.getInt("instrutorId") == instrutorId.intValue() && rs.getInt("cursoId") == cursoId.intValue()) {
+					return true;
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return false;
 	}
+
 }
