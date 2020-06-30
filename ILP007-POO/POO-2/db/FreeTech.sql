@@ -17,7 +17,7 @@ CREATE TABLE `Aula` (
     `titulo` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `descricao` TEXT(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `linkVideo` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `transcricaoVideo` TEXT (1000000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `transcricaoVideo` TEXT (1000000) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `tempoVideo` SMALLINT unsigned NOT NULL,
     `numeroAula` INT NOT NULL,
     `cursoId` INT NOT NULL,
@@ -42,11 +42,11 @@ CREATE TABLE `Estudante` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     `username` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `password` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `nome` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `sobrenome` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `nome` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    `sobrenome` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `email` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `telefone` VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `dataNascimento` DATE NOT NULL,
+    `telefone` VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    `dataNascimento` DATE,
     `pontos` SMALLINT unsigned NOT NULL DEFAULT '0',
     `instrutor` BOOLEAN NOT NULL DEFAULT '0'
 ); CREATE TABLE `CursoInstrutor` (
@@ -58,7 +58,7 @@ CREATE TABLE `Estudante` (
 CREATE TABLE `EstudanteCurso` (
     `estudanteId` INT NOT NULL,
     `cursoId` INT NOT NULL,
-    `pontos` SMALLINT UNSIGNED NOT NULL,
+    `pontos` SMALLINT UNSIGNED NOT NULL DEFAULT '0',
     `concluido` BOOLEAN NOT NULL DEFAULT '0',
     CONSTRAINT `fk_estudanteId_cursoId` FOREIGN KEY (`estudanteId`) REFERENCES `Estudante`(`id`),
     CONSTRAINT `fk_cursoId_estudanteId` FOREIGN KEY (`cursoId`) REFERENCES `Curso`(`id`)
