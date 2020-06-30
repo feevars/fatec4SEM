@@ -1,16 +1,16 @@
 package controllers;
 
+import java.util.Set;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import java.util.Set;
 import model.dao.AdminCursoDao;
 import model.dao.AdminEstudanteDao;
 import model.dao.AdministradorDao;
@@ -30,7 +30,6 @@ public class AdministradorController {
 	private ObservableList<Estudante> listaUsuarios = FXCollections.observableArrayList();
 	private ObservableList<Instrutor> listaTodosInstrutores = FXCollections.observableArrayList();
 	private ObservableList<Curso> listaCursos = FXCollections.observableArrayList();
-	private ObservableValue<Boolean> valorAutoria;
 	private Validator validator;
 
 	public AdministradorController() {
