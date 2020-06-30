@@ -34,4 +34,18 @@ public class CursoController {
 		return null;
 	}
 	
+	public Boolean excluirCurso(Integer idCurso){
+		if(adminCursoDao.excluirCurso(idCurso)) { 
+			return true;
+		}
+		return false;
+	}
+	
+	public Boolean editarCurso(Curso curso){
+		if(adminCursoDao.editarCurso(curso)) { 
+			return true;
+		}
+		return false;
+	}
+	
 }

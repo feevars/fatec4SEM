@@ -1,5 +1,6 @@
 package boundaries.admin;
 
+import controllers.CursoController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,10 +16,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Aula;
+import model.entities.Curso;
 import model.entities.Instrutor;
 
 public class AdminCursoView extends Group implements EventHandler<ActionEvent> {
 
+	CursoController cursoController = new CursoController();
+	
 	private VBox vboxCurso = new VBox();
 
 	private Label lblTituloCurso = new Label("Título do curso:");
@@ -62,7 +66,7 @@ public class AdminCursoView extends Group implements EventHandler<ActionEvent> {
 		colNomeInstrutor.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("nomeInstrutor")); // Precisa
 																											// conferir
 		tableInstrutores.setMaxHeight(200);
-		tableInstrutores.getColumns().addAll(colNomeInstrutor);
+		tableInstrutores.getColumns().add(colNomeInstrutor);
 	}
 
 	public void gerarTabelaAulas() {
@@ -70,18 +74,32 @@ public class AdminCursoView extends Group implements EventHandler<ActionEvent> {
 		colTituloAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("tituloAula")); // Precisa conferir
 		
 		tableAulas.setMaxHeight(200);
-		tableAulas.getColumns().addAll(colTituloAula);
+		tableAulas.getColumns().add(colTituloAula);
 	}
 
 	private void setPromtTexts() {
 		txtTituloCurso.setPromptText("Digite o título do curso...");
 	}
 
+	
+	public Curso entityToNoundary(){
+		Curso curso = new Curso();
+		curso.setTitulo(txtTituloCurso.getText());
+		curso.setDescricao(txtDescricaoCurso.getText());
+		return curso;
+	}
+	
 	@Override
 	public void handle(ActionEvent event) {
 		Scene cena = this.getScene();
 		
 		if (event.getTarget().equals(btnAdicionarAula)) {
+			
+		}else if(event.getTarget().equals(btnSalvarCurso)){
+			
+		}else if(event.getTarget().equals(btnExcluirCurso)){
+	//		cursoController.excluirCurso(idCurso);
+		}else if(event.getTarget().equals(btnCancelar)){
 			
 		}
 
