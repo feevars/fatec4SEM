@@ -33,7 +33,8 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setString(1, curso.getTitulo());
 			stm.setString(2, curso.getDescricao());
-			Integer id = stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+			Integer id = 0; 
+			id = stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 			stm.close();
 			return id;
 		} catch (SQLException e) {
@@ -55,7 +56,8 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm.setInt(1, instrutorId);
 			stm.setInt(2, cursoId);
 			stm.executeUpdate();
-			System.out.println("Gravou na tabela CursoInstrutor!");
+			System.out.println("Gravou curso " + cursoId + "na tabela CursoInstrutor!");
+			System.out.println("Gravou instrutor " + instrutorId + "na tabela CursoInstrutor!");
 			stm.close();
 			return true;
 

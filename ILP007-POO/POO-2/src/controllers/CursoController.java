@@ -34,10 +34,14 @@ public class CursoController {
 	}
 	
 	public Boolean cadastrarCurso(Curso curso, Integer[] idsInstrutores){
-		if(adminCursoDao.cadastrarCurso(curso, idsInstrutores)){
-			
-			return true;
-		}
+		Integer idNovoCurso = adminCursoDao.cadastrarCurso(curso);
+			if(idNovoCurso != 0){
+				for (Integer idInstrutor : idsInstrutores) {
+					adminCursoDao.cadastrarInstrutorCurso(idNovoCurso, idInstrutor);
+				}
+				
+			}
+		
 		
 		return false;
 	}
