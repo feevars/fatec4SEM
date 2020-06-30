@@ -16,6 +16,13 @@ public class Curso {
 	public Curso() {
 
 	}
+	
+	public Curso(Integer id, String titulo, String descricao) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+	}
 
 	public Curso(Integer id, String titulo, String descricao, Set<Instrutor> instrutores, Set<Aula> aulas,
 			Date dataCriacao, Date dataAtualizacao) {

@@ -3,6 +3,8 @@ package model.dao;
 import model.entities.Estudante;
 
 public interface EstudanteDao {
+	
+	public Boolean estudanteLogin(String username, String email, String password);
 
 	public void estudanteCadastro(Estudante estudante);
 	
@@ -19,5 +21,9 @@ public interface EstudanteDao {
 	public Boolean estudanteConcluirCurso(Integer idEstudante, Integer idCurso);
 	
 	public Integer validaCadastroEstudante(Estudante usuario);
+	
+	public Estudante getEstudantePorId(Integer id);
+	
+	public Estudante getEstudantePorUsername(String username);
 	
 }
