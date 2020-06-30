@@ -90,10 +90,5 @@ public class AdministradorController  {
 	 
 	 public ObservableList<Curso> listarTodosCursos(){ 
 		 return listaCursos; 
-	 }
-	 
-	
-	
-
-	
+	 }	
 }

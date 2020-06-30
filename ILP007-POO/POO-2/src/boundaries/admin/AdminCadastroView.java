@@ -72,8 +72,6 @@ public class AdminCadastroView extends Group implements EventHandler<ActionEvent
 		else if(event.getTarget().equals(btnCancelar)) {
 			cena.setRoot(new LoginView());
 		}
-		
-		
 	}
 	
 	public Administrador boundaryToEntity(){
@@ -87,7 +85,4 @@ public class AdminCadastroView extends Group implements EventHandler<ActionEvent
 		
 		return admin;
 	}
-	
-	
-	
 }

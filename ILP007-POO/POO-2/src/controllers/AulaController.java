@@ -28,9 +28,13 @@ public class AulaController {
 		//curso.getAulas().add(a);
 	}
 	
-	public void removerAula(Integer id) {}
+	public void removerAula(Integer id) {
+		adminAulaDao.excluirAula(id);
+	}
 
-	public void editarAula(Integer id) {}
+	public void editarAula(Aula aula) {
+		adminAulaDao.editarAula(aula);
+	}
 
 	
 	public void getListaDeAulas(Integer idCurso) {

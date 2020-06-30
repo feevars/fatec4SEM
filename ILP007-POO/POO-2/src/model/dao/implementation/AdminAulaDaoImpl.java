@@ -76,17 +76,17 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 	}
 
 	@Override
-	public void excluirAula(Integer id) {
+	public void excluirAula(Integer idAula) {
 		try {
 			Connection conn = daoFactory.getConnection();
 			String sql = "DELETE FROM Aula WHERE id = ?";
 			PreparedStatement stm = conn.prepareStatement(sql);
-			stm.setInt(1, id);
+			stm.setInt(1, idAula);
 			stm.executeUpdate();
 			conn.close();
-			System.out.println("Aula " + id + " deletada");
+			System.out.println("Aula " + idAula + " deletada");
 		} catch (SQLException e) {
-			System.out.println("Erro ao deletar aula " + id);
+			System.out.println("Erro ao deletar aula " + idAula);
 			e.printStackTrace();
 		}
 	}
