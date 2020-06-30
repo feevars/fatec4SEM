@@ -14,13 +14,13 @@ public class AdminAulaTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminAulaView adminAula = new AdminAulaView();
+		AdminAulaView adminAula = new AdminAulaView(4);
 
 		Scene scene = new Scene(adminAula);
 		
 		stage.setMinWidth(800);
 		stage.setMinHeight(600);
-		stage.setMaximized(true);
+		stage.setMaximized(false);
 		stage.setFullScreen(false);
 
 		stage.setScene(scene);
