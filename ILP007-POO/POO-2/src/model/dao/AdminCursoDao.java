@@ -4,6 +4,7 @@ import java.util.Set;
 
 import model.entities.Aula;
 import model.entities.Curso;
+import model.entities.Instrutor;
 
 public interface AdminCursoDao {
 
@@ -11,4 +12,6 @@ public interface AdminCursoDao {
 	Boolean excluirCurso(Integer id);
 	Boolean editarCurso(Curso c);
 	Set<Aula> listarAulasCurso(Integer id);
+	Set<Instrutor> listarInstrutores();
+	Set<Instrutor> listarInstrutoresCurso(Integer cursoId);
 }

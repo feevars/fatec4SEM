@@ -23,6 +23,10 @@ public class Instrutor extends Estudante {
 		super(id);
 	};
 
+	public Instrutor(int int1, String string, String string2, String string3) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Set<Curso> getCursosCriados() {
 		return cursosCriados;
 	}

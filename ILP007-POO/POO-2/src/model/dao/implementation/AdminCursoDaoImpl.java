@@ -11,6 +11,7 @@ import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
 import model.entities.Aula;
 import model.entities.Curso;
+import model.entities.Instrutor;
 
 public class AdminCursoDaoImpl implements AdminCursoDao {
 
@@ -21,7 +22,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public Boolean cadastrarCurso(Curso curso, Integer ... idsInstrutores) {
+	public Boolean cadastrarCurso(Curso curso, Integer... idsInstrutores) {
 		Integer novoId = 0;
 		try {
 			Connection con = daoFactory.getConnection();
@@ -31,15 +32,15 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm.setString(2, curso.getDescricao());
 			stm.executeUpdate();
 			System.out.println("Gravou o curso!");
-			
+
 			String sql2 = "SELECT * FROM Curso WHERE id = LAST_INSERT_ID()";
 			stm = con.prepareStatement(sql2);
 			ResultSet rs = stm.executeQuery();
-			while (rs.next()){
+			while (rs.next()) {
 				novoId = rs.getInt("id");
 			}
 			System.out.println("Pegou o id: " + novoId);
-			
+
 			for (Integer idInstrutor : idsInstrutores) {
 				String sql3 = "INSERT INTO CursoInstrutor (cursoId, instrutorId) VALUES (?, ?)";
 				stm = con.prepareStatement(sql3);
@@ -50,20 +51,19 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			}
 			con.close();
 			return true;
-		} 
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("Erro no cadastro do curso: " + curso.getTitulo());
 			e.printStackTrace();
 		} catch (DateTimeException de) {
 			System.out.println("Erro na conversao de data do curso: " + curso.getTitulo());
 			de.printStackTrace();
-		}	
+		}
 		return false;
 	}
 
 	@Override
 	public Boolean excluirCurso(Integer idCurso) {
-		
+
 		try {
 			Connection con = daoFactory.getConnection();
 			String sql1 = "DELETE FROM Curso WHERE id = ?";
@@ -71,7 +71,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm.setInt(1, idCurso);
 			stm.executeUpdate();
 			System.out.println("Curso de id " + idCurso + " deletado da tabela Curso!");
-						
+
 			String sql2 = "DELETE * FROM CursoInstrutor WHERE cursoId = ?";
 			stm = con.prepareStatement(sql2);
 			stm.setInt(1, idCurso);
@@ -79,7 +79,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 
 			con.close();
 			return true;
-			
+
 		} catch (SQLException e) {
 			System.out.println("Erro ao deletar curso de id " + idCurso);
 			e.printStackTrace();
@@ -98,13 +98,13 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm.setInt(3, curso.getId());
 			stm.executeUpdate();
 			con.close();
-			
+
 			System.out.println("Curso: " + curso.getTitulo() + " Alterado com sucesso!");
 			return true;
 		} catch (SQLException e) {
 			System.out.println("Curso: " + curso.getTitulo() + "Não pode ser alterado");
 			e.printStackTrace();
-		} 
+		}
 		return false;
 	}
 
@@ -126,7 +126,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 				aula.setLinkVideo(rs.getString("linkVideo"));
 				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
 				aula.setTempoVideo(rs.getInt("tempoVideo"));
-				//aula.setNumAula(rs.getInt("numeroAula"));
+				// aula.setNumAula(rs.getInt("numeroAula"));
 				System.out.println("Curso: " + aula.getTitulo() + " encontrado!");
 				lista.add(aula);
 			}
@@ -138,32 +138,51 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 		return null;
 	}
 
-/*	@Override
-	public Set<Aula> listarAulas() {
-		Set<Aula> lista = new HashSet<Aula>();
-		Connection con = daoFactory.getConnection();
-		ResultSet rs;
-		String sql = "SELECT * FROM Aula";
+	@Override
+	public Set<Instrutor> listarInstrutores() {
+
 		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "Select * FROM Estudante WHERE instrutor = 1 ORDER BY nome";
+
 			PreparedStatement stm = con.prepareStatement(sql);
-			rs = stm.executeQuery();
+
+			Set<Instrutor> instrutores = new HashSet<Instrutor>();
+
+			ResultSet rs = stm.executeQuery();
+
 			while (rs.next()) {
-				Aula aula = new Aula();
-				aula.setId(rs.getInt("id"));
-				aula.setDescricao(rs.getString("titulo"));
-				aula.setTitulo(rs.getString("descricao"));
-				aula.setLinkVideo(rs.getString("linkVideo"));
-				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
-				aula.setTempoVideo(rs.getInt("tempoVideo"));
-				aula.setNumAula(rs.getInt("numeroAula"));
-				lista.add(aula);
+				instrutores.add(new Instrutor(rs.getInt("id"), rs.getString("username"), rs.getString("nome"),
+						rs.getString("sobrenome")));
 			}
 			con.close();
-			return lista;
+			return instrutores;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
+
+	}
+
+	@Override
+	public Set<Instrutor> listarInstrutoresCurso(Integer cursoId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
-*/
+
+	/*
+	 * @Override public Set<Aula> listarAulas() { Set<Aula> lista = new
+	 * HashSet<Aula>(); Connection con = daoFactory.getConnection(); ResultSet rs;
+	 * String sql = "SELECT * FROM Aula"; try { PreparedStatement stm =
+	 * con.prepareStatement(sql); rs = stm.executeQuery(); while (rs.next()) { Aula
+	 * aula = new Aula(); aula.setId(rs.getInt("id"));
+	 * aula.setDescricao(rs.getString("titulo"));
+	 * aula.setTitulo(rs.getString("descricao"));
+	 * aula.setLinkVideo(rs.getString("linkVideo"));
+	 * aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
+	 * aula.setTempoVideo(rs.getInt("tempoVideo"));
+	 * aula.setNumAula(rs.getInt("numeroAula")); lista.add(aula); } con.close();
+	 * return lista; } catch (SQLException e) { e.printStackTrace(); } return null;
+	 * }
+	 */
 }
