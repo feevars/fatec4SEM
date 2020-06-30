@@ -2,6 +2,8 @@ package boundaries.admin;
 
 import boundaries.LoginView;
 import controllers.AulaController;
+import controllers.CursoController;
+import controllers.ExercicioController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,8 +24,13 @@ import model.entities.Exercicio;
 
 public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 
+	private CursoController cursoController = new CursoController();
 	private AulaController aulaController = new AulaController();
-
+	private ExercicioController exercicioController = new ExercicioController();
+	private Integer idCurso;
+	private Integer idAula;
+	private Aula aula;
+	
 	private VBox vboxAula = new VBox();
 	private HBox hboxAula = new HBox();
 
@@ -43,7 +51,7 @@ public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 
 	private Button btnAdicionarExercicio = new Button("Adicionar exercício...");
 	private Label lblExercicios = new Label("Exercícios");;
-	private TableView<Exercicio> tableExercicios = new TableView<>(); // Precisa adicionar o GET LISTA do controller
+	private TableView<Exercicio> tableExercicios = new TableView<>(); // cursoController.carregarListaAulasAdmin(idCurso) Precisa adicionar o GET LISTA do controller
 																		// aqui...;
 
 	private Button btnCancelar = new Button("Cancelar");
@@ -52,7 +60,11 @@ public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 
 	public AdminAulaView(Integer idCurso) {
 
-		super();
+		this.idCurso = idCurso;
+		
+		btnAdicionarExercicio.setOnAction(this);
+		btnCancelar.setOnAction(this);
+		btnSalvarAula.setOnAction(this);
 	
 		this.setPromtTexts();
 		this.gerarTabela();
@@ -77,6 +89,17 @@ public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 
 		tableExercicios.getColumns().add(colTituloExercicio);
 		tableExercicios.setMaxHeight(120);
+		
+		tableExercicios.setRowFactory(tv -> {
+			TableRow<Exercicio> row = new TableRow<>();
+			row.setOnMouseClicked(e -> {
+				Exercicio exec = row.getItem();
+				Scene cena = this.getScene();
+				cena.setRoot(new AdminExercicioView());
+			});
+			return row;
+		});
+		
 
 	}
 
@@ -92,21 +115,31 @@ public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 		Scene cena = this.getScene();
 
 		if (event.getTarget() == btnAdicionarExercicio) {
-			cena.setRoot(new AdminExercicioView()); // Aqui talvez tenha que passar ID da aula
-		} else if (event.getTarget() == btnCancelar) {
-//			cena.setRoot(new AdminCursoView(idCurso));
-		} else if (event.getTarget() == btnExcluir) {
+			cena.setRoot(new AdminExercicioView()); // Aqui talvez tenha que passar ID da aula	
+			//aulaController.adicionarExercicio(this.boundaryToEntity().setExercicios(exercicio);)
+			//exercicioController.cadastrarExercicio(exercicio);
+		} else if (event.getTarget().equals(btnCancelar)) {
+			cena.setRoot(new AdminCursoView(this.idCurso));
+		} else if (event.getTarget().equals(btnExcluir)) {
 			aulaController.removerAula(4); // modificar idAula
-		} else if (event.getTarget() == btnSalvarAula) {
+		} else if (event.getTarget().equals(btnSalvarAula)) {
 			aulaController.adicionarAula(this.boundaryToEntity());
 		}
 	}
+	
+	public void entityToBoundary(Aula aula) {
+		
+	}
 
+	//só pode ser chamado ao atualizar a aula
 	public Aula boundaryToEntity() {
-		Aula aula = new Aula();
 		try {
-			// admin.setUsername(txtUsername.getText());
-			// admin.setPassword(txtPassword.getText());
+			aula.setTitulo(txtTituloAula.getText());
+			aula.setDescricao(txtDescricaoAula.getText());
+			aula.setLinkVideo(txtLinkVideo.getText());
+			aula.setTranscricaoVideo(txtTranscricaoVideo.getText());
+			aula.setTempoVideo(Integer.parseInt(txtTempoVideo.getText()));			//aula.setExercicios(exercicios);
+			//aula.setExercicios(exercicios); //recebe uma lista de exercicios já montada (ou nenhum exercício)
 		} catch (Exception e) {
 			System.out.println("Erro ao receber dados.");
 		}
