@@ -1,21 +1,27 @@
 package boundaries.admin;
 
+import java.awt.ItemSelectable;
+
 import controllers.AdministradorController;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import model.entities.Aula;
 import model.entities.Curso;
 import model.entities.Instrutor;
@@ -37,7 +43,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	private VBox vboxInstrutores = new VBox();
 	
 	private Label lblInstrutores = new Label("Instrutor(es):");
-	private TableView<Instrutor> tableInstrutores = new TableView<>(adminController.listarTodosInstrutores()); // Precisa adicionar o GET LISTA do controller
+	private TableView<Instrutor> tableInstrutores = new TableView<>(adminController.listarTodosInstrutores());
 	
 	private VBox vboxAulas = new VBox();
 	
@@ -45,7 +51,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 	private Label lblAulas = new Label("Aulas:");
 	private Button btnAdicionarAula = new Button("Adicionar aula...");
-	private TableView<Aula> tableAulas = new TableView<>(); // Precisa adicionar o GET LISTA do controller aqui...;;
+	private TableView<Aula> tableAulas = new TableView<>();
 
 	private HBox hboxBotesAcoes = new HBox();
 
@@ -94,18 +100,30 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		colNome.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("nome"));
 		
 		TableColumn<Instrutor, String> colSobrenome = new TableColumn<>("Sobrenome");
-		colSobrenome.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("sobrenome")); 
-											
+		colSobrenome.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("sobrenome"));
+		
+		TableColumn<Instrutor, CheckBox> colAutor = new TableColumn<>("Autor(x) deste curso");
+		colAutor.setCellFactory(CheckBoxTableCell.forTableColumn(new Callback<Integer, ObservableValue<Boolean>>() {
+
+			@Override
+			public ObservableValue<Boolean> call(Integer param) {
+				System.out.println(param);
+				return null;
+			}
+	    }));
+		tableInstrutores.setEditable(true);			
 		
 		tableInstrutores.setMaxHeight(200);
+		tableInstrutores.setMinWidth(300);
 		tableInstrutores.getColumns().add(colUsername);
 		tableInstrutores.getColumns().add(colNome);
 		tableInstrutores.getColumns().add(colSobrenome);
+		tableInstrutores.getColumns().add(colAutor);
 	}
 
 	public void gerarTabelaAulas() {
 		TableColumn<Aula, String> colTituloAula = new TableColumn<>("Título da Aula");
-		colTituloAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("tituloAula")); // Precisa conferir
+		colTituloAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("tituloAula")); 
 
 		tableAulas.setMaxHeight(200);
 		tableAulas.getColumns().add(colTituloAula);

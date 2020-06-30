@@ -50,6 +50,13 @@ public class Estudante {
 	
 	public Estudante() {}
 
+	public Estudante(int id, String username, String nome, String sobrenome) {
+		this.id = id;
+		this.username = username;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+	}
+
 	public String getUsername() {
 		return username;
 	}

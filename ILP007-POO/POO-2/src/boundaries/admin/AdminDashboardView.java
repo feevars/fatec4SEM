@@ -144,6 +144,7 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 		if (event.getTarget().equals(btnSair)) {
 			cena.setRoot(new LoginView());
 		} else if (event.getTarget().equals(btnNovoCurso)) {
+			this.getChildren().clear();
 			cena.setRoot(new AdminCursoView(this.idAdmin));
 		}
 	}

@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.DateTimeException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
@@ -139,16 +141,13 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public Set<Instrutor> listarInstrutores() {
+	public List<Instrutor> listarInstrutores() {
 
+		List<Instrutor> instrutores = new ArrayList<Instrutor>();
+		Connection con = daoFactory.getConnection();
+		String sql = "Select * FROM Estudante WHERE instrutor = 1 ORDER BY nome";
 		try {
-			Connection con = daoFactory.getConnection();
-			String sql = "Select * FROM Estudante WHERE instrutor = 1 ORDER BY nome";
-
 			PreparedStatement stm = con.prepareStatement(sql);
-
-			Set<Instrutor> instrutores = new HashSet<Instrutor>();
-
 			ResultSet rs = stm.executeQuery();
 
 			while (rs.next()) {
@@ -159,13 +158,12 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			return instrutores;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
-
+		return null;
 	}
 
 	@Override
-	public Set<Instrutor> listarInstrutoresCurso(Integer cursoId) {
+	public List<Instrutor> listarInstrutoresCurso(Integer cursoId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
