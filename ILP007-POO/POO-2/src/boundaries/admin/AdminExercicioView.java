@@ -18,102 +18,69 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	
 	ExercicioController exercicioController = new ExercicioController();
 
-	private VBox vbox;
+	private VBox vbox = new VBox();
 
-	private Label lblTitulo;
-	private TextField txtTitulo;
+	private Label lblTitulo = new Label("Título da questão:");
+	private TextField txtTitulo = new TextField();
 
-	private Label lblQuestao;
-	private TextArea txtQuestao;
+	private Label lblQuestao = new Label("Texto da questão:");
+	private TextArea txtQuestao = new TextArea();
 
-	private Label lblAlternativaCorreta;
-	private TextField txtAlternativaCorreta;
+	private Label lblAlternativaCorreta = new Label("Alternativa correta:");
+	private TextField txtAlternativaCorreta = new TextField();
 
-	private Label lblAlternativasIncorretas;
-	private TextField txtAlternativaIncorreta1;
-	private TextField txtAlternativaIncorreta2;
-	private TextField txtAlternativaIncorreta3;
-	private TextField txtAlternativaIncorreta4;
+	private Label lblAlternativasIncorretas = new Label("Alternativas incorretas");
+	private TextField txtAlternativaIncorreta1 = new TextField();
+	private TextField txtAlternativaIncorreta2 = new TextField();
+	private TextField txtAlternativaIncorreta3 = new TextField();
+	private TextField txtAlternativaIncorreta4 = new TextField();
 
-	private Label lblExplicacao;
-	private TextArea txtExplicacao;
+	private Label lblExplicacao = new Label("Explicação:");
+	private TextArea txtExplicacao = new TextArea();
 
-	private HBox hboxDetalhes;
+	private HBox hboxDetalhes = new HBox();
 	
-	private Label lblTempoResposta;
-	private TextField txtTempoResposta;
+	private Label lblTempoResposta = new Label("Tempo para que o estudante responda esta questão em segundos:");
+	private TextField txtTempoResposta = new TextField();
 
-	private Label lblPontos;
-	private TextField txtPontos;
+	private Label lblPontos = new Label("Quantos pontos, de 1 a 10, vale este exercício?");
+	private TextField txtPontos = new TextField();
 
 	//
-	private Label lblAula;
-	private TextField txtAula;
+	private Label lblAula = new Label("A qual aula esse exercicio pertence");
+	private TextField txtAula = new TextField();
 	//
 	
-	private HBox hboxButtons;
+	private HBox hboxButtons = new HBox();
 
-	private Button btnExcluir;
-	private Button btnCancelar;
-	private Button btnSalvar;
+	private Button btnExcluir = new Button("Excluir");
+	private Button btnCancelar = new Button("Cancelar");
+	private Button btnSalvar = new Button("Salvar");
 
 	public AdminExercicioView() {
 
-		vbox = new VBox();
 		vbox.setSpacing(5);
 
-		lblTitulo = new Label("Título da questão:");
-		txtTitulo = new TextField();
 		txtTitulo.setPromptText("Digite o título resumido do exercício...");
-
-		lblQuestao = new Label("Texto da questão:");
-		txtQuestao = new TextArea();
+  
 		txtQuestao.setMaxHeight(30);
 		txtQuestao.setPromptText("Digite a questão copleta que deverá ser respondida por meio das alternativas.");
 
-		lblAlternativaCorreta = new Label("Alternativa correta:");
-		txtAlternativaCorreta = new TextField();
 		txtAlternativaCorreta.setPromptText("Digite a resposta correta para a questão forulada.");
-
-		lblAlternativasIncorretas = new Label("Alternativas incorretas");
-		txtAlternativaIncorreta1 = new TextField();
+	
 		txtAlternativaIncorreta1.setPromptText("Digite a alternativa incorreta 1");
-		txtAlternativaIncorreta2 = new TextField();
 		txtAlternativaIncorreta2.setPromptText("Digite a alternativa incorreta 2");
-		txtAlternativaIncorreta3 = new TextField();
 		txtAlternativaIncorreta3.setPromptText("Digite a alternativa incorreta 3");
-		txtAlternativaIncorreta4 = new TextField();
 		txtAlternativaIncorreta4.setPromptText("Digite a alternativa incorreta 4");
 
-		lblExplicacao = new Label("Explicação:");
-		txtExplicacao = new TextArea();
 		txtExplicacao.setMaxHeight(30);
 		txtExplicacao.setPromptText("Digite a justificativa da resposta completa, explicando a questão do exercício.");
-
-		hboxDetalhes = new HBox();
-		
-		lblTempoResposta = new Label("Tempo para que o estudante responda esta questão em segundos:");
-		txtTempoResposta = new TextField();
-
-		lblPontos = new Label("Quantos pontos, de 1 a 10, vale este exercício?");
-		txtPontos = new TextField();
-		
-		//
-		lblAula = new Label("A qual aula esse exercicio pertence");
-		txtAula = new TextField();
-		//
 
 		estilizaLabels(lblTitulo, lblQuestao, lblAlternativaCorreta, lblAlternativasIncorretas, lblExplicacao, lblTempoResposta, lblPontos, lblAula);
 		
 		hboxDetalhes.setSpacing(10);
 		hboxDetalhes.getChildren().addAll(lblTempoResposta, txtTempoResposta, lblPontos, txtPontos, lblAula, txtAula);
 
-		hboxButtons = new HBox();
-
-		btnExcluir = new Button("Excluir");
-		btnCancelar = new Button("Cancelar");
-		btnSalvar = new Button("Salvar");
-		
 		btnSalvar.setOnAction(this);
 		btnCancelar.setOnAction(this);
 		
