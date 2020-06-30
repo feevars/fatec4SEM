@@ -2,7 +2,6 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import model.dao.AdminAulaDao;
 import model.dao.implementation.AdminAulaDaoImpl;
 import model.entities.Aula;

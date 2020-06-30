@@ -2,7 +2,6 @@ package boundaries;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import boundaries.admin.AdminCadastroView;
 import boundaries.admin.AdminDashboardView;
 import controllers.AdministradorController;

@@ -21,41 +21,74 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public void cadastrar(Curso curso) {
-		Connection con = daoFactory.getConnection();
-		String sql = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?)";
+	public Boolean cadastrarCurso(Curso curso, Integer ... idsInstrutores) {
+		Integer novoId = 0;
 		try {
-			PreparedStatement stm = con.prepareStatement(sql);
+			Connection con = daoFactory.getConnection();
+			String sql1 = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?)";
+			PreparedStatement stm = con.prepareStatement(sql1);
 			stm.setString(1, curso.getTitulo());
 			stm.setString(2, curso.getDescricao());
 			stm.executeUpdate();
+			System.out.println("Gravou o curso!");
+			
+			String sql2 = "SELECT * FROM Curso WHERE id = LAST_INSERT_ID()";
+			stm = con.prepareStatement(sql2);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()){
+				novoId = rs.getInt("id");
+			}
+			System.out.println("Pegou o id: " + novoId);
+			
+			for (Integer idInstrutor : idsInstrutores) {
+				String sql3 = "INSERT INTO CursoInstrutor (cursoId, instrutorId) VALUES (?, ?)";
+				stm = con.prepareStatement(sql3);
+				stm.setInt(1, novoId);
+				stm.setInt(2, idInstrutor);
+				stm.executeUpdate();
+				System.out.println("Gravou o cursoId: " + novoId + " e o instrutorId: " + idInstrutor);
+			}
 			con.close();
-		} catch (SQLException e) {
+			return true;
+		} 
+		catch (SQLException e) {
+			System.out.println("Erro no cadastro do curso: " + curso.getTitulo());
 			e.printStackTrace();
 		} catch (DateTimeException de) {
-			System.out.println("Erro na conversao de data do curso: " + curso.getDescricao());
+			System.out.println("Erro na conversao de data do curso: " + curso.getTitulo());
 			de.printStackTrace();
-		}
+		}	
+		return false;
 	}
 
 	@Override
-	public void excluir(Integer id) {
+	public Boolean excluirCurso(Integer idCurso) {
+		
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql = "DELETE FROM Curso WHERE id = ?";
-			PreparedStatement stm = con.prepareStatement(sql);
-			stm.setInt(1, id);
+			String sql1 = "DELETE FROM Curso WHERE id = ?";
+			PreparedStatement stm = con.prepareStatement(sql1);
+			stm.setInt(1, idCurso);
 			stm.executeUpdate();
+			System.out.println("Curso de id " + idCurso + " deletado da tabela Curso!");
+						
+			String sql2 = "DELETE * FROM CursoInstrutor WHERE cursoId = ?";
+			stm = con.prepareStatement(sql2);
+			stm.setInt(1, idCurso);
+			stm.executeUpdate();
+
 			con.close();
-			System.out.println("Curso de id " + id + " deletado!");
+			return true;
+			
 		} catch (SQLException e) {
-			System.out.println("Erro ao deletar curso de id " + id);
+			System.out.println("Erro ao deletar curso de id " + idCurso);
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	@Override
-	public boolean editar(Curso curso) {
+	public Boolean editarCurso(Curso curso) {
 		try {
 			Connection con = daoFactory.getConnection();
 			String sql = "UPDATE Curso SET titulo = ?, descricao = ? WHERE id = ?";
@@ -65,15 +98,13 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm.setInt(3, curso.getId());
 			stm.executeUpdate();
 			con.close();
+			
 			System.out.println("Curso: " + curso.getTitulo() + " Alterado com sucesso!");
 			return true;
 		} catch (SQLException e) {
 			System.out.println("Curso: " + curso.getTitulo() + "Não pode ser alterado");
 			e.printStackTrace();
-		} catch (DateTimeException de) {
-			System.out.println("Erro na conversao de data do curso: " + curso.getTitulo());
-			de.printStackTrace();
-		}
+		} 
 		return false;
 	}
 
@@ -95,7 +126,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 				aula.setLinkVideo(rs.getString("linkVideo"));
 				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
 				aula.setTempoVideo(rs.getInt("tempoVideo"));
-				aula.setNumAula(rs.getInt("numeroAula"));
+				//aula.setNumAula(rs.getInt("numeroAula"));
 				System.out.println("Curso: " + aula.getTitulo() + " encontrado!");
 				lista.add(aula);
 			}
@@ -107,7 +138,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 		return null;
 	}
 
-	@Override
+/*	@Override
 	public Set<Aula> listarAulas() {
 		Set<Aula> lista = new HashSet<Aula>();
 		Connection con = daoFactory.getConnection();
@@ -125,7 +156,6 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
 				aula.setTempoVideo(rs.getInt("tempoVideo"));
 				aula.setNumAula(rs.getInt("numeroAula"));
-				// System.out.println("Aula: " + aula.getTitulo() + " encontrada!");
 				lista.add(aula);
 			}
 			con.close();
@@ -135,5 +165,5 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 		}
 		return null;
 	}
-
+*/
 }

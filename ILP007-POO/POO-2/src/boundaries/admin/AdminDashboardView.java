@@ -75,9 +75,13 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 		TableColumn<Curso, String> colCriacao = new TableColumn<>("Criação");
 		colCriacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("dataCriacao"));
 		
+		TableColumn<Curso, String> colAtualizacao = new TableColumn<>("Ultima atualização");
+		colAtualizacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("dataAtualizacao"));
+		
 		tableCursos.getColumns().add(colTitulo);
 		tableCursos.getColumns().add(colDescricao);
 		tableCursos.getColumns().add(colCriacao);
+		tableCursos.getColumns().add(colAtualizacao);
 	
 		tableCursos.setRowFactory(tv -> {
 
@@ -128,7 +132,7 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 		});
 	}
 
-	public void EntityToBoundary(Administrador administrador) {
+	public void entityToBoundary(Administrador administrador) {
 		if (administrador != null) {
 			this.lblAdmin.setText(administrador.getUsername());
 		}
