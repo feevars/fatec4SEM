@@ -1,6 +1,6 @@
 package tests;
 
-import model.dao.implementation.AdminCursoDaoImpl;
+import controllers.CursoController;
 import model.entities.Curso;
 import model.entities.Estudante;
 import model.entities.Instrutor;
@@ -8,18 +8,20 @@ import model.entities.Instrutor;
 public class CrudCursoTeste {
 
 	public static void main(String[] args) {
-		AdminCursoDaoImpl adminCursoDao = new AdminCursoDaoImpl();
+		CursoController cursoController = new CursoController();
+		Integer[] arrayInstrutores = new Integer[2];
 		Curso curso = new Curso();
-		curso.setId(1);
+		//curso.setId(1);
 		curso.setTitulo("Python");
 		curso.setDescricao("Curso de Python");
+		arrayInstrutores[0] = 2;
+		arrayInstrutores[1] = 3;
 		
-		Instrutor instrutor1 = new Instrutor(2, "Luiz", "", "Luiz", "Geraldo", "",
-				"", null, null, null);
 		
-		Estudante instrutor2 = new Instrutor(3, "Fernando", "", "Fernando", "Santos",
-				"", "", null, null, null);
-	
+		Boolean gravado = cursoController.cadastrarCurso(curso, arrayInstrutores);
+		
+		if(gravado) {System.out.println("Dados gravados com sucesso! :) ");}
+		else { System.out.println("Erro na gravação :( ");}
 		
 //		Boolean gravou = adminCursoDao.cadastrarCurso(curso, instrutor1.getId(),instrutor2.getId());
 //		if(gravou){

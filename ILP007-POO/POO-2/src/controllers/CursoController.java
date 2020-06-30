@@ -36,13 +36,16 @@ public class CursoController {
 	public Boolean cadastrarCurso(Curso curso, Integer[] idsInstrutores){
 		Integer idNovoCurso = adminCursoDao.cadastrarCurso(curso);
 			if(idNovoCurso != 0){
+				System.out.println("Id do curso criado: " + idNovoCurso);
 				for (Integer idInstrutor : idsInstrutores) {
+					System.out.println("Id curso: " + idNovoCurso + " - Id Instrutor: " + idInstrutor);
 					adminCursoDao.cadastrarInstrutorCurso(idNovoCurso, idInstrutor);
+					
 				}
-				
+				return true;
+			}else {
+				System.out.println("Não foi possivel cadastrar Curso!");
 			}
-		
-		
 		return false;
 	}
 	
