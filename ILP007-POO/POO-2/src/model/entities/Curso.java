@@ -64,7 +64,11 @@ public class Curso {
 	public Integer getId() {
 		return id;
 	}
-
+// CRIADO PARA TESTE-----------------
+	public void setId(Integer id) {
+		this.id = id;
+	}
+// ----------------------------------
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}

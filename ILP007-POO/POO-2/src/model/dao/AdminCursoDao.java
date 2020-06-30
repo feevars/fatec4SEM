@@ -7,9 +7,8 @@ import model.entities.Curso;
 
 public interface AdminCursoDao {
 
-	void cadastrar(Curso c);
-	void excluir(Integer id);
-	boolean editar(Curso c);
+	Boolean cadastrarCurso(Curso curso, Integer ... idsInstrutores);
+	Boolean excluirCurso(Integer id);
+	Boolean editarCurso(Curso c);
 	Set<Aula> listarAulasCurso(Integer id);
-	Set<Aula> listarAulas();
 }

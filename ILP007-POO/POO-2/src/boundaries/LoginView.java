@@ -8,10 +8,7 @@ import boundaries.admin.AdminDashboardView;
 import controllers.AdministradorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -92,14 +89,6 @@ public class LoginView extends BorderPane implements EventHandler<ActionEvent> {
 
 	}
 	
-	private void alert(AlertType tipo, String title, String header, String content) {
-		Alert alert = new Alert(tipo);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		alert.showAndWait();
-	}
-
 	@Override
 	public void handle(ActionEvent event) {
 
