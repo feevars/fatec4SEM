@@ -34,6 +34,16 @@ public class CursoController {
 		return null;
 	}
 	
+	public Boolean cadastrarCurso(Curso curso, Integer[] idsInstrutores){
+		if(adminCursoDao.cadastrarCurso(curso, idsInstrutores)){
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
 	public Boolean excluirCurso(Integer idCurso){
 		if(adminCursoDao.excluirCurso(idCurso)) { 
 			return true;
