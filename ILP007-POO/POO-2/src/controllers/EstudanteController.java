@@ -33,8 +33,16 @@ public class EstudanteController {
 			return 4;
 		}
 	}
+	
+	public Boolean estudanteEditarPerfil(Estudante estudante, Boolean eInstrutor) {
+		return estudanteDao.estudanteEditarPerfil(estudante, eInstrutor);
+	}
+	
+	public Boolean estudanteExcluirPerfil(Integer id) {
+		return estudanteDao.estudanteExcluirPerfil(id);
+	}
 
-	public boolean estudanteLogin(String username, String email, String password) {
+	public Boolean estudanteLogin(String username, String email, String password) {
 		return estudanteDao.estudanteLogin(username, email, password);
 	}
 

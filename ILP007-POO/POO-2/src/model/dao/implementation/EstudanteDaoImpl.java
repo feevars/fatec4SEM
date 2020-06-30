@@ -73,33 +73,40 @@ public class EstudanteDaoImpl implements EstudanteDao {
 		}
 	}
 
-	// private Integer id;
-	// private String username;
-	// private String password;
-	// private String email;
-	// private Integer pontos;
-
 	@Override
-	public void estudanteEditarPerfil(Estudante estudante) {
+	public Boolean estudanteEditarPerfil(Estudante estudante, Boolean eInstrutor) {
 		Connection con = daoFactory.getConnection();
-		String sql = "UPDATE Estudante SET nome = ?, sobrenome = ?, telefone = ?, dataNascimento = ?, instrutor = ?"
-				+ "WHERE id = ?";
+		String sql = "UPDATE Estudante SET nome = ?, sobrenome = ?, telefone = ?, dataNascimento = ?, instrutor = ? WHERE username = ?";
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setString(1, estudante.getNome());
 			stm.setString(2, estudante.getSobrenome());
 			stm.setString(3, estudante.getTelefone());
 			stm.setDate(4, estudante.getDataNascimento());
-			if (estudante instanceof Instrutor)
-				stm.setBoolean(5, true);
-			else
-				stm.setBoolean(5, false);
-			stm.setInt(6, estudante.getId());
+			stm.setBoolean(5, eInstrutor);		
+			stm.setString(6, estudante.getUsername());
 			stm.executeUpdate();
 			con.close();
+			return true;
 		} catch (SQLException se) {
 			se.printStackTrace();
+			return false;
 		}
+	}
+	
+	@Override
+	public Boolean estudanteExcluirPerfil(Integer id) {
+		try{
+			Connection con = daoFactory.getConnection();
+			String sql = "DELETE FROM Estudante WHERE id = " + id.toString();
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.executeUpdate(sql);
+			con.close();
+			return true;
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
@@ -276,5 +283,4 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			return null;
 		}
 	}
-
 }

@@ -3,8 +3,7 @@ package boundaries;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
-import javax.swing.JOptionPane;
+import java.util.Optional;
 
 import controllers.EstudanteController;
 import javafx.event.ActionEvent;
@@ -13,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -59,7 +59,9 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 	private Button btnVoltar = new Button("Voltar");
 	private Button btnExcluir = new Button("Excluir o meu perfil");
 	private Button btnCadastrar = new Button("Cadastrar");
+	private Button btnSalvar = new Button("Salvar edições");
 
+	// Construtor para cadastrar um novo usuário
 	public EstudanteCadastroView(String username, String password) {
 
 		txtUsername.setText(username);
@@ -77,23 +79,23 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 
 	}
 
-	// Construtor para editar
+	// Construtor para editar o perfil
 	public EstudanteCadastroView(Integer estudanteId) {
 
 		this.estudanteId = estudanteId;
 
 		Estudante usuario = estudanteController.getEstudantePorId(estudanteId);
-		
+
 		entityToBoundary(usuario);
 
 		this.txtUsername.setDisable(true);
 		this.txtEmail.setDisable(true);
 
-		this.btnCadastrar.setOnAction(this);
+		this.btnSalvar.setOnAction(this);
 		this.btnExcluir.setOnAction(this);
 		this.btnVoltar.setOnAction(this);
 
-		hboxBotoesAcoes.getChildren().addAll(btnVoltar, btnExcluir, btnCadastrar);
+		hboxBotoesAcoes.getChildren().addAll(btnVoltar, btnExcluir, btnSalvar);
 
 		this.vboxCadastroUsuario.getChildren().addAll(lblUsername, txtUsername, lblPassword, txtPassword,
 				lblPasswordCheck, txtPasswordCheck, lblNome, txtNome, lblSobrenome, txtSobrenome, lblEmail, txtEmail,
@@ -120,7 +122,7 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 		}
 		return estudante;
 	}
-	
+
 	public void entityToBoundary(Estudante usuario) {
 
 		if (usuario != null) {
@@ -140,7 +142,7 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 
 		Scene cena = this.getScene();
 
-		if (event.getTarget() == btnCadastrar) {
+		if (event.getTarget().equals(btnCadastrar)) {
 			if (!txtPassword.getText().equals(txtPasswordCheck.getText())) {
 				Alert alertSenhasDiferentes = new Alert(AlertType.ERROR, "As senhas informadas são diferentes.");
 				alertSenhasDiferentes.show();
@@ -166,15 +168,42 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 						"Ocorreu um erro de validação no formulário.");
 				alertErroValidacaoFormulario.show();
 			}
-		} else if (event.getTarget() == btnCancelar) {
+		} else if (event.getTarget().equals(btnCancelar)) {
 			cena.setRoot(new LoginView());
-		} else if (event.getTarget() == btnVoltar) {
+		} else if (event.getTarget().equals(btnVoltar)) {
 			cena.setRoot(new EstudanteDashboardView(estudanteId));
-		} else if (event.getTarget() == btnExcluir) {
-			String senha = JOptionPane.showInputDialog("Informe a senha para deletar o seu perfil");
-			// envia a senha para o controller deletar efetivamente depois chama a cena nova 
-			if (!senha.isEmpty()){
-				cena.setRoot(new EstudanteDashboardView(estudanteId));
+		} else if (event.getTarget().equals(btnSalvar)) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Salvar alterações de perfil");
+			alert.setHeaderText(txtUsername.getText() + ", caso confirme, seu perfil será editado.");
+			alert.setContentText("Você confirma esta operação?");
+			
+			Boolean instrutorBool = estudanteController.getEstudantePorId(estudanteId) instanceof Instrutor;
+			
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				if (estudanteController.estudanteEditarPerfil(boundaryToEntity(), instrutorBool)) {
+					Alert alertEditou = new Alert(AlertType.INFORMATION, "Perfil editado com sucesso!");
+					alertEditou.show();
+					cena.setRoot(new EstudanteDashboardView(estudanteId));
+				}
+			}
+		} else if (event.getTarget().equals(btnExcluir)) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Excluir Perfil");
+			alert.setHeaderText(txtUsername.getText() + ", você está prestes a excluir seu perfil.");
+			alert.setContentText("Você confirma esta operação?");
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				if (estudanteController.estudanteExcluirPerfil(estudanteId)) {
+					Alert alertAdeus = new Alert(AlertType.INFORMATION, "Adeus.");
+					alertAdeus.show();
+					cena.setRoot(new LoginView());
+				} else {
+					Alert alertAdeus = new Alert(AlertType.INFORMATION, "Erro ao excluir.");
+					alertAdeus.show();
+					cena.setRoot(new LoginView());
+				}
 			}
 		}
 	}

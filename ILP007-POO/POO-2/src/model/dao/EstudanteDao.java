@@ -8,7 +8,9 @@ public interface EstudanteDao {
 
 	public void estudanteCadastro(Estudante estudante);
 	
-	public void estudanteEditarPerfil(Estudante estudante);
+	public Boolean estudanteEditarPerfil(Estudante estudante, Boolean eInstrutor);
+	
+	public Boolean estudanteExcluirPerfil(Integer id);
 
 	public void estudanteVerCurso(Integer idCurso);
 	

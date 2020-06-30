@@ -31,8 +31,8 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 	private TableView<Curso> tableCursos = new TableView<Curso>(); // = new TableView<>(control.getLista());
 
 	private VBox vboxPerfil = new VBox();
-	private Label lblNome = new Label("Nome");
-	private Label lblPontos = new Label("Pontos");
+	private Label lblNome = new Label();
+	private Label lblPontos = new Label();
 	private Button btnEditarPerfil = new Button("Editar perfil");
 
 	private EstudanteController estudanteController = new EstudanteController();
@@ -43,8 +43,6 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 
 		Estudante usuario = estudanteController.getEstudantePorId(estudanteId);
 		entityToBoundary(usuario);
-
-		// entityToBoundary(usuario); Tem que pegar o usuário pelo e montar um estudante
 		gerarTabelaCursos();
 
 		btnSair.setOnAction(this);
@@ -83,12 +81,16 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 			if ((!usuario.getNome().isEmpty() || usuario.getNome() == null)
 					&& (!usuario.getSobrenome().isEmpty() || usuario.getSobrenome() == null))
 				nomeDoUsuario = usuario.getNome() + " " + usuario.getSobrenome();
-			System.out.println(nomeDoUsuario);
-			if (usuario instanceof Instrutor)
+			
+			if (usuario instanceof Instrutor) {				
 				this.lblUsuario.setText("Olá, queridx intrutor(x) " + nomeDoUsuario + ".");
-			else
-				this.lblUsuario
-						.setText("Olá, " + nomeDoUsuario + ". Você é o melhor estudante desta plataforma!");
+			}
+			else {
+				this.lblUsuario.setText("Olá, " + nomeDoUsuario + ". Você é o melhor estudante desta plataforma!");
+				
+			}
+			lblNome.setText(nomeDoUsuario);
+			lblPontos.setText("Pontos: " + usuario.getPontos().toString());
 		}
 	}
 
