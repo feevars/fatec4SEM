@@ -5,10 +5,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainTesteExercicio extends Application{
+public class AdminExercicioTeste extends Application{
 
 	public static void main(String[] args) {
-		Application.launch(MainTesteExercicio.class, args);
+		Application.launch(AdminExercicioTeste.class, args);
 
 	}
 
