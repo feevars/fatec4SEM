@@ -1,14 +1,12 @@
 package boundaries.admin;
 
 import controllers.AdministradorController;
-import controllers.CursoController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -39,7 +37,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	private VBox vboxInstrutores = new VBox();
 	
 	private Label lblInstrutores = new Label("Instrutor(es):");
-	private ListView<Instrutor> listInstrutores = new ListView<>(adminController.listarTodosInstrutores()); // Precisa adicionar o GET LISTA do controller
+	private TableView<Instrutor> tableInstrutores = new TableView<>(adminController.listarTodosInstrutores()); // Precisa adicionar o GET LISTA do controller
 	
 	private VBox vboxAulas = new VBox();
 	
@@ -68,7 +66,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		gpInfoHeader.add(lblDescricaoCurso, 0, 1);;
 		gpInfoHeader.add(txtDescricaoCurso, 1, 1);
 		
-		vboxInstrutores.getChildren().addAll(lblInstrutores, listInstrutores);
+		vboxInstrutores.getChildren().addAll(lblInstrutores, tableInstrutores);
 		vboxAulas.getChildren().add(btnAdicionarPrimeiraAula);
 		vboxAulas.setAlignment(Pos.CENTER);
 		
@@ -89,11 +87,20 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	}
 
 	public void gerarTabelaInstrutores() {
-//		TableColumn<Instrutor, String> colNomeInstrutor = new TableColumn<>("Instrutor(a)");
-//		colNomeInstrutor.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("nomeInstrutor")); // Precisa
-																											// conferir
-		listInstrutores.setMaxHeight(200);
-
+		TableColumn<Instrutor, String> colUsername = new TableColumn<>("Username");
+		colUsername.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("username"));
+		
+		TableColumn<Instrutor, String> colNome = new TableColumn<>("Nome");
+		colNome.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("nome"));
+		
+		TableColumn<Instrutor, String> colSobrenome = new TableColumn<>("Sobrenome");
+		colSobrenome.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("sobrenome")); 
+											
+		
+		tableInstrutores.setMaxHeight(200);
+		tableInstrutores.getColumns().add(colUsername);
+		tableInstrutores.getColumns().add(colNome);
+		tableInstrutores.getColumns().add(colSobrenome);
 	}
 
 	public void gerarTabelaAulas() {

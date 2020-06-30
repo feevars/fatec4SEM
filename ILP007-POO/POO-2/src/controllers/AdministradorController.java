@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.util.Set;
-
 import model.dao.AdminCursoDao;
 import model.dao.AdminEstudanteDao;
 import model.dao.AdministradorDao;
@@ -36,6 +35,7 @@ public class AdministradorController {
 		validator = factory.getValidator();
 		carregaListaUsuarios();
 		carregaListaCursos();
+		carregaListaInstrutores();
 	}
 
 	private void alert(AlertType tipo, String title, String header, String content) {
@@ -97,10 +97,12 @@ public class AdministradorController {
 	public ObservableList<Curso> listarTodosCursos() {
 		return listaCursos;
 	}
-
-	public ObservableList<Instrutor> listarTodosInstrutores() {
-		if (!adminCursoDao.listarInstrutores().isEmpty()) this.listaTodosInstrutores.addAll(adminCursoDao.listarInstrutores());
-		return listaTodosInstrutores;
+	
+	public void carregaListaInstrutores() {
+		this.listaTodosInstrutores.addAll(adminCursoDao.listarInstrutores());
 	}
 
+	public ObservableList<Instrutor> listarTodosInstrutores() {
+		return listaTodosInstrutores;
+	}
 }
