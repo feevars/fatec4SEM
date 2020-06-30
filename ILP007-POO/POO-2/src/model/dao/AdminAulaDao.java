@@ -9,7 +9,7 @@ import model.entities.Exercicio;
 public interface AdminAulaDao {
 
 	void cadastrarAula(Aula aula);
-	
+		
 	void excluirAula(Integer id);
 	
 	boolean editarAula(Aula aula);

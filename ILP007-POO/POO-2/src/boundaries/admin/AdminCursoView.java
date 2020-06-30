@@ -32,7 +32,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 	AdministradorController adminController = new AdministradorController();
 
-	private Integer idAdmin;
+	private Integer adminId;
 
 	private GridPane gpInfoHeader = new GridPane();
 
@@ -66,9 +66,9 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	private Set<Instrutor> autores = new HashSet<Instrutor>();
 
 	// Construtor feito para cadastrar o curso
-	public AdminCursoView(Integer idAdmin) {
+	public AdminCursoView(Integer adminId) {
 
-		this.idAdmin = idAdmin;
+		this.adminId = adminId;
 
 		setPromtTexts();
 		gerarTabelaInstrutores();
@@ -147,7 +147,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		if (event.getTarget().equals(btnAdicionarPrimeiraAula)) {
 			Curso curso = boundaryToEntityCadastro();
 			if (!curso.getInstrutores().isEmpty()) {
-				cena.setRoot(new AdminAulaView(curso));
+				cena.setRoot(new AdminAulaView(adminId, curso));
 			} else {
 				Alert alertaInstrutor = new Alert(AlertType.ERROR, "Você precisa escoher pelo menos um instrutor...");
 				alertaInstrutor.show();
@@ -157,7 +157,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		} else if (event.getTarget().equals(btnExcluirCurso)) {
 			// cursoController.excluirCurso(idCurso);
 		} else if (event.getTarget().equals(btnCancelar)) {
-			cena.setRoot(new AdminDashboardView(this.idAdmin));
+			cena.setRoot(new AdminDashboardView(this.adminId));
 		}
 
 	}

@@ -11,10 +11,11 @@ public class Aula {
 	private String transcricaoVideo;
 	private Integer tempoVideo;
 	private Integer numAula;
+	private Integer cursoId;
 	private Set<Exercicio> exercicios;
 
 	public Aula(Integer id, String titulo, String descricao, String linkVideo, String transcricaoVideo,
-			Integer tempoVideo, Integer numAula, Set<Exercicio> exercicios) {
+			Integer tempoVideo, Integer numAula, Integer cursoId, Set<Exercicio> exercicios) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -23,6 +24,7 @@ public class Aula {
 		this.transcricaoVideo = transcricaoVideo;
 		this.tempoVideo = tempoVideo;
 		this.numAula = numAula;
+		this.cursoId = cursoId;
 		this.exercicios = exercicios;
 	}
 
@@ -90,5 +92,13 @@ public class Aula {
 
 	public void setNumAula(Integer numAula) {
 		this.numAula = numAula;
+	}
+
+	public Integer getCursoId() {
+		return cursoId;
+	}
+
+	public void setCursoId(Integer cursoId) {
+		this.cursoId = cursoId;
 	}
 }

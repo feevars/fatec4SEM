@@ -21,13 +21,12 @@ public class CrudCursoTeste {
 				"", "", null, null, null);
 	
 		
-		Boolean gravou = adminCursoDao.cadastrarCurso(curso, instrutor1.getId(),instrutor2.getId());
-		
-		if(gravou){
-			System.out.println(curso.getTitulo() + " de ID: " + curso.getId() + " foi gravado!");
-		}else{
-			System.out.println(curso.getTitulo() + " de ID: " + curso.getId() + " não foi gravado!");
-		}
+//		Boolean gravou = adminCursoDao.cadastrarCurso(curso, instrutor1.getId(),instrutor2.getId());
+//		if(gravou){
+//			System.out.println(curso.getTitulo() + " de ID: " + curso.getId() + " foi gravado!");
+//		}else{
+//			System.out.println(curso.getTitulo() + " de ID: " + curso.getId() + " não foi gravado!");
+//		}
 	}
 
 }
