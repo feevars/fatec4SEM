@@ -8,10 +8,6 @@ public class DaoFactory {
 
 	private static final String URL = "jdbc:mariadb://localhost/FreeTech?allowMultiQueries=true";
 	private static final String USER = "root";
-<<<<<<< HEAD
-
-=======
->>>>>>> 3443427baa2ffba3fea3017491f17defedaec7e5
 	private static final String PASS = "root";
 	
 	public DaoFactory() {
