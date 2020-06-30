@@ -10,6 +10,7 @@ import java.util.List;
 import model.dao.AdminAulaDao;
 import model.dao.DaoFactory;
 import model.entities.Aula;
+import model.entities.Curso;
 import model.entities.Exercicio;
 
 public class AdminAulaDaoImpl implements AdminAulaDao {
@@ -54,20 +55,20 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 	}
 	
 	@Override
-	public void cadastrarAula(Aula aula) {
+	public void cadastrarAula(Aula aula, Integer cursoId) {
 		
 		try {
 			Connection conn = daoFactory.getConnection();
-			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo, numAula)"
-					+ "VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo, numAula, cursoId)"
+					   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stm = conn.prepareStatement(sql);
 			stm.setString(1, aula.getTitulo());
 			stm.setString(2, aula.getDescricao());
 			stm.setString(3, aula.getLinkVideo());
 			stm.setString(4, aula.getTranscricaoVideo());
 			stm.setInt(5, aula.getTempoVideo());
-			stm.setInt(6, aula.getNumAula());
-			//ta faltando aqui o id do curso
+			stm.setInt(6, aula.getNumAula());	// Talvez nao usaremos...
+			stm.setInt(7, cursoId);
 			stm.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {

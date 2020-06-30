@@ -2,8 +2,6 @@ package tests;
 
 import controllers.CursoController;
 import model.entities.Curso;
-import model.entities.Estudante;
-import model.entities.Instrutor;
 
 public class CrudCursoTeste {
 
@@ -22,13 +20,7 @@ public class CrudCursoTeste {
 		
 		if(gravado) {System.out.println("Dados gravados com sucesso! :) ");}
 		else { System.out.println("Erro na gravação :( ");}
-		
-//		Boolean gravou = adminCursoDao.cadastrarCurso(curso, instrutor1.getId(),instrutor2.getId());
-//		if(gravou){
-//			System.out.println(curso.getTitulo() + " de ID: " + curso.getId() + " foi gravado!");
-//		}else{
-//			System.out.println(curso.getTitulo() + " de ID: " + curso.getId() + " não foi gravado!");
-//		}
+
 	}
 
 }

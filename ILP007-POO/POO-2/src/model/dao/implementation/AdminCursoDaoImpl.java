@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
 import model.entities.Aula;
@@ -278,6 +277,24 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			e.printStackTrace();
 		}
 
+		return false;
+	}
+
+	@Override
+	public Boolean adicionarInstrutorCurso(Integer instrutorId, Integer cursoId) {
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "INSERT (idcurso, idInstrutor) INTO CursoInstrutor VALUES (?, ?)";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1, cursoId);
+			stm.setInt(2, instrutorId);
+			stm.executeUpdate();
+			System.out.println("Instrutor Adicionado!");
+			con.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
 		return false;
 	}
 
