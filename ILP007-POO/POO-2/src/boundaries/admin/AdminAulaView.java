@@ -95,7 +95,7 @@ public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 			row.setOnMouseClicked(e -> {
 				Exercicio exec = row.getItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new AdminExercicioView());
+				cena.setRoot(new AdminExercicioView(3));
 			});
 			return row;
 		});
@@ -115,7 +115,7 @@ public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 		Scene cena = this.getScene();
 
 		if (event.getTarget() == btnAdicionarExercicio) {
-			cena.setRoot(new AdminExercicioView()); // Aqui talvez tenha que passar ID da aula	
+			cena.setRoot(new AdminExercicioView(3)); // Aqui talvez tenha que passar ID da aula	
 			//aulaController.adicionarExercicio(this.boundaryToEntity().setExercicios(exercicio);)
 			//exercicioController.cadastrarExercicio(exercicio);
 		} else if (event.getTarget().equals(btnCancelar)) {
@@ -128,12 +128,19 @@ public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 	}
 	
 	public void entityToBoundary(Aula aula) {
-		
+		if (aula != null) {
+			txtTituloAula.setText(String.valueOf(aula.getTitulo()));
+			txtDescricaoAula.setText(String.valueOf(aula.getDescricao()));
+			txtLinkVideo.setText(String.valueOf(aula.getLinkVideo()));
+			txtTranscricaoVideo.setText(String.valueOf(aula.getTranscricaoVideo()));
+			//txtTempoVideo.setText(Integer.parseInt(aula.getTempoVideo()));
+		}
 	}
 
 	//só pode ser chamado ao atualizar a aula
 	public Aula boundaryToEntity() {
 		try {
+			Aula aula = new Aula();
 			aula.setTitulo(txtTituloAula.getText());
 			aula.setDescricao(txtDescricaoAula.getText());
 			aula.setLinkVideo(txtLinkVideo.getText());
