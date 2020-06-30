@@ -6,23 +6,25 @@ import java.io.FileNotFoundException;
 import boundaries.admin.AdminCadastroView;
 import boundaries.admin.AdminDashboardView;
 import controllers.AdministradorController;
+import controllers.EstudanteController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.entities.Estudante;
 
 public class LoginView extends BorderPane implements EventHandler<ActionEvent> {
 
@@ -48,8 +50,9 @@ public class LoginView extends BorderPane implements EventHandler<ActionEvent> {
 
 	private Button btnLogin = new Button("Login");
 	private Button btnCadastrar = new Button("Cadastrar");
-	
-	private AdministradorController adminController = new AdministradorController(); 
+
+	private AdministradorController adminController = new AdministradorController();
+	private EstudanteController estudanteController = new EstudanteController();
 
 	public LoginView() {
 
@@ -88,7 +91,11 @@ public class LoginView extends BorderPane implements EventHandler<ActionEvent> {
 		this.setCenter(vboxLogin);
 
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> cb36e102a991dc3c51df77bb684d74d1477b9729
 	@Override
 	public void handle(ActionEvent event) {
 
@@ -97,19 +104,25 @@ public class LoginView extends BorderPane implements EventHandler<ActionEvent> {
 		if (opcoesLogin.getSelectedToggle().equals(radioUser)) {
 			if (event.getTarget() == btnCadastrar) {
 				cena.setRoot(new EstudanteCadastroView(txtUsername.getText(), txtPassword.getText()));
-				
+
 			} else if (event.getTarget() == btnLogin) {
-				cena.setRoot(new EstudanteDashboardView(null));
-				System.out.println("Login");
+				
+				if (estudanteController.estudanteLogin(txtUsername.getText(), txtUsername.getText(), txtPassword.getText())) {
+					Estudante usuario = estudanteController.getEstudantePorUsername(txtUsername.getText());
+					cena.setRoot(new EstudanteDashboardView(usuario.getId()));
+				} else {
+					Alert alertaErro = new Alert(AlertType.ERROR, "Usuário ou senha inválidos.");
+					alertaErro.show();
+				}
 			}
 		} else {
 			if (event.getTarget() == btnCadastrar) {
 				cena.setRoot(new AdminCadastroView(txtUsername.getText(), txtPassword.getText()));
 
 			} else if (event.getTarget() == btnLogin) {
-				if(adminController.logarAdmin(txtUsername.getText(), txtPassword.getText())){
+				if (adminController.logarAdmin(txtUsername.getText(), txtPassword.getText())) {
 					cena.setRoot(new AdminDashboardView(adminController.idAdmin(txtUsername.getText())));
-				}else{
+				} else {
 					Alert alertaErro = new Alert(AlertType.ERROR, "Usuário ou senha inválidos.");
 					alertaErro.show();
 				}

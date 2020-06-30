@@ -5,16 +5,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import model.entities.Exercicio;
 
 public class AdminExercicioView extends Group implements EventHandler<ActionEvent>{
+	
+	private Integer idAula;
 	
 	ExercicioController exercicioController = new ExercicioController();
 
@@ -23,7 +25,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	private Label lblTitulo = new Label("Título da questão:");
 	private TextField txtTitulo = new TextField();
 
-	private Label lblQuestao = new Label("Texto da questão:");
+	private Label lblQuestao = new Label("Texto completo da questão:");
 	private TextArea txtQuestao = new TextArea();
 
 	private Label lblAlternativaCorreta = new Label("Alternativa correta:");
@@ -47,7 +49,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	private TextField txtPontos = new TextField();
 
 	//
-	private Label lblAula = new Label("A qual aula esse exercicio pertence");
+	private Label lblAula = new Label("A qual aula esse exercicio pertence? ");
 	private TextField txtAula = new TextField();
 	//
 	
@@ -57,7 +59,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnSalvar = new Button("Salvar");
 
-	public AdminExercicioView() {
+	public AdminExercicioView(Integer idAula) {
 
 		vbox.setSpacing(5);
 
@@ -91,7 +93,8 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 				txtAlternativaCorreta, lblAlternativasIncorretas, txtAlternativaIncorreta1, txtAlternativaIncorreta2,
 				txtAlternativaIncorreta3, txtAlternativaIncorreta4, lblExplicacao, txtExplicacao, hboxDetalhes, hboxButtons);
 		
-		vbox.setMaxWidth(600);
+		vbox.setMaxSize(800, 600);
+		vbox.isResizable();
 		vbox.setPadding(new Insets(20));
 		this.getChildren().add(vbox);
 
@@ -104,7 +107,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 			
 			label.setPadding(new Insets(10, 0, 0, 0));
 			label.setWrapText(true);
-			label.setFont(new Font(16));
+			//label.setFont(new Font(16));
 
 		}
 		
@@ -134,10 +137,12 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 
 	@Override
 	public void handle(ActionEvent event) {
+		Scene cena = this.getScene();
 		if(event.getTarget() == btnSalvar){
 			exercicioController.cadastrarExercicio(boundaryToEntity());
 		}
-		else if(event.getTarget() == btnCancelar){			
+		else if(event.getTarget() == btnCancelar){	
+			cena.setRoot(new AdminAulaView(idAula));
 		}
 		
 	}

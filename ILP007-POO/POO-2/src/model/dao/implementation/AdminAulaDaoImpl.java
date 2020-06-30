@@ -112,4 +112,15 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		}
 		return false;
 	}
+
+	@Override
+	public List<Aula> listarAulas() {
+		try {
+			Connection conn = daoFactory.getConnection();
+			String sql = "SELECT * FROM Aula WHERE CursoId = ?";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 }

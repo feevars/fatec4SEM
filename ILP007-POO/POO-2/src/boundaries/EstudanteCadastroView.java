@@ -21,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Estudante;
+import model.entities.Instrutor;
 
 public class EstudanteCadastroView extends Group implements EventHandler<ActionEvent> {
 
@@ -80,8 +81,10 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 	public EstudanteCadastroView(Integer estudanteId) {
 
 		this.estudanteId = estudanteId;
-//		txtUsername.setText();  setar os textos de cada campo conforme vier do banco
-//		txtPassword.setText();
+
+		Estudante usuario = estudanteController.getEstudantePorId(estudanteId);
+		
+		entityToBoundary(usuario);
 
 		this.txtUsername.setDisable(true);
 		this.txtEmail.setDisable(true);
@@ -116,6 +119,20 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 			System.out.println("Erro ao receber dados.");
 		}
 		return estudante;
+	}
+	
+	public void entityToBoundary(Estudante usuario) {
+
+		if (usuario != null) {
+			txtUsername.setText(usuario.getUsername());
+			txtPassword.setText(usuario.getPassword());
+			txtPasswordCheck.setText(usuario.getPassword());
+			txtNome.setText(usuario.getNome());
+			txtSobrenome.setText(usuario.getSobrenome());
+			txtEmail.setText(usuario.getEmail());
+			txtTelefone.setText(usuario.getTelefone());
+			dtNascimento.setValue(usuario.getDataNascimento().toLocalDate());
+		}
 	}
 
 	@Override

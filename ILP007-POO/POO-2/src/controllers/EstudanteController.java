@@ -12,24 +12,39 @@ import model.entities.Estudante;
 
 public class EstudanteController {
 
-	private EstudanteDao usuarioDao = new EstudanteDaoImpl();
+	private EstudanteDao estudanteDao = new EstudanteDaoImpl();
 	private Validator validator;
-	
-	public EstudanteController(){
+
+	public EstudanteController() {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		validator = factory.getValidator();
 	}
-		
-	public Integer cadastrarEstudante(Estudante estudante){
+
+	public Integer cadastrarEstudante(Estudante estudante) {
 		Integer valida;
 		Set<ConstraintViolation<Estudante>> erros = validator.validate(estudante);
-		if(erros.isEmpty()){
-			valida = usuarioDao.validaCadastroEstudante(estudante);
-			if(valida != 0) return valida;
-			usuarioDao.estudanteCadastro(estudante);
+		if (erros.isEmpty()) {
+			valida = estudanteDao.validaCadastroEstudante(estudante);
+			if (valida != 0)
+				return valida;
+			estudanteDao.estudanteCadastro(estudante);
 			return 0;
-		}else {
+		} else {
 			return 4;
 		}
-	}	
+	}
+
+	public boolean estudanteLogin(String username, String email, String password) {
+		return estudanteDao.estudanteLogin(username, email, password);
+	}
+
+	public Estudante getEstudantePorId(Integer id) {
+		return estudanteDao.getEstudantePorId(id);
+	}
+	
+	public Estudante getEstudantePorUsername(String username) {
+		return estudanteDao.getEstudantePorUsername(username);
+	}
+	
+
 }
