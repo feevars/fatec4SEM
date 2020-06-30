@@ -13,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import model.entities.Aula;
 
-public class EstudanteCurso extends BorderPane implements EventHandler<ActionEvent> {
+public class EstudanteCursoView extends BorderPane implements EventHandler<ActionEvent> {
 
 	private Integer estudanteId, cursoId;
 	
@@ -35,7 +35,7 @@ public class EstudanteCurso extends BorderPane implements EventHandler<ActionEve
 	
 	private Button btnVoltar = new Button("Voltar");
 	
-	public EstudanteCurso(Integer estudanteId, Integer cursoId, Integer pontosEstudanteCurso, Boolean iniciado, Boolean concluido) {
+	public EstudanteCursoView(Integer estudanteId, Integer cursoId, Integer pontosEstudanteCurso, Boolean iniciado, Boolean concluido) {
 		
 		this.estudanteId = estudanteId;
 		this.cursoId = cursoId;
@@ -70,7 +70,7 @@ public class EstudanteCurso extends BorderPane implements EventHandler<ActionEve
 		Scene cena = this.getScene();
 		
 		if (event.getTarget().equals(btnVoltar)) {
-			cena.setRoot(new EstudanteDashboard(estudanteId));
+			cena.setRoot(new EstudanteDashboardView(estudanteId));
 		} 
 	}
 	

@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import model.entities.Estudante;
 import model.entities.Instrutor;
 
-public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
+public class AdminUsuarioView extends Group implements EventHandler<ActionEvent> {
 
 	AdministradorController adminController = new AdministradorController();
 
@@ -52,7 +52,7 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 	private Button btnSalvar = new Button("Salvar edições");
 
 
-	public AdminUsuario(Integer idAdmin, Integer idUsuario, String nomeUsuario, String sobrenomeUsuario, String telefoneUsuario,
+	public AdminUsuarioView(Integer idAdmin, Integer idUsuario, String nomeUsuario, String sobrenomeUsuario, String telefoneUsuario,
 			Date dataNascimentoUsuario, Boolean eInstrutor) {
 
 		this.idAdmin = idAdmin;
@@ -102,17 +102,17 @@ public class AdminUsuario extends Group implements EventHandler<ActionEvent> {
 		if (event.getTarget() == btnSalvar) {
 			adminController.editarEstudante(boundaryToEntity());
 			System.out.println("Usuário editado com sucesso!");
-			cena.setRoot(new AdminDashboard(this.idAdmin));
+			cena.setRoot(new AdminDashboardView(this.idAdmin));
 
 		} else if (event.getTarget() == btnCancelar) {
-			cena.setRoot(new AdminDashboard(this.idAdmin));
+			cena.setRoot(new AdminDashboardView(this.idAdmin));
 		} 
 		  else if (event.getTarget() == btnExcluir) {
 			Alert alertExcluir = new Alert(AlertType.CONFIRMATION, "Tem certeza que deseja excluir usuário?");
 			Optional<ButtonType> result = alertExcluir.showAndWait();
 			if (result.get().equals(ButtonType.OK)) {
 				adminController.excluirEstudante(this.idUsuario);
-				cena.setRoot(new AdminDashboard(this.idAdmin));
+				cena.setRoot(new AdminDashboardView(this.idAdmin));
 			}
 		}
 	}

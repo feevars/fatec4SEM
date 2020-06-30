@@ -1,6 +1,6 @@
 package boundaries.admin;
 
-import boundaries.Login;
+import boundaries.LoginView;
 import controllers.AdministradorController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -29,7 +29,7 @@ import model.entities.Curso;
 import model.entities.Estudante;
 import model.entities.Instrutor;
 
-public class AdminDashboard extends BorderPane implements EventHandler<ActionEvent> {
+public class AdminDashboardView extends BorderPane implements EventHandler<ActionEvent> {
 
 	private Integer idAdmin;
 	AdministradorController adminController = new AdministradorController();
@@ -47,7 +47,7 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 	private Label lblUsuarios = new Label("Usuários");
 	private TableView<Estudante> tableUsuarios = new TableView<>(adminController.listarTodosEstudantes());
 
-	public AdminDashboard(Integer idAdmin) {
+	public AdminDashboardView(Integer idAdmin) {
 		this.idAdmin = idAdmin;
 		this.lblAdmin.setText("Logado como: "); // Colocar a chamada de getUsername by ID
 
@@ -108,7 +108,7 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 			row.setOnMouseClicked(event -> {
 				Estudante user = row.getItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new AdminUsuario(idAdmin, user.getId(), user.getNome(), user.getSobrenome(),
+				cena.setRoot(new AdminUsuarioView(idAdmin, user.getId(), user.getNome(), user.getSobrenome(),
 						user.getTelefone(), user.getDataNascimento(), (user instanceof Instrutor)));
 			});
 			return row;
@@ -125,9 +125,9 @@ public class AdminDashboard extends BorderPane implements EventHandler<ActionEve
 	public void handle(ActionEvent event) {
 		Scene cena = this.getScene();
 		if (event.getTarget().equals(btnSair)) {
-			cena.setRoot(new Login());
+			cena.setRoot(new LoginView());
 		} else if (event.getTarget().equals(btnNovoCurso)) {
-			cena.setRoot(new AdminCurso(this.idAdmin));
+			cena.setRoot(new AdminCursoView(this.idAdmin));
 		}
 	}
 }

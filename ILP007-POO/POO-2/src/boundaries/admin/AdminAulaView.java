@@ -13,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import model.entities.Exercicio;
 
-public class AdminAula extends Group {
+public class AdminAulaView extends Group {
 
 	private AulaController aulaController = new AulaController();
 	
@@ -42,7 +42,7 @@ public class AdminAula extends Group {
 	private Button btnExcluir = new Button("Excluir");
 	private Button btnSalvarAula = new Button("Salvar");
 	
-	public AdminAula() {
+	public AdminAulaView() {
 		
 		super();
 

@@ -1,6 +1,6 @@
 package tests;
 
-import boundaries.Login;
+import boundaries.LoginView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,7 +15,7 @@ public class MainPrincipalTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		Login telaLogin = new Login();
+		LoginView telaLogin = new LoginView();
 		
 		Scene cena = new Scene(telaLogin);
 		

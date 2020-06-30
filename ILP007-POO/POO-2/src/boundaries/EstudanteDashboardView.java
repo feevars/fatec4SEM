@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
 import model.entities.Curso;
 import model.entities.Estudante;
 
-public class EstudanteDashboard extends BorderPane implements EventHandler<ActionEvent> {
+public class EstudanteDashboardView extends BorderPane implements EventHandler<ActionEvent> {
 	
 	private Integer estudanteId;
 
@@ -34,7 +34,7 @@ public class EstudanteDashboard extends BorderPane implements EventHandler<Actio
 	private Button btnEditarPerfil = new Button("Editar perfil");
 	
 	
-	public EstudanteDashboard(Integer estudanteId) {
+	public EstudanteDashboardView(Integer estudanteId) {
 		
 		this.estudanteId = estudanteId;
 		
@@ -87,10 +87,10 @@ public class EstudanteDashboard extends BorderPane implements EventHandler<Actio
 		Scene cena = this.getScene();
 
 		if (event.getTarget().equals(btnSair)) {
-			cena.setRoot(new Login());
+			cena.setRoot(new LoginView());
 		} 
 		else if (event.getTarget().equals(btnEditarPerfil)) {
-			cena.setRoot(new EstudanteCadastro(estudanteId));
+			cena.setRoot(new EstudanteCadastroView(estudanteId));
 		} 
 	}
 }
