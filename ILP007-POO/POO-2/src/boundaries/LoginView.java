@@ -2,7 +2,6 @@ package boundaries;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import boundaries.admin.AdminCadastroView;
 import boundaries.admin.AdminDashboardView;
 import controllers.AdministradorController;
@@ -91,11 +90,7 @@ public class LoginView extends BorderPane implements EventHandler<ActionEvent> {
 		this.setCenter(vboxLogin);
 
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> cb36e102a991dc3c51df77bb684d74d1477b9729
 	@Override
 	public void handle(ActionEvent event) {
 
