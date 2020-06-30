@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.util.HashSet;
 import java.util.Set;
-
 import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
 import model.entities.Aula;

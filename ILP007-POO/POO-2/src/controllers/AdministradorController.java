@@ -4,13 +4,11 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.util.Set;
-
 import model.dao.AdminEstudanteDao;
 import model.dao.AdministradorDao;
 import model.dao.implementation.AdminEstudanteDaoImpl;
@@ -86,13 +84,14 @@ public class AdministradorController  {
 		return listaUsuarios;	
 	}
 	
-	public void carregaListaCursos(){
-		this.listaCursos.addAll(administradorDao.listarCursos());
-	}
 	
-	public ObservableList<Curso> listarTodosCursos(){
-		return listaCursos;	
-	}
+	 public void carregaListaCursos(){
+	 this.listaCursos.addAll(administradorDao.listarCursos()); }
+	 
+	 public ObservableList<Curso> listarTodosCursos(){ 
+		 return listaCursos; 
+	 }
+	 
 	
 	
 

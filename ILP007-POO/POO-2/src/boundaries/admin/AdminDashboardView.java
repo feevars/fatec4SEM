@@ -3,27 +3,20 @@ package boundaries.admin;
 import boundaries.LoginView;
 import controllers.AdministradorController;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 import model.entities.Administrador;
 import model.entities.Curso;
 import model.entities.Estudante;
@@ -42,7 +35,7 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 
 	private Label lblCursos = new Label("Cursos");
 	private Button btnNovoCurso = new Button("Novo curso...");
-	private TableView<Curso> tableCursos = new TableView<>();// (control.getLista
+	private TableView<Curso> tableCursos = new TableView<>(adminController.listarTodosCursos());// (control.getLista
 
 	private Label lblUsuarios = new Label("Usuários");
 	private TableView<Estudante> tableUsuarios = new TableView<>(adminController.listarTodosEstudantes());
@@ -73,10 +66,19 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 	}
 
 	private void gerarTabelaCursos() {
-		TableColumn<Curso, String> colTituloCurso = new TableColumn<>("Título do curso");
-		colTituloCurso.setCellValueFactory(new PropertyValueFactory<Curso, String>("titulo"));
+		TableColumn<Curso, String> colTitulo = new TableColumn<>("Título");
+		colTitulo.setCellValueFactory(new PropertyValueFactory<Curso, String>("titulo"));
 
-		tableCursos.getColumns().addAll(colTituloCurso);
+		TableColumn<Curso, String> colDescricao = new TableColumn<>("Descrição");
+		colDescricao.setCellValueFactory(new PropertyValueFactory<Curso, String>("descricao"));
+		
+		TableColumn<Curso, String> colCriacao = new TableColumn<>("Criação");
+		colCriacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("dataCriacao"));
+		
+		tableCursos.getColumns().addAll(colTitulo);
+		tableCursos.getColumns().addAll(colDescricao);
+		tableCursos.getColumns().addAll(colCriacao);
+		
 	}
 
 	private void gerarTabelaUsuarios() {

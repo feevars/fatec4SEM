@@ -1,7 +1,6 @@
 package model.dao.implementation;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,10 +72,8 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 			PreparedStatement stm = con.prepareStatement(sql);
 			rs = stm.executeQuery();
 			while (rs.next()) {
-				Curso curso = new Curso(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao"), null, null,
-						Date.valueOf(rs.getString("dataCriacao")), Date.valueOf(rs.getString("dataAtuualizacao")));
-				curso.setDescricao(rs.getString("titulo"));
-				curso.setTitulo(rs.getString("descricao"));
+				Curso curso = new Curso(rs.getInt("id"), rs.getString("titulo"),
+				rs.getString("descricao"), null, null, rs.getDate("dataCriacao"), rs.getDate("dataAtualizacao"));
 				lista.add(curso);
 			}
 			con.close();
