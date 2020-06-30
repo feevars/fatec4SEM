@@ -1,8 +1,5 @@
 package boundaries.admin;
 
-import controllers.AulaController;
-import controllers.CursoController;
-import controllers.InstrutorController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,10 +17,6 @@ import model.entities.Aula;
 import model.entities.Instrutor;
 
 public class AdminCursoView extends Group implements EventHandler<ActionEvent> {
-
-	private CursoController cursoController = new CursoController();
-	private AulaController aulaController = new AulaController();
-	private InstrutorController instrutorController = new InstrutorController();
 
 	private VBox vboxCurso = new VBox();
 

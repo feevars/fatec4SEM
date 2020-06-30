@@ -21,34 +21,6 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public Curso pesquisarPorNome(String titulo) {
-//		try {
-//			Connection con = daoFactory.getConnection();
-//			ResultSet rs;
-//			String sql = "SELECT * FROM Curso WHERE titulo = ? ";
-//			PreparedStatement stm = con.prepareStatement(sql);
-//			stm.setString(1, titulo);
-//			rs = stm.executeQuery();
-//			while (rs.next()) {
-//				if (titulo.equals(rs.getString("titulo"))) {
-//					Curso curso = new Curso();
-//					curso.setId(rs.getInt("id"));
-//					curso.setDescricao(rs.getString("titulo"));
-//					curso.setTitulo(rs.getString("descricao"));
-//					con.close();
-//					return curso;
-//				} else {
-//					con.close();
-//					System.out.println("Curso nao encontrado");
-//				}
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}																Precisa ajeitar a query e passar isso pra estudante, se for isso...
-		return null;
-	}
-
-	@Override
 	public void cadastrar(Curso curso) {
 		Connection con = daoFactory.getConnection();
 		String sql = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?)";

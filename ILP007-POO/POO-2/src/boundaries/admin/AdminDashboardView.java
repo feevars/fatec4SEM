@@ -75,9 +75,20 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 		TableColumn<Curso, String> colCriacao = new TableColumn<>("Criação");
 		colCriacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("dataCriacao"));
 		
-		tableCursos.getColumns().addAll(colTitulo);
-		tableCursos.getColumns().addAll(colDescricao);
-		tableCursos.getColumns().addAll(colCriacao);
+		tableCursos.getColumns().add(colTitulo);
+		tableCursos.getColumns().add(colDescricao);
+		tableCursos.getColumns().add(colCriacao);
+	
+		tableCursos.setRowFactory(tv -> {
+
+			TableRow<Curso> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				Curso curso = row.getItem();
+				Scene cena = this.getScene();
+				cena.setRoot(new AdminCursoView(curso.getId()));
+			});
+			return row;
+		});
 		
 	}
 
@@ -106,7 +117,7 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 
 		tableUsuarios.setRowFactory(tv -> {
 
-			TableRow<Estudante> row = new TableRow<>();
+			TableRow<Estudante> row = new TableRow<>();		
 			row.setOnMouseClicked(event -> {
 				Estudante user = row.getItem();
 				Scene cena = this.getScene();
