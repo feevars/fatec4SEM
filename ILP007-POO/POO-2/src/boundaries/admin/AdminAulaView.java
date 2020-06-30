@@ -113,5 +113,4 @@ public class AdminAulaView extends Group implements EventHandler<ActionEvent> {
 
 		return aula;
 	}
-
 }

@@ -85,7 +85,4 @@ public class AdminCadastroView extends Group implements EventHandler<ActionEvent
 		
 		return admin;
 	}
-	
-	
-	
 }

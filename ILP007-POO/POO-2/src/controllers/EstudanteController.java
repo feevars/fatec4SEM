@@ -31,7 +31,5 @@ public class EstudanteController {
 		}else {
 			return 4;
 		}
-	}
-	
-	
+	}	
 }
