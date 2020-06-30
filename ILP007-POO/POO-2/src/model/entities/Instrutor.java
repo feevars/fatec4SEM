@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class Instrutor extends Estudante {
 
+	private Boolean autor;
 	private Set<Curso> cursosCriados;
 	
 	public Instrutor(Integer id, String username, String password, String nome, String sobrenome, String email,
@@ -23,6 +24,11 @@ public class Instrutor extends Estudante {
 		super(id);
 	};
 
+	public Instrutor(int id, String username, String nome, String sobrenome, Set<Curso> cursosCriados) {
+		super(id, username, nome, sobrenome);
+		this.cursosCriados = cursosCriados;
+	}
+
 	public Instrutor(int id, String username, String nome, String sobrenome) {
 		super(id, username, nome, sobrenome);
 	}
@@ -38,5 +44,15 @@ public class Instrutor extends Estudante {
 	public String getNomeDoObjeto() {
 		return "Instrutor";
 	}
+
+	public Boolean isAutor() {
+		return autor;
+	}
+
+	public void setAutor(Boolean autor) {
+		this.autor = autor;
+	}
+	
+	
 	
 }

@@ -1,7 +1,5 @@
 package boundaries.admin;
 
-import java.awt.ItemSelectable;
-
 import controllers.AdministradorController;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -102,19 +100,13 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		TableColumn<Instrutor, String> colSobrenome = new TableColumn<>("Sobrenome");
 		colSobrenome.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("sobrenome"));
 		
-		TableColumn<Instrutor, CheckBox> colAutor = new TableColumn<>("Autor(x) deste curso");
-		colAutor.setCellFactory(CheckBoxTableCell.forTableColumn(new Callback<Integer, ObservableValue<Boolean>>() {
-
-			@Override
-			public ObservableValue<Boolean> call(Integer param) {
-				System.out.println(param);
-				return null;
-			}
-	    }));
+		TableColumn<Instrutor, Boolean> colAutor = new TableColumn<>("Autor(x) deste curso");
+		colAutor.setCellValueFactory(new PropertyValueFactory<Instrutor, Boolean>("autor"));
+		colAutor.setCellFactory(CheckBoxTableCell.forTableColumn(colAutor));
 		tableInstrutores.setEditable(true);			
 		
 		tableInstrutores.setMaxHeight(200);
-		tableInstrutores.setMinWidth(300);
+		tableInstrutores.setMinWidth(400);
 		tableInstrutores.getColumns().add(colUsername);
 		tableInstrutores.getColumns().add(colNome);
 		tableInstrutores.getColumns().add(colSobrenome);

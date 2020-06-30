@@ -14,5 +14,7 @@ public interface AdminCursoDao {
 	Boolean editarCurso(Curso c);
 	Set<Aula> listarAulasCurso(Integer id);
 	List<Instrutor> listarInstrutores();
-	List<Instrutor> listarInstrutoresCurso(Integer cursoId);
+	Set<Instrutor> listarInstrutoresPorCurso(Integer cursoId);
+	Set<Curso> listarCursosPorInstrutor(Integer instrutorId);
+	Boolean verificaAutoria(Integer instrutorId, Integer cursoId);
 }
