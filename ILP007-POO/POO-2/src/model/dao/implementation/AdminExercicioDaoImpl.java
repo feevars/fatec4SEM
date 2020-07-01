@@ -46,18 +46,20 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 	
 	}
 	@Override
-	public void excluirExercicio(Integer id) {
+	public boolean excluirExercicio(Integer id) {
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql = "DELETE FROM exercico WHERE id = ?";		
+			String sql = "DELETE FROM exercicio WHERE id = ?";		
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setInt(1, id);
 			stm.executeUpdate();
 			con.close();
 			System.out.println("Exercicio de id " + id + " deletado!");
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Erro ao deletar exercicio de id " + id);
 			e.printStackTrace();
+			return false;
 		}
 		
 	}

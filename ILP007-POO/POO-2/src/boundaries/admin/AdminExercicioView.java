@@ -15,10 +15,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Exercicio;
 
-public class AdminExercicioView extends Group implements EventHandler<ActionEvent>{
-	
+public class AdminExercicioView extends Group implements EventHandler<ActionEvent> {
+
 	private Integer idAula;
-	
+	private Integer idAdmin;
+	private Integer idExercicio;
+	private Exercicio exercicio;
+
 	ExercicioController exercicioController = new ExercicioController();
 
 	private VBox vbox = new VBox();
@@ -42,7 +45,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	private TextArea txtExplicacao = new TextArea();
 
 	private HBox hboxDetalhes = new HBox();
-	
+
 	private Label lblTempoResposta = new Label("Tempo para que o estudante responda esta questão em segundos:");
 	private TextField txtTempoResposta = new TextField();
 
@@ -53,24 +56,26 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	private Label lblAula = new Label("A qual aula esse exercicio pertence? ");
 	private TextField txtAula = new TextField();
 	//
-	
+
 	private HBox hboxButtons = new HBox();
 
 	private Button btnExcluir = new Button("Excluir");
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnSalvar = new Button("Salvar");
+	private Button btnEditar = new Button("Editar");
 
-	public AdminExercicioView(Integer idAula) {
+	// Construtor cadastra exercicio
+	public AdminExercicioView(Integer idAula, Integer idAdmin) {
 
 		vbox.setSpacing(5);
 
 		txtTitulo.setPromptText("Digite o título resumido do exercício...");
-  
+
 		txtQuestao.setMaxHeight(30);
 		txtQuestao.setPromptText("Digite a questão copleta que deverá ser respondida por meio das alternativas.");
 
 		txtAlternativaCorreta.setPromptText("Digite a resposta correta para a questão forulada.");
-	
+
 		txtAlternativaIncorreta1.setPromptText("Digite a alternativa incorreta 1");
 		txtAlternativaIncorreta2.setPromptText("Digite a alternativa incorreta 2");
 		txtAlternativaIncorreta3.setPromptText("Digite a alternativa incorreta 3");
@@ -79,44 +84,95 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 		txtExplicacao.setMaxHeight(30);
 		txtExplicacao.setPromptText("Digite a justificativa da resposta completa, explicando a questão do exercício.");
 
-		estilizaLabels(lblTitulo, lblQuestao, lblAlternativaCorreta, lblAlternativasIncorretas, lblExplicacao, lblTempoResposta, lblPontos, lblAula);
-		
+		estilizaLabels(lblTitulo, lblQuestao, lblAlternativaCorreta, lblAlternativasIncorretas, lblExplicacao,
+				lblTempoResposta, lblPontos, lblAula);
+
 		hboxDetalhes.setSpacing(10);
 		hboxDetalhes.getChildren().addAll(lblTempoResposta, txtTempoResposta, lblPontos, txtPontos, lblAula, txtAula);
 
 		btnSalvar.setOnAction(this);
 		btnCancelar.setOnAction(this);
-		
+
 		hboxButtons.setSpacing(10);
 		hboxButtons.getChildren().addAll(btnExcluir, btnCancelar, btnSalvar);
 
 		vbox.getChildren().addAll(lblTitulo, txtTitulo, lblQuestao, txtQuestao, lblAlternativaCorreta,
 				txtAlternativaCorreta, lblAlternativasIncorretas, txtAlternativaIncorreta1, txtAlternativaIncorreta2,
-				txtAlternativaIncorreta3, txtAlternativaIncorreta4, lblExplicacao, txtExplicacao, hboxDetalhes, hboxButtons);
-		
+				txtAlternativaIncorreta3, txtAlternativaIncorreta4, lblExplicacao, txtExplicacao, hboxDetalhes,
+				hboxButtons);
+
 		vbox.setMaxSize(800, 600);
 		vbox.isResizable();
 		vbox.setPadding(new Insets(20));
 		this.getChildren().add(vbox);
 
 	}
-	
 
-	private void estilizaLabels(Label ... labels) {
+	// Construtor edita exercicio
+	public AdminExercicioView(Integer idAula, Integer idAdmin, Integer idExercicio, Exercicio exercicio) {
 		
+		this.idExercicio = idExercicio;
+		this.exercicio = exercicio;
+		
+		vbox.setSpacing(5);
+
+		txtTitulo.setPromptText("Digite o título resumido do exercício...");
+
+		txtQuestao.setMaxHeight(30);
+		txtQuestao.setPromptText("Digite a questão copleta que deverá ser respondida por meio das alternativas.");
+
+		txtAlternativaCorreta.setPromptText("Digite a resposta correta para a questão forulada.");
+
+		txtAlternativaIncorreta1.setPromptText("Digite a alternativa incorreta 1");
+		txtAlternativaIncorreta2.setPromptText("Digite a alternativa incorreta 2");
+		txtAlternativaIncorreta3.setPromptText("Digite a alternativa incorreta 3");
+		txtAlternativaIncorreta4.setPromptText("Digite a alternativa incorreta 4");
+
+		txtExplicacao.setMaxHeight(30);
+		txtExplicacao.setPromptText("Digite a justificativa da resposta completa, explicando a questão do exercício.");
+
+		estilizaLabels(lblTitulo, lblQuestao, lblAlternativaCorreta, lblAlternativasIncorretas, lblExplicacao,
+				lblTempoResposta, lblPontos, lblAula);
+
+		hboxDetalhes.setSpacing(10);
+		hboxDetalhes.getChildren().addAll(lblTempoResposta, txtTempoResposta, lblPontos, txtPontos, lblAula, txtAula);
+
+		btnSalvar.setOnAction(this);
+		btnCancelar.setOnAction(this);
+		btnExcluir.setOnAction(this);
+		btnEditar.setOnAction(this);
+		
+
+		hboxButtons.setSpacing(10);
+		hboxButtons.getChildren().addAll(btnExcluir, btnCancelar, btnSalvar, btnEditar);
+
+		vbox.getChildren().addAll(lblTitulo, txtTitulo, lblQuestao, txtQuestao, lblAlternativaCorreta,
+				txtAlternativaCorreta, lblAlternativasIncorretas, txtAlternativaIncorreta1, txtAlternativaIncorreta2,
+				txtAlternativaIncorreta3, txtAlternativaIncorreta4, lblExplicacao, txtExplicacao, hboxDetalhes,
+				hboxButtons);
+
+		vbox.setMaxSize(800, 600);
+		vbox.isResizable();
+		vbox.setPadding(new Insets(20));
+		this.getChildren().add(vbox);
+
+	}
+
+	private void estilizaLabels(Label... labels) {
+
 		for (Label label : labels) {
-			
+
 			label.setPadding(new Insets(10, 0, 0, 0));
 			label.setWrapText(true);
-			//label.setFont(new Font(16));
+			// label.setFont(new Font(16));
 
 		}
-		
+
 	}
-	
-	public Exercicio boundaryToEntity(){
+
+	public Exercicio boundaryToEntity() {
 		Exercicio exercicio = new Exercicio();
-		try{
+		try {
 			exercicio.setTituloExercicio(txtTitulo.getText());
 			exercicio.setQuestaoExercicio(txtQuestao.getText());
 			exercicio.setAlternativaCorreta(txtAlternativaCorreta.getText());
@@ -128,9 +184,8 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 			exercicio.setTempoResposta(Integer.parseInt(txtTempoResposta.getText()));
 			exercicio.setPontos(Integer.parseInt(txtPontos.getText()));
 			exercicio.setAulaId((Integer.parseInt(txtAula.getText())));
-			
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			System.out.println("Erro ao receber dados.");
 		}
 		return exercicio;
@@ -139,14 +194,16 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	@Override
 	public void handle(ActionEvent event) {
 		Scene cena = this.getScene();
-		if(event.getTarget() == btnSalvar){
+		if (event.getTarget() == btnSalvar) {
 			exercicioController.cadastrarExercicio(boundaryToEntity());
-		}
-		else if(event.getTarget() == btnCancelar){	
-			cena.setRoot(new AdminAulaView(idAula));
-		}
-		
+		} else if (event.getTarget() == btnCancelar) {
+			cena.setRoot(new AdminAulaView(this.idAula));
+		} else if (event.getTarget().equals(btnExcluir)) {
+			exercicioController.excluirExercicio(idExercicio);
+		} else if (event.getTarget().equals(btnEditar)) {
+			exercicioController.editarExercicio(exercicio);
 	}
-	
-	
+
+	}
+
 }
