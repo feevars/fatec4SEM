@@ -133,7 +133,7 @@ public class EstudanteCadastroView extends Group implements EventHandler<ActionE
 			txtSobrenome.setText(usuario.getSobrenome());
 			txtEmail.setText(usuario.getEmail());
 			txtTelefone.setText(usuario.getTelefone());
-			dtNascimento.setValue(usuario.getDataNascimento().toLocalDate());
+			if (usuario.getDataNascimento() != null) dtNascimento.setValue(usuario.getDataNascimento().toLocalDate());
 		}
 	}
 
