@@ -5,4 +5,4 @@ insert into curso (titulo, descricao)
 values ("curso teste", "desc teste");
 
 INSERT INTO exercicio (titulo, questao, alternativaCorreta, alternativaIncorreta1,alternativaIncorreta2, alternativaIncorreta3, alternativaIncorreta4, explicacao, tempoResposta, pontos, aulaId) 
-VALUES ("exer teste", "quem veio primeiro", "ovo", "galinha", "galinha", "galinha", "galinha", "nao sei", 500, 1, 2);
+VALUES ("exer teste", "quem veio primeiro", "ovo", "galinha", "galinha", "galinha", "galinha", "nao sei", 500, 1, 1);

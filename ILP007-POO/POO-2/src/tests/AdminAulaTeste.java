@@ -14,7 +14,7 @@ public class AdminAulaTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminAulaView adminAula = new AdminAulaView(4);
+		AdminAulaView adminAula = new AdminAulaView(4, 4, "Titulo");
 
 		Scene scene = new Scene(adminAula);
 		
@@ -24,7 +24,7 @@ public class AdminAulaTeste extends Application {
 		stage.setFullScreen(false);
 
 		stage.setScene(scene);
-		stage.setTitle("Cadastrar Aula");
+		stage.setTitle("FreeTech Learning");
 		stage.show();
 	}
 }

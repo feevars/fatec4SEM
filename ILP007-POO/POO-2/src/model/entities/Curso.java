@@ -12,6 +12,8 @@ public class Curso {
 	Set<Aula> aulas;
 	private Date dataCriacao;
 	private Date dataAtualizacao;
+	private Integer pontosEstudante;
+	private Boolean concluidoPeloEstudante;
 
 	public Curso() {
 
@@ -102,4 +104,20 @@ public class Curso {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
+	public Integer getPontosEstudante() {
+		return pontosEstudante;
+	}
+
+	public void setPontosEstudante(Integer pontosEstudante) {
+		this.pontosEstudante = pontosEstudante;
+	}
+
+	public Boolean getConcluidoPeloEstudante() {
+		return concluidoPeloEstudante;
+	}
+
+	public void setConcluidoPeloEstudante(Boolean concluidoPeloEstudante) {
+		this.concluidoPeloEstudante = concluidoPeloEstudante;
+	}
+	
 }
