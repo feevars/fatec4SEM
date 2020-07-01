@@ -22,13 +22,12 @@ public class AulaController {
 	}
 	
 	public void adicionarAula(Aula aula, Integer cursoId) {
-		aula.setNumAula(curso.getAulas().size()+1);
 		adminAulaDao.cadastrarAula(aula, cursoId);
 		//curso.getAulas().add(a);
 	}
 	
-	public void removerAula(Integer id) {
-		adminAulaDao.excluirAula(id);
+	public void removerAula(Integer idAula) {
+		adminAulaDao.excluirAula(idAula);
 	}
 
 	public void editarAula(Aula aula) {

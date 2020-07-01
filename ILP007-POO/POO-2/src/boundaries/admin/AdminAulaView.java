@@ -1,10 +1,10 @@
 package boundaries.admin;
-
 import controllers.AulaController;
 import controllers.CursoController;
 import controllers.ExercicioController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,7 +20,6 @@ import javafx.scene.layout.VBox;
 import model.entities.Aula;
 import model.entities.Curso;
 import model.entities.Exercicio;
-import model.entities.Instrutor;
 
 public class AdminAulaView extends BorderPane implements EventHandler<ActionEvent> {
 
@@ -69,7 +68,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 	private Integer idAdmin;
 	
 	//Esse construtor é para cadastrar nova aula junto a um curso --- aula ainda sem id
-	public AdminAulaView(Integer adminId, Curso curso) {
+	public AdminAulaView(Integer idAdmin, Curso curso) {
 		
 		this.curso = curso;
 		
@@ -100,25 +99,23 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		btnAdicionarExercicio.setOnAction(this);
 		btnCancelar.setOnAction(this);
 		btnSalvarAula.setOnAction(this);
-
-		this.idCurso = idCurso;
+		
 		this.idAdmin = idAdmin;
 		txtTituloAula.setText(tituloAula);
 		
 		this.setPromtTexts();
 		this.gerarTabelaExercicios();
 
-//		this.txtDescricaoAula.setMaxHeight(100);
-//
-//		this.hboxAula.getChildren().addAll(btnCancelar, btnExcluir, btnSalvarAula);
-//
-//		this.vboxAula.setPadding(new Insets(20));
-//		this.vboxAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula,
-//				lblLinkVideo, txtLinkVideo, lblTranscricaoVideo, txtTranscricaoVideo, lblTempoVideo, txtTempoVideo,
-//				lblExercicios, btnAdicionarExercicio, tableExercicios, hboxAula);
+		this.txtDescricaoAula.setMaxHeight(100);
 
-//		this.getChildren().add(vboxAula);
+		this.hboxBotoesAcoes.getChildren().addAll(btnCancelar, btnExcluir, btnSalvarAula);
 
+		this.vboxInfoAula.setPadding(new Insets(20));
+		this.vboxInfoAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula,
+				lblLinkVideo, txtLinkVideo, lblTranscricaoVideo, txtTranscricaoVideo, lblTempoVideo, txtTempoVideo,
+				lblExercicios, btnAdicionarExercicio, tableExercicios, hboxBotoesAcoes);
+		
+		this.setCenter(vboxInfoAula);
 	}
 
 	private void gerarTabelaExercicios() {
@@ -169,6 +166,18 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		aula.setNumAula(1);
 		return aula;
 	}
+	//o numero da aula depende do número de aulas do curso
+	public Aula boundaryToEntity() {
+		Aula aula = new Aula();
+		
+		aula.setTitulo(txtTituloAula.getText());
+		aula.setDescricao(txtDescricaoAula.getText());
+		aula.setLinkVideo(txtLinkVideo.getText());
+		aula.setTranscricaoVideo(txtTranscricaoVideo.getText());
+		aula.setTempoVideo(Integer.parseInt(txtTempoVideo.getText()));
+		aula.setNumAula(aula.getNumAula()+1);
+		return aula;
+	}
 
 	@Override
 	public void handle(ActionEvent event) {
@@ -176,19 +185,19 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		Scene cena = this.getScene();
 
 		if (event.getTarget() == btnAdicionarExercicio) {
-			cena.setRoot(new AdminExercicioView(3, 2)); // Aqui talvez tenha que passar ID da aula
+			cena.setRoot(new AdminExercicioView(idAula, idAdmin)); // Aqui talvez tenha que passar ID da aula
 			// aulaController.adicionarExercicio(this.boundaryToEntity().setExercicios(exercicio);)
 			// exercicioController.cadastrarExercicio(exercicio);
 		
 		} else if (event.getTarget().equals(btnCancelar)) {
-			cena.setRoot(new AdminCursoView(this.idCurso));
+			cena.setRoot(new AdminDashboardView(idAdmin));
 		
 		} else if (event.getTarget().equals(btnExcluir)) {
-			aulaController.removerAula(4); // modificar idAula
+			aulaController.removerAula(this.idAula); // modificar idAula
 		
 		} else if (event.getTarget().equals(btnSalvarAula)) {
-//			aulaController.adicionarAula(this.boundaryToEntity());
-		
+			aulaController.adicionarAula(boundaryToEntity(), curso.getId());
+			
 		} else if (event.getTarget().equals(btnCadastrarCurso)) {
 			if (cursoController.cadastrarCursoEPrimeiraAula(curso, boundaryToEntityPrimeiroCadastro())) {
 				System.out.println("Cadastrou com sucesso...");
