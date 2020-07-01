@@ -88,7 +88,7 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 			TableRow<Curso> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				Curso curso = row.getItem();
-				Scene cena = this.getScene();
+				Scene cena = this.getScene(); 
 				cena.setRoot(new AdminCursoView(this.idAdmin, curso.getId(), curso.getTitulo(), curso.getDescricao()));
 			});
 			return row;
@@ -148,4 +148,6 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 			cena.setRoot(new AdminCursoView(this.idAdmin));
 		}
 	}
+	
+	
 }

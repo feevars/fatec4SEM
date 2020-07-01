@@ -17,7 +17,7 @@ public class CursoController {
 
 	private AdminCursoDao adminCursoDao = new AdminCursoDaoImpl();
 	private AdminAulaDao adminAulaDao = new AdminAulaDaoImpl();
-	private ObservableList<Aula> listaAulas = FXCollections.observableArrayList();
+	private ObservableList<Instrutor> listaTodosInstrutores = FXCollections.observableArrayList();
 	
 		
 	
@@ -35,6 +35,7 @@ public class CursoController {
 	public ObservableList<Curso> getLista(){
 		return null;
 	}
+	
 	
 	//Cadastrar novo curso (passando com ids de instrutores)
 	public Boolean cadastrarCurso(Curso curso, Integer[] idsInstrutores){

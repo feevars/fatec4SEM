@@ -20,7 +20,6 @@ import javafx.scene.layout.VBox;
 import model.entities.Aula;
 import model.entities.Curso;
 import model.entities.Exercicio;
-import model.entities.Instrutor;
 
 public class AdminAulaView extends BorderPane implements EventHandler<ActionEvent> {
 
