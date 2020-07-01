@@ -65,9 +65,11 @@ public class CursoController {
 	
 	public Boolean cadastrarCursoEPrimeiraAula(Curso curso, Aula aula) {
 		Integer cursoId = adminCursoDao.cadastrarCurso(curso);
+		System.out.println("curso id :" + cursoId);
 		for (Instrutor instrutor : curso.getInstrutores()) {
-			adminCursoDao.cadastrarInstrutorCurso(instrutor.getId(), cursoId);
+			System.out.println(adminCursoDao.cadastrarInstrutorCurso(instrutor.getId(), cursoId));
 		}
+
 		aula.setCursoId(cursoId);
 		adminAulaDao.cadastrarAula(aula, curso.getId());
 		return false;

@@ -67,7 +67,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			stm.setString(3, aula.getLinkVideo());
 			stm.setString(4, aula.getTranscricaoVideo());
 			stm.setInt(5, aula.getTempoVideo());
-			stm.setInt(6, aula.getNumAula());	// Talvez nao usaremos...
+			stm.setInt(6, aula.getNumAula());
 			stm.setInt(7, cursoId);
 			stm.executeUpdate();
 			conn.close();
