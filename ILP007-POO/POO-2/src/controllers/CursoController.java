@@ -39,8 +39,7 @@ public class CursoController {
 				System.out.println("Id do curso criado: " + idNovoCurso);
 				for (Integer idInstrutor : idsInstrutores) {
 					System.out.println("Id curso: " + idNovoCurso + " - Id Instrutor: " + idInstrutor);
-					adminCursoDao.cadastrarInstrutorCurso(idNovoCurso, idInstrutor);
-					
+					adminCursoDao.cadastrarInstrutorCurso(idNovoCurso, idInstrutor);	
 				}
 				return true;
 			}else {
@@ -65,18 +64,23 @@ public class CursoController {
 	}
 	
 	public Boolean cadastrarCursoEPrimeiraAula(Curso curso, Aula aula) {
-		
-		
 		Integer cursoId = adminCursoDao.cadastrarCurso(curso);
-		
 		for (Instrutor instrutor : curso.getInstrutores()) {
 			adminCursoDao.cadastrarInstrutorCurso(instrutor.getId(), cursoId);
 		}
-		
 		aula.setCursoId(cursoId);
-		adminAulaDao.cadastrarAula(aula);
-	
+		adminAulaDao.cadastrarAula(aula, curso.getId());
 		return false;
 	}
+	
+	public Boolean adicionarInstrutorCurso(Integer instrutorId, Integer cursoId) {
+		Boolean instrutorAdicionado = adminCursoDao.adicionarInstrutorCurso(instrutorId, cursoId);
+		if(instrutorAdicionado){
+			return true;
+		}
+		return false;
+	}
+	
+	
 	
 }

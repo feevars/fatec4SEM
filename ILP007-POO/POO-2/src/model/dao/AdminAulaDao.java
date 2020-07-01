@@ -1,14 +1,12 @@
 package model.dao;
 
 import java.util.List;
-import java.util.Set;
-
 import model.entities.Aula;
 import model.entities.Exercicio;
 
 public interface AdminAulaDao {
 
-	void cadastrarAula(Aula aula);
+	void cadastrarAula(Aula aula, Integer cursoId);
 		
 	void excluirAula(Integer id);
 	

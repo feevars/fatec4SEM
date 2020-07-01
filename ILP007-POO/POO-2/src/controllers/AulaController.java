@@ -21,9 +21,9 @@ public class AulaController {
 		return exerciciosList;
 	}
 	
-	public void adicionarAula(Aula a) {
-		a.setNumAula(curso.getAulas().size()+1);
-		adminAulaDao.cadastrarAula(a);
+	public void adicionarAula(Aula aula, Integer cursoId) {
+		aula.setNumAula(curso.getAulas().size()+1);
+		adminAulaDao.cadastrarAula(aula, cursoId);
 		//curso.getAulas().add(a);
 	}
 	
