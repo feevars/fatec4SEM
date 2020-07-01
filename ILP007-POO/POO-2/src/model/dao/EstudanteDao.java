@@ -1,5 +1,8 @@
 package model.dao;
 
+import java.util.Set;
+
+import model.entities.Curso;
 import model.entities.Estudante;
 
 public interface EstudanteDao {
@@ -28,4 +31,9 @@ public interface EstudanteDao {
 	
 	public Estudante getEstudantePorUsername(String username);
 	
+	public Set<Curso> listarTodosCursos(Integer idEstudante);
+	
+	public Integer pontosNoCurso(Integer estudanteId, Integer cursoId);
+	
+	public Boolean cursoConcluido(Integer estudanteId, Integer cursoId);
 }

@@ -1,5 +1,7 @@
 package boundaries;
 
+import java.sql.Date;
+
 import controllers.EstudanteController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +22,7 @@ import model.entities.Instrutor;
 
 public class EstudanteDashboardView extends BorderPane implements EventHandler<ActionEvent> {
 
+	private EstudanteController estudanteController = new EstudanteController();
 	private Integer estudanteId;
 
 	private HBox hboxHeader = new HBox();
@@ -28,19 +31,16 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 
 	private VBox vboxCursos = new VBox();
 	private Label lblCursos = new Label("Cursos");
-	private TableView<Curso> tableCursos = new TableView<Curso>(); // = new TableView<>(control.getLista());
+	private TableView<Curso> tableCursos; // = new TableView<>(control.getLista());
 
 	private VBox vboxPerfil = new VBox();
 	private Label lblNome = new Label();
 	private Label lblPontos = new Label();
 	private Button btnEditarPerfil = new Button("Editar perfil");
 
-	private EstudanteController estudanteController = new EstudanteController();
-
 	public EstudanteDashboardView(Integer estudanteId) {
 
 		this.estudanteId = estudanteId;
-
 		Estudante usuario = estudanteController.getEstudantePorId(estudanteId);
 		entityToBoundary(usuario);
 		gerarTabelaCursos();
@@ -66,11 +66,29 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 	}
 
 	private void gerarTabelaCursos() {
+		tableCursos = new TableView<Curso>(estudanteController.listarTodosCursos(estudanteId));
+
 		TableColumn<Curso, String> colTituloCurso = new TableColumn<>("Título do Curso");
 		colTituloCurso.setCellValueFactory(new PropertyValueFactory<Curso, String>("titulo"));
 
+		TableColumn<Curso, String> colDescricaoCurso = new TableColumn<>("Descrição do Curso");
+		colDescricaoCurso.setCellValueFactory(new PropertyValueFactory<Curso, String>("descricao"));
+
+		TableColumn<Curso, Date> colAtualizacaoCurso = new TableColumn<>("Última atualização");
+		colAtualizacaoCurso.setCellValueFactory(new PropertyValueFactory<Curso, Date>("dataAtualizacao"));
+
+		TableColumn<Curso, Integer> colPontos = new TableColumn<>("Seus pontos");
+		colPontos.setCellValueFactory(new PropertyValueFactory<Curso, Integer>("pontos"));
+
+		TableColumn<Curso, Boolean> colConcluido = new TableColumn<>("Concluido");
+		colConcluido.setCellValueFactory(new PropertyValueFactory<Curso, Boolean>("concluido"));
+
 		tableCursos.getColumns().add(colTituloCurso);
-		tableCursos.setMaxWidth(600);
+		tableCursos.getColumns().add(colDescricaoCurso);
+		tableCursos.getColumns().add(colAtualizacaoCurso);
+		tableCursos.getColumns().add(colPontos);
+		tableCursos.getColumns().add(colConcluido);
+		tableCursos.setMinWidth(600);
 	}
 
 	public void entityToBoundary(Estudante usuario) {
@@ -81,13 +99,12 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 			if ((!usuario.getNome().isEmpty() || usuario.getNome() == null)
 					&& (!usuario.getSobrenome().isEmpty() || usuario.getSobrenome() == null))
 				nomeDoUsuario = usuario.getNome() + " " + usuario.getSobrenome();
-			
-			if (usuario instanceof Instrutor) {				
+
+			if (usuario instanceof Instrutor) {
 				this.lblUsuario.setText("Olá, queridx intrutor(x) " + nomeDoUsuario + ".");
-			}
-			else {
+			} else {
 				this.lblUsuario.setText("Olá, " + nomeDoUsuario + ". Você é o melhor estudante desta plataforma!");
-				
+
 			}
 			lblNome.setText(nomeDoUsuario);
 			lblPontos.setText("Pontos: " + usuario.getPontos().toString());
