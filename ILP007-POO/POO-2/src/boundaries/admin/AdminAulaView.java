@@ -30,7 +30,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 	private Integer idCurso;
 	private Integer idAula;
 
-	private Label lblTituloCurso = new Label("nome dccur");
+	private Label lblTituloCurso = new Label("nome do curso");
 
 	private VBox vboxInfoAula = new VBox();
 
@@ -66,14 +66,15 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 	private Curso curso;
 	
-	private Integer adminId;
+	private Integer idAdmin;
 	
+	//Esse construtor é para cadastrar nova aula junto a um curso --- aula ainda sem id
 	public AdminAulaView(Integer adminId, Curso curso) {
 		
 		this.curso = curso;
 		
 		setPromtTexts();
-		gerarTabela();
+		gerarTabelaExercicios();
 
 		lblTituloCurso.setText(curso.getTitulo() + " - " + curso.getDescricao());
 		
@@ -93,14 +94,19 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		this.setBottom(hboxBotoesAcoes);
 	}
 
-	public AdminAulaView(Integer idCurso) {
+	//Construtor de uma aula que não é a inicial
+	public AdminAulaView(Integer idAdmin, Integer idCurso, String tituloAula) {
+		
 		btnAdicionarExercicio.setOnAction(this);
 		btnCancelar.setOnAction(this);
 		btnSalvarAula.setOnAction(this);
 
 		this.idCurso = idCurso;
+		this.idAdmin = idAdmin;
+		txtTituloAula.setText(tituloAula);
+		
 		this.setPromtTexts();
-		this.gerarTabela();
+		this.gerarTabelaExercicios();
 
 //		this.txtDescricaoAula.setMaxHeight(100);
 //
@@ -115,7 +121,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 	}
 
-	private void gerarTabela() {
+	private void gerarTabelaExercicios() {
 
 		TableColumn<Exercicio, String> colTituloExercicio = new TableColumn<>("Título do Exercício");
 		colTituloExercicio.setCellValueFactory(new PropertyValueFactory<Exercicio, String>("tituloExercicio"));
@@ -173,18 +179,24 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 			cena.setRoot(new AdminExercicioView(3)); // Aqui talvez tenha que passar ID da aula
 			// aulaController.adicionarExercicio(this.boundaryToEntity().setExercicios(exercicio);)
 			// exercicioController.cadastrarExercicio(exercicio);
+		
 		} else if (event.getTarget().equals(btnCancelar)) {
 			cena.setRoot(new AdminCursoView(this.idCurso));
+		
 		} else if (event.getTarget().equals(btnExcluir)) {
 			aulaController.removerAula(4); // modificar idAula
+		
 		} else if (event.getTarget().equals(btnSalvarAula)) {
 //			aulaController.adicionarAula(this.boundaryToEntity());
+		
 		} else if (event.getTarget().equals(btnCadastrarCurso)) {
 			if (cursoController.cadastrarCursoEPrimeiraAula(curso, boundaryToEntityPrimeiroCadastro())) {
 				System.out.println("Cadastrou com sucesso...");
 			}
+			cena.setRoot(new AdminDashboardView(idAdmin));
+		
 		} else if (event.getTarget().equals(btnCancelarCadastroCurso)) {
-			cena.setRoot(new AdminDashboardView(adminId));
+			cena.setRoot(new AdminDashboardView(idAdmin));
 		}
 	}
 }

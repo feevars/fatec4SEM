@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -32,7 +33,8 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 	AdministradorController adminController = new AdministradorController();
 
-	private Integer adminId;
+	private Integer idAdmin;
+	private Integer idCurso;
 
 	private GridPane gpInfoHeader = new GridPane();
 
@@ -50,6 +52,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 			"*Segure o shift e clique na linha para selecionar mais de um instrutor.");
 
 	private VBox vboxAulas = new VBox();
+	private HBox hboxTabelas = new HBox();
 
 	private Button btnAdicionarPrimeiraAula = new Button("Adicionar primeira aula...");
 
@@ -68,7 +71,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	// Construtor feito para cadastrar o curso
 	public AdminCursoView(Integer adminId) {
 
-		this.adminId = adminId;
+		this.idAdmin = adminId;
 
 		setPromtTexts();
 		gerarTabelaInstrutores();
@@ -95,8 +98,36 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	}
 
 	// Construtor feito para editar o curso...
-	public AdminCursoView(Integer idAdmin, Integer idCurso) {
+	public AdminCursoView(Integer adminId, Integer idCurso, String tituloCurso, String descricaoCurso) {
+		this.idAdmin = adminId;
+		this.idCurso = idCurso;
+		txtTituloCurso.setText(tituloCurso);
+		txtDescricaoCurso.setText(descricaoCurso);
+		
+		gerarTabelaInstrutores();
+		gerarTabelaAulas();
 
+		gpInfoHeader.add(lblTituloCurso, 0, 0);
+		gpInfoHeader.add(txtTituloCurso, 1, 0);
+		gpInfoHeader.add(lblDescricaoCurso, 0, 1);
+		;
+		gpInfoHeader.add(txtDescricaoCurso, 1, 1);
+
+		vboxInstrutores.getChildren().addAll(lblInstrutores, tableInstrutores, lblAjudaInstrutor);
+		vboxAulas.getChildren().addAll(lblAulas, tableAulas, btnAdicionarAula);
+		hboxTabelas.getChildren().addAll(vboxInstrutores, vboxAulas);
+		hboxTabelas.setAlignment(Pos.CENTER);
+
+		hboxBotesAcoes.getChildren().addAll(btnCancelar, btnSalvarCurso);
+
+		btnCancelar.setOnAction(this);
+		btnAdicionarAula.setOnAction(this);
+		btnSalvarCurso.setOnAction(this);
+
+		this.setTop(gpInfoHeader);
+		this.setLeft(vboxInstrutores);
+		this.setCenter(vboxAulas);
+		this.setBottom(hboxBotesAcoes);
 	}
 
 	public void gerarTabelaInstrutores() {
@@ -123,6 +154,16 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 		tableAulas.setMaxHeight(200);
 		tableAulas.getColumns().add(colTituloAula);
+		
+		tableAulas.setRowFactory(tv -> {
+			TableRow<Aula> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				Aula aula = row.getItem();
+				Scene cena = this.getScene();
+				cena.setRoot(new AdminAulaView(idAdmin, aula.getCursoId(), aula.getTitulo()));
+			});
+			return row;
+		});
 	}
 
 	private void setPromtTexts() {
@@ -147,17 +188,25 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		if (event.getTarget().equals(btnAdicionarPrimeiraAula)) {
 			Curso curso = boundaryToEntityCadastro();
 			if (!curso.getInstrutores().isEmpty()) {
-				cena.setRoot(new AdminAulaView(adminId, curso));
+				cena.setRoot(new AdminAulaView(idAdmin, curso));
 			} else {
 				Alert alertaInstrutor = new Alert(AlertType.ERROR, "Você precisa escoher pelo menos um instrutor...");
 				alertaInstrutor.show();
 			}
 		} else if (event.getTarget().equals(btnSalvarCurso)) {
-
+			
+			
 		} else if (event.getTarget().equals(btnExcluirCurso)) {
 			// cursoController.excluirCurso(idCurso);
+			
 		} else if (event.getTarget().equals(btnCancelar)) {
-			cena.setRoot(new AdminDashboardView(this.adminId));
+			cena.setRoot(new AdminDashboardView(this.idAdmin));
+		
+		} else if (event.getTarget().equals(btnAdicionarAula)) {
+			Curso curso = boundaryToEntityCadastro();
+			cena.setRoot(new AdminAulaView(this.idAdmin, curso));
+			
+			cena.setRoot(new AdminDashboardView(this.idAdmin));
 		}
 
 	}

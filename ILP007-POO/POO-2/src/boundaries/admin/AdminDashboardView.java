@@ -89,7 +89,7 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 			row.setOnMouseClicked(event -> {
 				Curso curso = row.getItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new AdminCursoView(curso.getId()));
+				cena.setRoot(new AdminCursoView(this.idAdmin, curso.getId(), curso.getTitulo(), curso.getDescricao()));
 			});
 			return row;
 		});

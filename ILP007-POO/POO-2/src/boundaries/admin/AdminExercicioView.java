@@ -143,7 +143,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 			exercicioController.cadastrarExercicio(boundaryToEntity());
 		}
 		else if(event.getTarget() == btnCancelar){	
-			cena.setRoot(new AdminAulaView(idAula));
+			cena.setRoot(new AdminAulaView(idAula, null, null));
 		}
 		
 	}
