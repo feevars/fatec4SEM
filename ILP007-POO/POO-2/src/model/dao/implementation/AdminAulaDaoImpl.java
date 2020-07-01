@@ -59,7 +59,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		
 		try {
 			Connection conn = daoFactory.getConnection();
-			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo, numAula, cursoId)"
+			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo, numeroAula, cursoId)"
 					   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stm = conn.prepareStatement(sql);
 			stm.setString(1, aula.getTitulo());

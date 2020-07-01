@@ -71,7 +71,7 @@ public class CursoController {
 		}
 
 		aula.setCursoId(cursoId);
-		adminAulaDao.cadastrarAula(aula, curso.getId());
+		adminAulaDao.cadastrarAula(aula, cursoId);
 		return false;
 	}
 	
