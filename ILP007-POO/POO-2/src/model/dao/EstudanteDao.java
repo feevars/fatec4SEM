@@ -1,5 +1,8 @@
 package model.dao;
 
+import java.util.Set;
+
+import model.entities.Curso;
 import model.entities.Estudante;
 
 public interface EstudanteDao {
@@ -7,6 +10,8 @@ public interface EstudanteDao {
 	public Boolean estudanteLogin(String username, String email, String password);
 
 	public void estudanteCadastro(Estudante estudante);
+	
+	public Set<Curso> estudanteListarTodosCursos(Integer idEstudante);
 	
 	public Boolean estudanteEditarPerfil(Estudante estudante, Boolean eInstrutor);
 	

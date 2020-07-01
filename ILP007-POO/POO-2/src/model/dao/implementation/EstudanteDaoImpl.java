@@ -283,4 +283,11 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			return null;
 		}
 	}
+
+	@Override
+	public Set<Curso> estudanteListarTodosCursos(Integer idEstudante) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
 }

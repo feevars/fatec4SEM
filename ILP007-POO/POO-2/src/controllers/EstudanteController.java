@@ -6,8 +6,11 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+
+import javafx.collections.ObservableList;
 import model.dao.EstudanteDao;
 import model.dao.implementation.EstudanteDaoImpl;
+import model.entities.Curso;
 import model.entities.Estudante;
 
 public class EstudanteController {
@@ -53,6 +56,14 @@ public class EstudanteController {
 	public Estudante getEstudantePorUsername(String username) {
 		return estudanteDao.getEstudantePorUsername(username);
 	}
+	
+	public ObservableList<Curso> listarTodosCursos(Integer idEstudante) {
+		Set<Curso> listaCursos = estudanteDao.estudanteListarTodosCursos(idEstudante);
+		ObservableList<Curso> olistaCursos = null;
+		olistaCursos.addAll(listaCursos);
+		return olistaCursos;
+	}
+
 	
 
 }
