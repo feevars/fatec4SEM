@@ -19,7 +19,7 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 	public void cadastrarExercicio(Exercicio exercicio) {
 		
 		Connection con = daoFactory.getConnection();
-		String sql = "INSERT INTO exercicio (titulo, questao, alternativaCorreta, alternativaIncorreta1, "
+		String sql = "INSERT INTO Exercicio (titulo, questao, alternativaCorreta, alternativaIncorreta1, "
 				+ "alternativaIncorreta2, alternativaIncorreta3, alternativaIncorreta4, "
 				+ "explicacao, tempoResposta, pontos, aulaId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
@@ -49,7 +49,7 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 	public boolean excluirExercicio(Integer id) {
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql = "DELETE FROM exercicio WHERE id = ?";		
+			String sql = "DELETE FROM Exercicio WHERE id = ?";		
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setInt(1, id);
 			stm.executeUpdate();

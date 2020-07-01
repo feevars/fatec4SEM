@@ -14,7 +14,7 @@ public class AdminAulaTeste extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		AdminAulaView adminAula = new AdminAulaView(4, 4, "Titulo");
+		AdminAulaView adminAula = new AdminAulaView(4, 4, "Titulo da aula");
 
 		Scene scene = new Scene(adminAula);
 		
