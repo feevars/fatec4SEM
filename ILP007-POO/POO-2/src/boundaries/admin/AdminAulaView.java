@@ -128,7 +128,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 			row.setOnMouseClicked(e -> {
 				Exercicio exec = row.getItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new AdminExercicioView(3));
+				cena.setRoot(new AdminExercicioView(3, 2));
 			});
 			return row;
 		});
@@ -170,7 +170,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		Scene cena = this.getScene();
 
 		if (event.getTarget() == btnAdicionarExercicio) {
-			cena.setRoot(new AdminExercicioView(3)); // Aqui talvez tenha que passar ID da aula
+			cena.setRoot(new AdminExercicioView(3, 2)); // Aqui talvez tenha que passar ID da aula
 			// aulaController.adicionarExercicio(this.boundaryToEntity().setExercicios(exercicio);)
 			// exercicioController.cadastrarExercicio(exercicio);
 		} else if (event.getTarget().equals(btnCancelar)) {

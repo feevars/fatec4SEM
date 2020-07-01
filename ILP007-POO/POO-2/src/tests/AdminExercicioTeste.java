@@ -14,7 +14,7 @@ public class AdminExercicioTeste extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		AdminExercicioView exercico = new AdminExercicioView(3);
+		AdminExercicioView exercico = new AdminExercicioView(3, 2);
 		
 		Scene cena = new Scene(exercico, 600, 800);
 		stage.setScene(cena);

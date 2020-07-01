@@ -45,4 +45,11 @@ public class ExercicioController {
 			alert(AlertType.ERROR,"FreeTech", "Não foi possivel cadastrar Administrador", msgErros);
 		}
 	}
+	
+	public Boolean excluirExercicio(Integer idExercico){
+		if(administradorDao.excluirExercicio(idExercico)) { 
+			return true;
+		}
+		return false;
+	}
 }
