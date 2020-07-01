@@ -3,7 +3,9 @@ package boundaries.admin;
 import java.util.HashSet;
 import java.util.Set;
 
+import boundaries.LoginView;
 import controllers.AdministradorController;
+import controllers.CursoController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -27,14 +28,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Aula;
 import model.entities.Curso;
+import model.entities.Estudante;
 import model.entities.Instrutor;
 
 public class AdminCursoView extends BorderPane implements EventHandler<ActionEvent> {
 
 	AdministradorController adminController = new AdministradorController();
+	CursoController cursoController = new CursoController();
 
 	private Integer idAdmin;
 	private Integer idCurso;
+	
 
 	private GridPane gpInfoHeader = new GridPane();
 
@@ -59,20 +63,22 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	private Label lblAulas = new Label("Aulas:");
 	private Button btnAdicionarAula = new Button("Adicionar aula...");
 	private TableView<Aula> tableAulas = new TableView<>();
-
+	
 	private HBox hboxBotesAcoes = new HBox();
 
 	private Button btnExcluirCurso = new Button("Excluir");
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnSalvarCurso = new Button("Salvar");
+	
+	private Set<Instrutor> autoresCurso = new HashSet<Instrutor>();
+	private Set<Aula> aulasCurso = new HashSet<Aula>();
+	
 
-	private Set<Instrutor> autores = new HashSet<Instrutor>();
 
 	// Construtor feito para cadastrar o curso
 	public AdminCursoView(Integer adminId) {
 
 		this.idAdmin = adminId;
-
 		setPromtTexts();
 		gerarTabelaInstrutores();
 
@@ -101,8 +107,11 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	public AdminCursoView(Integer adminId, Integer idCurso, String tituloCurso, String descricaoCurso) {
 		this.idAdmin = adminId;
 		this.idCurso = idCurso;
+		this.autoresCurso = cursoController.carregaInstrutoresCurso(idCurso);
+		this.aulasCurso = cursoController.carregaAulasCurso(idCurso);
 		txtTituloCurso.setText(tituloCurso);
 		txtDescricaoCurso.setText(descricaoCurso);
+		System.out.println(this.idCurso);
 		
 		gerarTabelaInstrutores();
 		gerarTabelaAulas();
@@ -176,8 +185,8 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		curso.setTitulo(txtTituloCurso.getText());
 		curso.setDescricao(txtDescricaoCurso.getText());
 		ObservableList<Instrutor> oListAutores = tableInstrutores.getSelectionModel().getSelectedItems();
-		autores.addAll(oListAutores);
-		curso.setInstrutores(autores);
+		autoresCurso.addAll(oListAutores);
+		curso.setInstrutores(autoresCurso);
 		return curso;
 	}
 
@@ -194,10 +203,24 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 				alertaInstrutor.show();
 			}
 		} else if (event.getTarget().equals(btnSalvarCurso)) {
-			
+			Curso c = BoundaryToEntityEditaCurso();
+			if(cursoController.editarCurso(c)){
+				Alert alertaEdicaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Editado com sucesso!");
+				alertaEdicaoCursoOk.show();
+			}else{
+				Alert alertaEdicaoCursoErro = new Alert(AlertType.ERROR, "Erro ao editar Curso");
+				alertaEdicaoCursoErro.show();
+			}
 			
 		} else if (event.getTarget().equals(btnExcluirCurso)) {
-			// cursoController.excluirCurso(idCurso);
+			if(cursoController.excluirCurso(idCurso)){
+				Alert alertaExclusaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Excluido!");
+				//CHAMAR DASHBOARD DE VOLTA
+				alertaExclusaoCursoOk.show();
+			}else{
+				Alert alertaEdicaoCrusoErro = new Alert(AlertType.ERROR, "Erro ao Excluir Curso");
+				alertaEdicaoCrusoErro.show();
+			}
 			
 		} else if (event.getTarget().equals(btnCancelar)) {
 			cena.setRoot(new AdminDashboardView(this.idAdmin));
@@ -208,5 +231,15 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		}
 
 	}
+	
 
+	
+	public Curso BoundaryToEntityEditaCurso(){
+		Curso curso = new Curso(this.idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText(),
+				autoresCurso, aulasCurso);
+		return curso;
+	}
+	
+	
+	
 }

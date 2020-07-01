@@ -54,7 +54,7 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 		vboxCursos.getChildren().addAll(lblCursos, tableCursos);
 		vboxCursos.setAlignment(Pos.CENTER);
 
-		vboxPerfil.setMinWidth(300);
+		vboxPerfil.setMinWidth(200);
 		vboxPerfil.setAlignment(Pos.CENTER);
 		vboxPerfil.getChildren().addAll(lblNome, lblPontos, btnEditarPerfil);
 
@@ -89,6 +89,20 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 		tableCursos.getColumns().add(colPontos);
 		tableCursos.getColumns().add(colConcluido);
 		tableCursos.setMinWidth(600);
+
+		tableCursos.setOnMouseClicked(event -> {
+			if (tableCursos.getSelectionModel().getSelectedItem() != null) {
+				Curso curso = tableCursos.getSelectionModel().getSelectedItem();
+				Scene cena = this.getScene();
+				if (curso.getPontosEstudante() == null)
+					cena.setRoot(new EstudanteCursoView(estudanteId, curso.getId(), curso.getPontosEstudante(), false,
+							curso.getConcluidoPeloEstudante()));
+				else
+					cena.setRoot(new EstudanteCursoView(estudanteId, curso.getId(), curso.getPontosEstudante(), true,
+							curso.getConcluidoPeloEstudante()));
+
+			}
+		});
 	}
 
 	public void entityToBoundary(Estudante usuario) {

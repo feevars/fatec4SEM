@@ -77,46 +77,6 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 		return false;
 	}
 
-//	@Override
-//	public Boolean cadastrarCurso(Curso curso) {
-//		Integer novoId = 0;
-//		try {
-//			Connection con = daoFactory.getConnection();
-//			String sql1 = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?)";
-//			PreparedStatement stm = con.prepareStatement(sql1);
-//			stm.setString(1, curso.getTitulo());
-//			stm.setString(2, curso.getDescricao());
-//			stm.executeUpdate();
-//			System.out.println("Gravou o curso!");
-//			
-//			String sql2 = "SELECT * FROM Curso WHERE id = LAST_INSERT_ID()";
-//			stm = con.prepareStatement(sql2);
-//			ResultSet rs = stm.executeQuery();
-//			while (rs.next()) {
-//				novoId = rs.getInt("id");
-//			}
-//			System.out.println("Pegou o id: " + novoId);
-//			
-//			for (Integer idInstrutor : idsInstrutores) {
-//				String sql3 = "INSERT INTO CursoInstrutor (cursoId, instrutorId) VALUES (?, ?)";
-//				stm = con.prepareStatement(sql3);
-//				stm.setInt(1, novoId);
-//				stm.setInt(2, idInstrutor);
-//				stm.executeUpdate();
-//				System.out.println("Gravou o cursoId: " + novoId + " e o instrutorId: " + idInstrutor);
-//			}
-//			con.close();
-//			return true;
-//		} catch (SQLException e) {
-//			System.out.println("Erro no cadastro do curso: " + curso.getTitulo());
-//			e.printStackTrace();
-//		} catch (DateTimeException de) {
-//			System.out.println("Erro na conversao de data do curso: " + curso.getTitulo());
-//			de.printStackTrace();
-//		}
-//		return false;
-//	}
-
 	@Override
 	public Boolean excluirCurso(Integer idCurso) {
 
@@ -220,7 +180,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	public Set<Instrutor> listarInstrutoresPorCurso(Integer cursoId) {
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql = "Select id, usernmae, nome, sobrenome FROM Estudante LEFT JOIN CursoInstrutor ON Estudante.id=CursoInstrutor.instrutorId WHERE CursoInstrutor.cursoId = "
+			String sql = "Select id, username, nome, sobrenome FROM Estudante LEFT JOIN CursoInstrutor ON Estudante.id=CursoInstrutor.instrutorId WHERE CursoInstrutor.cursoId = "
 					+ cursoId.toString();
 			PreparedStatement stm = con.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery();

@@ -29,6 +29,7 @@ public class AdministradorController {
 	private AdminCursoDao adminCursoDao = new AdminCursoDaoImpl();
 	private ObservableList<Estudante> listaUsuarios = FXCollections.observableArrayList();
 	private ObservableList<Instrutor> listaTodosInstrutores = FXCollections.observableArrayList();
+	private ObservableList<Instrutor> autoresCurso = FXCollections.observableArrayList();
 	private ObservableList<Curso> listaCursos = FXCollections.observableArrayList();
 	private Validator validator;
 
@@ -103,11 +104,16 @@ public class AdministradorController {
 	public void carregaListaInstrutores() {
 		this.listaTodosInstrutores.addAll(adminCursoDao.listarInstrutores());
 	}
+	
 
 	public ObservableList<Instrutor> listarTodosInstrutores() {
 		return listaTodosInstrutores;
 	}
 
+	public ObservableList<Instrutor> listaInstrutoresCurso() {
+		return autoresCurso;
+	}
+	
 	public Boolean autorDoCurso(Integer instrutorId, Integer cursoId) {
 
 		return adminCursoDao.verificaAutoria(instrutorId, cursoId);
