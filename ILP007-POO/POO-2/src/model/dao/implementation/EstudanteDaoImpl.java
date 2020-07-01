@@ -4,14 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import model.dao.DaoFactory;
 import model.dao.EstudanteDao;
-import model.entities.Administrador;
+import model.entities.Aula;
 import model.entities.Curso;
 import model.entities.Estudante;
 import model.entities.Instrutor;
@@ -109,11 +107,6 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			se.printStackTrace();
 		}
 		return false;
-	}
-
-	@Override
-	public void estudanteVerCurso(Integer idCurso) {
-
 	}
 
 	@Override
@@ -320,6 +313,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			while (rs.next()) {
 				pontos = rs.getInt("pontos");
 			}
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -340,10 +334,82 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			while (rs.next()) {
 				concluido = rs.getBoolean("concluido");
 			}
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return concluido;
+	}
+
+	@Override
+	public Curso getCursoPorId(Integer cursoId) {
+		Curso curso = null;
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "SELECT * FROM Curso WHERE id = " + cursoId;
+			PreparedStatement stm = con.prepareStatement(sql);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				curso = new Curso(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao"),
+						listarInstrutoresPorCurso(cursoId), listarAulasCurso(cursoId), rs.getDate("dataCriacao"),
+						rs.getDate("DataAtualizacao"));
+			}
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return curso;
+	}
+
+	@Override
+	public Set<Instrutor> listarInstrutoresPorCurso(Integer cursoId) {
+		Set<Instrutor> cursosPorInstrutor = new HashSet<Instrutor>();
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "Select id, username, nome, sobrenome FROM Estudante LEFT JOIN CursoInstrutor ON Estudante.id=CursoInstrutor.instrutorId WHERE CursoInstrutor.cursoId = "
+					+ cursoId.toString();
+			PreparedStatement stm = con.prepareStatement(sql);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				cursosPorInstrutor.add(new Instrutor(rs.getInt("id"), rs.getNString("username"), rs.getString("nome"),
+						rs.getString("sobrenome")));
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cursosPorInstrutor;
+	}
+
+	@Override
+	public Set<Aula> listarAulasCurso(Integer cursoId) {
+		Set<Aula> lista = new HashSet<Aula>();
+		try {
+			Connection con = daoFactory.getConnection();
+			ResultSet rs;
+			String sql = "SELECT * FROM Aula WHERE cursoId = ? ";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1, cursoId);
+			rs = stm.executeQuery();
+			while (rs.next()) {
+				Aula aula = new Aula();
+				aula.setId(rs.getInt("id"));
+				aula.setDescricao(rs.getString("titulo"));
+				aula.setTitulo(rs.getString("descricao"));
+				aula.setLinkVideo(rs.getString("linkVideo"));
+				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
+				aula.setTempoVideo(rs.getInt("tempoVideo"));
+				aula.setNumAula(rs.getInt("numeroAula"));
+				lista.add(aula);
+			}
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
 	}
 }

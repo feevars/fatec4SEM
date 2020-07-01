@@ -88,7 +88,7 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 		tableCursos.getColumns().add(colAtualizacaoCurso);
 		tableCursos.getColumns().add(colPontos);
 		tableCursos.getColumns().add(colConcluido);
-		tableCursos.setMinWidth(600);
+		tableCursos.setMinWidth(500);
 
 		tableCursos.setOnMouseClicked(event -> {
 			if (tableCursos.getSelectionModel().getSelectedItem() != null) {

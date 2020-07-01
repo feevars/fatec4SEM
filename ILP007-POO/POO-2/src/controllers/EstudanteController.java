@@ -37,11 +37,11 @@ public class EstudanteController {
 			return 4;
 		}
 	}
-	
+
 	public Boolean estudanteEditarPerfil(Estudante estudante, Boolean eInstrutor) {
 		return estudanteDao.estudanteEditarPerfil(estudante, eInstrutor);
 	}
-	
+
 	public Boolean estudanteExcluirPerfil(Integer id) {
 		return estudanteDao.estudanteExcluirPerfil(id);
 	}
@@ -53,23 +53,25 @@ public class EstudanteController {
 	public Estudante getEstudantePorId(Integer id) {
 		return estudanteDao.getEstudantePorId(id);
 	}
-	
+
 	public Estudante getEstudantePorUsername(String username) {
 		return estudanteDao.getEstudantePorUsername(username);
 	}
-	
+
 	public ObservableList<Curso> listarTodosCursos(Integer estudanteId) {
 		Set<Curso> listaCursos = estudanteDao.listarTodosCursos(estudanteId);
-		
+
 		for (Curso curso : listaCursos) {
 			curso.setPontosEstudante(estudanteDao.pontosNoCurso(estudanteId, curso.getId()));
 			curso.setConcluidoPeloEstudante(estudanteDao.cursoConcluido(estudanteId, curso.getId()));
 		}
-		
+
 		olistaCursos.addAll(listaCursos);
 		return olistaCursos;
 	}
 
-	
+	public Curso getCursoPorId(Integer cursoId) {
+		return estudanteDao.getCursoPorId(cursoId);
+	}
 
 }
