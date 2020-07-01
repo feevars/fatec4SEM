@@ -35,6 +35,16 @@ public class Curso {
 		this.dataCriacao = dataCriacao;
 		this.dataAtualizacao = dataAtualizacao;
 	}
+	
+	public Curso(Integer id, String titulo, String descricao, Set<Instrutor> instrutores, Set<Aula> aulas) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.instrutores = instrutores;
+		this.aulas = aulas;
+		
+	}
 
 	public String getTitulo() {
 		return titulo;

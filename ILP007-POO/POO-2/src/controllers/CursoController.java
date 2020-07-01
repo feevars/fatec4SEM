@@ -1,5 +1,8 @@
 package controllers;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.dao.AdminAulaDao;
@@ -33,6 +36,7 @@ public class CursoController {
 		return null;
 	}
 	
+	//Cadastrar novo curso (passando com ids de instrutores)
 	public Boolean cadastrarCurso(Curso curso, Integer[] idsInstrutores){
 		Integer idNovoCurso = adminCursoDao.cadastrarCurso(curso);
 			if(idNovoCurso != 0){
@@ -48,7 +52,7 @@ public class CursoController {
 		return false;
 	}
 	
-	
+	//Exclui curso
 	public Boolean excluirCurso(Integer idCurso){
 		if(adminCursoDao.excluirCurso(idCurso)) { 
 			return true;
@@ -56,6 +60,7 @@ public class CursoController {
 		return false;
 	}
 	
+	//Edita o curso
 	public Boolean editarCurso(Curso curso){
 		if(adminCursoDao.editarCurso(curso)) { 
 			return true;
@@ -63,6 +68,7 @@ public class CursoController {
 		return false;
 	}
 	
+	//Cadastra a primeira aula do curso
 	public Boolean cadastrarCursoEPrimeiraAula(Curso curso, Aula aula) {
 		Integer cursoId = adminCursoDao.cadastrarCurso(curso);
 		System.out.println("curso id :" + cursoId);
@@ -75,6 +81,7 @@ public class CursoController {
 		return false;
 	}
 	
+	//Adiciona instrutores ao curso
 	public Boolean adicionarInstrutorCurso(Integer instrutorId, Integer cursoId) {
 		Boolean instrutorAdicionado = adminCursoDao.adicionarInstrutorCurso(instrutorId, cursoId);
 		if(instrutorAdicionado){
@@ -83,6 +90,18 @@ public class CursoController {
 		return false;
 	}
 	
+	//Recebe lista com instrutores do curso
+	public Set<Instrutor> carregaInstrutoresCurso(Integer id){
+		Set<Instrutor> instrutoresCurso = new HashSet<Instrutor>();
+		instrutoresCurso = adminCursoDao.listarInstrutoresPorCurso(id);
+		return instrutoresCurso;
+	}
+	
+	public Set<Aula> carregaAulasCurso(Integer id){
+		Set<Aula> instrutoresCurso = new HashSet<Aula>();
+		instrutoresCurso = adminCursoDao.listarAulasCurso(id);
+		return instrutoresCurso;
+	}
 	
 	
 }

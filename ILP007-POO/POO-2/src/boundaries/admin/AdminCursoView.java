@@ -18,7 +18,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -161,5 +160,19 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		}
 
 	}
-
+	
+	// listas de instrutores e aulas
+	Set<Instrutor> instrutoresCurso = new HashSet<Instrutor>();
+	Set<Aula> aulasCurso = new HashSet<Aula>();
+	// ------------------
+	
+	public Curso BoundaryToEntityEditaCurso(Integer id){
+		Curso curso = new Curso(id, txtTituloCurso.getText(), txtDescricaoCurso.getText(),
+				instrutoresCurso, aulasCurso);
+		return curso;
+	}
+	
+	
+	
+	
 }
