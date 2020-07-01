@@ -19,6 +19,8 @@ Validações:
 	----------------Checar todas as validações de Hibernate
 	
 
+
+--- if algo é nulo 
 	
 	
 		
