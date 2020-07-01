@@ -66,7 +66,7 @@ public class AdminUsuarioView extends Group implements EventHandler<ActionEvent>
 		txtSobrenome.setText(sobrenomeUsuario);
 		txtTelefone.setText(telefoneUsuario);
 
-		dtNascimento.setValue(dataNascimentoUsuario.toLocalDate());
+		if (dataNascimentoUsuario != null) dtNascimento.setValue(dataNascimentoUsuario.toLocalDate());
 		
 		checkInstrutor.setSelected(eInstrutor);
 

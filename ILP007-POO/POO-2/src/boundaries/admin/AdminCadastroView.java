@@ -64,6 +64,7 @@ public class AdminCadastroView extends Group implements EventHandler<ActionEvent
 			
 			if(logado){
 				System.out.println("Sucesso no login");
+				cena.setRoot(new AdminDashboardView(adminController.idAdmin(txtUsername.getText())));
 			}
 			else{
 				System.out.println("Erro no login!");

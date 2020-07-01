@@ -59,7 +59,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		
 		try {
 			Connection conn = daoFactory.getConnection();
-			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo, numAula, cursoId)"
+			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo, numeroAula, cursoId)"
 					   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stm = conn.prepareStatement(sql);
 			stm.setString(1, aula.getTitulo());
@@ -67,7 +67,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			stm.setString(3, aula.getLinkVideo());
 			stm.setString(4, aula.getTranscricaoVideo());
 			stm.setInt(5, aula.getTempoVideo());
-			stm.setInt(6, aula.getNumAula());	// Talvez nao usaremos...
+			stm.setInt(6, aula.getNumAula());
 			stm.setInt(7, cursoId);
 			stm.executeUpdate();
 			conn.close();

@@ -29,19 +29,19 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 		try {
 			Connection con = daoFactory.getConnection();
 			String sql = "INSERT INTO Curso (titulo, descricao) VALUES (?, ?)";
-			PreparedStatement stm = con.prepareStatement(sql);
-			ResultSet rs;
+			PreparedStatement stm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stm.setString(1, curso.getTitulo());
 			stm.setString(2, curso.getDescricao());
 			stm.executeUpdate();
+
+			Integer id = null;
 			
-			Integer id = 0;
-			String sql2 = "SELECT * FROM Curso WHERE id = LAST_INSERT_ID()";
-			stm = con.prepareStatement(sql2);
-			rs = stm.executeQuery();
-			while (rs.next()) {
-				id = rs.getInt("id");
+			ResultSet rs = stm.getGeneratedKeys();
+			while(rs.next()) {
+				id = rs.getInt(1);
 			}
+			System.out.println(id);
+			
 			stm.close();
 			return id;
 		} catch (SQLException e) {
@@ -55,13 +55,13 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public Boolean cadastrarInstrutorCurso(Integer cursoId, Integer instrutorId) {
+	public Boolean cadastrarInstrutorCurso(Integer instrutorId, Integer cursoId) {
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql1 = "INSERT INTO CursoInstrutor (cursoId, instrutorId) VALUES (?, ?)";
-			PreparedStatement stm = con.prepareStatement(sql1);
-			stm.setInt(1, cursoId);
-			stm.setInt(2, instrutorId);
+			String sql = "INSERT INTO CursoInstrutor (instrutorId, cursoId) VALUES (?, ?)";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1, instrutorId);
+			stm.setInt(2, cursoId);
 			stm.executeUpdate();
 			System.out.println("Gravou na tabela CursoInstrutor!");
 			stm.close();
