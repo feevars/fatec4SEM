@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import model.dao.DaoFactory;
@@ -83,7 +85,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			stm.setString(2, estudante.getSobrenome());
 			stm.setString(3, estudante.getTelefone());
 			stm.setDate(4, estudante.getDataNascimento());
-			stm.setBoolean(5, eInstrutor);		
+			stm.setBoolean(5, eInstrutor);
 			stm.setString(6, estudante.getUsername());
 			stm.executeUpdate();
 			con.close();
@@ -93,17 +95,17 @@ public class EstudanteDaoImpl implements EstudanteDao {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public Boolean estudanteExcluirPerfil(Integer id) {
-		try{
+		try {
 			Connection con = daoFactory.getConnection();
 			String sql = "DELETE FROM Estudante WHERE id = " + id.toString();
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.executeUpdate(sql);
 			con.close();
 			return true;
-		}catch (SQLException se) {
+		} catch (SQLException se) {
 			se.printStackTrace();
 		}
 		return false;
@@ -285,9 +287,63 @@ public class EstudanteDaoImpl implements EstudanteDao {
 	}
 
 	@Override
-	public Set<Curso> estudanteListarTodosCursos(Integer idEstudante) {
-		// TODO Auto-generated method stub
-		
+	public Set<Curso> listarTodosCursos(Integer idEstudante) {
+		try {
+			Set<Curso> lista = new HashSet<Curso>();
+			Connection con = daoFactory.getConnection();
+			String sql = "SELECT id, titulo, descricao, dataCriacao, dataAtualizacao FROM Curso";
+			PreparedStatement stm = con.prepareStatement(sql);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				Curso curso = new Curso(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao"), null, null,
+						rs.getDate("dataCriacao"), rs.getDate("dataAtualizacao"));
+				lista.add(curso);
+			}
+			con.close();
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
+	}
+
+	@Override
+	public Integer pontosNoCurso(Integer estudanteId, Integer cursoId) {
+		Integer pontos = null;
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "SELECT pontos, estudanteId, concluido FROM EstudanteCurso WHERE estudanteId = ? AND cursoId = ?";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1, estudanteId);
+			stm.setInt(2, cursoId);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				pontos = rs.getInt("pontos");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pontos;
+	}
+
+	@Override
+	public Boolean cursoConcluido(Integer estudanteId, Integer cursoId) {
+		Boolean concluido = null;
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "SELECT pontos, estudanteId, concluido FROM EstudanteCurso WHERE estudanteId = ? AND cursoId = ?";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1, estudanteId);
+			stm.setInt(2, cursoId);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				concluido = rs.getBoolean("concluido");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return concluido;
 	}
 }

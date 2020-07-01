@@ -7,6 +7,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.dao.EstudanteDao;
 import model.dao.implementation.EstudanteDaoImpl;
@@ -14,9 +15,9 @@ import model.entities.Curso;
 import model.entities.Estudante;
 
 public class EstudanteController {
-
 	private EstudanteDao estudanteDao = new EstudanteDaoImpl();
 	private Validator validator;
+	private ObservableList<Curso> olistaCursos = FXCollections.observableArrayList();;
 
 	public EstudanteController() {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -57,9 +58,14 @@ public class EstudanteController {
 		return estudanteDao.getEstudantePorUsername(username);
 	}
 	
-	public ObservableList<Curso> listarTodosCursos(Integer idEstudante) {
-		Set<Curso> listaCursos = estudanteDao.estudanteListarTodosCursos(idEstudante);
-		ObservableList<Curso> olistaCursos = null;
+	public ObservableList<Curso> listarTodosCursos(Integer estudanteId) {
+		Set<Curso> listaCursos = estudanteDao.listarTodosCursos(estudanteId);
+		
+		for (Curso curso : listaCursos) {
+			curso.setPontosEstudante(estudanteDao.pontosNoCurso(estudanteId, curso.getId()));
+			curso.setConcluidoPeloEstudante(estudanteDao.cursoConcluido(estudanteId, curso.getId()));
+		}
+		
 		olistaCursos.addAll(listaCursos);
 		return olistaCursos;
 	}

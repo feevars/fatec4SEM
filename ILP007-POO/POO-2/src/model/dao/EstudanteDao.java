@@ -11,8 +11,6 @@ public interface EstudanteDao {
 
 	public void estudanteCadastro(Estudante estudante);
 	
-	public Set<Curso> estudanteListarTodosCursos(Integer idEstudante);
-	
 	public Boolean estudanteEditarPerfil(Estudante estudante, Boolean eInstrutor);
 	
 	public Boolean estudanteExcluirPerfil(Integer id);
@@ -33,4 +31,9 @@ public interface EstudanteDao {
 	
 	public Estudante getEstudantePorUsername(String username);
 	
+	public Set<Curso> listarTodosCursos(Integer idEstudante);
+	
+	public Integer pontosNoCurso(Integer estudanteId, Integer cursoId);
+	
+	public Boolean cursoConcluido(Integer estudanteId, Integer cursoId);
 }
