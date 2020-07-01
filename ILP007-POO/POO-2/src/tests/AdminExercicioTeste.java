@@ -4,6 +4,7 @@ import boundaries.admin.AdminExercicioView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.entities.Exercicio;
 
 public class AdminExercicioTeste extends Application{
 
@@ -14,7 +15,9 @@ public class AdminExercicioTeste extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		AdminExercicioView exercico = new AdminExercicioView(3, 2);
+		Exercicio exercicio = new Exercicio();
+		AdminExercicioView exercico = new AdminExercicioView(3, 2, 2, exercicio); // tela Editar e excluir
+		//AdminExercicioView exercico = new AdminExercicioView(3, 2); //tela cadastrar
 		
 		Scene cena = new Scene(exercico, 600, 800);
 		stage.setScene(cena);

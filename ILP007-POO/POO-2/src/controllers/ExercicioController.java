@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import model.dao.AdminExercicioDao;
 import model.dao.implementation.AdminExercicioDaoImpl;
+import model.entities.Estudante;
 import model.entities.Exercicio;
 
 public class ExercicioController {
@@ -46,10 +47,14 @@ public class ExercicioController {
 		}
 	}
 	
-	public Boolean excluirExercicio(Integer idExercico){
-		if(administradorDao.excluirExercicio(idExercico)) { 
+	public Boolean excluirExercicio(Integer idExercicio){
+		if(administradorDao.excluirExercicio(idExercicio)) { 
 			return true;
 		}
 		return false;
+	}
+	
+	public Boolean editarExercicio(Exercicio exercicio) {
+		return administradorDao.editarExercicio(exercicio);
 	}
 }

@@ -20,6 +20,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	private Integer idAula;
 	private Integer idAdmin;
 	private Integer idExercicio;
+	private Exercicio exercicio;
 
 	ExercicioController exercicioController = new ExercicioController();
 
@@ -108,9 +109,10 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	}
 
 	// Construtor edita exercicio
-	public AdminExercicioView(Integer idAula, Integer idAdmin, Integer idExercicio) {
+	public AdminExercicioView(Integer idAula, Integer idAdmin, Integer idExercicio, Exercicio exercicio) {
 		
-		this.idExercicio  = idExercicio;
+		this.idExercicio = idExercicio;
+		this.exercicio = exercicio;
 		
 		vbox.setSpacing(5);
 
@@ -142,7 +144,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 		
 
 		hboxButtons.setSpacing(10);
-		hboxButtons.getChildren().addAll(btnExcluir, btnCancelar, btnSalvar);
+		hboxButtons.getChildren().addAll(btnExcluir, btnCancelar, btnSalvar, btnEditar);
 
 		vbox.getChildren().addAll(lblTitulo, txtTitulo, lblQuestao, txtQuestao, lblAlternativaCorreta,
 				txtAlternativaCorreta, lblAlternativasIncorretas, txtAlternativaIncorreta1, txtAlternativaIncorreta2,
@@ -199,7 +201,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 		} else if (event.getTarget().equals(btnExcluir)) {
 			exercicioController.excluirExercicio(idExercicio);
 		} else if (event.getTarget().equals(btnEditar)) {
-		//exercicioController.
+			exercicioController.editarExercicio(exercicio);
 	}
 
 	}

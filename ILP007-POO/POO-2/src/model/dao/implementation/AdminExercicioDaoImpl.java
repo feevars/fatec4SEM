@@ -49,7 +49,7 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 	public boolean excluirExercicio(Integer id) {
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql = "DELETE FROM exercico WHERE id = ?";		
+			String sql = "DELETE FROM exercicio WHERE id = ?";		
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setInt(1, id);
 			stm.executeUpdate();
