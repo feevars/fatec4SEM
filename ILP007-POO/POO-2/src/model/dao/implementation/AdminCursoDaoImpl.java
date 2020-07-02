@@ -140,7 +140,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
 				aula.setTempoVideo(rs.getInt("tempoVideo"));
 				aula.setNumAula(rs.getInt("numeroAula"));
-				System.out.println("Curso: " + aula.getTitulo() + " encontrado!");
+				System.out.println("Aula: " + aula.getTitulo() + " encontrada!");
 				lista.add(aula);
 			}
 			return lista;

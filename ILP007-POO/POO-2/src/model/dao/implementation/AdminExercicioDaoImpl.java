@@ -2,7 +2,11 @@ package model.dao.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import model.dao.AdminExercicioDao;
 import model.dao.DaoFactory;
 import model.entities.Exercicio;
@@ -92,6 +96,30 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 			System.out.println(" Exercico não pode ser atualizada.");
 		}
 		return false;
+	}
+
+	@Override
+	public List<Exercicio> getListaExercicios(Integer idAula) {
+		List<Exercicio> lista = new ArrayList<Exercicio>();
+		try {
+			Connection conn = daoFactory.getConnection();
+			String sql = "SELECT * FROM Exercicio WHERE aulaId = ?";
+			PreparedStatement stm = conn.prepareStatement(sql);
+			stm.setInt(1, idAula);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				Exercicio exec = new Exercicio(rs.getInt("id"), rs.getString("titulo"),
+						rs.getString("questao"), rs.getString("alternativaCorreta"), rs.getString("alternativaIncorreta1"),
+						rs.getString("alternativaIncorreta2"), rs.getString("alternativaIncorreta3"), rs.getString("alternativaIncorreta4"),
+						rs.getString("explicacao"), rs.getInt("tempoResposta"), rs.getInt("pontos"),
+						rs.getInt("aulaId"));
+				lista.add(exec);
+			}
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

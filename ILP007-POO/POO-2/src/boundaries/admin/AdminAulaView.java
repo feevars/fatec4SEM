@@ -126,7 +126,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		btnCancelar.setOnAction(this);
 		btnSalvarAula.setOnAction(this);
 		
-		this.idAdmin = idAdmin;
+		this.idAdmin = adminId;
 		txtTituloAula.setText(aula.getTitulo());
 		
 		this.setPromtTexts();
