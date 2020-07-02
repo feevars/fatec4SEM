@@ -88,7 +88,7 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 			if (tableCursos.getSelectionModel().getSelectedItem() != null) {
 				Curso curso = tableCursos.getSelectionModel().getSelectedItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new AdminCursoView(this.idAdmin, curso.getId(), curso.getTitulo(), curso.getDescricao()));
+				cena.setRoot(new AdminCursoView(this.idAdmin, curso.getId()));
 			}
 		});
 

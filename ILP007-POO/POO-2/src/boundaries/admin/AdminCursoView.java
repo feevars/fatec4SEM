@@ -84,7 +84,6 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		gpInfoHeader.add(lblTituloCurso, 0, 0);
 		gpInfoHeader.add(txtTituloCurso, 1, 0);
 		gpInfoHeader.add(lblDescricaoCurso, 0, 1);
-		;
 		gpInfoHeader.add(txtDescricaoCurso, 1, 1);
 
 		vboxInstrutores.getChildren().addAll(lblInstrutores, tableInstrutores, lblAjudaInstrutor);
@@ -103,15 +102,15 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	}
 
 	// Construtor feito para editar o curso...
-	public AdminCursoView(Integer adminId, Integer idCurso, String tituloCurso, String descricaoCurso) {
+	public AdminCursoView(Integer adminId, Integer idCurso) {
 		this.idAdmin = adminId;
 		this.idCurso = idCurso;
 		this.autoresCurso = cursoController.carregaInstrutoresCurso(idCurso);
 		this.aulasCurso = cursoController.carregaAulasCurso(idCurso);
-		txtTituloCurso.setText(tituloCurso);
-		txtDescricaoCurso.setText(descricaoCurso);
 		System.out.println(this.idCurso);
 
+		
+		entityToBoundary();
 		gerarTabelaInstrutores();
 		gerarTabelaAulas();
 
@@ -209,6 +208,8 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 	public Curso entityToBoundary() {
 		Curso curso = cursoController.getCursoPorId(idCurso);
+		txtTituloCurso.setText(curso.getTitulo());
+		txtDescricaoCurso.setText(curso.getDescricao());
 		numeroNovaAula = curso.getAulas().size() + 1;
 		return curso;
 	}
