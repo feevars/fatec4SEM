@@ -7,8 +7,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.dao.AdminAulaDao;
 import model.dao.AdminCursoDao;
+import model.dao.EstudanteDao;
 import model.dao.implementation.AdminAulaDaoImpl;
 import model.dao.implementation.AdminCursoDaoImpl;
+import model.dao.implementation.EstudanteDaoImpl;
 import model.entities.Aula;
 import model.entities.Curso;
 import model.entities.Instrutor;
@@ -17,7 +19,9 @@ public class CursoController {
 
 	private AdminCursoDao adminCursoDao = new AdminCursoDaoImpl();
 	private AdminAulaDao adminAulaDao = new AdminAulaDaoImpl();
+	private EstudanteDao estudanteDao = new EstudanteDaoImpl();
 	private ObservableList<Instrutor> listaTodosInstrutores = FXCollections.observableArrayList();
+	private ObservableList<Aula> listaAulasCursoO = FXCollections.observableArrayList();
 	
 	public ObservableList<Aula> carregarListaAulasAdmin() {
 		//this.listaAulas.addAll(adminCursoDao.listarAulasCurso(id));
@@ -26,8 +30,9 @@ public class CursoController {
 	}
 	
 	public ObservableList<Aula> carregarListaAulasEstudante(Integer idCurso) {
-		//return (ObservableList<Aula>) estudanteDao.estudanteVerCurso(idCurso);	
-		return null;
+		Set<Aula> listaAulas = estudanteDao.listarAulasCurso(idCurso);
+		listaAulasCursoO.addAll(listaAulas);
+		return listaAulasCursoO;
 	}
 	
 	public ObservableList<Curso> getLista(){

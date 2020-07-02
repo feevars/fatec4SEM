@@ -1,11 +1,14 @@
 package boundaries;
 
+import java.util.List;
+
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import model.entities.Exercicio;
 
 public class EstudanteExercicioView extends Group {
 
@@ -28,7 +31,7 @@ public class EstudanteExercicioView extends Group {
 	private Label lblResultado = new Label();
 	private Label lblExplicacao = new Label();
 
-	public EstudanteExercicioView(Integer estudanteId, Integer exercioId) {
+	public EstudanteExercicioView(Integer estudanteId, List<Exercicio> listaExercicios) {
 
 		this.radioAlternativaA.setToggleGroup(alternativas);
 		this.radioAlternativaB.setToggleGroup(alternativas);

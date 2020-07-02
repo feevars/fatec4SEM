@@ -1,5 +1,7 @@
 package boundaries;
 
+import boundaries.admin.AdminAulaView;
+import controllers.CursoController;
 import controllers.EstudanteController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +21,7 @@ import model.entities.Instrutor;
 public class EstudanteCursoView extends BorderPane implements EventHandler<ActionEvent> {
 	
 	private EstudanteController estudanteController = new EstudanteController();
-	
+	private CursoController cursoController = new CursoController();
 	private Integer estudanteId, cursoId;
 
 	private VBox vboxInfoCurso = new VBox();
@@ -29,7 +31,7 @@ public class EstudanteCursoView extends BorderPane implements EventHandler<Actio
 	private Label lblInstrutores = new Label("Instrutores");
 
 	private Label lblAulas = new Label("Aulas");
-	private TableView<Aula> tableAulas = new TableView<>();
+	private TableView<Aula> tableAulas;
 	private VBox vboxInfoEstudante = new VBox();
 
 	private Label lblStatus = new Label("Status: Não iniciado");
@@ -42,8 +44,6 @@ public class EstudanteCursoView extends BorderPane implements EventHandler<Actio
 
 		this.estudanteId = estudanteId;
 		this.cursoId = cursoId;
-		
-		
 		
 		
 		this.setPadding(new Insets(40));
@@ -64,10 +64,24 @@ public class EstudanteCursoView extends BorderPane implements EventHandler<Actio
 
 	private void gerarTabelaAulas() {
 
+		tableAulas = new TableView<Aula>(cursoController.carregarListaAulasEstudante(cursoId));
+		
 		TableColumn<Aula, String> colTituloAula = new TableColumn<>("Título da aula");
 		colTituloAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("titulo"));
+		
+		TableColumn<Aula, String> colDescricaoAula = new TableColumn<>("Descrição da aula");
+		colDescricaoAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("descricao"));
 
 		tableAulas.getColumns().add(colTituloAula);
+		tableAulas.getColumns().add(colDescricaoAula);
+		
+		tableAulas.setOnMouseClicked(event -> {
+			if (tableAulas.getSelectionModel().getSelectedItem() != null) {
+				Aula aula = tableAulas.getSelectionModel().getSelectedItem();
+				Scene cena = this.getScene();
+				cena.setRoot(new EstudanteAulaView(estudanteId, aula.getCursoId(), aula.getId()));
+			}
+		});
 	}
 
 	private void gerarLabels(Integer pontosEstudanteCurso, Boolean iniciado, Boolean concluido) {
