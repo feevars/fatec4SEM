@@ -6,7 +6,7 @@ import model.entities.Exercicio;
 
 public interface AdminAulaDao {
 
-	void cadastrarAula(Aula aula, Integer cursoId);
+	Integer cadastrarAula(Aula aula, Integer cursoId);
 		
 	void excluirAula(Integer id);
 	

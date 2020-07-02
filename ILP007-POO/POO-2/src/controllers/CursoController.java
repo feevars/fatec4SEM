@@ -68,16 +68,14 @@ public class CursoController {
 	}
 	
 	//Cadastra a primeira aula do curso
-	public Boolean cadastrarCursoEPrimeiraAula(Curso curso, Aula aula) {
+	public Integer cadastrarCursoEPrimeiraAula(Curso curso, Aula aula) {
 		Integer cursoId = adminCursoDao.cadastrarCurso(curso);
 		System.out.println("curso id :" + cursoId);
 		for (Instrutor instrutor : curso.getInstrutores()) {
 			System.out.println(adminCursoDao.cadastrarInstrutorCurso(instrutor.getId(), cursoId));
 		}
-
-		aula.setCursoId(cursoId);
-		adminAulaDao.cadastrarAula(aula, cursoId);
-		return false;
+		aula.setCursoId(cursoId);	
+		return adminAulaDao.cadastrarAula(aula, cursoId);
 	}
 	
 	//Adiciona instrutores ao curso

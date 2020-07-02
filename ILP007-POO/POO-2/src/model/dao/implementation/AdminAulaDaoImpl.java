@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,14 +17,14 @@ import model.entities.Exercicio;
 public class AdminAulaDaoImpl implements AdminAulaDao {
 
 	private DaoFactory daoFactory;
-	
+
 	public AdminAulaDaoImpl() {
 		daoFactory = new DaoFactory();
 	}
-	
+
 	@Override
 	public List<Exercicio> listarExercicios(Integer idAula) {
-		//List<Exercicio> exerciciosList = new ArrayList<Exercicio>(exercicios);
+		// List<Exercicio> exerciciosList = new ArrayList<Exercicio>(exercicios);
 		List<Exercicio> exerciciosDaAula = new ArrayList<Exercicio>();
 		try {
 			Connection conn = daoFactory.getConnection();
@@ -33,7 +34,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			rs = stm.executeQuery();
 			while (rs.next()) {
 				Exercicio exercicio = new Exercicio();
-				//exercicio.setId(rs.getInt("id"));
+				// exercicio.setId(rs.getInt("id"));
 				exercicio.setQuestaoExercicio(rs.getString("questao"));
 				exercicio.setAlternativaCorreta(rs.getString("alternativaCorreta"));
 				exercicio.setAlternativaIncorreta1(rs.getString("alternativaIncorreta1"));
@@ -44,7 +45,7 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 				exercicio.setTempoResposta(rs.getInt("tempoResposta"));
 				exercicio.setPontos(rs.getInt("pontos"));
 				exerciciosDaAula.add(exercicio);
-				//aulaId nao precisa puxar pq ja tem aula ID
+				// aulaId nao precisa puxar pq ja tem aula ID
 			}
 			conn.close();
 			return exerciciosDaAula;
@@ -53,15 +54,16 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		}
 		return null;
 	}
-	
+
 	@Override
-	public void cadastrarAula(Aula aula, Integer cursoId) {
-		
+	public Integer cadastrarAula(Aula aula, Integer cursoId) {
+
+		Integer id = null;
 		try {
 			Connection conn = daoFactory.getConnection();
 			String sql = "INSERT INTO Aula (titulo, descricao, linkVideo, transcricaoVideo, tempoVideo, numeroAula, cursoId)"
-					   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement stm = conn.prepareStatement(sql);
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stm.setString(1, aula.getTitulo());
 			stm.setString(2, aula.getDescricao());
 			stm.setString(3, aula.getLinkVideo());
@@ -71,9 +73,16 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			stm.setInt(7, cursoId);
 			stm.executeUpdate();
 			conn.close();
+
+			ResultSet rs = stm.getGeneratedKeys();
+			while (rs.next()) {
+				id = rs.getInt("id");
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return id;
 	}
 
 	@Override

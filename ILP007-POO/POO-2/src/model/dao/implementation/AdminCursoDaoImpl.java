@@ -40,8 +40,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			while (rs.next()) {
 				id = rs.getInt(1);
 			}
-			System.out.println(id);
-
+			
 			stm.close();
 			return id;
 		} catch (SQLException e) {
