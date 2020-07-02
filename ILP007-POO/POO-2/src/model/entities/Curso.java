@@ -3,6 +3,8 @@ package model.entities;
 import java.sql.Date;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Curso {
 
 	private Integer id;
@@ -47,7 +49,7 @@ public class Curso {
 		this.aulas = aulas;
 		
 	}
-
+	@NotBlank
 	public String getTitulo() {
 		return titulo;
 	}
@@ -55,7 +57,7 @@ public class Curso {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
+	@NotBlank
 	public String getDescricao() {
 		return descricao;
 	}

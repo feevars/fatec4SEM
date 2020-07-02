@@ -3,6 +3,8 @@ package model.entities;
 import java.sql.Date;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Estudante {
 
 	private Integer id;
@@ -56,15 +58,17 @@ public class Estudante {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 	}
-
+	
+	@NotBlank
 	public String getUsername() {
 		return username;
 	}
-
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+	
+	@NotBlank
 	public String getPassword() {
 		return password;
 	}
@@ -72,7 +76,8 @@ public class Estudante {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
+	@NotBlank
 	public String getNome() {
 		return nome;
 	}
@@ -88,7 +93,8 @@ public class Estudante {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-
+	
+	@NotBlank
 	public String getEmail() {
 		return email;
 	}
