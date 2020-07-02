@@ -64,9 +64,7 @@ public class EstudanteExercicioView extends Group implements EventHandler<Action
 				radioAlternativaC, radioAlternativaD, radioAlternativaE, lblResultado, lblExplicacao, btnResponder);
 		}
 		this.getChildren().add(vbox);
-		
 	}
-
 
 
 	@Override
