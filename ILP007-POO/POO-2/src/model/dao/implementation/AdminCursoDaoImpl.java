@@ -35,13 +35,13 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm.executeUpdate();
 
 			Integer id = null;
-			
+
 			ResultSet rs = stm.getGeneratedKeys();
-			while(rs.next()) {
+			while (rs.next()) {
 				id = rs.getInt(1);
 			}
 			System.out.println(id);
-			
+
 			stm.close();
 			return id;
 		} catch (SQLException e) {
@@ -82,17 +82,14 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql1 = "DELETE FROM Curso WHERE id = ?";
-			PreparedStatement stm = con.prepareStatement(sql1);
+			String sql = "DELETE CursoInstrutor.*, Aula.*, Curso.* FROM CursoInstrutor, Aula, Curso WHERE CursoInstrutor.cursoId=18 AND Aula.cursoId=18 AND Curso.id=18";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm = con.prepareStatement(sql);
 			stm.setInt(1, idCurso);
+			stm.setInt(2, idCurso);
+			stm.setInt(3, idCurso);
 			stm.executeUpdate();
 			System.out.println("Curso de id " + idCurso + " deletado da tabela Curso!");
-
-			String sql2 = "DELETE * FROM CursoInstrutor WHERE cursoId = ?";
-			stm = con.prepareStatement(sql2);
-			stm.setInt(1, idCurso);
-			stm.executeUpdate();
-
 			con.close();
 			return true;
 
@@ -254,7 +251,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
+		}
 		return false;
 	}
 

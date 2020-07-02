@@ -1,8 +1,10 @@
 package boundaries.admin;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import boundaries.EstudanteDashboardView;
 import boundaries.LoginView;
 import controllers.AdministradorController;
 import controllers.CursoController;
@@ -13,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -38,7 +41,6 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 	private Integer idAdmin;
 	private Integer idCurso;
-	
 
 	private GridPane gpInfoHeader = new GridPane();
 
@@ -63,17 +65,15 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	private Label lblAulas = new Label("Aulas:");
 	private Button btnAdicionarAula = new Button("Adicionar aula...");
 	private TableView<Aula> tableAulas = new TableView<>();
-	
+
 	private HBox hboxBotesAcoes = new HBox();
 
 	private Button btnExcluirCurso = new Button("Excluir");
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnSalvarCurso = new Button("Salvar");
-	
+
 	private Set<Instrutor> autoresCurso = new HashSet<Instrutor>();
 	private Set<Aula> aulasCurso = new HashSet<Aula>();
-	
-
 
 	// Construtor feito para cadastrar o curso
 	public AdminCursoView(Integer adminId) {
@@ -112,7 +112,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		txtTituloCurso.setText(tituloCurso);
 		txtDescricaoCurso.setText(descricaoCurso);
 		System.out.println(this.idCurso);
-		
+
 		gerarTabelaInstrutores();
 		gerarTabelaAulas();
 
@@ -127,10 +127,11 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		hboxTabelas.getChildren().addAll(vboxInstrutores, vboxAulas);
 		hboxTabelas.setAlignment(Pos.CENTER);
 
-		hboxBotesAcoes.getChildren().addAll(btnCancelar, btnSalvarCurso);
+		hboxBotesAcoes.getChildren().addAll(btnCancelar, btnExcluirCurso, btnSalvarCurso);
 
-		btnCancelar.setOnAction(this);
 		btnAdicionarAula.setOnAction(this);
+		btnCancelar.setOnAction(this);
+		btnExcluirCurso.setOnAction(this);
 		btnSalvarCurso.setOnAction(this);
 
 		this.setTop(gpInfoHeader);
@@ -163,7 +164,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 		tableAulas.setMaxHeight(200);
 		tableAulas.getColumns().add(colTituloAula);
-		
+
 		tableAulas.setRowFactory(tv -> {
 			TableRow<Aula> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
@@ -195,6 +196,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		Scene cena = this.getScene();
 
 		if (event.getTarget().equals(btnAdicionarPrimeiraAula)) {
+			
 			Curso curso = boundaryToEntityCadastro();
 			if (!curso.getInstrutores().isEmpty()) {
 				cena.setRoot(new AdminAulaView(idAdmin, curso));
@@ -202,44 +204,53 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 				Alert alertaInstrutor = new Alert(AlertType.ERROR, "Você precisa escoher pelo menos um instrutor...");
 				alertaInstrutor.show();
 			}
+			
 		} else if (event.getTarget().equals(btnSalvarCurso)) {
+
 			Curso c = BoundaryToEntityEditaCurso();
-			if(cursoController.editarCurso(c)){
+			if (cursoController.editarCurso(c)) {
 				Alert alertaEdicaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Editado com sucesso!");
 				alertaEdicaoCursoOk.show();
-			}else{
+			} else {
 				Alert alertaEdicaoCursoErro = new Alert(AlertType.ERROR, "Erro ao editar Curso");
 				alertaEdicaoCursoErro.show();
 			}
-			
+
 		} else if (event.getTarget().equals(btnExcluirCurso)) {
-			if(cursoController.excluirCurso(idCurso)){
-				Alert alertaExclusaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Excluido!");
-				//CHAMAR DASHBOARD DE VOLTA
-				alertaExclusaoCursoOk.show();
-			}else{
-				Alert alertaEdicaoCrusoErro = new Alert(AlertType.ERROR, "Erro ao Excluir Curso");
-				alertaEdicaoCrusoErro.show();
+
+			Alert alertExcluir = new Alert(AlertType.CONFIRMATION);
+			alertExcluir.setTitle("Excluir curso");
+			alertExcluir.setHeaderText("Você está prestes a excluir o Curso " + txtTituloCurso.getText());
+			alertExcluir.setContentText(
+					"Serão deletados o registro da tabela Curso, os registros da tabela InstrutorCurso e os registros deste curso na tabela de Aulas. Você confirma esta operação?");
+
+			Optional<ButtonType> result = alertExcluir.showAndWait();
+			if (result.get() == ButtonType.OK) {
+
+				if (cursoController.excluirCurso(idCurso)) {
+					Alert alertaExclusaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Excluido!");
+					alertaExclusaoCursoOk.show();
+				} else {
+					Alert alertaEdicaoCrusoErro = new Alert(AlertType.ERROR, "Erro ao Excluir Curso");
+					alertaEdicaoCrusoErro.show();
+				}
+
 			}
-			
+
 		} else if (event.getTarget().equals(btnCancelar)) {
 			cena.setRoot(new AdminDashboardView(this.idAdmin));
-		
+
 		} else if (event.getTarget().equals(btnAdicionarAula)) {
 			Curso curso = boundaryToEntityCadastro();
 			cena.setRoot(new AdminAulaView(this.idAdmin, curso.getId(), ""));
 		}
 
 	}
-	
 
-	
-	public Curso BoundaryToEntityEditaCurso(){
-		Curso curso = new Curso(this.idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText(),
-				autoresCurso, aulasCurso);
+	public Curso BoundaryToEntityEditaCurso() {
+		Curso curso = new Curso(this.idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText(), autoresCurso,
+				aulasCurso);
 		return curso;
 	}
-	
-	
-	
+
 }
