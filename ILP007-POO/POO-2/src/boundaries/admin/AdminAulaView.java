@@ -105,7 +105,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		txtTituloAula.setText(tituloAula);
 
 		this.setPromtTexts();
-		this.gerarTabelaExercicios();
+		//this.gerarTabelaExercicios();
 
 		this.txtDescricaoAula.setMaxHeight(100);
 
@@ -130,7 +130,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		txtTituloAula.setText(aula.getTitulo());
 		
 		this.setPromtTexts();
-		this.gerarTabelaExercicios();
+		//this.gerarTabelaExercicios();
 
 		this.txtDescricaoAula.setMaxHeight(100);
 
