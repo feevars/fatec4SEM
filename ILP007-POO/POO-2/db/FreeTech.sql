@@ -21,7 +21,7 @@ CREATE TABLE `Aula` (
     `tempoVideo` SMALLINT unsigned NOT NULL,
     `numeroAula` INT NOT NULL,
     `cursoId` INT NOT NULL,
-    CONSTRAINT `fk_cursoId_aulaId` FOREIGN KEY (`cursoId`) REFERENCES `Curso` (`id`)
+    CONSTRAINT `fk_cursoId_aulaId` FOREIGN KEY (`cursoId`) REFERENCES `Curso` (`id`) ON DELETE CASCADE
 );
 CREATE TABLE `Exercicio` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +36,7 @@ CREATE TABLE `Exercicio` (
     `tempoResposta` INT unsigned NOT NULL,
     `pontos` TINYINT unsigned NOT NULL DEFAULT '1',
     `aulaId` INT NOT NULL,
-    CONSTRAINT `fk_exercicio_aulaId` FOREIGN KEY (`aulaId`) REFERENCES `Aula`(`id`)
+    CONSTRAINT `fk_exercicio_aulaId` FOREIGN KEY (`aulaId`) REFERENCES `Aula`(`id`) ON DELETE CASCADE
 );
 CREATE TABLE `Estudante` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
@@ -52,21 +52,21 @@ CREATE TABLE `Estudante` (
 ); CREATE TABLE `CursoInstrutor` (
     `cursoId` INT NOT NULL,
     `instrutorId` INT NOT NULL,
-    CONSTRAINT `fk_cursoId_instrutorId` FOREIGN KEY (`cursoId`) REFERENCES `Curso`(`id`),
-    CONSTRAINT `fk_instrutorId_cursoId` FOREIGN KEY (`instrutorId`) REFERENCES `Estudante`(`id`)
+    CONSTRAINT `fk_cursoId_instrutorId` FOREIGN KEY (`cursoId`) REFERENCES `Curso`(`id`) ON DELETE CASCADE,
+    CONSTRAINT `fk_instrutorId_cursoId` FOREIGN KEY (`instrutorId`) REFERENCES `Estudante`(`id`) ON DELETE CASCADE
 );
 CREATE TABLE `EstudanteCurso` (
     `estudanteId` INT NOT NULL,
     `cursoId` INT NOT NULL,
     `pontos` SMALLINT UNSIGNED NOT NULL DEFAULT '0',
     `concluido` BOOLEAN NOT NULL DEFAULT '0',
-    CONSTRAINT `fk_estudanteId_cursoId` FOREIGN KEY (`estudanteId`) REFERENCES `Estudante`(`id`),
-    CONSTRAINT `fk_cursoId_estudanteId` FOREIGN KEY (`cursoId`) REFERENCES `Curso`(`id`)
+    CONSTRAINT `fk_estudanteId_cursoId` FOREIGN KEY (`estudanteId`) REFERENCES `Estudante`(`id`) ON DELETE CASCADE,
+    CONSTRAINT `fk_cursoId_estudanteId` FOREIGN KEY (`cursoId`) REFERENCES `Curso`(`id`) ON DELETE CASCADE
 );
 CREATE TABLE `EstudanteExercicio`(
     `estudanteId` INT NOT NULL,
     `exercicioId` INT NOT NULL,
     `acertou` BOOLEAN NOT NULL DEFAULT '0',
-    CONSTRAINT `fk_estudanteId_exercicioId` FOREIGN KEY (`estudanteId`) REFERENCES `Estudante` (`id`),
-    CONSTRAINT `fk_exercicioId_estudanteId` FOREIGN KEY (`exercicioId`) REFERENCES `Exercicio` (`id`)
+    CONSTRAINT `fk_estudanteId_exercicioId` FOREIGN KEY (`estudanteId`) REFERENCES `Estudante` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `fk_exercicioId_estudanteId` FOREIGN KEY (`exercicioId`) REFERENCES `Exercicio` (`id`) ON DELETE CASCADE
 );

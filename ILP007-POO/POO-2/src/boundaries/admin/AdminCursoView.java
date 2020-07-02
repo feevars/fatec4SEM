@@ -222,7 +222,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 			alertExcluir.setTitle("Excluir curso");
 			alertExcluir.setHeaderText("Você está prestes a excluir o Curso " + txtTituloCurso.getText());
 			alertExcluir.setContentText(
-					"Serão deletados o registro da tabela Curso, os registros da tabela InstrutorCurso e os registros deste curso na tabela de Aulas. Você confirma esta operação?");
+					"Serão deletados o registro da tabela Curso, os registros da tabela InstrutorCurso, os registros deste curso na tabela de Aulas e os exercícios das aulas deste curso. Você confirma esta operação?");
 
 			Optional<ButtonType> result = alertExcluir.showAndWait();
 			if (result.get() == ButtonType.OK) {
@@ -230,6 +230,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 				if (cursoController.excluirCurso(idCurso)) {
 					Alert alertaExclusaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Excluido!");
 					alertaExclusaoCursoOk.show();
+					cena.setRoot(new AdminDashboardView(this.idAdmin));
 				} else {
 					Alert alertaEdicaoCrusoErro = new Alert(AlertType.ERROR, "Erro ao Excluir Curso");
 					alertaEdicaoCrusoErro.show();
@@ -238,17 +239,17 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 			}
 
 		} else if (event.getTarget().equals(btnCancelar)) {
-			cena.setRoot(new AdminDashboardView(this.idAdmin));
+			cena.setRoot(new AdminDashboardView(idAdmin));
 
 		} else if (event.getTarget().equals(btnAdicionarAula)) {
 			Curso curso = boundaryToEntityCadastro();
-			cena.setRoot(new AdminAulaView(this.idAdmin, curso.getId(), ""));
+			cena.setRoot(new AdminAulaView(idAdmin, curso.getId(), ""));
 		}
 
 	}
 
 	public Curso BoundaryToEntityEditaCurso() {
-		Curso curso = new Curso(this.idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText(), autoresCurso,
+		Curso curso = new Curso(idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText(), autoresCurso,
 				aulasCurso);
 		return curso;
 	}
