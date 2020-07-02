@@ -13,7 +13,7 @@ public interface AdminCursoDao {
 	Boolean excluirCurso(Integer id);
 	Boolean editarCurso(Curso c);
 	Boolean adicionarInstrutorCurso(Integer instrutorId, Integer cursoId);
-	Set<Aula> listarAulasCurso(Integer id);
+	Set<Aula> listarAulasCurso(Integer cursoId);
 	List<Instrutor> listarInstrutores();
 	Set<Instrutor> listarInstrutoresPorCurso(Integer cursoId);
 	Set<Curso> listarCursosPorInstrutor(Integer instrutorId);

@@ -117,6 +117,31 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		
 		this.setCenter(vboxInfoAula);
 	}
+	
+	//Editar 2 ************************
+	public AdminAulaView(Integer adminId, Aula aula) {
+		
+		btnAdicionarExercicio.setOnAction(this);
+		btnCancelar.setOnAction(this);
+		btnSalvarAula.setOnAction(this);
+		
+		this.idAdmin = idAdmin;
+		txtTituloAula.setText(aula.getTitulo());
+		
+		this.setPromtTexts();
+		this.gerarTabelaExercicios();
+
+		this.txtDescricaoAula.setMaxHeight(100);
+
+		this.hboxBotoesAcoes.getChildren().addAll(btnCancelar, btnExcluir, btnSalvarAula);
+
+		this.vboxInfoAula.setPadding(new Insets(20));
+		this.vboxInfoAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula,
+				lblLinkVideo, txtLinkVideo, lblTranscricaoVideo, txtTranscricaoVideo, lblTempoVideo, txtTempoVideo,
+				lblExercicios, btnAdicionarExercicio, tableExercicios, hboxBotoesAcoes);
+		
+		this.setCenter(vboxInfoAula);
+	}
 
 	private void gerarTabelaExercicios() {
 

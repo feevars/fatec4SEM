@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import boundaries.EstudanteDashboardView;
-import boundaries.LoginView;
 import controllers.AdministradorController;
 import controllers.CursoController;
 import javafx.collections.ObservableList;
@@ -14,16 +12,15 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -31,7 +28,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Aula;
 import model.entities.Curso;
-import model.entities.Estudante;
 import model.entities.Instrutor;
 
 public class AdminCursoView extends BorderPane implements EventHandler<ActionEvent> {
@@ -64,7 +60,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 	private Label lblAulas = new Label("Aulas:");
 	private Button btnAdicionarAula = new Button("Adicionar aula...");
-	private TableView<Aula> tableAulas = new TableView<>();
+	private TableView<Aula> tableAulas;
 
 	private HBox hboxBotesAcoes = new HBox();
 
@@ -159,21 +155,27 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	}
 
 	public void gerarTabelaAulas() {
-		TableColumn<Aula, String> colTituloAula = new TableColumn<>("Título da Aula");
-		colTituloAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("tituloAula"));
+
+		tableAulas = new TableView<>(adminController.listarAulasCurso(idCurso));
+
+		TableColumn<Aula, String> colTituloAula = new TableColumn<>("Título");
+		colTituloAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("titulo"));
+
+		TableColumn<Aula, String> colDescricaoAula = new TableColumn<>("Descrição");
+		colDescricaoAula.setCellValueFactory(new PropertyValueFactory<Aula, String>("descricao"));
 
 		tableAulas.setMaxHeight(200);
 		tableAulas.getColumns().add(colTituloAula);
+		tableAulas.getColumns().add(colDescricaoAula);
 
-		tableAulas.setRowFactory(tv -> {
-			TableRow<Aula> row = new TableRow<>();
-			row.setOnMouseClicked(event -> {
-				Aula aula = row.getItem();
+		tableAulas.setOnMouseClicked(event -> {
+			if (tableAulas.getSelectionModel().getSelectedItem() != null) {
+				Aula aula = tableAulas.getSelectionModel().getSelectedItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new AdminAulaView(idAdmin, aula.getCursoId(), aula.getTitulo()));
-			});
-			return row;
+				cena.setRoot(new AdminAulaView(idAdmin, aula));
+			}
 		});
+
 	}
 
 	private void setPromtTexts() {
@@ -196,7 +198,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		Scene cena = this.getScene();
 
 		if (event.getTarget().equals(btnAdicionarPrimeiraAula)) {
-			
+
 			Curso curso = boundaryToEntityCadastro();
 			if (!curso.getInstrutores().isEmpty()) {
 				cena.setRoot(new AdminAulaView(idAdmin, curso));
@@ -204,7 +206,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 				Alert alertaInstrutor = new Alert(AlertType.ERROR, "Você precisa escoher pelo menos um instrutor...");
 				alertaInstrutor.show();
 			}
-			
+
 		} else if (event.getTarget().equals(btnSalvarCurso)) {
 
 			Curso c = BoundaryToEntityEditaCurso();

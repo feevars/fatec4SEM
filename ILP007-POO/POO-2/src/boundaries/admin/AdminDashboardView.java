@@ -18,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Administrador;
+import model.entities.Aula;
 import model.entities.Curso;
 import model.entities.Estudante;
 import model.entities.Instrutor;
@@ -71,29 +72,26 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 
 		TableColumn<Curso, String> colDescricao = new TableColumn<>("Descrição");
 		colDescricao.setCellValueFactory(new PropertyValueFactory<Curso, String>("descricao"));
-		
+
 		TableColumn<Curso, String> colCriacao = new TableColumn<>("Criação");
 		colCriacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("dataCriacao"));
-		
+
 		TableColumn<Curso, String> colAtualizacao = new TableColumn<>("Ultima atualização");
 		colAtualizacao.setCellValueFactory(new PropertyValueFactory<Curso, String>("dataAtualizacao"));
-		
+
 		tableCursos.getColumns().add(colTitulo);
 		tableCursos.getColumns().add(colDescricao);
 		tableCursos.getColumns().add(colCriacao);
 		tableCursos.getColumns().add(colAtualizacao);
-	
-		tableCursos.setRowFactory(tv -> {
 
-			TableRow<Curso> row = new TableRow<>();
-			row.setOnMouseClicked(event -> {
-				Curso curso = row.getItem();
-				Scene cena = this.getScene(); 
+		tableCursos.setOnMouseClicked(event -> {
+			if (tableCursos.getSelectionModel().getSelectedItem() != null) {
+				Curso curso = tableCursos.getSelectionModel().getSelectedItem();
+				Scene cena = this.getScene();
 				cena.setRoot(new AdminCursoView(this.idAdmin, curso.getId(), curso.getTitulo(), curso.getDescricao()));
-			});
-			return row;
+			}
 		});
-		
+
 	}
 
 	private void gerarTabelaUsuarios() {
@@ -119,17 +117,15 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 		tableUsuarios.getColumns().add(colEmailEstudante);
 		tableUsuarios.getColumns().add(colInstrutor);
 
-		tableUsuarios.setRowFactory(tv -> {
-
-			TableRow<Estudante> row = new TableRow<>();		
-			row.setOnMouseClicked(event -> {
-				Estudante user = row.getItem();
+		tableUsuarios.setOnMouseClicked(event -> {
+			if (tableUsuarios.getSelectionModel().getSelectedItem() != null) {
+				Estudante user = tableUsuarios.getSelectionModel().getSelectedItem();
 				Scene cena = this.getScene();
 				cena.setRoot(new AdminUsuarioView(idAdmin, user.getId(), user.getNome(), user.getSobrenome(),
 						user.getTelefone(), user.getDataNascimento(), (user instanceof Instrutor)));
-			});
-			return row;
+			}
 		});
+
 	}
 
 	public void entityToBoundary(Administrador administrador) {
@@ -148,6 +144,5 @@ public class AdminDashboardView extends BorderPane implements EventHandler<Actio
 			cena.setRoot(new AdminCursoView(this.idAdmin));
 		}
 	}
-	
-	
+
 }
