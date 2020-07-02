@@ -91,7 +91,6 @@ public class Aula {
 		this.id = id;
 	}
 	
-	@NotBlank
 	public Integer getNumAula() {
 		return numAula;
 	}

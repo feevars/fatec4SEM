@@ -103,6 +103,8 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		
 		this.curso = cursoController.getCursoPorId(aula.getCursoId());
 		
+		entityToBoundary(aula);
+		
 		btnAdicionarExercicio.setOnAction(this);
 		btnCancelar.setOnAction(this);
 		btnSalvarAula.setOnAction(this);
@@ -190,7 +192,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 			txtDescricaoAula.setText(String.valueOf(aula.getDescricao()));
 			txtLinkVideo.setText(String.valueOf(aula.getLinkVideo()));
 			txtTranscricaoVideo.setText(String.valueOf(aula.getTranscricaoVideo()));
-			// txtTempoVideo.setText(Integer.parseInt(aula.getTempoVideo()));
+			txtTempoVideo.setText(String.valueOf(aula.getTempoVideo()));
 		}
 	}
 

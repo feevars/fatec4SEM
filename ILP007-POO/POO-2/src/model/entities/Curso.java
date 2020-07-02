@@ -3,6 +3,8 @@ package model.entities;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Curso {
@@ -58,6 +60,7 @@ public class Curso {
 		this.titulo = titulo;
 	}
 	@NotBlank
+	@Size(max=50)
 	public String getDescricao() {
 		return descricao;
 	}

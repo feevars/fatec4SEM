@@ -53,6 +53,7 @@ public class EstudanteDashboardView extends BorderPane implements EventHandler<A
 
 		vboxCursos.getChildren().addAll(lblCursos, tableCursos);
 		vboxCursos.setAlignment(Pos.CENTER);
+		vboxCursos.setMinWidth(500);
 
 		vboxPerfil.setMinWidth(200);
 		vboxPerfil.setAlignment(Pos.CENTER);

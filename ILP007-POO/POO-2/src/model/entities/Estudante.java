@@ -3,6 +3,9 @@ package model.entities;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Estudante {
@@ -94,7 +97,7 @@ public class Estudante {
 		this.sobrenome = sobrenome;
 	}
 	
-	@NotBlank
+	@NotBlank @Email
 	public String getEmail() {
 		return email;
 	}
@@ -102,7 +105,7 @@ public class Estudante {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	@Size(min=10, max=13)
 	public String getTelefone() {
 		return telefone;
 	}
