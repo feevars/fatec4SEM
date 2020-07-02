@@ -122,14 +122,14 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public Set<Aula> listarAulasCurso(Integer id) {
+	public Set<Aula> listarAulasCurso(Integer cursoId) {
 		Set<Aula> lista = new HashSet<Aula>();
 		try {
 			Connection con = daoFactory.getConnection();
 			ResultSet rs;
 			String sql = "SELECT * FROM Aula WHERE cursoId = ? ";
 			PreparedStatement stm = con.prepareStatement(sql);
-			stm.setInt(1, id);
+			stm.setInt(1, cursoId);
 			rs = stm.executeQuery();
 			while (rs.next()) {
 				Aula aula = new Aula();
@@ -139,7 +139,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 				aula.setLinkVideo(rs.getString("linkVideo"));
 				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
 				aula.setTempoVideo(rs.getInt("tempoVideo"));
-				// aula.setNumAula(rs.getInt("numeroAula"));
+				aula.setNumAula(rs.getInt("numeroAula"));
 				System.out.println("Curso: " + aula.getTitulo() + " encontrado!");
 				lista.add(aula);
 			}

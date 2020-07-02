@@ -18,6 +18,7 @@ import model.dao.implementation.AdminCursoDaoImpl;
 import model.dao.implementation.AdminEstudanteDaoImpl;
 import model.dao.implementation.AdminstradorDaoImpl;
 import model.entities.Administrador;
+import model.entities.Aula;
 import model.entities.Curso;
 import model.entities.Estudante;
 import model.entities.Instrutor;
@@ -30,6 +31,7 @@ public class AdministradorController {
 	private ObservableList<Estudante> listaUsuarios = FXCollections.observableArrayList();
 	private ObservableList<Instrutor> listaTodosInstrutores = FXCollections.observableArrayList();
 	private ObservableList<Instrutor> autoresCurso = FXCollections.observableArrayList();
+	private ObservableList<Aula> listaAulasCurso = FXCollections.observableArrayList();
 	private ObservableList<Curso> listaCursos = FXCollections.observableArrayList();
 	private Validator validator;
 
@@ -115,9 +117,17 @@ public class AdministradorController {
 	}
 	
 	public Boolean autorDoCurso(Integer instrutorId, Integer cursoId) {
-
 		return adminCursoDao.verificaAutoria(instrutorId, cursoId);
-
 	}
+	
+	public void carregaListaAulasCurso(Integer cursoId) {
+		this.listaAulasCurso.addAll(adminCursoDao.listarAulasCurso(cursoId));
+	}
+	
+	public ObservableList<Aula> listarAulasCurso(Integer cursoId){
+		carregaListaAulasCurso(cursoId);
+		return listaAulasCurso;
+	}
+
 
 }

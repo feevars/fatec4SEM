@@ -97,10 +97,12 @@ public class CursoController {
 	}
 	
 	public Set<Aula> carregaAulasCurso(Integer id){
-		Set<Aula> instrutoresCurso = new HashSet<Aula>();
-		instrutoresCurso = adminCursoDao.listarAulasCurso(id);
-		return instrutoresCurso;
+		Set<Aula> aulasCurso = new HashSet<Aula>();
+		aulasCurso = adminCursoDao.listarAulasCurso(id);
+		return aulasCurso;
 	}
+	
+	
 	
 	
 }
