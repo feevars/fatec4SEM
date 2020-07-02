@@ -22,7 +22,7 @@ public class EstudanteAulaView extends BorderPane implements EventHandler<Action
 
 	AulaController aulaController = new AulaController();
 	CursoController cursoController = new CursoController();
-	
+
 	private Set<Exercicio> listaExercicios;
 	private List<Aula> listAula;
 	private Aula aula;
@@ -57,12 +57,14 @@ public class EstudanteAulaView extends BorderPane implements EventHandler<Action
 		this.idAula = idAula;
 
 		btnVoltarAoCurso.setOnAction(this);
-		
+
 		aula = aulaController.getAulaPorId((idAula));
-		for (Exercicio exec : aula.getExercicios()) {
-			listaExercicios.add(exec);
+		if (aula.getExercicios() != null) {
+			for (Exercicio exec : aula.getExercicios()) {
+				listaExercicios.add(exec);
+			}
 		}
-		
+
 		entityToBoundary(aula);
 
 		video.getEngine().load(urlVideo);
