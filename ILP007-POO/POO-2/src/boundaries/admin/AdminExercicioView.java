@@ -109,9 +109,8 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	}
 
 	// Construtor edita exercicio
-	public AdminExercicioView(Integer idAula, Integer idAdmin, Integer idExercicio, Exercicio exercicio) {
+	public AdminExercicioView(Integer idAdmin, Exercicio exercicio) {
 
-		this.idExercicio = idExercicio;
 		this.exercicio = exercicio;
 
 		vbox.setSpacing(5);

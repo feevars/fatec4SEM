@@ -7,16 +7,16 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import model.dao.AdminExercicioDao;
 import model.dao.implementation.AdminExercicioDaoImpl;
-import model.entities.Estudante;
 import model.entities.Exercicio;
 
 public class ExercicioController {
 	
-	private AdminExercicioDao administradorDao = new AdminExercicioDaoImpl();
+	private AdminExercicioDao exercicioDao = new AdminExercicioDaoImpl();
 	private Validator validator;
 	
 	public ExercicioController(){
@@ -35,7 +35,7 @@ public class ExercicioController {
 	public void cadastrarExercicio(Exercicio exercicio){
 		Set<ConstraintViolation<Exercicio>> erros = validator.validate(exercicio);
 		if(erros.isEmpty()){
-			administradorDao.cadastrarExercicio(exercicio);
+			exercicioDao.cadastrarExercicio(exercicio);
 			alert(AlertType.INFORMATION, " FreeTech ", null, " Exercicio cadastrado com sucesso!");
 		}
 		else {
@@ -48,13 +48,23 @@ public class ExercicioController {
 	}
 	
 	public Boolean excluirExercicio(Integer idExercicio){
-		if(administradorDao.excluirExercicio(idExercicio)) { 
+		if(exercicioDao.excluirExercicio(idExercicio)) { 
 			return true;
 		}
 		return false;
 	}
 	
 	public Boolean editarExercicio(Exercicio exercicio) {
-		return administradorDao.editarExercicio(exercicio);
+		return exercicioDao.editarExercicio(exercicio);
+	}
+	
+	//falta fazer o método na DAO
+	public void carregaListaExerciciosAula (Integer idAula) {
+		exercicioDao.getListaExercicios(idAula);
+	}
+	
+	public ObservableList<Exercicio> listarExerciciosAula(Integer idAula){
+		carregaListaExerciciosAula(idAula);
+		return null;
 	}
 }

@@ -2,16 +2,15 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import model.dao.AdminAulaDao;
 import model.dao.implementation.AdminAulaDaoImpl;
 import model.entities.Aula;
-import model.entities.Curso;
 import model.entities.Exercicio;
 
 public class AulaController {
 	
 	private AdminAulaDao adminAulaDao = new AdminAulaDaoImpl();
-	private Curso curso;
 	
 	
 	public AulaController() {}
@@ -32,10 +31,5 @@ public class AulaController {
 
 	public void editarAula(Aula aula) {
 		adminAulaDao.editarAula(aula);
-	}
-
-	
-	public void getListaDeAulas(Integer idCurso) {
-		//adminAulaDao.
 	}
 }

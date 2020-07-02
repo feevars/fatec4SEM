@@ -1,4 +1,5 @@
 package boundaries.admin;
+
 import controllers.AulaController;
 import controllers.CursoController;
 import controllers.ExercicioController;
@@ -9,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -52,7 +52,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 	private Button btnAdicionarExercicio = new Button("Adicionar exercício...");
 	private Label lblExercicios = new Label("Exercícios");;
-	private TableView<Exercicio> tableExercicios = new TableView<>(); // cursoController.carregarListaAulasAdmin(idCurso)
+	private TableView<Exercicio> tableExercicios; // cursoController.carregarListaAulasAdmin(idCurso)
 																		// Precisa adicionar o GET LISTA do controller
 	private HBox hboxBotoesAcoes = new HBox();
 
@@ -64,19 +64,20 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 	private Button btnSalvarAula = new Button("Salvar");
 
 	private Curso curso;
-	
+
 	private Integer idAdmin;
-	
-	//Esse construtor é para cadastrar nova aula junto a um curso --- aula ainda sem id
+
+	// Esse construtor é para cadastrar nova aula junto a um curso --- aula ainda
+	// sem id
 	public AdminAulaView(Integer idAdmin, Curso curso) {
-		
+
 		this.curso = curso;
-		
+
 		setPromtTexts();
 		gerarTabelaExercicios();
 
 		lblTituloCurso.setText(curso.getTitulo() + " - " + curso.getDescricao());
-		
+
 		btnCadastrarCurso.setOnAction(this);
 		btnCancelarCadastroCurso.setOnAction(this);
 
@@ -93,16 +94,16 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		this.setBottom(hboxBotoesAcoes);
 	}
 
-	//Construtor de uma aula que não é a inicial
+	// Construtor de uma aula que não é a inicial
 	public AdminAulaView(Integer idAdmin, Integer idCurso, String tituloAula) {
-		
+
 		btnAdicionarExercicio.setOnAction(this);
 		btnCancelar.setOnAction(this);
 		btnSalvarAula.setOnAction(this);
-		
+
 		this.idAdmin = idAdmin;
 		txtTituloAula.setText(tituloAula);
-		
+
 		this.setPromtTexts();
 		this.gerarTabelaExercicios();
 
@@ -114,7 +115,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		this.vboxInfoAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula,
 				lblLinkVideo, txtLinkVideo, lblTranscricaoVideo, txtTranscricaoVideo, lblTempoVideo, txtTempoVideo,
 				lblExercicios, btnAdicionarExercicio, tableExercicios, hboxBotoesAcoes);
-		
+
 		this.setCenter(vboxInfoAula);
 	}
 	
@@ -125,7 +126,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		btnCancelar.setOnAction(this);
 		btnSalvarAula.setOnAction(this);
 		
-		this.idAdmin = idAdmin;
+		this.idAdmin = adminId;
 		txtTituloAula.setText(aula.getTitulo());
 		
 		this.setPromtTexts();
@@ -145,22 +146,22 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 	private void gerarTabelaExercicios() {
 
+		//tableExercicios = new TableView<Exercicio>(exercicioController.listarExercicios)
+		
 		TableColumn<Exercicio, String> colTituloExercicio = new TableColumn<>("Título do Exercício");
-		colTituloExercicio.setCellValueFactory(new PropertyValueFactory<Exercicio, String>("tituloExercicio"));
+		colTituloExercicio.setCellValueFactory(new PropertyValueFactory<Exercicio, String>("titulo"));
 
 		tableExercicios.getColumns().add(colTituloExercicio);
 		tableExercicios.setMaxHeight(120);
 
-		tableExercicios.setRowFactory(tv -> {
-			TableRow<Exercicio> row = new TableRow<>();
-			row.setOnMouseClicked(e -> {
-				Exercicio exec = row.getItem();
+		
+		tableExercicios.setOnMouseClicked(event -> {
+			if (tableExercicios.getSelectionModel().getSelectedItem() != null) {
+				Exercicio exec = tableExercicios.getSelectionModel().getSelectedItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new AdminExercicioView(3, 2));
-			});
-			return row;
+					cena.setRoot(new AdminExercicioView(idAdmin, exec));
+			}
 		});
-
 	}
 
 	private void setPromtTexts() {
@@ -191,16 +192,17 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		aula.setNumAula(1);
 		return aula;
 	}
-	//o numero da aula depende do número de aulas do curso
+
+	// o numero da aula depende do número de aulas do curso
 	public Aula boundaryToEntity() {
 		Aula aula = new Aula();
-		
+
 		aula.setTitulo(txtTituloAula.getText());
 		aula.setDescricao(txtDescricaoAula.getText());
 		aula.setLinkVideo(txtLinkVideo.getText());
 		aula.setTranscricaoVideo(txtTranscricaoVideo.getText());
 		aula.setTempoVideo(Integer.parseInt(txtTempoVideo.getText()));
-		aula.setNumAula(aula.getNumAula()+1);
+		aula.setNumAula(aula.getNumAula() + 1);
 		return aula;
 	}
 
@@ -213,22 +215,22 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 			cena.setRoot(new AdminExercicioView(idAula, idAdmin)); // Aqui talvez tenha que passar ID da aula
 			// aulaController.adicionarExercicio(this.boundaryToEntity().setExercicios(exercicio);)
 			// exercicioController.cadastrarExercicio(exercicio);
-		
+
 		} else if (event.getTarget().equals(btnCancelar)) {
 			cena.setRoot(new AdminDashboardView(idAdmin));
-		
+
 		} else if (event.getTarget().equals(btnExcluir)) {
 			aulaController.removerAula(this.idAula); // modificar idAula
-		
+
 		} else if (event.getTarget().equals(btnSalvarAula)) {
 			aulaController.adicionarAula(boundaryToEntity(), curso.getId());
-			
+
 		} else if (event.getTarget().equals(btnCadastrarCurso)) {
 			if (cursoController.cadastrarCursoEPrimeiraAula(curso, boundaryToEntityPrimeiroCadastro())) {
 				System.out.println("Cadastrou com sucesso...");
 			}
 			cena.setRoot(new AdminDashboardView(idAdmin));
-		
+
 		} else if (event.getTarget().equals(btnCancelarCadastroCurso)) {
 			cena.setRoot(new AdminDashboardView(idAdmin));
 		}

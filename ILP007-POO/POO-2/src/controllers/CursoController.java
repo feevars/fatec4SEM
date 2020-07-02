@@ -19,8 +19,6 @@ public class CursoController {
 	private AdminAulaDao adminAulaDao = new AdminAulaDaoImpl();
 	private ObservableList<Instrutor> listaTodosInstrutores = FXCollections.observableArrayList();
 	
-		
-	
 	public ObservableList<Aula> carregarListaAulasAdmin() {
 		//this.listaAulas.addAll(adminCursoDao.listarAulasCurso(id));
 		//return (ObservableList<Aula>) adminCursoDao.listarAulasCurso();
