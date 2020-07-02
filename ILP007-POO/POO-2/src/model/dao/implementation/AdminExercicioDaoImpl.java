@@ -94,4 +94,11 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao{
 		return false;
 	}
 
+	@Override
+	public Exercicio getExercicioPorId(Integer id) {
+		Connection con = daoFactory.getConnection();
+		String sql = "SELECT * FROM Exercicio WHERE id = " + id;
+		return null;
+	}
+
 }

@@ -16,7 +16,7 @@ public class AdminExercicioTeste extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		Exercicio exercicio = new Exercicio();
-		AdminExercicioView exercico = new AdminExercicioView(3, 2, 2, exercicio); // tela Editar e excluir
+		AdminExercicioView exercico = new AdminExercicioView(3, 2, 3, exercicio); // tela Editar e excluir
 		//AdminExercicioView exercico = new AdminExercicioView(3, 2); //tela cadastrar
 		
 		Scene cena = new Scene(exercico, 600, 800);

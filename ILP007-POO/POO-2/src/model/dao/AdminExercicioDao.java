@@ -8,4 +8,6 @@ public interface AdminExercicioDao {
 	boolean excluirExercicio(Integer id);
 	
 	boolean editarExercicio(Exercicio exercicio);
+	
+	Exercicio getExercicioPorId(Integer id);
 }
