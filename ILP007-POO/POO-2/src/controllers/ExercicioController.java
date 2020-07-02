@@ -16,7 +16,9 @@ import model.entities.Exercicio;
 
 public class ExercicioController {
 	
-	private AdminExercicioDao exercicioDao = new AdminExercicioDaoImpl();
+
+	private AdminExercicioDao administradorExercicioDao = new AdminExercicioDaoImpl();
+
 	private Validator validator;
 	
 	public ExercicioController(){
@@ -35,7 +37,9 @@ public class ExercicioController {
 	public void cadastrarExercicio(Exercicio exercicio){
 		Set<ConstraintViolation<Exercicio>> erros = validator.validate(exercicio);
 		if(erros.isEmpty()){
-			exercicioDao.cadastrarExercicio(exercicio);
+
+			administradorExercicioDao.cadastrarExercicio(exercicio);
+
 			alert(AlertType.INFORMATION, " FreeTech ", null, " Exercicio cadastrado com sucesso!");
 		}
 		else {
@@ -48,23 +52,29 @@ public class ExercicioController {
 	}
 	
 	public Boolean excluirExercicio(Integer idExercicio){
-		if(exercicioDao.excluirExercicio(idExercicio)) { 
+
+		if(administradorExercicioDao.excluirExercicio(idExercicio)) { 
+
 			return true;
 		}
 		return false;
 	}
 	
 	public Boolean editarExercicio(Exercicio exercicio) {
-		return exercicioDao.editarExercicio(exercicio);
+		return administradorExercicioDao.editarExercicio(exercicio);
 	}
 	
 	//falta fazer o método na DAO
 	public void carregaListaExerciciosAula (Integer idAula) {
-		exercicioDao.getListaExercicios(idAula);
+		administradorExercicioDao.getListaExercicios(idAula);
 	}
 	
 	public ObservableList<Exercicio> listarExerciciosAula(Integer idAula){
 		carregaListaExerciciosAula(idAula);
 		return null;
+	}
+	
+	public Exercicio getExercicioPorId(Integer id) {
+		return administradorExercicioDao.getExercicioPorId(id);
 	}
 }

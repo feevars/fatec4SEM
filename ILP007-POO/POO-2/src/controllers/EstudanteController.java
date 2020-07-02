@@ -9,6 +9,8 @@ import javax.validation.ValidatorFactory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import model.dao.EstudanteDao;
 import model.dao.implementation.EstudanteDaoImpl;
 import model.entities.Curso;
@@ -25,17 +27,30 @@ public class EstudanteController {
 	}
 
 	public Integer cadastrarEstudante(Estudante estudante) {
-		Integer valida;
+		
 		Set<ConstraintViolation<Estudante>> erros = validator.validate(estudante);
 		if (erros.isEmpty()) {
-			valida = estudanteDao.validaCadastroEstudante(estudante);
-			if (valida != 0)
-				return valida;
-			estudanteDao.estudanteCadastro(estudante);
+			estudanteDao.validaCadastroEstudante(estudante);
+			alert(AlertType.INFORMATION, " FreeTech ", null,
+					" Estudante " + estudante.getUsername() + " Cadastrado com sucesso!");
 			return 0;
 		} else {
+			String msgErros = "Erros: \n";
+			for (ConstraintViolation<Estudante> erro : erros) {
+				msgErros += erro.getPropertyPath() + " - " + erro.getMessage() + "\n";
+			}
+			alert(AlertType.ERROR, "FreeTech", "Não foi possivel cadastrar Estudante", msgErros);
 			return 4;
 		}
+	
+	}
+	
+	private void alert(AlertType tipo, String title, String header, String content) {
+		Alert alert = new Alert(tipo);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+		alert.showAndWait();
 	}
 
 	public Boolean estudanteEditarPerfil(Estudante estudante, Boolean eInstrutor) {
