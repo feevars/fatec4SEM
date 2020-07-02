@@ -1,6 +1,6 @@
 package boundaries;
 
-import java.util.List;
+import java.util.Set;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,7 +15,7 @@ import model.entities.Exercicio;
 
 public class EstudanteExercicioView extends Group implements EventHandler<ActionEvent>{
 
-	private List<Exercicio> listExercicio;
+	private Set<Exercicio> listExercicio;
 	
 	private VBox vbox = new VBox();
 	private HBox hbox = new HBox();
@@ -40,7 +40,7 @@ public class EstudanteExercicioView extends Group implements EventHandler<Action
 	private Label lblExplicacao = new Label();
 	
 
-	public EstudanteExercicioView(Integer estudanteId, List<Exercicio> listaExercicios) {
+	public EstudanteExercicioView(Integer estudanteId, Set<Exercicio> listaExercicios) {
 
 		this.listExercicio = listaExercicios;
 		this.radioAlternativaA.setToggleGroup(alternativas);
