@@ -253,5 +253,28 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 		}
 		return false;
 	}
+	
+
+	@Override
+	public Curso getCursoPorId(Integer cursoId) {
+		Curso curso = null;
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "SELECT * FROM Curso WHERE id = " + cursoId;
+			PreparedStatement stm = con.prepareStatement(sql);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				curso = new Curso(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao"),
+						listarInstrutoresPorCurso(cursoId), listarAulasCurso(cursoId), rs.getDate("dataCriacao"),
+						rs.getDate("DataAtualizacao"));
+			}
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return curso;
+	}
 
 }

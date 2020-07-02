@@ -97,34 +97,11 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		this.setBottom(hboxBotoesAcoes);
 	}
 
-	// Construtor de uma aula que não é a inicial
-	public AdminAulaView(Integer idAdmin, Integer idCurso, String tituloAula) {
-
-		btnAdicionarExercicio.setOnAction(this);
-		btnCancelar.setOnAction(this);
-		btnSalvarAula.setOnAction(this);
-
-		this.idAdmin = idAdmin;
-		txtTituloAula.setText(tituloAula);
-
-		this.setPromtTexts();
-		this.gerarTabelaExercicios();
-
-		this.txtDescricaoAula.setMaxHeight(100);
-
-		this.hboxBotoesAcoes.getChildren().addAll(btnCancelar, btnExcluir, btnSalvarAula);
-
-		this.vboxInfoAula.setPadding(new Insets(20));
-		this.vboxInfoAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula,
-				lblLinkVideo, txtLinkVideo, lblTranscricaoVideo, txtTranscricaoVideo, lblTempoVideo, txtTempoVideo,
-				lblExercicios, btnAdicionarExercicio, tableExercicios, hboxBotoesAcoes);
-
-		this.setCenter(vboxInfoAula);
-	}
-
 	// Editar 2 ************************
 	public AdminAulaView(Integer adminId, Aula aula) {
-
+		
+		this.curso = cursoController.getCursoPorId(aula.getCursoId());
+		
 		btnAdicionarExercicio.setOnAction(this);
 		btnCancelar.setOnAction(this);
 		btnSalvarAula.setOnAction(this);
@@ -149,9 +126,11 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 	private void gerarTabelaExercicios() {
 
-		if (curso.getAulas() != null)
-			tableExercicios = new TableView<Exercicio>(exercicioController.listarExerciciosAula(idAula));
-		else
+		if (curso.getAulas() != null) {
+			if (!curso.getAulas().isEmpty()) {
+				tableExercicios = new TableView<Exercicio>(exercicioController.listarExerciciosAula(idAula));
+			}
+		} else
 			tableExercicios = new TableView<Exercicio>();
 
 		TableColumn<Exercicio, String> colTituloExercicio = new TableColumn<>("Título do Exercício");
@@ -217,15 +196,14 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		Scene cena = this.getScene();
 
 		if (event.getTarget() == btnAdicionarExercicio) {
-			
+
 			if (cursoController.cadastrarCursoEPrimeiraAula(curso, boundaryToEntityPrimeiroCadastro()) != null) {
 				System.out.println("Cadastrou a primeira aula e foi pro exercício");
-				cena.setRoot(new AdminExercicioView(idAula, idAdmin)); // Aqui talvez tenha que passar ID da aula
-			}else {
+				cena.setRoot(new AdminAulaView(idAdmin, curso)); // Aqui talvez tenha que passar ID da aula
+			} else {
 				System.out.println("Erro indo pro ex");
 			}
-			
-			
+
 			// aulaController.adicionarExercicio(this.boundaryToEntity().setExercicios(exercicio);)
 			// exercicioController.cadastrarExercicio(exercicio);
 

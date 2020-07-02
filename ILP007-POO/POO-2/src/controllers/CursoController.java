@@ -105,7 +105,9 @@ public class CursoController {
 		return aulasCurso;
 	}
 	
-	
+	public Curso getCursoPorId(Integer cursoId) {
+		return adminCursoDao.getCursoPorId(cursoId);
+	}
 	
 	
 }

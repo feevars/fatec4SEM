@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.entities.Aula;
 import model.entities.Exercicio;
 
 public class AdminExercicioView extends Group implements EventHandler<ActionEvent> {
@@ -62,9 +63,13 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnSalvar = new Button("Salvar");
 	private Button btnEditar = new Button("Editar");
+	
+	Aula aula;
 
 	// Construtor cadastra exercicio
-	public AdminExercicioView(Integer idAula, Integer idAdmin) {
+	public AdminExercicioView(Integer idAdmin, Aula aula) {
+		
+		this.aula = aula;
 
 		vbox.setSpacing(5);
 
@@ -194,7 +199,7 @@ public class AdminExercicioView extends Group implements EventHandler<ActionEven
 		if (event.getTarget() == btnSalvar) {
 			exercicioController.cadastrarExercicio(boundaryToEntity());
 		} else if (event.getTarget() == btnCancelar) {
-			cena.setRoot(new AdminAulaView(this.idAula, 3, "Titulo"));
+			cena.setRoot(new AdminAulaView(idAdmin, aula));
 		} else if (event.getTarget().equals(btnExcluir)) {
 			exercicioController.excluirExercicio(idExercicio);
 		} else if (event.getTarget().equals(btnEditar)) {

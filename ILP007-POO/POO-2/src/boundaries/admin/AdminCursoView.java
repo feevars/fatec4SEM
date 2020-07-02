@@ -263,7 +263,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 		} else if (event.getTarget().equals(btnAdicionarAula)) {
 			Curso curso = boundaryToEntityCadastro();
-			cena.setRoot(new AdminAulaView(idAdmin, curso.getId(), ""));
+			cena.setRoot(new AdminAulaView(idAdmin, curso));
 		}
 
 	}
