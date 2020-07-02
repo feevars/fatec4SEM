@@ -82,12 +82,10 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql = "DELETE Curso.*, CursoInstrutor.*, Aula.*, Exercicio.* FROM Curso, CursoInstrutor, Aula, Exercicio WHERE CursoInstrutor.cursoId=? AND Aula.cursoId=? AND Curso.id=? AND Exercicio.aulaId=Aula.id";
+			String sql = "DELETE Curso.* FROM Curso WHERE Curso.id=?";
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm = con.prepareStatement(sql);
 			stm.setInt(1, idCurso);
-			stm.setInt(2, idCurso);
-			stm.setInt(3, idCurso);
 			stm.executeUpdate();
 			System.out.println("Curso de id " + idCurso + " deletado da tabela Curso!");
 			con.close();

@@ -107,8 +107,6 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		this.idCurso = idCurso;
 		this.autoresCurso = cursoController.carregaInstrutoresCurso(idCurso);
 		this.aulasCurso = cursoController.carregaAulasCurso(idCurso);
-		System.out.println(this.idCurso);
-
 		
 		entityToBoundary();
 		gerarTabelaInstrutores();
@@ -117,7 +115,6 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		gpInfoHeader.add(lblTituloCurso, 0, 0);
 		gpInfoHeader.add(txtTituloCurso, 1, 0);
 		gpInfoHeader.add(lblDescricaoCurso, 0, 1);
-		;
 		gpInfoHeader.add(txtDescricaoCurso, 1, 1);
 
 		vboxInstrutores.getChildren().addAll(lblInstrutores, tableInstrutores, lblAjudaInstrutor);
