@@ -146,11 +146,11 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
 				aula = new Aula(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao"),
-						rs.getString("transcricao"), rs.getString("linkVideo"), rs.getInt("tempoVideo"),
-						rs.getInt("numAula"), rs.getInt("cursoId"), null);
+						rs.getString("linkVideo"), rs.getString("transcricaoVideo"), rs.getInt("tempoVideo"),
+						rs.getInt("numeroAula"), rs.getInt("cursoId"), null);
 			}
 
-			String sql2 = "SELECT * FROM Exercicio WHERE idAula = " + aulaId;
+			String sql2 = "SELECT * FROM Exercicio WHERE aulaId = " + aulaId;
 			stm = con.prepareStatement(sql2);
 			rs = stm.executeQuery();
 

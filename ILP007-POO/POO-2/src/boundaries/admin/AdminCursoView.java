@@ -184,9 +184,8 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 		tableAulas.setOnMouseClicked(event -> {
 			if (tableAulas.getSelectionModel().getSelectedItem() != null) {
-				Aula aula = tableAulas.getSelectionModel().getSelectedItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new AdminAulaView(idAdmin, aula));
+				cena.setRoot(new AdminAulaView(idAdmin, aulaController.getAulaPorId(tableAulas.getSelectionModel().getSelectedItem().getId())));
 			}
 		});
 
