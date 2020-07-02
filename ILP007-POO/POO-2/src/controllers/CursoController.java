@@ -47,7 +47,7 @@ public class CursoController {
 				System.out.println("Id do curso criado: " + idNovoCurso);
 				for (Integer idInstrutor : idsInstrutores) {
 					System.out.println("Id curso: " + idNovoCurso + " - Id Instrutor: " + idInstrutor);
-					adminCursoDao.cadastrarInstrutorCurso(idNovoCurso, idInstrutor);	
+					adminCursoDao.adicionarInstrutorCurso(idNovoCurso, idInstrutor);	
 				}
 				return true;
 			}else {
@@ -77,7 +77,7 @@ public class CursoController {
 		Integer cursoId = adminCursoDao.cadastrarCurso(curso);
 		System.out.println("curso id :" + cursoId);
 		for (Instrutor instrutor : curso.getInstrutores()) {
-			System.out.println(adminCursoDao.cadastrarInstrutorCurso(instrutor.getId(), cursoId));
+			System.out.println(adminCursoDao.adicionarInstrutorCurso(instrutor.getId(), cursoId));
 		}
 		aula.setCursoId(cursoId);	
 		return adminAulaDao.cadastrarAula(aula, cursoId);

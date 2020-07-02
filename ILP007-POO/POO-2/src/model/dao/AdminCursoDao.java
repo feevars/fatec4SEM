@@ -9,9 +9,9 @@ import model.entities.Instrutor;
 public interface AdminCursoDao {
 
 	Integer cadastrarCurso(Curso curso);
-	Boolean cadastrarInstrutorCurso(Integer instrutorId, Integer cursoId);
 	Boolean excluirCurso(Integer id);
 	Boolean editarCurso(Curso c);
+	Boolean atualizarInstrutoresCurso(Integer cursoId, Set<Instrutor> instrutores);
 	Boolean adicionarInstrutorCurso(Integer instrutorId, Integer cursoId);
 	Set<Aula> listarAulasCurso(Integer cursoId);
 	List<Instrutor> listarInstrutores();
