@@ -193,6 +193,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 			txtLinkVideo.setText(String.valueOf(aula.getLinkVideo()));
 			txtTranscricaoVideo.setText(String.valueOf(aula.getTranscricaoVideo()));
 			txtTempoVideo.setText(String.valueOf(aula.getTempoVideo()));
+			numeroAula = aula.getNumAula();
 		}
 	}
 
