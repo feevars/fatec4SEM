@@ -55,29 +55,6 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	}
 
 	@Override
-	public Boolean cadastrarInstrutorCurso(Integer instrutorId, Integer cursoId) {
-		try {
-			Connection con = daoFactory.getConnection();
-			String sql = "INSERT INTO CursoInstrutor (instrutorId, cursoId) VALUES (?, ?)";
-			PreparedStatement stm = con.prepareStatement(sql);
-			stm.setInt(1, instrutorId);
-			stm.setInt(2, cursoId);
-			stm.executeUpdate();
-			System.out.println("Gravou na tabela CursoInstrutor!");
-			stm.close();
-			return true;
-
-		} catch (SQLException e) {
-			System.out.println("Erro no cadastro.");
-			e.printStackTrace();
-		} catch (DateTimeException de) {
-			System.out.println("Erro na conversao de data do curso.");
-			de.printStackTrace();
-		}
-		return false;
-	}
-
-	@Override
 	public Boolean excluirCurso(Integer idCurso) {
 
 		try {
@@ -87,7 +64,6 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm = con.prepareStatement(sql);
 			stm.setInt(1, idCurso);
 			stm.executeUpdate();
-			System.out.println("Curso de id " + idCurso + " deletado da tabela Curso!");
 			con.close();
 			return true;
 
@@ -109,8 +85,6 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm.setInt(3, curso.getId());
 			stm.executeUpdate();
 			con.close();
-
-			System.out.println("Curso: " + curso.getTitulo() + " Alterado com sucesso!");
 			return true;
 		} catch (SQLException e) {
 			System.out.println("Curso: " + curso.getTitulo() + "Não pode ser alterado");
@@ -228,7 +202,6 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -239,16 +212,21 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 	public Boolean adicionarInstrutorCurso(Integer instrutorId, Integer cursoId) {
 		try {
 			Connection con = daoFactory.getConnection();
-			String sql = "INSERT (idcurso, idInstrutor) INTO CursoInstrutor VALUES (?, ?)";
+			String sql = "INSERT INTO CursoInstrutor (instrutorId, cursoId) VALUES (?, ?)";
 			PreparedStatement stm = con.prepareStatement(sql);
-			stm.setInt(1, cursoId);
-			stm.setInt(2, instrutorId);
+			stm.setInt(1, instrutorId);
+			stm.setInt(2, cursoId);
 			stm.executeUpdate();
-			System.out.println("Instrutor Adicionado!");
-			con.close();
+			System.out.println("Gravou na tabela CursoInstrutor!");
+			stm.close();
 			return true;
+
 		} catch (SQLException e) {
+			System.out.println("Erro no cadastro.");
 			e.printStackTrace();
+		} catch (DateTimeException de) {
+			System.out.println("Erro na conversao de data do curso.");
+			de.printStackTrace();
 		}
 		return false;
 	}
@@ -284,10 +262,33 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return curso;
+	}
+
+	@Override
+	public Boolean atualizarInstrutoresCurso(Integer cursoId, Set<Instrutor> instrutores) {
+
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql = "DELETE CursoInstrutor.* FROM CursoInstrutor WHERE cursoId = " + cursoId;
+			PreparedStatement stm = con.prepareStatement(sql);
+
+			stm.executeUpdate();
+			con.close();
+
+			for (Instrutor i : instrutores) {
+				adicionarInstrutorCurso(i.getId(), cursoId);
+			}
+			
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 
 }

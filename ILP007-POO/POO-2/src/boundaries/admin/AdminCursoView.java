@@ -208,6 +208,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	public Curso boundaryToEntityEditar() {
 		Curso curso = new Curso(idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText());
 		ObservableList<Instrutor> oListAutores = tableInstrutores.getSelectionModel().getSelectedItems();
+		autoresCurso.clear();
 		autoresCurso.addAll(oListAutores);
 		curso.setInstrutores(autoresCurso);
 		return curso;
@@ -241,6 +242,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 			if (cursoController.editarCurso(c)) {
 				Alert alertaEdicaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Editado com sucesso!");
 				alertaEdicaoCursoOk.show();
+				cena.setRoot(new AdminDashboardView(idAdmin));
 			} else {
 				Alert alertaEdicaoCursoErro = new Alert(AlertType.ERROR, "Erro ao editar Curso");
 				alertaEdicaoCursoErro.show();
