@@ -34,7 +34,7 @@ public class AulaController {
 	}
 
 	public List<Exercicio> getListaExercicios(Integer idAula) {
-//		adminAulaDao.listarExercicios(idAula);
+		adminAulaDao.listarExercicios(idAula);
 //		List<Exercicio> execAula = new ArrayList<Exercicio>();
 //		for (Exercicio exercicio : execAula) {
 	return null;		

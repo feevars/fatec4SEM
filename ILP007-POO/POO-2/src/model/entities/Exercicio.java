@@ -40,6 +40,7 @@ public class Exercicio {
 		this.aulaId = aulaId;
 	}
 
+	@NotBlank
 	public String getTituloExercicio() {
 		return tituloExercicio;
 	}

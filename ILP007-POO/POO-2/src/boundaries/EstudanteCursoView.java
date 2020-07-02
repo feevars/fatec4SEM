@@ -1,6 +1,5 @@
 package boundaries;
 
-import boundaries.admin.AdminAulaView;
 import controllers.CursoController;
 import controllers.EstudanteController;
 import javafx.event.ActionEvent;
@@ -79,7 +78,7 @@ public class EstudanteCursoView extends BorderPane implements EventHandler<Actio
 			if (tableAulas.getSelectionModel().getSelectedItem() != null) {
 				Aula aula = tableAulas.getSelectionModel().getSelectedItem();
 				Scene cena = this.getScene();
-				cena.setRoot(new EstudanteAulaView(estudanteId, aula.getCursoId(), aula.getId()));
+				cena.setRoot(new EstudanteAulaView(estudanteId, aula.getId()));
 			}
 		});
 	}
