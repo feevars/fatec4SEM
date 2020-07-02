@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
+import model.entities.Aula;
 import model.entities.Exercicio;
 
 public class EstudanteAulaView extends BorderPane implements EventHandler<ActionEvent> {
@@ -18,6 +19,7 @@ public class EstudanteAulaView extends BorderPane implements EventHandler<Action
 	AulaController aulaController = new AulaController();
 	
 	private List<Exercicio> listaExercicios;
+	private List<Aula> listAula;
 	
 	private Integer idEstudante, idAula, idCurso;
 
@@ -40,6 +42,8 @@ public class EstudanteAulaView extends BorderPane implements EventHandler<Action
 
 	private WebView video = new WebView();
 	private Label lblTranscricaoVideo = new Label("Transcrição do vídeo");
+	
+	private Button btnProximaAula = new Button("Próxima aula");
 
 	public EstudanteAulaView(Integer idEstudante, Integer idCurso, Integer idAula) {
 
@@ -52,10 +56,15 @@ public class EstudanteAulaView extends BorderPane implements EventHandler<Action
 		video.getEngine().load(urlVideo);
 		video.autosize();
 		video.setPrefSize(560, 315);
+		
+		if (listaExercicios.isEmpty()) {
+			btnRealizarExercicios.setVisible(false);
+			btnRealizarExercicios.setDisable(true);
+		}
 
 		this.vboxInfo.getChildren().addAll(lblTituloCurso, lblTituloAula, lblDescricaoAula, lblTempoVideo,
 				lblQtdExercicios, btnRealizarExercicios);
-
+		
 		this.vboxVideo.getChildren().addAll(video, lblTranscricaoVideo);
 
 		this.setTop(btnVoltarAoCurso);
