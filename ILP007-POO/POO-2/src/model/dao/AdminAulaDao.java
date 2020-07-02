@@ -8,11 +8,13 @@ public interface AdminAulaDao {
 
 	Integer cadastrarAula(Aula aula, Integer cursoId);
 		
-	void excluirAula(Integer id);
+	void excluirAula(Integer aulaId);
 	
 	boolean editarAula(Aula aula);
 	
-	List<Exercicio> listarExercicios(Integer idAula);
+	List<Exercicio> listarExercicios(Integer aulaId);
 	
 	List<Aula> listarAulas();
+	
+	Aula getAulaPorId(Integer aulaId);
 }

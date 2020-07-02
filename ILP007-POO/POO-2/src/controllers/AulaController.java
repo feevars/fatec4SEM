@@ -40,4 +40,8 @@ public class AulaController {
 	return null;		
 	//	}
 	}
+	
+	public Aula getAulaPorId(Integer aulaId) {
+		return adminAulaDao.getAulaPorId(aulaId);
+	}
 }

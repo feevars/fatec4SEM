@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import model.dao.AdminAulaDao;
 import model.dao.DaoFactory;
@@ -132,5 +134,44 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public Aula getAulaPorId(Integer aulaId) {
+		Aula aula = null;
+		try {
+			Connection con = daoFactory.getConnection();
+			String sql1 = "SELECT * FROM Aula WHERE id = " + aulaId;
+			PreparedStatement stm = con.prepareStatement(sql1);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				aula = new Aula(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao"),
+						rs.getString("transcricao"), rs.getString("linkVideo"), rs.getInt("tempoVideo"),
+						rs.getInt("numAula"), rs.getInt("cursoId"), null);
+			}
+
+			String sql2 = "SELECT * FROM Exercicio WHERE idAula = " + aulaId;
+			stm = con.prepareStatement(sql2);
+			rs = stm.executeQuery();
+
+			Set<Exercicio> exercicios = new HashSet<Exercicio>();
+
+			while (rs.next()) {
+				exercicios.add(new Exercicio(rs.getInt("id"), rs.getString("titulo"), rs.getString("questao"),
+						rs.getString("alternativaCorreta"), rs.getString("alternativaIncorreta1"),
+						rs.getString("alternativaIncorreta2"), rs.getString("alternativaIncorreta3"),
+						rs.getString("alternativaIncorreta4"), rs.getString("explicacao"), rs.getInt("tempoResposta"),
+						rs.getInt("pontos"), aulaId));
+			}
+
+			aula.setExercicios(exercicios);
+
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return aula;
 	}
 }

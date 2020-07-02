@@ -196,10 +196,12 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		Scene cena = this.getScene();
 
 		if (event.getTarget() == btnAdicionarExercicio) {
-
-			if (cursoController.cadastrarCursoEPrimeiraAula(curso, boundaryToEntityPrimeiroCadastro()) != null) {
+			
+			Integer aulaId = cursoController.cadastrarCursoEPrimeiraAula(curso, boundaryToEntityPrimeiroCadastro());
+			
+			if (aulaId != null) {
 				System.out.println("Cadastrou a primeira aula e foi pro exercício");
-				cena.setRoot(new AdminAulaView(idAdmin, curso)); // Aqui talvez tenha que passar ID da aula
+				cena.setRoot(new AdminExercicioView(idAdmin, aulaController.getAulaPorId(aulaId))); // Aqui talvez tenha que passar ID da aula
 			} else {
 				System.out.println("Erro indo pro ex");
 			}

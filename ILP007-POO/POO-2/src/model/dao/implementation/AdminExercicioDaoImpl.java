@@ -105,9 +105,8 @@ public class AdminExercicioDaoImpl implements AdminExercicioDao {
 		List<Exercicio> lista = new ArrayList<Exercicio>();
 		try {
 			Connection conn = daoFactory.getConnection();
-			String sql = "SELECT * FROM Exercicio WHERE aulaId = ?";
+			String sql = "SELECT * FROM Exercicio WHERE aulaId = " + idAula;
 			PreparedStatement stm = conn.prepareStatement(sql);
-			stm.setInt(1, idAula);
 			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
 				Exercicio exec = new Exercicio(rs.getInt("id"), rs.getString("titulo"), rs.getString("questao"),

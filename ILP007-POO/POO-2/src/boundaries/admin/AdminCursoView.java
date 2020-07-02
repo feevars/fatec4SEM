@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import controllers.AdministradorController;
+import controllers.AulaController;
 import controllers.CursoController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +35,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 	AdministradorController adminController = new AdministradorController();
 	CursoController cursoController = new CursoController();
+	AulaController aulaController = new AulaController();
 
 	private Integer idAdmin;
 	private Integer idCurso;
@@ -262,7 +264,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 			cena.setRoot(new AdminDashboardView(idAdmin));
 
 		} else if (event.getTarget().equals(btnAdicionarAula)) {
-			Curso curso = boundaryToEntityCadastro();
+			Curso curso = BoundaryToEntityEditaCurso();
 			cena.setRoot(new AdminAulaView(idAdmin, curso));
 		}
 
