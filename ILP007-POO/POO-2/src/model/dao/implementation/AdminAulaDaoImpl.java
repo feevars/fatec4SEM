@@ -108,16 +108,18 @@ public class AdminAulaDaoImpl implements AdminAulaDao {
 		try {
 			Connection conn = daoFactory.getConnection();
 			String sql = "UPDATE Aula SET titulo = ?, descricao = ?, linkVideo = ?, transcricaoVideo = ?, "
-					+ "tempoVideo = ?";
+					+ "tempoVideo = ?, numeroAula = ?, cursoId = ? WHERE id = ?";
 			PreparedStatement stm = conn.prepareStatement(sql);
 			stm.setString(1, aula.getTitulo());
 			stm.setString(2, aula.getDescricao());
 			stm.setString(3, aula.getLinkVideo());
 			stm.setString(4, aula.getTranscricaoVideo());
 			stm.setInt(5, aula.getTempoVideo());
+			stm.setInt(6, aula.getNumAula());
+			stm.setInt(7, aula.getCursoId());
+			stm.setInt(8, aula.getId());
 			stm.executeUpdate();
 			conn.close();
-			System.out.println("Aula " + aula.getTitulo() + " atualizada.");
 			return true;
 		} catch (SQLException e) {
 			System.out.println("Aula " + aula.getTitulo() + " não pode ser atualizada.");

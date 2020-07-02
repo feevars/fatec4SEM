@@ -48,7 +48,6 @@ public class AdminstradorDaoImpl implements AdministradorDao {
 			rs = stm.executeQuery();
 			while (rs.next()) {
 				if (username.equals(rs.getString(1)) && password.equals(rs.getString(2))) {
-					System.out.println("Senha correta!");
 					con.close();
 					return true;
 				} else {

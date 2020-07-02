@@ -63,10 +63,12 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 	private Button btnCancelar = new Button("Cancelar");
 	private Button btnExcluir = new Button("Excluir");
 	private Button btnSalvarAula = new Button("Salvar");
+	private Button btnCadastrarAula = new Button("Cadastrar");
 
 	private Curso curso;
 
 	private Integer idAdmin;
+	private Aula aula;
 
 	// Esse construtor é para cadastrar nova aula junto a um curso --- aula ainda
 	// sem id
@@ -100,11 +102,15 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 	// Editar Aula que já Existe
 	public AdminAulaView(Integer adminId, Aula aula) {
-		
-		this.curso = cursoController.getCursoPorId(aula.getCursoId());
-		
+
+		this.aula = aula;
+
 		entityToBoundary(aula);
-		
+
+		this.curso = cursoController.getCursoPorId(aula.getCursoId());
+
+		this.cursoId = aula.getCursoId();
+
 		btnAdicionarExercicio.setOnAction(this);
 		btnCancelar.setOnAction(this);
 		btnSalvarAula.setOnAction(this);
@@ -126,18 +132,19 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 		this.setCenter(vboxInfoAula);
 	}
+
 	// Adicionar nova aula a um curso que já existe
 	public AdminAulaView(Integer adminId, Integer cursoId, Integer numeroAula) {
-		
+
 		this.cursoId = cursoId;
-		
+
 		this.numeroAula = numeroAula;
-		
+
 		this.curso = cursoController.getCursoPorId(cursoId);
-		
+
 		btnAdicionarExercicio.setOnAction(this);
 		btnCancelar.setOnAction(this);
-		btnSalvarAula.setOnAction(this);
+		btnCadastrarAula.setOnAction(this);
 
 		this.idAdmin = adminId;
 
@@ -146,7 +153,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 		this.txtDescricaoAula.setMaxHeight(100);
 
-		this.hboxBotoesAcoes.getChildren().addAll(btnCancelar, btnExcluir, btnSalvarAula);
+		this.hboxBotoesAcoes.getChildren().addAll(btnCancelar, btnCadastrarAula);
 
 		this.vboxInfoAula.setPadding(new Insets(20));
 		this.vboxInfoAula.getChildren().addAll(lblTituloAula, txtTituloAula, lblDescricaoAula, txtDescricaoAula,
@@ -158,7 +165,7 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 	private void gerarTabelaExercicios() {
 
-		if (curso.getAulas() != null) {
+		if (curso.getId() != null) {
 			if (!curso.getAulas().isEmpty()) {
 				tableExercicios = new TableView<Exercicio>(exercicioController.listarExerciciosAula(idAula));
 			}
@@ -212,14 +219,23 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 
 	// o numero da aula depende do número de aulas do curso
 	public Aula boundaryToEntity() {
-		Aula aula = new Aula();
+		Aula aula;
+		if (this.aula != null) {
+			aula = new Aula(this.aula.getId(), txtTituloAula.getText(), txtDescricaoAula.getText(),
+					txtLinkVideo.getText(), txtTranscricaoVideo.getText(), Integer.parseInt(txtTempoVideo.getText()),
+					this.aula.getNumAula(), this.aula.getCursoId(), this.aula.getExercicios());
+		} else {
+			aula = new Aula();
 
-		aula.setTitulo(txtTituloAula.getText());
-		aula.setDescricao(txtDescricaoAula.getText());
-		aula.setLinkVideo(txtLinkVideo.getText());
-		aula.setTranscricaoVideo(txtTranscricaoVideo.getText());
-		aula.setTempoVideo(Integer.parseInt(txtTempoVideo.getText()));
-		aula.setNumAula(numeroAula);
+			aula.setTitulo(txtTituloAula.getText());
+			aula.setDescricao(txtDescricaoAula.getText());
+			aula.setLinkVideo(txtLinkVideo.getText());
+			aula.setTranscricaoVideo(txtTranscricaoVideo.getText());
+			aula.setTempoVideo(Integer.parseInt(txtTempoVideo.getText()));
+			aula.setCursoId(cursoId);
+			aula.setNumAula(numeroAula);
+		}
+
 		return aula;
 	}
 
@@ -229,26 +245,28 @@ public class AdminAulaView extends BorderPane implements EventHandler<ActionEven
 		Scene cena = this.getScene();
 
 		if (event.getTarget() == btnAdicionarExercicio) {
-			
+
 			Integer aulaId = cursoController.cadastrarCursoEPrimeiraAula(curso, boundaryToEntityPrimeiroCadastro());
-			
+
 			if (aulaId != null) {
 				System.out.println("Cadastrou a primeira aula e foi pro exercício");
-				cena.setRoot(new AdminExercicioView(idAdmin, aulaController.getAulaPorId(aulaId))); // Aqui talvez tenha que passar ID da aula
+				cena.setRoot(new AdminExercicioView(idAdmin, aulaController.getAulaPorId(aulaId)));
+
 			} else {
 				System.out.println("Erro indo pro ex");
 			}
 
-			// aulaController.adicionarExercicio(this.boundaryToEntity().setExercicios(exercicio);)
-			// exercicioController.cadastrarExercicio(exercicio);
-
 		} else if (event.getTarget().equals(btnCancelar)) {
-			cena.setRoot(new AdminDashboardView(idAdmin));
+			cena.setRoot(new AdminCursoView(idAdmin, cursoId));
 
 		} else if (event.getTarget().equals(btnExcluir)) {
 			aulaController.removerAula(this.idAula); // modificar idAula
 
 		} else if (event.getTarget().equals(btnSalvarAula)) {
+			aulaController.editarAula(boundaryToEntity());
+			cena.setRoot(new AdminCursoView(idAdmin, cursoId));
+
+		} else if (event.getTarget().equals(btnCadastrarAula)) {
 			aulaController.adicionarAula(boundaryToEntity(), curso.getId());
 			cena.setRoot(new AdminCursoView(idAdmin, cursoId));
 

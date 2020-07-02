@@ -106,13 +106,13 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			while (rs.next()) {
 				Aula aula = new Aula();
 				aula.setId(rs.getInt("id"));
-				aula.setDescricao(rs.getString("titulo"));
-				aula.setTitulo(rs.getString("descricao"));
+				aula.setTitulo(rs.getString("titulo"));
+				aula.setDescricao(rs.getString("descricao"));
 				aula.setLinkVideo(rs.getString("linkVideo"));
 				aula.setTranscricaoVideo(rs.getString("transcricaoVideo"));
 				aula.setTempoVideo(rs.getInt("tempoVideo"));
 				aula.setNumAula(rs.getInt("numeroAula"));
-				System.out.println("Aula: " + aula.getTitulo() + " encontrada!");
+				aula.setCursoId(rs.getInt("cursoId"));
 				lista.add(aula);
 			}
 			return lista;
@@ -217,8 +217,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			stm.setInt(1, instrutorId);
 			stm.setInt(2, cursoId);
 			stm.executeUpdate();
-			System.out.println("Gravou na tabela CursoInstrutor!");
-			stm.close();
+			con.close();
 			return true;
 
 		} catch (SQLException e) {
