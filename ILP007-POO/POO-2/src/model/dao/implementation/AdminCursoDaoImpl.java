@@ -14,6 +14,7 @@ import model.dao.AdminCursoDao;
 import model.dao.DaoFactory;
 import model.entities.Aula;
 import model.entities.Curso;
+import model.entities.Exercicio;
 import model.entities.Instrutor;
 
 public class AdminCursoDaoImpl implements AdminCursoDao {
@@ -40,7 +41,7 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 			while (rs.next()) {
 				id = rs.getInt(1);
 			}
-			
+
 			stm.close();
 			return id;
 		} catch (SQLException e) {
@@ -253,7 +254,6 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 		}
 		return false;
 	}
-	
 
 	@Override
 	public Curso getCursoPorId(Integer cursoId) {
@@ -268,6 +268,21 @@ public class AdminCursoDaoImpl implements AdminCursoDao {
 						listarInstrutoresPorCurso(cursoId), listarAulasCurso(cursoId), rs.getDate("dataCriacao"),
 						rs.getDate("DataAtualizacao"));
 			}
+
+			String sql2 = "SELECT * FROM Aula WHERE cursoId = " + cursoId;
+			stm = con.prepareStatement(sql2);
+			rs = stm.executeQuery();
+
+			Set<Aula> aulas = new HashSet<Aula>();
+
+			while (rs.next()) {
+				aulas.add(new Aula(rs.getInt("id"), rs.getString("titulo"), rs.getString("descricao"),
+						rs.getString("linkVideo"), rs.getString("transcricaoVideo"), rs.getInt("tempoVideo"),
+						rs.getInt("numeroAula"), cursoId, null));
+			}
+
+			curso.setAulas(aulas);
+
 			con.close();
 
 		} catch (SQLException e) {

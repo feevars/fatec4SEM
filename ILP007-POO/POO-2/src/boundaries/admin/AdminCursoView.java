@@ -39,6 +39,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 	private Integer idAdmin;
 	private Integer idCurso;
+	private Integer numeroNovaAula;
 
 	private GridPane gpInfoHeader = new GridPane();
 
@@ -206,9 +207,9 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		return curso;
 	}
 
-	public Curso BoundaryToEntityEditaCurso() {
-		Curso curso = new Curso(idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText(), autoresCurso,
-				aulasCurso);
+	public Curso entityToBoundary() {
+		Curso curso = cursoController.getCursoPorId(idCurso);
+		numeroNovaAula = curso.getAulas().size() + 1;
 		return curso;
 	}
 
@@ -228,7 +229,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 		} else if (event.getTarget().equals(btnSalvarCurso)) {
 
-			Curso c = BoundaryToEntityEditaCurso();
+			Curso c = entityToBoundary();
 			if (cursoController.editarCurso(c)) {
 				Alert alertaEdicaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Editado com sucesso!");
 				alertaEdicaoCursoOk.show();
@@ -263,8 +264,8 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 			cena.setRoot(new AdminDashboardView(idAdmin));
 
 		} else if (event.getTarget().equals(btnAdicionarAula)) {
-			Curso curso = BoundaryToEntityEditaCurso();
-			cena.setRoot(new AdminAulaView(idAdmin, curso));
+			Curso curso = entityToBoundary();
+			cena.setRoot(new AdminAulaView(idAdmin, curso.getId(), numeroNovaAula));
 		}
 
 	}
