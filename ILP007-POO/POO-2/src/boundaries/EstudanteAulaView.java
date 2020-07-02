@@ -100,7 +100,7 @@ public class EstudanteAulaView extends BorderPane implements EventHandler<Action
 	public void handle(ActionEvent event) {
 		Scene cena = this.getScene();
 		if (event.getTarget().equals(btnVoltarAoCurso)) {
-			cena.setRoot(new EstudanteCursoView(idEstudante, cursoController.getCursoPorId(aula), null, true, false));
+			cena.setRoot(new EstudanteCursoView(idEstudante, aula.getCursoId(), null, true, false));
 		} else if (event.getTarget().equals(btnRealizarExercicios)) {
 			if (listaExercicios != null) {
 				cena.setRoot(new EstudanteExercicioView(idEstudante, listaExercicios));
