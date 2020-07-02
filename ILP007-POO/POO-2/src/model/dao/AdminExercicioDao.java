@@ -10,6 +10,8 @@ public interface AdminExercicioDao {
 	boolean excluirExercicio(Integer idExec);
 	
 	boolean editarExercicio(Exercicio exercicio);
-	
+
 	List<Exercicio> getListaExercicios(Integer idAula);
+
+	Exercicio getExercicioPorId(Integer id);
 }

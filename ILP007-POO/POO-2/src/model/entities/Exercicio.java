@@ -1,5 +1,7 @@
 package model.entities;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Exercicio {
 	
 	public Exercicio() {
@@ -45,7 +47,8 @@ public class Exercicio {
 	public void setTituloExercicio(String tituloExercicio) {
 		this.tituloExercicio = tituloExercicio;
 	}
-
+	
+	@NotBlank
 	public String getQuestaoExercicio() {
 		return questaoExercicio;
 	}
@@ -54,6 +57,7 @@ public class Exercicio {
 		this.questaoExercicio = questaoExercicio;
 	}
 
+	@NotBlank
 	public String getAlternativaCorreta() {
 		return alternativaCorreta;
 	}
@@ -93,7 +97,8 @@ public class Exercicio {
 	public void setAlternativaIncorreta4(String alternativaIncorreta4) {
 		this.alternativaIncorreta4 = alternativaIncorreta4;
 	}
-
+	
+	@NotBlank
 	public String getExplicacao() {
 		return explicacao;
 	}

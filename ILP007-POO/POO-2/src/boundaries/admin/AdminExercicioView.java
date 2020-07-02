@@ -1,6 +1,5 @@
 package boundaries.admin;
 
-import controllers.AulaController;
 import controllers.ExercicioController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

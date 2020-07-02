@@ -2,6 +2,8 @@ package model.entities;
 
 import java.util.Set;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Aula {
 
 	private Integer id;
@@ -30,6 +32,7 @@ public class Aula {
 
 	public Aula() {}
 	
+	@NotBlank
 	public String getTitulo() {
 		return titulo;
 	}
@@ -45,7 +48,8 @@ public class Aula {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
+	
+	@NotBlank
 	public String getLinkVideo() {
 		return linkVideo;
 	}
@@ -69,7 +73,8 @@ public class Aula {
 	public void setTempoVideo(Integer tempoVideo) {
 		this.tempoVideo = tempoVideo;
 	}
-
+	
+	@NotBlank
 	public Set<Exercicio> getExercicios() {
 		return exercicios;
 	}
@@ -85,7 +90,8 @@ public class Aula {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
+	@NotBlank
 	public Integer getNumAula() {
 		return numAula;
 	}
