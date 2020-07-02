@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import controllers.AdministradorController;
 import controllers.AulaController;
 import controllers.CursoController;
@@ -202,6 +204,14 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		curso.setInstrutores(autoresCurso);
 		return curso;
 	}
+	
+	public Curso boundaryToEntityEditar() {
+		Curso curso = new Curso(idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText());
+		ObservableList<Instrutor> oListAutores = tableInstrutores.getSelectionModel().getSelectedItems();
+		autoresCurso.addAll(oListAutores);
+		curso.setInstrutores(autoresCurso);
+		return curso;
+	}
 
 	public Curso entityToBoundary() {
 		Curso curso = cursoController.getCursoPorId(idCurso);
@@ -227,7 +237,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 
 		} else if (event.getTarget().equals(btnSalvarCurso)) {
 
-			Curso c = entityToBoundary();
+			Curso c = boundaryToEntityEditar();
 			if (cursoController.editarCurso(c)) {
 				Alert alertaEdicaoCursoOk = new Alert(AlertType.INFORMATION, "Curso Editado com sucesso!");
 				alertaEdicaoCursoOk.show();
