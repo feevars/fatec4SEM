@@ -40,7 +40,6 @@ public class AdministradorController {
 		validator = factory.getValidator();
 		carregaListaUsuarios();
 		carregaListaCursos();
-		carregaListaInstrutores();
 	}
 
 	private void alert(AlertType tipo, String title, String header, String content) {
@@ -102,18 +101,25 @@ public class AdministradorController {
 	public ObservableList<Curso> listarTodosCursos() {
 		return listaCursos;
 	}
-
-	public void carregaListaInstrutores() {
-		this.listaTodosInstrutores.addAll(adminCursoDao.listarInstrutores());
+	
+	public void carregaListaInstrutoreCurso(Integer cursoId) {
+		
 	}
 	
 
 	public ObservableList<Instrutor> listarTodosInstrutores() {
+		listaTodosInstrutores.addAll(adminCursoDao.listarInstrutores());
 		return listaTodosInstrutores;
 	}
 
-	public ObservableList<Instrutor> listaInstrutoresCurso() {
+	public ObservableList<Instrutor> listaInstrutoresCurso(Integer cursoId) {
+		listaTodosInstrutores.addAll(adminCursoDao.listarInstrutores());
+		listaTodosInstrutores.setAll(adminCursoDao.listarInstrutoresPorCurso(cursoId));
 		return autoresCurso;
+	}
+	
+	public Set<Instrutor> getListInstrutorCurso(Integer cursoId){
+		return adminCursoDao.listarInstrutoresPorCurso(cursoId);
 	}
 	
 	public Boolean autorDoCurso(Integer instrutorId, Integer cursoId) {

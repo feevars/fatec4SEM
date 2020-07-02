@@ -49,7 +49,7 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	private VBox vboxInstrutores = new VBox();
 
 	private Label lblInstrutores = new Label("Instrutor(es):");
-	private TableView<Instrutor> tableInstrutores = new TableView<>(adminController.listarTodosInstrutores());
+	private TableView<Instrutor> tableInstrutores;
 	private Label lblAjudaInstrutor = new Label(
 			"*Segure o shift e clique na linha para selecionar mais de um instrutor.");
 
@@ -137,6 +137,9 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 	}
 
 	public void gerarTabelaInstrutores() {
+
+		tableInstrutores = new TableView<>(adminController.listarTodosInstrutores());
+
 		TableColumn<Instrutor, String> colUsername = new TableColumn<>("Username");
 		colUsername.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("username"));
 
@@ -147,6 +150,15 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		colSobrenome.setCellValueFactory(new PropertyValueFactory<Instrutor, String>("sobrenome"));
 
 		tableInstrutores.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		if (idCurso != null)
+			for (Instrutor i : tableInstrutores.getItems()) {
+				for (Instrutor j : adminController.getListInstrutorCurso(idCurso)) {
+					if (i.getId() == j.getId())
+						tableInstrutores.getSelectionModel().select(i);
+				}
+			}
+
 		tableInstrutores.setMaxHeight(200);
 		tableInstrutores.setMinWidth(400);
 		tableInstrutores.getColumns().add(colUsername);
@@ -190,6 +202,12 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 		ObservableList<Instrutor> oListAutores = tableInstrutores.getSelectionModel().getSelectedItems();
 		autoresCurso.addAll(oListAutores);
 		curso.setInstrutores(autoresCurso);
+		return curso;
+	}
+
+	public Curso BoundaryToEntityEditaCurso() {
+		Curso curso = new Curso(idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText(), autoresCurso,
+				aulasCurso);
 		return curso;
 	}
 
@@ -248,12 +266,6 @@ public class AdminCursoView extends BorderPane implements EventHandler<ActionEve
 			cena.setRoot(new AdminAulaView(idAdmin, curso.getId(), ""));
 		}
 
-	}
-
-	public Curso BoundaryToEntityEditaCurso() {
-		Curso curso = new Curso(idCurso, txtTituloCurso.getText(), txtDescricaoCurso.getText(), autoresCurso,
-				aulasCurso);
-		return curso;
 	}
 
 }
