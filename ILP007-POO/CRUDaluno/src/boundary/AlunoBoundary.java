@@ -108,7 +108,7 @@ public class AlunoBoundary extends BorderPane implements EventHandler<ActionEven
 	}
 
 	private Aluno boundaryToEntity() {
-		Aluno novoAluno = new Aluno(null, txtRa.getText(), txtNome.getText(), null);
+		Aluno novoAluno = new Aluno(null, txtRa.getText(), txtNome.getText(), dateNascimento.getValue());
 		LocalDate dataLocal = LocalDate.parse(dateNascimento.getValue().toString(), dtf);
 		novoAluno.setNascimento(dataLocal);
 		return novoAluno;
