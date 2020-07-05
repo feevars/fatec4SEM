@@ -58,38 +58,6 @@ public class PetBoundary extends BorderPane {
 		});
 	}
 	
-	@Override
-	public void start(Stage stage) throws Exception {
-		BorderPane panPrincipal = new BorderPane();
-		Scene scn = new Scene(panPrincipal, 400, 300);
-		
-		GridPane panCampos = new GridPane();
-		generateTable();
-		
-		panCampos.add(new Label("Id: "), 0, 0);
-		panCampos.add(txtId, 1, 0);
-		panCampos.add(new Label("Nome: "), 0, 1);
-		panCampos.add(txtNome, 1, 1);
-		panCampos.add(new Label("Raça: "), 0, 2);
-		panCampos.add(txtRaca, 1, 2);
-		panCampos.add(new Label("Peso: "), 0, 3);
-		panCampos.add(txtPeso, 1, 3);
-		panCampos.add(new Label("Nascimento: "), 0, 4);
-		panCampos.add(txtNascimento, 1, 4);
-		panCampos.add(btnAdicionar, 0, 5);
-		panCampos.add(btnPesquisar,  1,  5);
-		
-		btnAdicionar.setOnAction(this);
-		btnPesquisar.setOnAction(this);
-		
-		panPrincipal.setTop(panCampos);
-		panPrincipal.setCenter(tableView);
-		
-		stage.setScene(scn);
-		stage.setTitle("Gestão de Pets");
-		stage.show();
-	}
-	
 	public void handle(ActionEvent e) { 
 		if (e.getTarget() == btnAdicionar) { 
 			Pet p = boundaryToEntity();
@@ -107,7 +75,6 @@ public class PetBoundary extends BorderPane {
 		try { 
 			p.setId( Long.parseLong(txtId.getText()) );
 			p.setNome( txtNome.getText() );
-			p.setRaca( txtRaca.getSelectionModel().getSelectedItem() );
 			p.setPeso( Double.parseDouble(txtPeso.getText()) );
 			LocalDate dt = LocalDate.parse(txtNascimento.getText(), dtf);
 			p.setNascimento( dt );
@@ -121,7 +88,6 @@ public class PetBoundary extends BorderPane {
 		if (p != null) {
 			txtId.setText( String.valueOf(p.getId()) );
 			txtNome.setText( p.getNome() );
-			txtRaca.getSelectionModel().select( p.getRaca() );
 			txtPeso.setText( String.valueOf(p.getPeso()) );
 			txtNascimento.setText( dtf.format(p.getNascimento()) );
 		}

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-import controller.AlunoController;
+import controller.CursoController;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,11 +20,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.entities.Aluno;
+import model.entities.Curso;
 
-public class AlunoBoundary extends BorderPane implements EventHandler<ActionEvent> {
+public class CursoBoundary extends BorderPane implements EventHandler<ActionEvent> {
 
-	private AlunoController alunoController = new AlunoController();
+	private CursoController CursoController = new CursoController();
 
 	private VBox vboxFormulario = new VBox();
 
@@ -45,13 +45,13 @@ public class AlunoBoundary extends BorderPane implements EventHandler<ActionEven
 	private Button btnExcluir = new Button("Excluir");
 	private Button btnSalvar = new Button("Salvar");
 
-	private VBox vboxTabelaAlunos = new VBox();
-	private Label lblTodosOsAlunos = new Label("Todos os alunos: ");
-	private TableView<Aluno> tabelaAlunos;
+	private VBox vboxTabelaCursos = new VBox();
+	private Label lblTodosOsCursos = new Label("Todos os Cursos: ");
+	private TableView<Curso> tabelaCursos;
 
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-	public AlunoBoundary() {
+	public CursoBoundary() {
 
 		gerarTela();
 	}
@@ -74,58 +74,58 @@ public class AlunoBoundary extends BorderPane implements EventHandler<ActionEven
 
 		gerarTabela();
 
-		vboxTabelaAlunos.getChildren().addAll(lblTodosOsAlunos, tabelaAlunos);
+		vboxTabelaCursos.getChildren().addAll(lblTodosOsCursos, tabelaCursos);
 
 		this.setLeft(vboxFormulario);
-		this.setCenter(vboxTabelaAlunos);
+		this.setCenter(vboxTabelaCursos);
 	}
 
 	private void gerarTabela() {
-		tabelaAlunos = new TableView<Aluno>(alunoController.listarAlunos());
+		tabelaCursos = new TableView<Curso>(CursoController.listarCursos());
 
-		TableColumn<Aluno, Integer> colId = new TableColumn<>("Id: ");
-		colId.setCellValueFactory(new PropertyValueFactory<Aluno, Integer>("id"));
+		TableColumn<Curso, Integer> colId = new TableColumn<>("Id: ");
+		colId.setCellValueFactory(new PropertyValueFactory<Curso, Integer>("id"));
 
-		TableColumn<Aluno, String> colRa = new TableColumn<>("RA: ");
-		colRa.setCellValueFactory(new PropertyValueFactory<Aluno, String>("ra"));
+		TableColumn<Curso, String> colRa = new TableColumn<>("RA: ");
+		colRa.setCellValueFactory(new PropertyValueFactory<Curso, String>("ra"));
 
-		TableColumn<Aluno, String> colNome = new TableColumn<>("Nome: ");
-		colNome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome"));
+		TableColumn<Curso, String> colNome = new TableColumn<>("Nome: ");
+		colNome.setCellValueFactory(new PropertyValueFactory<Curso, String>("nome"));
 
-		TableColumn<Aluno, Date> colNascimento = new TableColumn<>("Data de nascimento: ");
-		colNascimento.setCellValueFactory(new PropertyValueFactory<Aluno, Date>("nascimento"));
+		TableColumn<Curso, Date> colNascimento = new TableColumn<>("Data de nascimento: ");
+		colNascimento.setCellValueFactory(new PropertyValueFactory<Curso, Date>("nascimento"));
 
-		tabelaAlunos.getColumns().add(colId);
-		tabelaAlunos.getColumns().add(colRa);
-		tabelaAlunos.getColumns().add(colNome);
-		tabelaAlunos.getColumns().add(colNascimento);
+		tabelaCursos.getColumns().add(colId);
+		tabelaCursos.getColumns().add(colRa);
+		tabelaCursos.getColumns().add(colNome);
+		tabelaCursos.getColumns().add(colNascimento);
 
-		tabelaAlunos.setOnMouseClicked(e -> {
-			if (tabelaAlunos.getSelectionModel().getSelectedItem() != null) {
-				entityToBoundary(tabelaAlunos.getSelectionModel().getSelectedItem().getRa());
+		tabelaCursos.setOnMouseClicked(e -> {
+			if (tabelaCursos.getSelectionModel().getSelectedItem() != null) {
+				entityToBoundary(tabelaCursos.getSelectionModel().getSelectedItem().getRa());
 			}
 		});
 	}
 
-	private Aluno boundaryToEntity() {
-		Aluno novoAluno = new Aluno(null, txtRa.getText(), txtNome.getText(), dateNascimento.getValue());
-		return novoAluno;
+	private Curso boundaryToEntity() {
+		Curso novoCurso = new Curso(null, txtRa.getText(), txtNome.getText(), dateNascimento.getValue());
+		return novoCurso;
 	}
 
 	private void entityToBoundary(String ra) {
-		Aluno aluno = alunoController.exibirAluno(ra);
-		if (aluno != null) {
-			txtRa.setText(aluno.getRa());
-			txtNome.setText(aluno.getNome());
-			if (aluno.getNascimento() != null) {
-				dateNascimento.setValue(aluno.getNascimento());
+		Curso Curso = CursoController.exibirCurso(ra);
+		if (Curso != null) {
+			txtRa.setText(Curso.getRa());
+			txtNome.setText(Curso.getNome());
+			if (Curso.getNascimento() != null) {
+				dateNascimento.setValue(Curso.getNascimento());
 			}
 		}
 	}
 	
 	private void limparTabela() {
-		tabelaAlunos.getItems().clear();
-		tabelaAlunos.setItems(alunoController.listarAlunos());
+		tabelaCursos.getItems().clear();
+		tabelaCursos.setItems(CursoController.listarCursos());
 		limparCampos();
 	}
 	
@@ -139,34 +139,34 @@ public class AlunoBoundary extends BorderPane implements EventHandler<ActionEven
 	public void handle(ActionEvent event) {
 
 		if (event.getTarget().equals(btnSalvar)) {
-			Aluno aluno2 = alunoController.exibirAluno(boundaryToEntity().getRa());
+			Curso Curso2 = CursoController.exibirCurso(boundaryToEntity().getRa());
 
-			if (aluno2 == null) {
-				Integer novoId = alunoController.cadastrarAluno(boundaryToEntity());
+			if (Curso2 == null) {
+				Integer novoId = CursoController.cadastrarCurso(boundaryToEntity());
 				if (novoId != null) {
 					Alert alertCadastroSucesso = new Alert(AlertType.INFORMATION,
-							"Aluno de RA " + novoId + " cadastrado com sucesso!");
+							"Curso de RA " + novoId + " cadastrado com sucesso!");
 					alertCadastroSucesso.show();
 					limparTabela();
 				} else {
-					Alert alertCadastroErro = new Alert(AlertType.ERROR, "Erro ao cadastrar aluno.");
+					Alert alertCadastroErro = new Alert(AlertType.ERROR, "Erro ao cadastrar Curso.");
 					alertCadastroErro.show();
 				}
 			} else {
-				if (alunoController.atualizarAluno(boundaryToEntity())) {
+				if (CursoController.atualizarCurso(boundaryToEntity())) {
 					Alert alertAtualizadoSucesso = new Alert(AlertType.INFORMATION,
-							"Aluno de RA " + aluno2.getRa() + " atualizado com sucesso!");
+							"Curso de RA " + Curso2.getRa() + " atualizado com sucesso!");
 					alertAtualizadoSucesso.show();
 					limparTabela();
 				} else {
-					Alert alertAtualizaErro = new Alert(AlertType.ERROR, "Erro ao editar aluno.");
+					Alert alertAtualizaErro = new Alert(AlertType.ERROR, "Erro ao editar Curso.");
 					alertAtualizaErro.show();
 				}
 			}
 		}
 		
 		if (event.getTarget().equals(btnExcluir)) {
-			alunoController.excluirAluno(boundaryToEntity().getRa());
+			cursoController.excluirCurso(boundaryToEntity().getRa());
 			limparTabela();
 		}
 	}

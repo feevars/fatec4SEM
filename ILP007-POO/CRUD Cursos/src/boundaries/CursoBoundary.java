@@ -1,4 +1,4 @@
-package boundaries.admin;
+package boundaries;
 
 import java.util.HashSet;
 import java.util.Optional;
